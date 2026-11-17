@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#08110c">
+<title>CASHUP</title>
+<style>
+:root{--bg:#08110c;--panel:#111f16;--line:#294333;--green:#42e890;--muted:#a4b8aa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#f4fff7;font-family:Arial,sans-serif}
+header{padding:20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-size:27px;font-weight:900;letter-spacing:2px;color:var(--green)}.logo span{color:white}
+header small{color:var(--muted);font-size:11px}
+main{max-width:850px;margin:auto;padding:22px 16px 95px}
+h1{font-size:27px;margin:8px 0}.muted{color:var(--muted);line-height:1.5;font-size:14px}
+.balance{margin:22px 0;padding:23px;border:1px solid #286b43;border-radius:19px;background:linear-gradient(135deg,#16482d,#0d2115)}
+.balance small{color:#c1dfca}.amount{font-size:38px;font-weight:bold;color:var(--green);margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:16px;min-height:125px}
+.emoji{font-size:27px}.card h3{margin:10px 0 6px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.section{margin-top:27px}.page{display:none}.page.active{display:block}
+.notice{padding:14px;border-radius:12px;background:#17271c;color:#bfd3c4;font-size:13px;line-height:1.5}
+button{cursor:pointer}.primary{border:0;border-radius:11px;padding:12px 17px;background:var(--green);color:#062012;font-weight:bold}
+.secondary{border:1px solid #42634b;border-radius:10px;padding:11px;background:#17271c;color:#e6f5e9}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#101a13;border-top:1px solid var(--line);padding:11px 2px}
+nav button{border:0;background:none;color:#a7b9ac;font-size:12px;padding:6px}
+nav button.active{color:var(--green)}
+label{display:block;color:#c4d6c9;font-size:13px;margin:12px 0 5px}
+input{width:100%;padding:13px;background:#0b150e;border:1px solid #42634b;border-radius:10px;color:white}
+footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header><div class="logo">CASH<span>UP</span></div><small>IL MOVIMENTO PREMIA</small></header>
+<main>
+<section id="home" class="page active">
+<h1>Benvenuto su CASHUP</h1>
+<p class="muted">Ogni passo può essere un'opportunità.</p>
+<div class="balance"><small>IL TUO SALDO</small><div class="amount">0,00 €</div><small>Saldo dimostrativo · premi non ancora attivi</small></div>
+<h2>Il tuo spazio</h2>
+<div class="grid">
+<div class="card"><div class="emoji">👟</div><h3>CASHUP Steps</h3><p>Il progetto dedicato ai tuoi passi e alla tua attività.</p></div>
+<div class="card"><div class="emoji">🎁</div><h3>Ricompense</h3><p>Scopri il catalogo premi, in preparazione.</p></div>
+<div class="card"><div class="emoji">🏪</div><h3>Negozi</h3><p>Le offerte dei negozi arriveranno in futuro.</p></div>
+<div class="card"><div class="emoji">👥</div><h3>Invita amici</h3><p>La funzione inviti è in preparazione.</p></div>
+<div class="card"><div class="emoji">👛</div><h3>Wallet</h3><p>Qui potrai consultare il tuo saldo.</p></div>
+<div class="card"><div class="emoji">👤</div><h3>Profilo</h3><p>La tua area personale CASHUP.</p></div>
+</div>
+<div class="section notice">Questa è la prima versione dimostrativa di CASHUP. Il conteggio reale dei passi, gli account, i premi e i pagamenti non sono ancora collegati o attivi.</div>
+</section>
+
+<section id="steps" class="page">
+<h1>CASHUP Steps 👟</h1>
+<p class="muted">Il movimento è il primo passo. Il conteggio automatico dei passi sarà aggiunto in una fase successiva.</p>
+<div class="balance"><small>PASSI REGISTRATI</small><div class="amount">0</div><small>Nessun dato sanitario collegato</small></div>
+<div class="notice">Per leggere i passi reali servirà integrare una fonte compatibile con il telefono e richiedere il tuo consenso.</div>
+</section>
+
+<section id="rewards" class="page">
+<h1>Ricompense 🎁</h1><p class="muted">Il catalogo CASHUP è in preparazione.</p>
+<div class="grid">
+<div class="card"><div class="emoji">🎟️</div><h3>Buoni regalo</h3><p>Disponibilità futura.</p></div>
+<div class="card"><div class="emoji">🛍️</div><h3>Sconti</h3><p>Disponibilità futura.</p></div>
+<div class="card"><div class="emoji">💶</div><h3>Cashback</h3><p>Funzione non ancora attiva.</p></div>
+</div>
+</section>
+
+<section id="wallet" class="page">
+<h1>Il tuo Wallet 👛</h1>
+<div class="balance"><small>SALDO DIMOSTRATIVO</small><div class="amount">0,00 €</div><small>Nessun pagamento o prelievo disponibile</small></div>
+<div class="notice">Il wallet è solo una schermata dimostrativa. Non contiene denaro e non effettua transazioni.</div>
+</section>
+
+<section id="profile" class="page">
+<h1>Profilo 👤</h1><p class="muted">La tua area personale CASHUP.</p>
+<div class="card">
+<label for="name">Nome</label><input id="name" type="text" placeholder="Inserisci il tuo nome">
+<label for="email">Email</label><input id="email" type="email" placeholder="Inserisci la tua email">
+<button class="primary" onclick="saveProfile()">Salva sul dispositivo</button>
+<p id="saved" class="muted" aria-live="polite"></p>
+</div>
+<div class="section notice">Il profilo viene salvato solo su questo dispositivo. La registrazione con account e sincronizzazione online saranno aggiunte successivamente.</div>
+</section>
+<footer>CASHUP · Versione dimostrativa</footer>
+</main>
+<nav>
+<button class="active" data-page="home" onclick="showPage('home',this)">⌂<br>Home</button>
+<button data-page="steps" onclick="showPage('steps',this)">👟<br>Passi</button>
+<button data-page="rewards" onclick="showPage('rewards',this)">🎁<br>Premi</button>
+<button data-page="wallet" onclick="showPage('wallet',this)">👛<br>Wallet</button>
+<button data-page="profile" onclick="showPage('profile',this)">👤<br>Profilo</button>
+</nav>
+<script>
+function showPage(id,button){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ button.classList.add('active');
+ window.scrollTo(0,0);
+}
+function saveProfile(){
+ const name=document.getElementById('name').value;
+ const email=document.getElementById('email').value;
+ try{
+  localStorage.setItem('cashup_name',name);
+  localStorage.setItem('cashup_email',email);
+  document.getElementById('saved').textContent='Dati salvati su questo dispositivo.';
+ }catch(e){
+  document.getElementById('saved').textContent='Salvataggio non disponibile in questo browser.';
+ }
+}
+try{
+ document.getElementById('name').value=localStorage.getItem('cashup_name')||'';
+ document.getElementById('email').value=localStorage.getItem('cashup_email')||'';
+}catch(e){}
+</script>
+</body>
+</html>
