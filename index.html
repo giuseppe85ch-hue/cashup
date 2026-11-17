@@ -86,10 +86,10 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 <p id="auth-status" class="auth-status" aria-live="polite">Controllo dello stato dell'account…</p>
 </div>
 <div class="card section">
-<h3>Profilo sul dispositivo</h3>
+<h3>Il mio profilo</h3>
 <label for="name">Nome</label><input id="name" type="text" placeholder="Inserisci il tuo nome">
 <label for="email">Email di contatto</label><input id="email" type="email" placeholder="Inserisci la tua email">
-<button class="primary" style="margin-top:14px" onclick="saveProfile()">Salva sul dispositivo</button>
+<button class="primary" style="margin-top:14px" id="save-profile-btn" type="button">Salva profilo</button>
 <p id="saved" class="muted" aria-live="polite"></p>
 </div>
 <div class="section notice">La registrazione usa Supabase Auth. Se la conferma email è attiva, dopo la registrazione apri il messaggio ricevuto via email e conferma l'indirizzo. Passi, premi e pagamenti non sono ancora attivi.</div>
@@ -117,7 +117,7 @@ function saveProfile(){
  try{
   localStorage.setItem('cashup_name',name);
   localStorage.setItem('cashup_email',email);
-  document.getElementById('saved').textContent='Dati salvati su questo dispositivo.';
+  document.getElementById('saved').textContent='Dati salvati solo su questo dispositivo.';
  }catch(e){
   document.getElementById('saved').textContent='Salvataggio non disponibile in questo browser.';
  }
@@ -151,6 +151,53 @@ function readableError(error) {
   return messages[error?.message] || error?.message || 'Si è verificato un errore. Riprova.';
 }
 
+async function loadCloudProfile(user) {
+  const { data, error } = await supabase
+    .from('profiles')
+    .select('display_name')
+    .eq('id', user.id)
+    .maybeSingle();
+  if (error) {
+    document.getElementById('saved').textContent = 'Accesso al profilo online non riuscito: ' + readableError(error);
+    return;
+  }
+  if (data?.display_name) {
+    document.getElementById('name').value = data.display_name;
+    try { localStorage.setItem('cashup_name', data.display_name); } catch (e) {}
+  }
+  document.getElementById('email').value = user.email || '';
+}
+
+async function saveCloudProfile() {
+  const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+  if (sessionError || !sessionData.session?.user) {
+    document.getElementById('saved').textContent = 'Prima accedi al tuo account CASHUP.';
+    return;
+  }
+  const user = sessionData.session.user;
+  const displayName = document.getElementById('name').value.trim();
+  if (!displayName) {
+    document.getElementById('saved').textContent = 'Inserisci il tuo nome.';
+    return;
+  }
+  document.getElementById('saved').textContent = 'Salvataggio del profilo online…';
+  const { error } = await supabase
+    .from('profiles')
+    .upsert({ id: user.id, display_name: displayName }, { onConflict: 'id' });
+  if (error) {
+    document.getElementById('saved').textContent = 'Salvataggio online non riuscito: ' + readableError(error);
+    return;
+  }
+  try {
+    localStorage.setItem('cashup_name', displayName);
+    localStorage.setItem('cashup_email', user.email || '');
+  } catch (e) {}
+  document.getElementById('email').value = user.email || '';
+  document.getElementById('saved').textContent = 'Profilo salvato nel database CASHUP.';
+}
+
+document.getElementById('save-profile-btn').addEventListener('click', saveCloudProfile);
+
 async function refreshSession() {
   const { data, error } = await supabase.auth.getSession();
   if (error) {
@@ -159,6 +206,7 @@ async function refreshSession() {
   }
   if (data.session?.user) {
     showStatus('Accesso effettuato con: ' + data.session.user.email);
+    await loadCloudProfile(data.session.user);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
   }
@@ -219,6 +267,7 @@ document.getElementById('signout-btn').addEventListener('click', async () => {
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session?.user) {
     showStatus('Accesso effettuato con: ' + session.user.email);
+    setTimeout(() => loadCloudProfile(session.user), 0);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
   }
