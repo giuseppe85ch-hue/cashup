@@ -11,11 +11,14 @@ Questo piano è una checklist di collaudo. Non abilita agenti, non esegue automa
 
 ## Da verificare insieme in Supabase
 
-La query di sola lettura è stata preparata in `supabase/verification/verify_brain_read_only.sql`. Restituisce in un unico risultato gli agenti mancanti, eventuali agenti attivi, le impostazioni e lo stato RLS delle sette tabelle. Non modifica il database.
+La query `supabase/verification/verify_brain_read_only.sql` controlla agenti, impostazioni e stato RLS. La query aggiuntiva `supabase/verification/verify_brain_security_read_only.sql` legge anche policy RLS, privilegi SQL e configurazione della funzione `brain_is_founder()`. Entrambe sono esclusivamente di lettura e non modificano il database.
 - [ ] Query di sola lettura: presenza degli otto agenti previsti.
 - [ ] Query di sola lettura: presenza delle cinque impostazioni iniziali e valori conservativi.
 - [ ] Confermare che `emergency_stop` sia true e `autonomy_enabled` sia false.
 - [ ] Confermare che nessun agente sia nello stato `active`.
+- [ ] Eseguire la query aggiuntiva `verify_brain_security_read_only.sql` e controllare policy e privilegi.
+- [ ] Confermare che nessun ruolo `anon` o `PUBLIC` abbia privilegi sulle tabelle BRAIN.
+- [ ] Confermare che `brain_is_founder()` sia `SECURITY DEFINER` con `search_path` vuoto e senza esecuzione concessa a `anon`/`PUBLIC`.
 - [ ] Verificare policy RLS e accesso fondatore con test controllato.
 
 ## Da verificare insieme nella console, solo dopo i controlli database
