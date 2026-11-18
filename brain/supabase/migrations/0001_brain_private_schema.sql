@@ -20,7 +20,7 @@ create policy brain_founders_read_self
   to authenticated
   using (user_id = auth.uid() and active = true);
 
-revoke all on public.brain_founders from anon, authenticated;
+revoke all on public.brain_founders from public, anon, authenticated;
 grant select on public.brain_founders to authenticated;
 
 create or replace function public.brain_is_founder()
@@ -136,7 +136,7 @@ begin
       'create policy %I on public.%I for all to authenticated using (public.brain_is_founder()) with check (public.brain_is_founder())',
       t || '_founder_all', t
     );
-    execute format('revoke all on public.%I from anon', t);
+    execute format('revoke all on public.%I from public, anon, authenticated', t);
     execute format('grant select, insert, update, delete on public.%I to authenticated', t);
   end loop;
 end $$;
