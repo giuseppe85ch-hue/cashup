@@ -23,7 +23,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 7. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
 ## Piano di verifica
-La checklist dettagliata dei controlli da svolgere insieme è in [VERIFICATION.md](./VERIFICATION.md). I controlli database e i test reali della console sono ancora da completare.
+La checklist dettagliata dei controlli da svolgere insieme è in [VERIFICATION.md](./VERIFICATION.md). Le query SQL di verifica, entrambe di sola lettura, sono in `supabase/verification/`: `verify_brain_read_only.sql` per catalogo/impostazioni/RLS e `verify_brain_security_read_only.sql` per policy/privilegi/funzione fondatore. I controlli database e i test reali della console sono ancora da completare.
 
 ## Prossimi passaggi
 1. Verificare direttamente nel database la presenza degli otto agenti e delle cinque impostazioni iniziali.
