@@ -6,6 +6,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - Il repository contiene il prototipo web CASHUP, autenticazione Supabase e PWA.
 - Il lavoro BRAIN è sul ramo `cashup-brain-setup`; il ramo principale `main` non viene modificato.
 - La migrazione `supabase/migrations/0001_brain_private_schema.sql` è stata eseguita manualmente nel progetto Supabase CASHUP.
+- È stata preparata `supabase/migrations/0002_brain_initial_catalog.sql`: aggiunge soltanto schede di agenti in stato `planned` e impostazioni iniziali conservative (autonomia disattivata, spesa automatizzata zero, arresto di emergenza attivo). Questa seconda migrazione NON è ancora stata eseguita.
 - Le sette tabelle `brain_*` risultano presenti.
 - L'account del fondatore è stato inserito in `brain_founders`.
 - `dashboard/index.html` contiene una prima console web per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni e registro.
