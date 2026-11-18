@@ -7,7 +7,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - Il lavoro BRAIN è sul ramo `cashup-brain-setup`; il ramo principale `main` non viene modificato.
 - La migrazione `supabase/migrations/0001_brain_private_schema.sql` è stata eseguita manualmente nel progetto Supabase CASHUP.
 - La migrazione `supabase/migrations/0002_brain_initial_catalog.sql` è stata eseguita dall'utente in Supabase e ha restituito `Success` il 19 novembre 2026. L'esito non è stato verificato direttamente tramite una connessione database.
-- È stata preparata la migrazione `supabase/migrations/0003_private_founder_function.sql`: sposta `brain_is_founder()` dallo schema API `public` allo schema non esposto `private`, aggiorna le policy e revoca la vecchia funzione pubblica. È sul branch di lavoro ma NON è ancora stata eseguita in Supabase.
+- È stata preparata la migrazione `supabase/migrations/0003_private_founder_function.sql`: sposta `brain_is_founder()` dallo schema API `public` allo schema `private`, aggiorna le policy, revoca la vecchia funzione pubblica e mostra un riepilogo automatico dei controlli al termine. È sul branch di lavoro ma NON è ancora stata eseguita in Supabase.
 - La seconda migrazione inserisce otto schede di agenti in stato `planned` e impostazioni iniziali conservative: autonomia disattivata, spesa automatizzata zero, approvazione umana per azioni ad alto rischio e finanziarie, arresto di emergenza attivo.
 - Le sette tabelle `brain_*` risultavano presenti dopo la prima migrazione.
 - L'account del fondatore è stato inserito in `brain_founders`.
@@ -27,7 +27,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 La checklist dettagliata dei controlli da svolgere insieme è in [VERIFICATION.md](./VERIFICATION.md). Le query SQL di verifica, entrambe di sola lettura, sono in `supabase/verification/`: `verify_brain_read_only.sql` per catalogo/impostazioni/RLS e `verify_brain_security_read_only.sql` per policy/privilegi/funzione fondatore nello schema privato (dopo 0003). I controlli database e i test reali della console sono ancora da completare.
 
 ## Prossimi passaggi
-1. Eseguire la migrazione 0003 nel progetto Supabase corretto, dopo aver conservato il risultato delle verifiche precedenti.
+1. Eseguire la migrazione 0003 nel progetto Supabase corretto, dopo aver conservato il risultato delle verifiche precedenti; il file mostra già un riepilogo automatico al termine.
 2. Verificare direttamente nel database la presenza degli otto agenti e delle cinque impostazioni iniziali.
 3. Revisionare il codice della dashboard e collaudare login fondatore e controlli RLS.
 4. Testare con un account non autorizzato che non possa leggere o modificare dati BRAIN.
