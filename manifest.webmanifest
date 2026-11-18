@@ -1,0 +1,11 @@
+{
+  "id": "cashup",
+  "name": "CASHUP",
+  "short_name": "CASHUP",
+  "description": "CASHUP – Passi, premi e cashback.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#08110C"
+}
