@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08110c">
+<title>CASHUP BRAIN — Console fondatore</title>
+<style>
+:root{color-scheme:dark;--bg:#08110c;--panel:#111f16;--line:#294333;--green:#42e890;--muted:#a4b8aa;--text:#f4fff7;--red:#ff7777;--amber:#ffd27a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px Arial,sans-serif}
+header{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:900;letter-spacing:1.5px;color:var(--green)}.logo span{color:white}
+header small,.muted{color:var(--muted)}main{max-width:1100px;margin:auto;padding:22px 16px 60px}
+h1{font-size:26px;margin:8px 0}h2{font-size:18px;margin:0 0 14px}h3{font-size:16px;margin:0 0 8px}
+p{line-height:1.5}.muted{font-size:13px;line-height:1.5}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:12px}
+.metric{background:#0c1710;border:1px solid var(--line);border-radius:13px;padding:15px}.metric strong{display:block;color:var(--green);font-size:28px;margin-top:8px}
+label{display:block;font-size:13px;color:#c4d6c9;margin:12px 0 6px}input,textarea,select{width:100%;padding:12px;background:#0b150e;border:1px solid #42634b;border-radius:10px;color:white;font:inherit}textarea{min-height:78px;resize:vertical}
+button{cursor:pointer;border:0;border-radius:10px;padding:11px 14px;font-weight:bold;background:var(--green);color:#062012}
+button.secondary{background:#17271c;border:1px solid #42634b;color:var(--text)}button.danger{background:#3a1c1c;border:1px solid #713b3b;color:#ffdede}
+button:disabled{opacity:.5;cursor:not-allowed}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.status{padding:12px;border-radius:10px;background:#17271c;color:#cde8d4;font-size:13px;line-height:1.5;white-space:pre-wrap}.status.error{color:#ffdede;background:#351d1d}
+.hidden{display:none!important}.row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.item{padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border:0}.pill{font-size:11px;padding:4px 8px;border-radius:30px;background:#203a29;color:#b9f6ce}
+.notice{border-left:3px solid var(--amber);padding:11px 13px;background:#251f12;color:#f6e3b7;border-radius:8px;font-size:13px;line-height:1.5}
+small{font-size:12px}.empty{color:var(--muted);font-size:13px;padding:12px 0}
+@media(min-width:700px){main{padding-top:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+</style>
+</head>
+<body>
+<header><div><div class="logo">CASH<span>UP</span> BRAIN</div><small>Console privata del fondatore · fase iniziale</small></div><button id="signout" class="secondary hidden">Esci</button></header>
+<main>
+<section id="login" class="panel">
+<h1>Accesso fondatore</h1><p class="muted">Accedi con lo stesso account email usato su CASHUP. L'accesso ai dati è comunque verificato da Supabase RLS.</p>
+<label for="email">Email</label><input id="email" type="email" autocomplete="username" placeholder="La tua email">
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="La tua password">
+<div class="actions"><button id="loginBtn">Accedi</button></div>
+<p id="loginStatus" class="status" aria-live="polite">Inserisci le credenziali del tuo account fondatore.</p>
+</section>
+<section id="app" class="hidden">
+<div class="row"><div><h1>Centro di controllo</h1><p id="welcome" class="muted">Verifica dell'account…</p></div><span class="pill">ACCESSO FONDATORE</span></div>
+<div class="notice">Modalità iniziale: questa console gestisce attività e consultazione. Gli agenti non eseguono operazioni autonome. Pagamenti, contratti, accessi sensibili e azioni irreversibili richiederanno sempre approvazione umana.</div>
+<div class="panel"><h2>Panoramica</h2><div class="grid">
+<div class="metric">Attività aperte<strong id="tasksOpen">—</strong></div>
+<div class="metric">Agenti registrati<strong id="agentsCount">—</strong></div>
+<div class="metric">Approvazioni in attesa<strong id="approvalsCount">—</strong></div>
+<div class="metric">Voci registro<strong id="auditCount">—</strong></div>
+</div></div>
+<div class="columns">
+<section class="panel"><h2>Nuova attività</h2>
+<label for="taskTitle">Titolo</label><input id="taskTitle" maxlength="120" placeholder="Es. Verificare integrazione login">
+<label for="taskDesc">Descrizione</label><textarea id="taskDesc" maxlength="1000" placeholder="Descrivi il risultato desiderato"></textarea>
+<label for="taskPriority">Priorità</label><select id="taskPriority"><option value="normal">Normale</option><option value="low">Bassa</option><option value="high">Alta</option><option value="urgent">Urgente</option></select>
+<div class="actions"><button id="addTask">Crea attività</button></div><p id="taskStatus" class="muted" aria-live="polite"></p>
+</section>
+<section class="panel"><h2>Agenti AI</h2><p class="muted">Catalogo e stato degli agenti. Nessun agente viene avviato da questa console.</p><div id="agentsList" class="empty">Caricamento…</div></section>
+</div>
+<div class="columns">
+<section class="panel"><h2>Attività recenti</h2><div id="tasksList" class="empty">Caricamento…</div></section>
+<section class="panel"><h2>Approvazioni</h2><p class="muted">Le decisioni registrano l'esito ma non eseguono automaticamente l'azione richiesta.</p><div id="approvalsList" class="empty">Caricamento…</div></section>
+</div>
+<section class="panel"><h2>Registro attività</h2><div id="auditList" class="empty">Caricamento…</div></section>
+<p id="appStatus" class="status" aria-live="polite">Caricamento dati…</p>
+</section>
+</main>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+const SUPABASE_URL='https://fzcricigqqpzcujrenkf.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_uy1xJ_55eYnmne1K8UrBQg_lV3LEyae';
+const supabase=createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
+const $=id=>document.getElementById(id);
+const setStatus=(id,msg,error=false)=>{$(id).textContent=msg;$(id).classList.toggle('error',error)};
+const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const date=value=>value?new Date(value).toLocaleString('it-IT'):'—';
+let currentUser=null;
+async function audit(action,objectType,objectId,details={}){
+ const {error}=await supabase.from('brain_audit_log').insert({actor_user_id:currentUser.id,actor_type:'founder',action,object_type:objectType,object_id:objectId?String(objectId):null,outcome:'recorded',details});
+ if(error) console.warn('Audit log non scritto:',error.message);
+}
+async function loadDashboard(){
+ const [tasks,agents,approvals,auditRows]=await Promise.all([
+  supabase.from('brain_tasks').select('id,title,description,status,priority,sector,created_at').order('created_at',{ascending:false}).limit(12),
+  supabase.from('brain_agents').select('id,display_name,description,status,permission_level').order('display_name'),
+  supabase.from('brain_approvals').select('id,action_type,description,risk_level,status,created_at').order('created_at',{ascending:false}).limit(12),
+  supabase.from('brain_audit_log').select('id,action,object_type,outcome,created_at').order('created_at',{ascending:false}).limit(10)
+ ]);
+ const firstError=[tasks,agents,approvals,auditRows].find(x=>x.error)?.error;
+ if(firstError){setStatus('appStatus','Errore nel caricamento: '+firstError.message,true);return}
+ $('tasksOpen').textContent=tasks.data.filter(x=>!['done','cancelled'].includes(x.status)).length;
+ $('agentsCount').textContent=agents.data.length;
+ $('approvalsCount').textContent=approvals.data.filter(x=>x.status==='pending').length;
+ $('auditCount').textContent=auditRows.data.length;
+ $('tasksList').innerHTML=tasks.data.length?tasks.data.map(x=>'<div class="item"><div class="row"><strong>'+esc(x.title)+'</strong><span class="pill">'+esc(x.status)+'</span></div><small class="muted">Priorità: '+esc(x.priority)+' · '+date(x.created_at)+'</small><p class="muted">'+esc(x.description)+'</p></div>').join(''):'<div class="empty">Nessuna attività ancora. Puoi crearne una qui sopra.</div>';
+ $('agentsList').innerHTML=agents.data.length?agents.data.map(x=>'<div class="item"><div class="row"><strong>'+esc(x.display_name)+'</strong><span class="pill">'+esc(x.status)+'</span></div><p class="muted">'+esc(x.description)+'<br>Permessi: '+esc(x.permission_level)+'</p></div>').join(''):'<div class="empty">Nessun agente configurato. Gli agenti verranno aggiunti e testati uno alla volta.</div>';
+ $('approvalsList').innerHTML=approvals.data.length?approvals.data.map(x=>'<div class="item"><div class="row"><strong>'+esc(x.action_type)+'</strong><span class="pill">'+esc(x.status)+'</span></div><p class="muted">'+esc(x.description)+'<br>Rischio: '+esc(x.risk_level)+' · '+date(x.created_at)+'</p>'+(x.status==='pending'?'<div class="actions"><button class="secondary" data-approval="'+x.id+'" data-decision="approved">Approva richiesta</button><button class="danger" data-approval="'+x.id+'" data-decision="rejected">Rifiuta</button></div>':'')+'</div>').join(''):'<div class="empty">Nessuna approvazione in attesa.</div>';
+ $('auditList').innerHTML=auditRows.data.length?auditRows.data.map(x=>'<div class="item"><strong>'+esc(x.action)+'</strong><p class="muted">'+esc(x.object_type)+' · '+esc(x.outcome)+' · '+date(x.created_at)+'</p></div>').join(''):'<div class="empty">Il registro è vuoto.</div>';
+ setStatus('appStatus','Dati caricati. Le protezioni del database sono attive.');
+}
+async function showApp(user){
+ currentUser=user;
+ const {data:founder,error}=await supabase.from('brain_founders').select('user_id,active').eq('user_id',user.id).eq('active',true).maybeSingle();
+ if(error||!founder){setStatus('loginStatus',error?'Verifica accesso non riuscita: '+error.message:'Questo account non risulta autorizzato come fondatore.',true);await supabase.auth.signOut();return}
+ $('login').classList.add('hidden');$('app').classList.remove('hidden');$('signout').classList.remove('hidden');
+ $('welcome').textContent='Accesso verificato · '+(user.email||'account fondatore');
+ await loadDashboard();
+}
+$('loginBtn').addEventListener('click',async()=>{
+ const email=$('email').value.trim(),password=$('password').value;
+ if(!email||!password){setStatus('loginStatus','Inserisci email e password.',true);return}
+ $('loginBtn').disabled=true;setStatus('loginStatus','Accesso in corso…');
+ const {data,error}=await supabase.auth.signInWithPassword({email,password});
+ $('loginBtn').disabled=false;
+ if(error){setStatus('loginStatus','Accesso non riuscito: '+error.message,true);return}
+ await showApp(data.user);
+});
+$('signout').addEventListener('click',async()=>{await supabase.auth.signOut();location.reload()});
+$('addTask').addEventListener('click',async()=>{
+ const title=$('taskTitle').value.trim();if(!title){$('taskStatus').textContent='Inserisci un titolo.';return}
+ $('addTask').disabled=true;
+ const {data,error}=await supabase.from('brain_tasks').insert({title,description:$('taskDesc').value.trim(),priority:$('taskPriority').value,sector:'core',created_by:currentUser.id}).select('id').single();
+ $('addTask').disabled=false;
+ if(error){$('taskStatus').textContent='Non è stato possibile creare l’attività: '+error.message;return}
+ await audit('task_created','brain_task',data.id,{title});
+ $('taskTitle').value='';$('taskDesc').value='';$('taskStatus').textContent='Attività creata.';
+ await loadDashboard();
+});
+$('approvalsList').addEventListener('click',async event=>{
+ const button=event.target.closest('button[data-approval]');if(!button)return;
+ const id=button.dataset.approval,decision=button.dataset.decision;
+ if(!confirm((decision==='approved'?'Approvare':'Rifiutare')+' questa richiesta? La decisione non esegue l’azione.'))return;
+ button.disabled=true;
+ const {error}=await supabase.from('brain_approvals').update({status:decision,decided_by:currentUser.id,decided_at:new Date().toISOString()}).eq('id',id).eq('status','pending');
+ if(error){button.disabled=false;setStatus('appStatus','Decisione non salvata: '+error.message,true);return}
+ await audit('approval_'+decision,'brain_approval',id,{decision});
+ await loadDashboard();
+});
+const {data:sessionData}=await supabase.auth.getSession();
+if(sessionData.session?.user) await showApp(sessionData.session.user);
+</script>
+</body>
+</html>
