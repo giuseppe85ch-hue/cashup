@@ -1,5 +1,5 @@
 -- CASHUP BRAIN — verifica sicurezza di sola lettura
--- Eseguire dopo le migrazioni 0001 e 0002 nel progetto Supabase corretto.
+-- Eseguire dopo le migrazioni 0001, 0002 e 0003 nel progetto corretto.
 -- Non modifica dati, policy, permessi o impostazioni.
 
 with expected_tables(table_name) as (
@@ -54,6 +54,8 @@ select jsonb_pretty(jsonb_build_object(
       'table', e.table_name,
       'anon_select', coalesce(has_table_privilege('anon', 'public.' || e.table_name, 'SELECT'), false),
       'anon_insert', coalesce(has_table_privilege('anon', 'public.' || e.table_name, 'INSERT'), false),
+      'anon_update', coalesce(has_table_privilege('anon', 'public.' || e.table_name, 'UPDATE'), false),
+      'anon_delete', coalesce(has_table_privilege('anon', 'public.' || e.table_name, 'DELETE'), false),
       'authenticated_select', coalesce(has_table_privilege('authenticated', 'public.' || e.table_name, 'SELECT'), false),
       'authenticated_insert', coalesce(has_table_privilege('authenticated', 'public.' || e.table_name, 'INSERT'), false),
       'authenticated_update', coalesce(has_table_privilege('authenticated', 'public.' || e.table_name, 'UPDATE'), false),
@@ -66,9 +68,19 @@ select jsonb_pretty(jsonb_build_object(
       where n.nspname = 'public' and c.relname = e.table_name and c.relkind = 'r'
     )
   ),
+  'private_schema', (
+    select jsonb_build_object(
+      'exists', n.oid is not null,
+      'anon_can_use', coalesce(has_schema_privilege('anon', n.oid, 'USAGE'), false),
+      'authenticated_can_use', coalesce(has_schema_privilege('authenticated', n.oid, 'USAGE'), false)
+    )
+    from (select oid from pg_namespace where nspname = 'private') n
+    right join (select 1) seed on true
+  ),
   'founder_check_function', (
     select jsonb_build_object(
       'exists', p.oid is not null,
+      'schema', n.nspname,
       'security_definer', coalesce(p.prosecdef, false),
       'anon_can_execute', coalesce(has_function_privilege('anon', p.oid, 'EXECUTE'), false),
       'authenticated_can_execute', coalesce(has_function_privilege('authenticated', p.oid, 'EXECUTE'), false),
@@ -85,7 +97,14 @@ select jsonb_pretty(jsonb_build_object(
     )
     from pg_proc p
     join pg_namespace n on n.oid = p.pronamespace
-    where n.nspname = 'public' and p.proname = 'brain_is_founder'
+    where n.nspname = 'private' and p.proname = 'brain_is_founder'
     limit 1
+  ),
+  'legacy_public_function_exists', (
+    select exists (
+      select 1 from pg_proc p
+      join pg_namespace n on n.oid = p.pronamespace
+      where n.nspname = 'public' and p.proname = 'brain_is_founder'
+    )
   )
 )) as cashup_brain_security_verification;
