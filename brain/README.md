@@ -1,31 +1,33 @@
 # CASHUP BRAIN — fondazione tecnica
 
-Questa cartella contiene la preparazione di CASHUP BRAIN. Non è collegata alla pubblicazione del sito e non deve essere distribuita automaticamente.
+Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard è un prototipo separato e non viene pubblicato automaticamente dal sito CASHUP.
 
-## Stato
+## Stato verificato
 - Il repository contiene il prototipo web CASHUP, autenticazione Supabase e PWA.
-- Il ramo di lavoro è `cashup-brain-setup`; il ramo principale `main` non viene modificato.
-- Questa prima fase prepara lo schema SQL con accesso negato per impostazione predefinita.
-- La migrazione SQL è soltanto un file: **non è stata eseguita su Supabase**.
-- Non esiste ancora una dashboard BRAIN funzionante né agenti autonomi attivi.
+- Il lavoro BRAIN è sul ramo `cashup-brain-setup`; il ramo principale `main` non viene modificato.
+- La migrazione `supabase/migrations/0001_brain_private_schema.sql` è stata eseguita manualmente nel progetto Supabase CASHUP.
+- Le sette tabelle `brain_*` risultano presenti.
+- L'account del fondatore è stato inserito in `brain_founders`.
+- `dashboard/index.html` contiene una prima console web per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni e registro.
+- La dashboard non è ancora pubblicata né collaudata end-to-end. Non esistono ancora agenti autonomi attivi.
 
-## Regole di sicurezza
-1. Nessuna chiave `service_role`, password o segreto AI nel browser o nel repository.
-2. L'accesso alle tabelle BRAIN è consentito soltanto agli utenti inseriti manualmente nella tabella `brain_founders` da un amministratore Supabase.
+## Sicurezza e limiti
+1. Nessuna chiave `service_role`, password o segreto AI nel browser o nel repository. La chiave publishable Supabase nel client è pubblica per progetto e l'accesso ai dati è demandato a RLS.
+2. L'accesso alla console richiede login Supabase e verifica della riga attiva in `brain_founders`; le policy RLS devono continuare a essere la barriera effettiva.
 3. Le normali registrazioni CASHUP non ottengono automaticamente accesso a BRAIN.
-4. Il log attività è append-only per gli utenti autenticati.
-5. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e modifiche irreversibili richiedono approvazione umana.
-6. Prima di una dashboard reale: verificare l'UUID dell'account fondatore, eseguire la migrazione in Supabase, testare RLS con un account autorizzato e uno non autorizzato.
+4. Il registro attività è append-only per il fondatore.
+5. Le decisioni sulle approvazioni registrano solo approvato/rifiutato: non eseguono pagamenti né azioni esterne.
+6. La console non avvia agenti e non esegue automazioni.
+7. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
 ## Prossimi passaggi
-1. Verificare l'UUID dell'account fondatore in Supabase Auth.
-2. Eseguire la migrazione SQL dopo aver controllato il progetto corretto.
-3. Inserire manualmente l'UUID autorizzato in `brain_founders`.
-4. Testare che un account CASHUP normale non possa leggere o modificare dati BRAIN.
-5. Solo dopo i test, costruire una dashboard privata in una cartella separata e proteggerla con la verifica server-side.
-6. Integrare agenti uno alla volta, con permessi minimi, limiti di costo, log e approvazioni.
+1. Verificare e collaudare il login fondatore e i controlli RLS della dashboard.
+2. Testare con un account non autorizzato che non possa leggere o modificare dati BRAIN.
+3. Aggiungere agenti solo come schede/configurazioni iniziali, senza esecuzione automatica.
+4. Integrare eventuali funzioni server-side con permessi minimi, limiti di costo, audit, test e approvazioni.
+5. Pubblicare la console solo dopo revisione e collaudo, su percorso o sottodominio protetto e senza collegarla al deploy pubblico per errore.
 
 ## Non fare
-- Non aggiungere una password segreta o un UUID fondatore nel codice client.
-- Non collegare questa cartella al deploy Cloudflare finché non è stato progettato e testato il controllo di accesso.
+- Non inserire UUID del fondatore, password, chiavi segrete o chiavi `service_role` nel codice client.
+- Non collegare questa cartella al deploy Cloudflare finché il controllo di accesso e la separazione della console non sono stati testati.
 - Non attivare pagamenti o automazioni esterne in questa fase.
