@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.pages.cashup_859.twa",
+      "sha256_cert_fingerprints": [
+        "A7:B1:D0:8D:25:AF:AA:74:2B:82:74:E8:C6:A2:16:3B:D6:66:8F:65:EB:2C:C8:6B:6E:04:5A:9D:AD:0C:B8:AD"
+      ]
+    }
+  }
+]
