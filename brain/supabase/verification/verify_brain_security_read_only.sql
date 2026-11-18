@@ -49,10 +49,29 @@ select jsonb_pretty(jsonb_build_object(
       and table_name like 'brain_%'
       and grantee in ('PUBLIC', 'anon', 'authenticated')
   ),
+  'effective_table_privileges', (
+    select coalesce(jsonb_agg(jsonb_build_object(
+      'table', e.table_name,
+      'anon_select', coalesce(has_table_privilege('anon', 'public.' || e.table_name, 'SELECT'), false),
+      'anon_insert', coalesce(has_table_privilege('anon', 'public.' || e.table_name, 'INSERT'), false),
+      'authenticated_select', coalesce(has_table_privilege('authenticated', 'public.' || e.table_name, 'SELECT'), false),
+      'authenticated_insert', coalesce(has_table_privilege('authenticated', 'public.' || e.table_name, 'INSERT'), false),
+      'authenticated_update', coalesce(has_table_privilege('authenticated', 'public.' || e.table_name, 'UPDATE'), false),
+      'authenticated_delete', coalesce(has_table_privilege('authenticated', 'public.' || e.table_name, 'DELETE'), false)
+    ) order by e.table_name), '[]'::jsonb)
+    from expected_tables e
+    where exists (
+      select 1 from pg_class c
+      join pg_namespace n on n.oid = c.relnamespace
+      where n.nspname = 'public' and c.relname = e.table_name and c.relkind = 'r'
+    )
+  ),
   'founder_check_function', (
     select jsonb_build_object(
       'exists', p.oid is not null,
       'security_definer', coalesce(p.prosecdef, false),
+      'anon_can_execute', coalesce(has_function_privilege('anon', p.oid, 'EXECUTE'), false),
+      'authenticated_can_execute', coalesce(has_function_privilege('authenticated', p.oid, 'EXECUTE'), false),
       'configuration', coalesce(to_jsonb(p.proconfig), '[]'::jsonb),
       'execute_grants', coalesce((
         select jsonb_agg(jsonb_build_object(
