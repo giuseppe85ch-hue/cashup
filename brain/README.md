@@ -6,8 +6,9 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - Il repository contiene il prototipo web CASHUP, autenticazione Supabase e PWA.
 - Il lavoro BRAIN è sul ramo `cashup-brain-setup`; il ramo principale `main` non viene modificato.
 - La migrazione `supabase/migrations/0001_brain_private_schema.sql` è stata eseguita manualmente nel progetto Supabase CASHUP.
-- È stata preparata `supabase/migrations/0002_brain_initial_catalog.sql`: aggiunge soltanto schede di agenti in stato `planned` e impostazioni iniziali conservative (autonomia disattivata, spesa automatizzata zero, arresto di emergenza attivo). Questa seconda migrazione NON è ancora stata eseguita.
-- Le sette tabelle `brain_*` risultano presenti.
+- La migrazione `supabase/migrations/0002_brain_initial_catalog.sql` è stata eseguita dall'utente in Supabase e ha restituito `Success` il 19 novembre 2026. L'esito non è stato verificato direttamente tramite una connessione database.
+- La seconda migrazione inserisce otto schede di agenti in stato `planned` e impostazioni iniziali conservative: autonomia disattivata, spesa automatizzata zero, approvazione umana per azioni ad alto rischio e finanziarie, arresto di emergenza attivo.
+- Le sette tabelle `brain_*` risultavano presenti dopo la prima migrazione.
 - L'account del fondatore è stato inserito in `brain_founders`.
 - `dashboard/index.html` contiene una prima console web per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni e registro.
 - La dashboard non è ancora pubblicata né collaudata end-to-end. Non esistono ancora agenti autonomi attivi.
@@ -22,9 +23,9 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 7. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
 ## Prossimi passaggi
-1. Verificare e collaudare il login fondatore e i controlli RLS della dashboard.
-2. Testare con un account non autorizzato che non possa leggere o modificare dati BRAIN.
-3. Aggiungere agenti solo come schede/configurazioni iniziali, senza esecuzione automatica.
+1. Verificare direttamente nel database la presenza degli otto agenti e delle cinque impostazioni iniziali.
+2. Revisionare il codice della dashboard e collaudare login fondatore e controlli RLS.
+3. Testare con un account non autorizzato che non possa leggere o modificare dati BRAIN.
 4. Integrare eventuali funzioni server-side con permessi minimi, limiti di costo, audit, test e approvazioni.
 5. Pubblicare la console solo dopo revisione e collaudo, su percorso o sottodominio protetto e senza collegarla al deploy pubblico per errore.
 
