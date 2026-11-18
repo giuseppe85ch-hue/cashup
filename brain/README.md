@@ -22,6 +22,9 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard Ã
 6. La console non avvia agenti e non esegue automazioni.
 7. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
+## Piano di verifica
+La checklist dettagliata dei controlli da svolgere insieme Ã¨ in [VERIFICATION.md](./VERIFICATION.md). I controlli database e i test reali della console sono ancora da completare.
+
 ## Prossimi passaggi
 1. Verificare direttamente nel database la presenza degli otto agenti e delle cinque impostazioni iniziali.
 2. Revisionare il codice della dashboard e collaudare login fondatore e controlli RLS.
