@@ -10,6 +10,8 @@ Questo piano è una checklist di collaudo. Non abilita agenti, non esegue automa
 - [x] Il branch di lavoro resta separato da `main`.
 
 ## Da verificare insieme in Supabase
+
+La query di sola lettura è stata preparata in `supabase/verification/verify_brain_read_only.sql`. Restituisce in un unico risultato gli agenti mancanti, eventuali agenti attivi, le impostazioni e lo stato RLS delle sette tabelle. Non modifica il database.
 - [ ] Query di sola lettura: presenza degli otto agenti previsti.
 - [ ] Query di sola lettura: presenza delle cinque impostazioni iniziali e valori conservativi.
 - [ ] Confermare che `emergency_stop` sia true e `autonomy_enabled` sia false.
