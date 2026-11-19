@@ -1,5 +1,5 @@
 -- CASHUP BRAIN — controllo completo di sola lettura
--- Eseguire dopo le migrazioni 0001, 0002 e 0003.
+-- Eseguire dopo le migrazioni 0001, 0002, 0003 e 0004.
 -- Non modifica dati, policy, permessi o impostazioni.
 
 with expected_agents(agent_key) as (
@@ -69,6 +69,21 @@ select jsonb_pretty(jsonb_build_object(
           has_table_privilege('anon',c.oid,'REFERENCES') or
           has_table_privilege('anon',c.oid,'TRIGGER')
         )
+    ),
+    'founder_authenticated_write_privileges',jsonb_build_object(
+      'insert',has_table_privilege('authenticated','public.brain_founders','INSERT'),
+      'update',has_table_privilege('authenticated','public.brain_founders','UPDATE'),
+      'delete',has_table_privilege('authenticated','public.brain_founders','DELETE'),
+      'truncate',has_table_privilege('authenticated','public.brain_founders','TRUNCATE')
+    ),
+    'audit_authenticated_forbidden_privileges',jsonb_build_object(
+      'update',has_table_privilege('authenticated','public.brain_audit_log','UPDATE'),
+      'delete',has_table_privilege('authenticated','public.brain_audit_log','DELETE'),
+      'truncate',has_table_privilege('authenticated','public.brain_audit_log','TRUNCATE')
+    ),
+    'audit_authenticated_required_privileges',jsonb_build_object(
+      'select',has_table_privilege('authenticated','public.brain_audit_log','SELECT'),
+      'insert',has_table_privilege('authenticated','public.brain_audit_log','INSERT')
     )
   ),
   'private_schema',jsonb_build_object(
