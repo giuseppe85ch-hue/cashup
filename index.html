@@ -189,23 +189,23 @@ async function syncDailySteps(user) {
     stepCloudStatus.textContent = 'Sincronizzazione non disponibile: ' + (error.message || 'riprova più tardi.');
     return;
   }
-  const local = (() => {
+  const healthSteps = (() => {
     try { const v=JSON.parse(localStorage.getItem('cashup_health_steps_v1')||'null'); return v?.day===date ? Math.max(0,Number(v.steps)||0) : 0; }
     catch(e) { return 0; }
   })();
-  const merged = Math.max(local, Number(data?.steps)||0);
-  if (merged > 0) {
-    window.dispatchEvent(new CustomEvent('cashup:steps-cloud-load',{detail:{day:date,steps:merged}}));
+  if (healthSteps > 0) {
     const { error: saveError } = await supabase.from('cashup_daily_steps').upsert(
-      { user_id:user.id, step_date:date, steps:merged, updated_at:new Date().toISOString() },
+      { user_id:user.id, step_date:date, steps:healthSteps, updated_at:new Date().toISOString() },
       { onConflict:'user_id,step_date' }
     );
     if (saveError) {
-      stepCloudStatus.textContent = 'Passi caricati ma non salvati online: ' + saveError.message;
+      stepCloudStatus.textContent = 'Passi letti ma non sincronizzati online: ' + saveError.message;
       return;
     }
   }
-  stepCloudStatus.textContent = 'Passi sincronizzati con il tuo account per oggi.';
+  stepCloudStatus.textContent = healthSteps > 0
+    ? 'Passi del servizio Salute sincronizzati con il tuo account.'
+    : 'Accedi dall’app CASHUP e leggi i passi dal servizio Salute per sincronizzarli.';
 }
 let stepSyncTimer = null;
 window.addEventListener('cashup:steps-changed', async (event) => {
