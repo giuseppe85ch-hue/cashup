@@ -476,7 +476,7 @@ if ("serviceWorker" in navigator) {
  const startBtn=document.getElementById('step-start'), pauseBtn=document.getElementById('step-pause'), resetBtn=document.getElementById('step-reset');
  const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
  const KEY='cashup_steps_v1'; let day=today(),steps=0,running=false,gravity={x:0,y:0,z:9.81},gravityReady=false,peak=false;
- let lastCloudSent=0, candidateTimes=[], sensorEvents=0, lastMagnitude=0;
+ let lastCloudSent=0, candidateTimes=[], sensorEvents=0, lastMagnitude=0, lastPeakTime=0;
  function save(){try{localStorage.setItem(KEY,JSON.stringify({day,steps}));}catch(e){}}
  function notifyCloud(force=false){const now=Date.now();if(!force&&steps%10!==0&&now-lastCloudSent<15000)return;lastCloudSent=now;window.dispatchEvent(new CustomEvent('cashup:steps-changed',{detail:{day,steps}}));}
  window.addEventListener('cashup:steps-cloud-load',event=>{if(event.detail?.day===day){steps=Math.max(steps,Number(event.detail.steps)||0);save();render();}});
@@ -501,29 +501,30 @@ if ("serviceWorker" in navigator) {
   }
   lastMagnitude=mag;
   const now=Date.now();
-  if(mag>threshold&&!peak){
-   peak=true;
+  // Rileva un nuovo impulso dopo che il segnale è tornato sotto la soglia di rilascio.
+  if(mag>threshold&&!peak&&(!lastPeakTime||now-lastPeakTime>=280)){
+   peak=true;lastPeakTime=now;
    if(candidateTimes.length===0){
     candidateTimes=[now];
    } else {
     const interval=now-candidateTimes[candidateTimes.length-1];
-    // Una camminata normale richiede una cadenza plausibile: scarta impulsi troppo rapidi.
     if(interval>=280&&interval<=1400){
      const previous=candidateTimes.length>1?candidateTimes[candidateTimes.length-1]-candidateTimes[candidateTimes.length-2]:0;
-     const stable=!previous||Math.abs(interval-previous)<=Math.max(220,previous*.45);
+     const stable=!previous||Math.abs(interval-previous)<=Math.max(260,previous*.45);
      if(stable){
       candidateTimes.push(now);
-      if(candidateTimes.length>=4){
-       // Conta solo dopo quattro movimenti consecutivi e regolari, non dopo un singolo gesto.
-       steps+=candidateTimes.length===4?4:1;save();render();notifyCloud();
-       if(candidateTimes.length>4)candidateTimes.shift();
+      if(candidateTimes.length>=3){
+       // Tre impulsi coerenti confermano la camminata; conta anche i primi tre passi.
+       steps+=candidateTimes.length===3?3:1;
+       save();render();notifyCloud();
       }
+      if(candidateTimes.length>4)candidateTimes.shift();
      } else candidateTimes=[now];
     } else candidateTimes=[now];
    }
   }
-  if(mag<threshold*.40)peak=false;
-  if(candidateTimes.length&&now-candidateTimes[candidateTimes.length-1]>1700)candidateTimes=[];
+  if(mag<threshold*.68)peak=false;
+  if(candidateTimes.length&&now-candidateTimes[candidateTimes.length-1]>1800)candidateTimes=[];
   if(sensorEvents%12===0){
    statusEl.textContent='Sensore attivo · segnale '+lastMagnitude.toFixed(2)+' · passi '+steps+'. Cammina con il telefono in tasca o in mano.';
   }
@@ -532,7 +533,7 @@ if ("serviceWorker" in navigator) {
   if(!('DeviceMotionEvent' in window)){statusEl.textContent='Questo browser non espone il sensore di movimento. Prova Chrome aggiornato sul telefono.';return;}
   try{
    if(typeof DeviceMotionEvent.requestPermission==='function'){const p=await DeviceMotionEvent.requestPermission();if(p!=='granted'){statusEl.textContent='Permesso al sensore non concesso.';return;}}
-   candidateTimes=[];peak=false;gravityReady=false;sensorEvents=0;lastMagnitude=0;
+   candidateTimes=[];peak=false;gravityReady=false;sensorEvents=0;lastMagnitude=0;lastPeakTime=0;
    window.addEventListener('devicemotion',onMotion);running=true;startBtn.disabled=true;pauseBtn.disabled=false;
    statusEl.textContent='Contapassi attivo · attendo i segnali del sensore.';
   }catch(e){statusEl.textContent='Non riesco ad avviare il sensore. Controlla i permessi del browser e riprova.';}
