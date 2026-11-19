@@ -32,7 +32,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 8. La sicurezza assoluta non esiste: restano controlli Auth, MFA, hosting, GitHub, backup e revisione indipendente.
 
 ## Da completare prima di pubblicare
-- Attivare Leaked Password Protection e MFA per il fondatore nelle impostazioni Supabase Auth.
+- MFA TOTP del fondatore: il flusso è pronto, ma il fondatore deve registrare il proprio autenticatore e verificare il codice.\n- Leaked Password Protection è disponibile solo dal piano Supabase Pro: l'organizzazione è sul piano Free, quindi non è stata attivata e non è stato richiesto alcun upgrade. Mantenere una password lunga, unica e custodita in un password manager.
 - Verificare redirect URL, rate limits, CAPTCHA e che `private` non sia tra gli schemi esposti dalla Data API.
 - Verificare MFA/secret scanning/push protection e branch protection in GitHub.
 - Verificare backup e retention, quindi provare il ripristino.
