@@ -87,6 +87,9 @@ jobs:
           grep -q 'brain_tasks_founder_insert' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql
           grep -q 'revoke insert on table public.daily_steps' brain/supabase/migrations/0012_cashup_profile_and_step_write_lockdown.sql
           grep -q 'grant update (display_name)' brain/supabase/migrations/0012_cashup_profile_and_step_write_lockdown.sql
+          grep -q "'anti_piracy'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
+          grep -q "'founder_assistant'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
+          grep -q "'planned'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
           if grep -q 'security definer' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql; then
             echo 'Public task RPC must remain SECURITY INVOKER.'
             exit 1
