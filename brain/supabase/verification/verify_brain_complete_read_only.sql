@@ -1,5 +1,5 @@
 -- CASHUP BRAIN — verifica completa di sola lettura
--- Eseguire dopo le migrazioni 0001–0009 sul progetto CASHUP.
+-- Eseguire dopo le migrazioni 0001–0011 sul progetto CASHUP.
 -- Non modifica dati, policy, permessi o impostazioni.
 
 with expected_agents(agent_key) as (
@@ -42,13 +42,13 @@ select jsonb_pretty(jsonb_build_object(
     where schemaname='public' and tablename in (select relname from brain)
       and not (
         (tablename='brain_founders' and policyname='brain_founders_read_self') or
-        (tablename='brain_tasks' and policyname='brain_tasks_founder_all') or
+        (tablename='brain_tasks' and policyname in ('brain_tasks_founder_read','brain_tasks_founder_insert')) or
         (tablename='brain_agents' and policyname='brain_agents_founder_all') or
         (tablename='brain_memory' and policyname='brain_memory_founder_all') or
         (tablename='brain_approvals' and policyname in ('brain_approvals_founder_read','brain_approvals_founder_update')) or
         (tablename='brain_settings' and policyname='brain_settings_founder_all') or
         (tablename='brain_audit_log' and policyname in
-          ('brain_audit_log_founder_read','brain_audit_log_founder_insert'))
+          ('brain_audit_log_founder_read'))
       )),
   'anon_privilege_tables',(select count(*) from brain
     where has_table_privilege('anon',oid,'SELECT')
@@ -72,7 +72,13 @@ select jsonb_pretty(jsonb_build_object(
     'truncate',has_table_privilege('authenticated','public.brain_founders','TRUNCATE')),
   'minimal_client_privileges',jsonb_build_object(
     'tasks_select',has_table_privilege('authenticated','public.brain_tasks','SELECT'),
-    'tasks_insert',has_table_privilege('authenticated','public.brain_tasks','INSERT'),
+    'tasks_insert_table',has_table_privilege('authenticated','public.brain_tasks','INSERT'),
+    'tasks_insert_title',has_column_privilege('authenticated','public.brain_tasks','title','INSERT'),
+    'tasks_insert_description',has_column_privilege('authenticated','public.brain_tasks','description','INSERT'),
+    'tasks_insert_priority',has_column_privilege('authenticated','public.brain_tasks','priority','INSERT'),
+    'tasks_insert_status',has_column_privilege('authenticated','public.brain_tasks','status','INSERT'),
+    'tasks_insert_sector',has_column_privilege('authenticated','public.brain_tasks','sector','INSERT'),
+    'tasks_insert_created_by',has_column_privilege('authenticated','public.brain_tasks','created_by','INSERT'),
     'tasks_update',has_table_privilege('authenticated','public.brain_tasks','UPDATE'),
     'tasks_delete',has_table_privilege('authenticated','public.brain_tasks','DELETE'),
     'agents_select',has_table_privilege('authenticated','public.brain_agents','SELECT'),
