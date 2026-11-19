@@ -1,7 +1,7 @@
 name: CASHUP native app validation
 on:
   push:
-    branches: [cashup-native-steps]
+    branches: [main, cashup-native-steps]
   pull_request:
     branches: [main]
     paths:
@@ -11,6 +11,10 @@ on:
       - "package.json"
       - "index.html"
       - "NATIVE_STEPS.md"
+      - "games/**"
+      - "scripts/**"
+      - "sw.js"
+      - "globalization.js"
       - ".github/workflows/native-app-check.yml"
 jobs:
   expo-check:
@@ -22,6 +26,10 @@ jobs:
           node-version: 20
       - name: Install dependencies
         run: npm install
+      - name: Validate CASHUP Games catalog
+        run: node scripts/validate-games.mjs
+      - name: Check CASHUP mini-game JavaScript syntax
+        run: node --check games/arcade.js
       - name: Check Expo dependency compatibility
         run: npx expo install --check
       - name: Run Expo Doctor
