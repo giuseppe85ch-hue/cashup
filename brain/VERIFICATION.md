@@ -4,10 +4,10 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Completato e verificato
 - [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- [x] Migrazioni di hardening 0004–0013 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
+- [x] Migrazioni di hardening 0004–0015 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
 - [!] Le migrazioni iniziali 0001–0003 risultano applicate manualmente in precedenza (tabelle e funzione esistono), ma non compaiono nella cronologia remota restituita da Supabase. Prima di usare `db push`, `db reset`, creare branch DB o ricostruire il progetto, occorre riallineare il baseline senza rieseguire queste DDL sul database attivo.
 - [x] 8 tabelle BRAIN presenti (7 public + private.brain_agent_specs), tutte con RLS e FORCE RLS; in totale 13 tabelle applicative nei due schemi, nessuna senza RLS/FORCE RLS.
-- [x] 9 policy BRAIN: SELECT e INSERT controllato su task, nessun INSERT client su audit.
+- [x] 10 policy BRAIN complessive (9 public + 1 private default-deny): SELECT e INSERT controllato su task, nessun INSERT client su audit.
 - [x] 550 agenti registrati e 550 schede private; 550 planned/designed, 0 active, 550 missioni uniche, 263 read_only e 287 approval_required.
 - [x] 5 impostazioni conservative presenti: autonomia false, emergency stop true, spesa automatizzata 0, approvazione finanziaria true, approvazione alto rischio true.
 - [x] Funzione privata SECURITY DEFINER con search_path vuoto, EXECUTE negato ad anon e consentito ad authenticated, requisito AAL2 nel corpo funzione; funzione pubblica precedente assente.
