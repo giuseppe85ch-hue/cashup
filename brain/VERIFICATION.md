@@ -55,8 +55,10 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] 13 tabelle complessive tra public/private, tutte con RLS e FORCE RLS; private.brain_agent_specs ha policy default-deny e nessun grant a ruoli client.
 - [x] Security Advisor dopo la policy: resta solo il warning Leaked Password Protection disattivata; Health Advisor senza alert.
 - [x] CI run #106 SUCCESS sul commit 4ec9b20cee9569dd6297ac89059bae99749582bb.
-- [!] Nessuna Edge Function o runtime AI installato; nessun provider o segreto configurato. I 550 sono schede di progetto, non agenti AI operativi.
+- [x] Edge Function `cashup-brain-status` distribuita (versione 1, `verify_jwt=true`), GET/OPTIONS, lettura read-only di settings, conteggio agenti e memorie con accesso fondatore. Il codice remoto è stato verificato; il test end-to-end con JWT fondatore non è ancora stato eseguito.
+- [!] Nessun provider AI/modello, orchestratore, coda o runtime agenti configurato. I 550 sono schede di progetto, non agenti AI operativi.
 - [!] MFA fondatore ancora 0 fattori registrati; Data API exposed schemas da verificare nel Dashboard; backup e restore non testati.
+- [!] Il controllo combined status sul commit corrente del branch `cashup-brain-setup` non restituisce status check; il precedente successo CI citato sotto riguarda un commit diverso e non certifica questo SHA.
 - [!] Repo resta pubblico; main non modificato e branch cashup-brain-setup non mergiato.
 
 ## Da completare fuori dal database
