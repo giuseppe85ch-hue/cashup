@@ -1,5 +1,5 @@
 -- CASHUP BRAIN — verifica completa di sola lettura
--- Eseguire dopo le migrazioni 0001–0005 sul progetto CASHUP.
+-- Eseguire dopo le migrazioni 0001–0009 sul progetto CASHUP.
 -- Non modifica dati, policy, permessi o impostazioni.
 
 with expected_agents(agent_key) as (
@@ -45,7 +45,7 @@ select jsonb_pretty(jsonb_build_object(
         (tablename='brain_tasks' and policyname='brain_tasks_founder_all') or
         (tablename='brain_agents' and policyname='brain_agents_founder_all') or
         (tablename='brain_memory' and policyname='brain_memory_founder_all') or
-        (tablename='brain_approvals' and policyname='brain_approvals_founder_all') or
+        (tablename='brain_approvals' and policyname in ('brain_approvals_founder_read','brain_approvals_founder_update')) or
         (tablename='brain_settings' and policyname='brain_settings_founder_all') or
         (tablename='brain_audit_log' and policyname in
           ('brain_audit_log_founder_read','brain_audit_log_founder_insert'))
@@ -70,12 +70,24 @@ select jsonb_pretty(jsonb_build_object(
     'update',has_table_privilege('authenticated','public.brain_founders','UPDATE'),
     'delete',has_table_privilege('authenticated','public.brain_founders','DELETE'),
     'truncate',has_table_privilege('authenticated','public.brain_founders','TRUNCATE')),
-  'core_authenticated_full_crud_tables',(select count(*) from brain
-    where relname in ('brain_tasks','brain_agents','brain_memory','brain_approvals','brain_settings')
-      and has_table_privilege('authenticated',oid,'SELECT')
-      and has_table_privilege('authenticated',oid,'INSERT')
-      and has_table_privilege('authenticated',oid,'UPDATE')
-      and has_table_privilege('authenticated',oid,'DELETE')),
+  'minimal_client_privileges',jsonb_build_object(
+    'tasks_select',has_table_privilege('authenticated','public.brain_tasks','SELECT'),
+    'tasks_insert',has_table_privilege('authenticated','public.brain_tasks','INSERT'),
+    'tasks_update',has_table_privilege('authenticated','public.brain_tasks','UPDATE'),
+    'tasks_delete',has_table_privilege('authenticated','public.brain_tasks','DELETE'),
+    'agents_select',has_table_privilege('authenticated','public.brain_agents','SELECT'),
+    'agents_insert',has_table_privilege('authenticated','public.brain_agents','INSERT'),
+    'memory_select',has_table_privilege('authenticated','public.brain_memory','SELECT'),
+    'memory_insert',has_table_privilege('authenticated','public.brain_memory','INSERT'),
+    'settings_select',has_table_privilege('authenticated','public.brain_settings','SELECT'),
+    'settings_update',has_table_privilege('authenticated','public.brain_settings','UPDATE'),
+    'approvals_select',has_table_privilege('authenticated','public.brain_approvals','SELECT'),
+    'approvals_insert',has_table_privilege('authenticated','public.brain_approvals','INSERT'),
+    'approvals_delete',has_table_privilege('authenticated','public.brain_approvals','DELETE'),
+    'approvals_update_status',has_column_privilege('authenticated','public.brain_approvals','status','UPDATE'),
+    'approvals_update_decided_by',has_column_privilege('authenticated','public.brain_approvals','decided_by','UPDATE'),
+    'approvals_update_decided_at',has_column_privilege('authenticated','public.brain_approvals','decided_at','UPDATE')
+  ),
   'audit_privileges',jsonb_build_object(
     'select',has_table_privilege('authenticated','public.brain_audit_log','SELECT'),
     'insert',has_table_privilege('authenticated','public.brain_audit_log','INSERT'),
@@ -106,5 +118,18 @@ select jsonb_pretty(jsonb_build_object(
       and d.defaclobjtype='f' and a.grantee=0 and a.privilege_type='EXECUTE'),
   'public_security_definer_functions',(select count(*) from pg_proc p
     join pg_namespace n on n.oid=p.pronamespace
-    where n.nspname='public' and p.prosecdef)
+    where n.nspname='public' and p.prosecdef),
+  'public_brain_rpc_security',(
+    select coalesce(jsonb_agg(jsonb_build_object(
+      'name',p.proname,
+      'security_definer',p.prosecdef,
+      'empty_search_path',coalesce(p.proconfig @> array['search_path=""'],false),
+      'anon_execute',has_function_privilege('anon',p.oid,'EXECUTE'),
+      'authenticated_execute',has_function_privilege('authenticated',p.oid,'EXECUTE')
+    ) order by p.proname),'[]'::jsonb)
+    from pg_proc p join pg_namespace n on n.oid=p.pronamespace
+    where n.nspname='public' and p.proname in ('brain_create_task','brain_decide_approval')
+  ),
+  'brain_trigger_count',(select count(*) from pg_trigger t
+    where not t.tgisinternal and t.tgrelid::regclass::text like 'public.brain_%')
 )) as cashup_brain_complete_check;
