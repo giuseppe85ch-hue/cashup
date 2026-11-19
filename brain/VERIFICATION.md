@@ -4,7 +4,8 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Completato e verificato
 - [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- [x] Migrazioni 0004, 0005, 0006 e 0007 applicate tramite connessione Supabase.
+- [x] Migrazioni di hardening 0004, 0005, 0006 e 0007 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
+- [!] Le migrazioni iniziali 0001–0003 risultano applicate manualmente in precedenza (tabelle e funzione esistono), ma non compaiono nella cronologia remota restituita da Supabase. Prima di usare `db push`, `db reset`, creare branch DB o ricostruire il progetto, occorre riallineare il baseline senza rieseguire queste DDL sul database attivo.
 - [x] 7 tabelle BRAIN presenti, tutte con RLS e FORCE RLS.
 - [x] 8 policy BRAIN previste e nessuna policy aggiuntiva.
 - [x] 8 agenti registrati, nessuno attivo.
