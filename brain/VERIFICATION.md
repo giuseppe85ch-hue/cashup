@@ -28,7 +28,7 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [ ] Verificare redirect URL, rate limits, CAPTCHA e schemi esposti nella Data API; mantenere `private` non esposto. La configurazione esposta non è leggibile dal catalogo SQL disponibile.
 - [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch.
 - [ ] Verificare backup/retention e fare un test di ripristino.
-- [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `dashboard/_headers`.
+- [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `_headers` nella root del sito, con regole limitate a `/brain/dashboard/*`.
 - [x] Codice client predisposto per passkey WebAuthn (registrazione, accesso, elenco e revoca) senza trattare o memorizzare dati biometrici.
 - [ ] Test end-to-end nel browser con login reale, enrollment TOTP, challenge AAL2 e verifica della console.
 - [ ] Testare header CSP/HSTS/anti-framing sul dominio effettivo.
