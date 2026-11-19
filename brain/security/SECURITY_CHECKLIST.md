@@ -46,12 +46,13 @@
 - [ ] Nessun token o password stampato nei log.
 
 ## Codice e supply chain
+- [!] Repository GitHub attualmente pubblico: sorgente e documentazione sono leggibili da chiunque; decidere se renderlo privato. Nessuna modifica di visibilità eseguita.
 - [ ] Nessuna service_role key o segreto in Git, HTML, JS, bundle o log.
 - [ ] Secret scanning attivo e storico repository controllato.
 - [ ] Dipendenze versionate e aggiornate; audit vulnerabilità prima di ogni release.
 - [ ] Branch protection su main: blocco force-push/cancellazione, review obbligatoria e controlli CI prima del merge.
 - [ ] MFA GitHub, secret scanning e push protection attivi, se disponibili nel piano.
-- [x] Workflow CI statico aggiunto al branch, con permesso `contents: read` e action checkout fissata a SHA; [ ] prima esecuzione ancora da verificare.
+- [x] Workflow CI statico aggiunto con `contents: read` e action checkout fissata a SHA; run #13 completata con SUCCESS. Il workflow non è una scansione segreti completa.
 - [ ] Nessun deploy automatico dalla branch di lavoro.
 
 ## Operazioni e resilienza
