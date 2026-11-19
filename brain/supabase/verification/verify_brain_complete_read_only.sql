@@ -106,5 +106,5 @@ select jsonb_pretty(jsonb_build_object(
       and d.defaclobjtype='f' and a.grantee=0 and a.privilege_type='EXECUTE'),
   'public_security_definer_functions',(select count(*) from pg_proc p
     join pg_namespace n on n.oid=p.pronamespace
-    where n.nspname='public' and p.prosecdef')
+    where n.nspname='public' and p.prosecdef)
 )) as cashup_brain_complete_check;
