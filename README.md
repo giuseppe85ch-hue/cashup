@@ -17,7 +17,7 @@ CASHUP is an international-first rewards and engagement platform prototype. The 
 - 600 categories are planned; 100 currently have catalog entries and 500 are marked as planned.
 - Four playable prototypes are available: Reflexes, Memory, Math Challenge and Quick Quiz.
 - Catalog concepts are not 10,000 finished games. New games need to be implemented, tested and connected to secure progress storage before being described as playable.
-- Prototype scores and play counts are stored locally on the device. They are not cash rewards and are not anti-cheat verified.
+- Prototype scores and play counts are stored locally; when the player is signed in, best score and play-count records are also synchronized to that player's Supabase row under RLS. They are not cash rewards and are not anti-cheat verified.
 
 ## Native Android build
 
