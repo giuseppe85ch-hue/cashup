@@ -37,7 +37,7 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - Il browser usa solo la chiave Supabase publishable, che non è un segreto; la protezione dei dati dipende da RLS.\n- La dashboard richiede AAL2 prima di mostrare i dati e include enrollment/challenge TOTP. Il fondatore non ha ancora fattori registrati nel progetto: il flusso deve essere completato e collaudato nel browser.
 - HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
 - È stato aggiunto `dashboard/_headers` con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy. Gli header saranno effettivi solo se `brain/dashboard` è la directory radice di pubblicazione Cloudflare o se vengono replicati nella configurazione dell'hosting definitivo.
-- La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto; deve restare non esposta tramite gli schemi API.
+- La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto e richiede `auth.jwt()->>'aal' = 'aal2'`; il controllo MFA è applicato nel database, non soltanto nell'interfaccia. La funzione deve restare non esposta tramite gli schemi API.
 - Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; la verifica del 19 novembre 2026 ha confermato grants minimi, zero privilegi anon/service_role, 8 policy previste e test RLS positivo per fondatore e negativo per non fondatore.
 - `brain_founders` consente ad authenticated solo SELECT sulla propria riga attiva; gli altri privilegi sono revocati.
 - `brain_audit_log` è append-only per il client: SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; test dei privilegi completato.
