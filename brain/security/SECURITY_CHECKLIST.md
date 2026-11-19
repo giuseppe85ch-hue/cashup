@@ -20,7 +20,10 @@
 
 ## Browser e hosting
 - [ ] Solo HTTPS e HSTS sul dominio definitivo.
-- [ ] CSP rigorosa senza `unsafe-eval`; evitare `unsafe-inline` spostando JS/CSS in file esterni o usando nonce/hash.
+- [x] JS/CSS estratti in file esterni; nessuno script o foglio di stile inline nella pagina.
+- [ ] Verificare sul dominio reale che la CSP fornita in `dashboard/_headers` sia effettivamente applicata e non generi errori; gli header valgono solo se il file si trova alla radice della directory pubblicata.
+- [ ] Bloccare a una versione esatta la dipendenza Supabase JS da esm.sh o servirla da bundle controllato.
+- [ ] CSP rigorosa senza `unsafe-eval` e senza `unsafe-inline`.
 - [ ] `frame-ancestors 'none'`, X-Content-Type-Options nosniff, Referrer-Policy restrittiva.
 - [ ] Permissions-Policy minima.
 - [ ] Nessun dato sensibile in URL, console, analytics o errori.
