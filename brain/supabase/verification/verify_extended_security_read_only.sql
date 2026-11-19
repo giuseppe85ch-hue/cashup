@@ -71,6 +71,20 @@ select json_build_object(
     'task_insert_policy_count', (select count(*) from pg_policies where schemaname='public' and tablename='brain_tasks' and cmd='INSERT'),
     'task_update_delete_policy_count', (select count(*) from pg_policies where schemaname='public' and tablename='brain_tasks' and cmd in ('UPDATE','DELETE','ALL'))
   ),
+  'cashup_app_write_lockdown', json_build_object(
+    'daily_steps_insert', has_table_privilege('authenticated','public.daily_steps','INSERT'),
+    'daily_steps_select', has_table_privilege('authenticated','public.daily_steps','SELECT'),
+    'daily_steps_insert_policy_count', (select count(*) from pg_policies where schemaname='public' and tablename='daily_steps' and cmd='INSERT'),
+    'profiles_insert_id', has_column_privilege('authenticated','public.profiles','id','INSERT'),
+    'profiles_insert_display_name', has_column_privilege('authenticated','public.profiles','display_name','INSERT'),
+    'profiles_insert_created_at', has_column_privilege('authenticated','public.profiles','created_at','INSERT'),
+    'profiles_update_display_name', has_column_privilege('authenticated','public.profiles','display_name','UPDATE'),
+    'profiles_update_id', has_column_privilege('authenticated','public.profiles','id','UPDATE'),
+    'profiles_update_created_at', has_column_privilege('authenticated','public.profiles','created_at','UPDATE'),
+    'points_ledger_insert', has_table_privilege('authenticated','public.points_ledger','INSERT'),
+    'affiliate_clicks_insert', has_table_privilege('authenticated','public.affiliate_clicks','INSERT'),
+    'commissions_insert', has_table_privilege('authenticated','public.commissions','INSERT')
+  ),
   'brain_client_privileges', (
     select coalesce(json_agg(json_build_object(
       'table', table_name, 'grantee', grantee, 'privilege', privilege_type
