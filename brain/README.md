@@ -12,6 +12,9 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - Le sette tabelle `brain_*` risultavano presenti dopo la prima migrazione.
 - L'account del fondatore è stato inserito in `brain_founders`.
 - `dashboard/index.html` contiene una console web iniziale per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni, registro e visualizzazione in sola lettura delle impostazioni di sicurezza. Le impostazioni mancanti vengono indicate come non confermate, senza presentarle come sicure. Segnala anche eventuali errori di scrittura nel registro audit.
+- La migrazione 0004 `least_privilege_hardening.sql` è stata preparata ma NON è stata eseguita: rende espliciti i privilegi minimi su tutte le tabelle BRAIN, limita `brain_founders` alla sola lettura e mantiene l'audit append-only. Prima di eseguirla, controllare che il progetto Supabase selezionato sia quello CASHUP.
+- Sono stati aggiunti modello delle minacce e checklist in `security/`.
+- La query completa è stata aggiornata per verificare i privilegi di scrittura di `authenticated` su `brain_founders` e i privilegi vietati su `brain_audit_log`.
 - La dashboard non è ancora pubblicata né collaudata end-to-end. Non esistono ancora agenti autonomi attivi.
 
 ## Sicurezza e limiti
@@ -24,15 +27,16 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 7. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
 ## Piano di verifica
-La checklist dettagliata dei controlli da svolgere insieme è in [VERIFICATION.md](./VERIFICATION.md). La query `supabase/verification/verify_brain_complete_read_only.sql` riunisce in un solo controllo catalogo agenti, impostazioni, RLS, privilegi effettivi di `anon` (inclusi quelli ereditati da `PUBLIC`) e configurazione della funzione fondatore. È di sola lettura. I controlli principali della migrazione 0003 sono stati confermati dall'output Supabase fornito dal fondatore. Restano da completare la verifica del catalogo/impostazioni, i test reali della console e il test con account non autorizzato.
+La checklist dettagliata dei controlli da svolgere insieme è in [VERIFICATION.md](./VERIFICATION.md). La query `supabase/verification/verify_brain_complete_read_only.sql` riunisce in un solo controllo catalogo agenti, impostazioni, RLS, privilegi effettivi di `anon`, privilegi minimi su `brain_founders` e audit append-only, e configurazione della funzione fondatore. È di sola lettura. I controlli principali della migrazione 0003 sono stati confermati dall'output Supabase fornito dal fondatore. Restano da completare la verifica del catalogo/impostazioni, i test reali della console e il test con account non autorizzato.
 
 ## Prossimi passaggi
-1. Migrazione 0003 eseguita e controlli principali confermati il 19 novembre 2026.
-2. Verificare direttamente nel database la presenza degli otto agenti e delle cinque impostazioni iniziali.
-3. Revisionare il codice della dashboard e collaudare login fondatore e controlli RLS.
-4. Testare con un account non autorizzato che non possa leggere o modificare dati BRAIN.
-5. Integrare eventuali funzioni server-side con permessi minimi, limiti di costo, audit, test e approvazioni.
-6. Pubblicare la console solo dopo revisione e collaudo, su percorso o sottodominio protetto e senza collegarla al deploy pubblico per errore.
+1. Migrazioni 0001–0003 eseguite e controlli principali della 0003 confermati il 19 novembre 2026.
+2. Esaminare ed eseguire la migrazione 0004 di privilegio minimo; poi rieseguire la query completa aggiornata.
+3. Verificare direttamente nel database la presenza degli otto agenti e delle cinque impostazioni iniziali.
+4. Revisionare il codice della dashboard e collaudare login fondatore e controlli RLS.
+5. Testare con un account non autorizzato che non possa leggere o modificare dati BRAIN.
+6. Integrare eventuali funzioni server-side con permessi minimi, limiti di costo, audit, test e approvazioni.
+7. Pubblicare la console solo dopo revisione e collaudo, su percorso o sottodominio protetto e senza collegarla al deploy pubblico per errore.
 
 ## Non fare
 - Non inserire UUID del fondatore, password, chiavi segrete o chiavi `service_role` nel codice client.
