@@ -487,22 +487,22 @@ if ("serviceWorker" in navigator) {
   let a=event.acceleration,linear=!!(a&&(a.x!==null||a.y!==null||a.z!==null)),mag;
   if(linear){mag=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);}
   else{a=event.accelerationIncludingGravity;if(!a)return;const total=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);gravity=gravity*.96+total*.04;mag=Math.abs(total-gravity);}
-  // Filtro prudente: soglia elevata e una sola rilevazione per oscillazione.
-  const threshold=linear?2.0:2.15,now=Date.now();
+  // Sensibilità moderata: riconosce passi normali mantenendo il controllo della cadenza.
+  const threshold=linear?0.95:1.25,now=Date.now();
   if(mag>threshold&&!peak){
    peak=true;
    const interval=candidateTimes.length?now-candidateTimes[candidateTimes.length-1]:0;
    if(!candidateTimes.length){
     candidateTimes=[now];acceptedCadence=false;
-   } else if(interval>=420&&interval<=950){
+   } else if(interval>=300&&interval<=1200){
     const previous=candidateTimes.length>1?candidateTimes[candidateTimes.length-1]-candidateTimes[candidateTimes.length-2]:0;
-    const stable=!previous || Math.abs(interval-previous)<=Math.max(140,previous*.28);
+    const stable=!previous || Math.abs(interval-previous)<=Math.max(220,previous*.45);
     if(stable){
      candidateTimes.push(now);
      if(candidateTimes.length>5)candidateTimes.shift();
-     // Quattro picchi coerenti (tre intervalli) prima di accettare la camminata.
-     if(candidateTimes.length>=4){
-      if(!acceptedCadence){steps+=4;acceptedCadence=true;}
+     // Tre picchi con ritmo plausibile: evita di attendere troppo prima del primo conteggio.
+     if(candidateTimes.length>=3){
+      if(!acceptedCadence){steps+=3;acceptedCadence=true;}
       else steps++;
       save();render();notifyCloud();
      }
@@ -514,7 +514,7 @@ if ("serviceWorker" in navigator) {
    }
   }
   if(mag<threshold*.4)peak=false;
-  if(candidateTimes.length && now-candidateTimes[candidateTimes.length-1]>1250){candidateTimes=[];acceptedCadence=false;}
+  if(candidateTimes.length && now-candidateTimes[candidateTimes.length-1]>1450){candidateTimes=[];acceptedCadence=false;}
  }
  async function start(){
   if(!('DeviceMotionEvent' in window)){statusEl.textContent='Questo browser non espone il sensore di movimento. Prova Chrome aggiornato sul telefono.';return;}
@@ -522,7 +522,7 @@ if ("serviceWorker" in navigator) {
    if(typeof DeviceMotionEvent.requestPermission==='function'){const p=await DeviceMotionEvent.requestPermission();if(p!=='granted'){statusEl.textContent='Permesso al sensore non concesso.';return;}}
    candidateTimes=[];acceptedCadence=false;peak=false;
    window.addEventListener('devicemotion',onMotion);running=true;startBtn.disabled=true;pauseBtn.disabled=false;
-   statusEl.textContent='Contapassi attivo. Attendo una sequenza regolare di movimenti prima di contare.';
+   statusEl.textContent='Contapassi attivo. Cammina con il telefono in mano o in tasca e mantieni un ritmo naturale.';
   }catch(e){statusEl.textContent='Non riesco ad avviare il sensore. Controlla i permessi del browser e riprova.';}
  }
  function pause(){running=false;window.removeEventListener('devicemotion',onMotion);candidateTimes=[];acceptedCadence=false;save();notifyCloud(true);startBtn.disabled=false;pauseBtn.disabled=true;statusEl.textContent='Conteggio in pausa. I passi di oggi sono stati salvati su questo dispositivo.';}
