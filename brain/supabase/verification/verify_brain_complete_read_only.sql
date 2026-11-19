@@ -46,6 +46,33 @@ select jsonb_pretty(jsonb_build_object(
       where n.nspname='public' and p.proname='brain_is_founder'
     )
   ),
+  'policies',jsonb_build_object(
+    'expected_policy_count',8,
+    'actual_policy_count',(
+      select count(*) from pg_policies
+      where schemaname='public' and tablename in (
+        'brain_founders','brain_tasks','brain_agents','brain_memory',
+        'brain_approvals','brain_settings','brain_audit_log'
+      )
+    ),
+    'unexpected_policies',coalesce((
+      select jsonb_agg(tablename||'.'||policyname)
+      from pg_policies
+      where schemaname='public' and tablename in (
+        'brain_founders','brain_tasks','brain_agents','brain_memory',
+        'brain_approvals','brain_settings','brain_audit_log'
+      )
+      and not (
+        (tablename='brain_founders' and policyname='brain_founders_read_self') or
+        (tablename='brain_tasks' and policyname='brain_tasks_founder_all') or
+        (tablename='brain_agents' and policyname='brain_agents_founder_all') or
+        (tablename='brain_memory' and policyname='brain_memory_founder_all') or
+        (tablename='brain_approvals' and policyname='brain_approvals_founder_all') or
+        (tablename='brain_settings' and policyname='brain_settings_founder_all') or
+        (tablename='brain_audit_log' and policyname in ('brain_audit_log_founder_read','brain_audit_log_founder_insert'))
+      )
+    ),'[]'::jsonb)
+  ),
   'tables', jsonb_build_object(
     'expected_total',7,
     'rls_and_force_rls_count',(
