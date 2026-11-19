@@ -46,11 +46,11 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - `brain_create_task` è SECURITY INVOKER con search_path vuoto, eseguibile solo da authenticated e verifica identità fondatore+AAL2; grants colonna limitati a title/description/priority e vincoli DB; `brain_decide_approval` è SECURITY INVOKER. I trigger generano audit atomico. Test AAL2 con ROLLBACK completato.
 - Le approvazioni registrano una decisione ma non devono attivare workflow o operazioni esterne.
 - Autonomia disattivata, arresto di emergenza attivo, spesa automatizzata pari a zero; valori verificati nel database.
-- Nessun agente attivo.
+- 35 agenti catalogati, tutti planned; nessun runtime AI o agente attivo.
 
 ## Requisiti prima di pubblicare
 
-1. [x] Applicare migrazioni 0004–0012; verificare grants, RLS, RPC e trigger con query completa.
+1. [x] Applicare migrazioni 0004–0013; verificare grants, RLS, RPC e trigger con query completa.
 2. [x] Testare funzione e lettura BRAIN come fondatore.
 3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
 4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
@@ -76,6 +76,10 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - `daily_steps` non accetta più INSERT dal browser: blocca la falsificazione dei passi demo. La raccolta reale dovrà usare HealthKit/Health Connect con validazione lato server, deduplicazione e limiti giornalieri.
 - `points_ledger`, `affiliate_clicks` e `commissions` sono read-only per il browser; i client non possono creare punti o commissioni.
 - `profiles` limita insert/update ai campi necessari; `id` e `created_at` non sono modificabili dal client.
+
+## Anti-pirateria e abuso
+
+Il client non deve decidere entitlement, sblocchi, punti o sanzioni. Gli acquisti devono essere verificati lato server con firme provider, deduplicazione, revoca e audit. Le sospensioni devono essere proporzionate e reversibili; i ban permanenti richiedono prove e revisione umana. Vedere `ANTI_PIRACY_AND_ABUSE.md`.
 
 ## Protezione proprietà intellettuale
 
