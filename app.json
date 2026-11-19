@@ -24,7 +24,8 @@
             "READ_STEPS"
           ]
         }
-      ]
+      ],
+      "expo-notifications"
     ]
   }
 }
