@@ -12,7 +12,8 @@
 - [x] Esattamente 8 policy BRAIN previste; nessuna policy aggiuntiva. Default privileges postgres in public revocati.
 
 ## Identità e account
-- [ ] MFA TOTP da attivare e testare per il fondatore: il database al 19 novembre 2026 mostra 0 fattori registrati.\n- [x] La dashboard richiede AAL2 e include flusso TOTP di enrollment/verifica; anche RLS richiede AAL2. Test DB: fondatore AAL1 negato, fondatore AAL2 autorizzato, non fondatore AAL2 negato. Collaudo browser ancora da eseguire.
+- [ ] MFA TOTP da attivare e testare per il fondatore: il database al 19 novembre 2026 mostra 0 fattori registrati.
+- [x] La dashboard richiede AAL2 e include flusso TOTP di enrollment/verifica; anche RLS richiede AAL2. Test DB: fondatore AAL1 negato, fondatore AAL2 autorizzato, non fondatore AAL2 negato. Collaudo browser ancora da eseguire.
 - [ ] Password unica, lunga, non riutilizzata e custodita in password manager.
 - [ ] Email di recupero protetta con MFA.
 - [ ] Sessioni e dispositivi non riconosciuti revocati.
