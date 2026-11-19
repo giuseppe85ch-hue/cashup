@@ -1,0 +1,63 @@
+name: CASHUP cross-platform checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    paths:
+      - "App.js"
+      - "app.json"
+      - "index.js"
+      - "package.json"
+      - "index.html"
+      - "manifest.webmanifest"
+      - "sw.js"
+      - "engagement.js"
+      - "globalization.js"
+      - "games/**"
+      - "scripts/**"
+      - ".github/workflows/cross-platform-check.yml"
+
+jobs:
+  web-check:
+    name: Web and PWA validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate game catalog
+        run: node scripts/validate-games.mjs
+      - name: Check web JavaScript syntax
+        run: |
+          node --check sw.js
+          node --check engagement.js
+          node --check globalization.js
+          node --check games/arcade.js
+          node --input-type=module --check < games/cloud-progress.js
+      - name: Verify deployed CASHUP website and manifest
+        run: |
+          curl --fail --silent --show-error https://cashup-859.pages.dev/ -o /tmp/cashup-home.html
+          curl --fail --silent --show-error https://cashup-859.pages.dev/manifest.webmanifest -o /tmp/cashup-manifest.json
+          node -e "const m=require('/tmp/cashup-manifest.json'); if(!m.name || !m.start_url) process.exit(1); console.log('Manifest OK:',m.name)"
+
+  ios-bundle-check:
+    name: iOS project and JavaScript bundle validation
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Check Expo dependencies
+        run: npx expo install --check
+      - name: Generate iOS native project
+        run: npx expo prebuild --platform ios --non-interactive
+      - name: Bundle JavaScript for iOS
+        run: |
+          mkdir -p /tmp/cashup-ios-assets
+          npx expo export:embed --platform ios --dev false --entry-file index.js --bundle-output /tmp/cashup-ios.bundle --assets-dest /tmp/cashup-ios-assets
+          test -s /tmp/cashup-ios.bundle
