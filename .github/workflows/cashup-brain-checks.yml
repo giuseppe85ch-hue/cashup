@@ -61,3 +61,10 @@ jobs:
           grep -q 'grant update (status)' brain/supabase/migrations/0009_minimal_grants_audit_triggers.sql
           grep -q 'brain_decide_approval' brain/dashboard/app.js
           grep -q 'brain_create_task' brain/dashboard/app.js
+          grep -q 'security definer' brain/supabase/migrations/0010_close_direct_write_and_audit_forgery.sql
+          grep -q 'revoke insert on table public.brain_audit_log' brain/supabase/migrations/0010_close_direct_write_and_audit_forgery.sql
+          grep -q 'revoke insert on table public.brain_tasks' brain/supabase/migrations/0010_close_direct_write_and_audit_forgery.sql
+          if grep -nE "brain_audit_log['\"].insert|\.from\(['\"]brain_audit_log['\"]\)\.insert" brain/dashboard/app.js; then
+            echo 'Client-side audit write is forbidden.'
+            exit 1
+          fi
