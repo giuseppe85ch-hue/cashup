@@ -1,7 +1,7 @@
 {
   "project": "CASHUP",
-  "catalog_version": 5,
-  "total_concepts": 8000,
+  "catalog_version": 7,
+  "total_concepts": 10000,
   "files": [
     {
       "path": "games/catalog.json",
@@ -36,6 +36,16 @@
     {
       "path": "games/catalog-7001-8000.json",
       "ids": "CU-7001–CU-8000",
+      "count": 1000
+    },
+    {
+      "path": "games/catalog-8001-9000.json",
+      "ids": "CU-8001–CU-9000",
+      "count": 1000
+    },
+    {
+      "path": "games/catalog-9001-10000.json",
+      "ids": "CU-9001–CU-10000",
       "count": 1000
     }
   ],
@@ -359,6 +369,86 @@
     {
       "name": "Giochi per famiglie",
       "count": 100
+    },
+    {
+      "name": "Acquari e pesci tropicali",
+      "count": 100
+    },
+    {
+      "name": "Pesca sportiva",
+      "count": 100
+    },
+    {
+      "name": "Pesca sul ghiaccio",
+      "count": 100
+    },
+    {
+      "name": "Creature degli abissi",
+      "count": 100
+    },
+    {
+      "name": "Barriere coralline",
+      "count": 100
+    },
+    {
+      "name": "Sottomarini e relitti",
+      "count": 100
+    },
+    {
+      "name": "Surf e bodyboard",
+      "count": 100
+    },
+    {
+      "name": "Kayak e canoa",
+      "count": 100
+    },
+    {
+      "name": "Rafting e rapide",
+      "count": 100
+    },
+    {
+      "name": "Salvataggio marino",
+      "count": 100
+    },
+    {
+      "name": "Elicotteri e soccorso aereo",
+      "count": 100
+    },
+    {
+      "name": "Aerei commerciali",
+      "count": 100
+    },
+    {
+      "name": "Aerei acrobatici",
+      "count": 100
+    },
+    {
+      "name": "Controllo del traffico aereo",
+      "count": 100
+    },
+    {
+      "name": "Droni e robot volanti",
+      "count": 100
+    },
+    {
+      "name": "Astronautica",
+      "count": 100
+    },
+    {
+      "name": "Stazioni spaziali",
+      "count": 100
+    },
+    {
+      "name": "Colonizzazione di pianeti",
+      "count": 100
+    },
+    {
+      "name": "Astrofisica e astronomia",
+      "count": 100
+    },
+    {
+      "name": "Esplorazione di galassie",
+      "count": 100
     }
   ],
   "category_groups": [
@@ -643,5 +733,5 @@
       ]
     }
   ],
-  "note": "8.000 concept in 80 categorie, esattamente 100 per categoria. Sono idee catalogate, non giochi già sviluppati, giocabili o testati."
+  "note": "10.000 concept catalogati in 100 categorie, 100 per categoria. Sono idee catalogate, non giochi già sviluppati, giocabili o testati."
 }
