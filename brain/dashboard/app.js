@@ -119,7 +119,7 @@ $('registerPasskey').addEventListener('click',async()=>{
  const {data:aal,error:aalError}=await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
  if(aalError||aal?.currentLevel!=='aal2'){setStatus('passkeyStatus','Prima completa la verifica MFA (AAL2).',true);return}
  $('registerPasskey').disabled=true;setStatus('passkeyStatus','Segui la richiesta di sicurezza del telefono per registrare la passkey…');
- try{const {data,error}=await supabase.auth.registerPasskey();if(error){setStatus('passkeyStatus','Registrazione non riuscita: '+error.message,true)}else{setStatus('passkeyStatus','Passkey registrata. Il telefono potrà richiedere impronta, volto o PIN.');await loadPasskeys();await audit('passkey_registered','auth_passkey',data?.id||null,{})}}catch(e){setStatus('passkeyStatus','Funzione passkey non disponibile: '+(e?.message||'errore'),true)}finally{$('registerPasskey').disabled=false}
+ try{const {data,error}=await supabase.auth.registerPasskey();if(error){setStatus('passkeyStatus','Registrazione non riuscita: '+error.message,true)}else{setStatus('passkeyStatus','Passkey registrata. Il telefono potrà richiedere impronta, volto o PIN.');await loadPasskeys();const logged=await audit('passkey_registered','auth_passkey',data?.id||null,{});if(!logged)setStatus('passkeyStatus','Passkey registrata, ma ATTENZIONE: evento non scritto nel registro audit.',true)}}catch(e){setStatus('passkeyStatus','Funzione passkey non disponibile: '+(e?.message||'errore'),true)}finally{$('registerPasskey').disabled=false}
 });
 $('passkeyList').addEventListener('click',async event=>{
  const button=event.target.closest('button[data-passkey-delete]');if(!button)return;
@@ -127,17 +127,16 @@ $('passkeyList').addEventListener('click',async event=>{
  button.disabled=true;const id=button.dataset.passkeyDelete;
  const {error}=await supabase.auth.passkey.delete({passkeyId:id});
  if(error){button.disabled=false;setStatus('passkeyStatus','Rimozione non riuscita: '+error.message,true);return}
- await audit('passkey_removed','auth_passkey',id,{});await loadPasskeys();setStatus('passkeyStatus','Passkey rimossa.');
+ const logged=await audit('passkey_removed','auth_passkey',id,{});await loadPasskeys();setStatus('passkeyStatus',logged?'Passkey rimossa.':'Passkey rimossa, ma ATTENZIONE: evento non scritto nel registro audit.',!logged);
 });
 $('signout').addEventListener('click',async()=>{await supabase.auth.signOut();location.reload()});
 $('addTask').addEventListener('click',async()=>{
  const title=$('taskTitle').value.trim();if(!title){$('taskStatus').textContent='Inserisci un titolo.';return}
  $('addTask').disabled=true;
- const {data,error}=await supabase.from('brain_tasks').insert({title,description:$('taskDesc').value.trim(),priority:$('taskPriority').value,sector:'core',created_by:currentUser.id}).select('id').single();
+ const {data:taskId,error}=await supabase.rpc('brain_create_task',{p_title:title,p_description:$('taskDesc').value.trim(),p_priority:$('taskPriority').value});
  $('addTask').disabled=false;
- if(error){$('taskStatus').textContent='Non è stato possibile creare l’attività: '+error.message;return}
- const logged=await audit('task_created','brain_task',data.id,{title});
- $('taskTitle').value='';$('taskDesc').value='';$('taskStatus').textContent=logged?'Attività creata e registrata.':'Attività creata, ma ATTENZIONE: registrazione audit non riuscita.';
+ if(error){$('taskStatus').textContent='Non è stato possibile creare e registrare l’attività: '+error.message;return}
+ $('taskTitle').value='';$('taskDesc').value='';$('taskStatus').textContent=taskId?'Attività creata e registrata atomicamente.':'Operazione non confermata: nessuna attività creata.';
  await loadDashboard();
 });
 $('approvalsList').addEventListener('click',async event=>{
@@ -145,11 +144,10 @@ $('approvalsList').addEventListener('click',async event=>{
  const id=button.dataset.approval,decision=button.dataset.decision;
  if(!confirm((decision==='approved'?'Approvare':'Rifiutare')+' questa richiesta? La decisione non esegue l’azione.'))return;
  button.disabled=true;
- const {data:updatedApproval,error}=await supabase.from('brain_approvals').update({status:decision,decided_by:currentUser.id,decided_at:new Date().toISOString()}).eq('id',id).eq('status','pending').select('id').maybeSingle();
- if(error){button.disabled=false;setStatus('appStatus','Decisione non salvata: '+error.message,true);return}
- if(!updatedApproval){button.disabled=false;setStatus('appStatus','Nessuna modifica: la richiesta potrebbe essere già stata gestita o non essere più disponibile. Aggiorno l’elenco.',true);await loadDashboard();return}
- const logged=await audit('approval_'+decision,'brain_approval',id,{decision});
- if(!logged)setStatus('appStatus','Decisione salvata, ma ATTENZIONE: registrazione audit non riuscita.',true);
+ const {data:updatedId,error}=await supabase.rpc('brain_decide_approval',{p_approval_id:id,p_decision:decision});
+ if(error){button.disabled=false;setStatus('appStatus','Decisione non salvata e registro non modificato: '+error.message,true);return}
+ if(!updatedId){button.disabled=false;setStatus('appStatus','Nessuna modifica: la richiesta potrebbe essere già stata gestita o non essere più disponibile. Aggiorno l’elenco.',true);await loadDashboard();return}
+ setStatus('appStatus','Decisione salvata e registrata atomicamente. La decisione non esegue l’azione.');
  await loadDashboard();
 });
 const {data:sessionData}=await supabase.auth.getSession();
