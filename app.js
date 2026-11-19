@@ -16,7 +16,7 @@ function readableError(error) {
   const messages = {
     'Invalid login credentials': 'Email o password non corretti.',
     'User already registered': 'Questa email è già registrata. Prova ad accedere.',
-    'Password should be at least 6 characters': 'La password deve contenere almeno 6 caratteri.'
+    'Password should be at least 12 characters': 'La password deve contenere almeno 12 caratteri.'
   };
   return messages[error?.message] || error?.message || 'Si è verificato un errore. Riprova.';
 }
