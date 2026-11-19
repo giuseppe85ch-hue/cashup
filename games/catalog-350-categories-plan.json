@@ -1,0 +1,2900 @@
+{
+  "project": "CASHUP",
+  "catalog_version": 6,
+  "status": "scalable_catalog_blueprint",
+  "generated_on": "2026-11-19",
+  "category_count": 350,
+  "target_concepts": 7000000,
+  "target_per_category": 20000,
+  "currently_authored_concepts": 8000,
+  "currently_authored_categories": 80,
+  "additional_categories_planned": 270,
+  "id_scheme": {
+    "existing": "CU-0001..CU-8000",
+    "virtual_template": "CU-G{category_id}-V{variant_id}",
+    "category_id": "001..350",
+    "variant_id": "00001..20000"
+  },
+  "categories": [
+    {
+      "category_id": "001",
+      "name": "Arcade classici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "002",
+      "name": "Platform e salti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "003",
+      "name": "Riflessi e precisione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "004",
+      "name": "Azione e combattimento",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "005",
+      "name": "Ritmo e musica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "006",
+      "name": "Logica e rompicapo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "007",
+      "name": "Abbinamenti e tessere",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "008",
+      "name": "Parole e linguaggio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "009",
+      "name": "Numeri e matematica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "010",
+      "name": "Spazio e forme",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "011",
+      "name": "Corse automobilistiche",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "012",
+      "name": "Moto e due ruote",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "013",
+      "name": "Kart e corse arcade",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "014",
+      "name": "Rally e fuoristrada",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "015",
+      "name": "Garage e personalizzazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "016",
+      "name": "Calcio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "017",
+      "name": "Basket e pallavolo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "018",
+      "name": "Tennis e racchetta",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "019",
+      "name": "Sport estremi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "020",
+      "name": "Altri sport",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "021",
+      "name": "Esplorazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "022",
+      "name": "Fantasy e magia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "023",
+      "name": "Mistero e investigazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "024",
+      "name": "Fantascienza e spazio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "025",
+      "name": "Sopravvivenza",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "026",
+      "name": "Tattica e pianificazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "027",
+      "name": "Regni e civiltà",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "028",
+      "name": "Difesa e torri",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "029",
+      "name": "Carte strategiche",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "030",
+      "name": "Gestione e risorse",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "031",
+      "name": "Città e costruzione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "032",
+      "name": "Fattoria e animali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "033",
+      "name": "Vita quotidiana",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "034",
+      "name": "Imprese e negozi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "035",
+      "name": "Veicoli e professioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "036",
+      "name": "Match e combinazioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "037",
+      "name": "Giochi rilassanti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "038",
+      "name": "Cucina e ristoranti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "039",
+      "name": "Oggetti nascosti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "040",
+      "name": "Idle e progressione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "041",
+      "name": "Party e quiz",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "042",
+      "name": "Cooperazione online",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "043",
+      "name": "Competizioni online",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "044",
+      "name": "Squadre e leghe",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "045",
+      "name": "Social e community",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "046",
+      "name": "Fitness e movimento",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "047",
+      "name": "Missioni e sfide CASHUP",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "048",
+      "name": "Creatività e contenuti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "049",
+      "name": "Eventi e stagioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "050",
+      "name": "Esperienze social CASHUP",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "051",
+      "name": "Pesca e vita acquatica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "052",
+      "name": "Vela e navigazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "053",
+      "name": "Aviazione e volo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "054",
+      "name": "Treni e ferrovie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "055",
+      "name": "Camion e trasporti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "056",
+      "name": "Parkour e acrobazie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "057",
+      "name": "Arti marziali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "058",
+      "name": "Boxe e lotta",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "059",
+      "name": "Golf e biliardo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "060",
+      "name": "Ciclismo e mountain bike",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "061",
+      "name": "Neve e sport invernali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "062",
+      "name": "Mare e immersioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "063",
+      "name": "Dinosauri e preistoria",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "064",
+      "name": "Mitologia e leggende",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "065",
+      "name": "Storia e antiche civiltà",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "066",
+      "name": "Detective e crimini",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "067",
+      "name": "Escape room",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "068",
+      "name": "Collezionismo e oggetti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "069",
+      "name": "Moda e stile",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "070",
+      "name": "Design e arredamento",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "071",
+      "name": "Bellezza e benessere",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "072",
+      "name": "Animali domestici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "073",
+      "name": "Natura e giardinaggio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "074",
+      "name": "Ecologia e sostenibilità",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "075",
+      "name": "Medicina e soccorso",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "076",
+      "name": "Programmazione e tecnologia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "077",
+      "name": "Robotica e invenzioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "078",
+      "name": "Economia e commercio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "079",
+      "name": "Turismo e viaggi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "080",
+      "name": "Giochi per famiglie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "081",
+      "name": "Acquari e pesci tropicali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "082",
+      "name": "Pesca sportiva",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "083",
+      "name": "Pesca sul ghiaccio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "084",
+      "name": "Creature degli abissi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "085",
+      "name": "Barriere coralline",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "086",
+      "name": "Sottomarini e relitti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "087",
+      "name": "Surf e bodyboard",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "088",
+      "name": "Kayak e canoa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "089",
+      "name": "Rafting e rapide",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "090",
+      "name": "Salvataggio marino",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "091",
+      "name": "Elicotteri e soccorso aereo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "092",
+      "name": "Aerei commerciali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "093",
+      "name": "Aerei acrobatici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "094",
+      "name": "Controllo del traffico aereo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "095",
+      "name": "Droni e robot volanti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "096",
+      "name": "Astronautica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "097",
+      "name": "Stazioni spaziali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "098",
+      "name": "Colonizzazione di pianeti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "099",
+      "name": "Astrofisica e astronomia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "100",
+      "name": "Esplorazione di galassie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "101",
+      "name": "Metropolitane e autobus",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "102",
+      "name": "Porti e container",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "103",
+      "name": "Aeroporti e terminal",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "104",
+      "name": "Corrieri e consegne",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "105",
+      "name": "Logistica e magazzini",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "106",
+      "name": "Trasporto pubblico",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "107",
+      "name": "Macchine da cantiere",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "108",
+      "name": "Mezzi agricoli",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "109",
+      "name": "Taxi e mobilità urbana",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "110",
+      "name": "Gestione flotte",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "111",
+      "name": "Atletica leggera",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "112",
+      "name": "Maratona e corsa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "113",
+      "name": "Nuoto e tuffi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "114",
+      "name": "Ginnastica artistica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "115",
+      "name": "Ginnastica ritmica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "116",
+      "name": "Scherma",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "117",
+      "name": "Tiro con l'arco sportivo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "118",
+      "name": "Arrampicata sportiva",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "119",
+      "name": "Equitazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "120",
+      "name": "Canottaggio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "121",
+      "name": "Rugby",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "122",
+      "name": "Pallamano",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "123",
+      "name": "Hockey su ghiaccio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "124",
+      "name": "Hockey su prato",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "125",
+      "name": "Baseball e softball",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "126",
+      "name": "Cricket",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "127",
+      "name": "Football americano",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "128",
+      "name": "Football australiano",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "129",
+      "name": "Pallanuoto",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "130",
+      "name": "Ultimate frisbee",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "131",
+      "name": "Bowling",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "132",
+      "name": "Freccette",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "133",
+      "name": "Snooker",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "134",
+      "name": "Bocce e pétanque",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "135",
+      "name": "Ping pong",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "136",
+      "name": "Shuffleboard",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "137",
+      "name": "Minigolf",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "138",
+      "name": "Disc golf",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "139",
+      "name": "Calcio balilla",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "140",
+      "name": "Air hockey",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "141",
+      "name": "Judo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "142",
+      "name": "Karate",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "143",
+      "name": "Taekwondo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "144",
+      "name": "Kickboxing",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "145",
+      "name": "MMA sportiva",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "146",
+      "name": "Wrestling sportivo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "147",
+      "name": "Capoeira",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "148",
+      "name": "Kendo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "149",
+      "name": "Pugilato tecnico",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "150",
+      "name": "Allenamento marziale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "151",
+      "name": "Antico Egitto",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "152",
+      "name": "Impero romano",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "153",
+      "name": "Grecia antica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "154",
+      "name": "Vichinghi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "155",
+      "name": "Medioevo europeo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "156",
+      "name": "Rinascimento",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "157",
+      "name": "Rotte della seta",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "158",
+      "name": "Esplorazioni polari",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "159",
+      "name": "Archeologia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "160",
+      "name": "Civiltà precolombiane",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "161",
+      "name": "Draghi e cavalieri",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "162",
+      "name": "Streghe e alchimia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "163",
+      "name": "Fate e creature magiche",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "164",
+      "name": "Vampiri e licantropi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "165",
+      "name": "Regni sottomarini fantastici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "166",
+      "name": "Scuole di magia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "167",
+      "name": "Creature leggendarie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "168",
+      "name": "Portali dimensionali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "169",
+      "name": "Eroi e superpoteri",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "170",
+      "name": "Fiabe interattive",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "171",
+      "name": "Gialli classici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "172",
+      "name": "Agenti segreti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "173",
+      "name": "Spionaggio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "174",
+      "name": "Criptogrammi e codici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "175",
+      "name": "Indagini scientifiche",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "176",
+      "name": "Processi e tribunali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "177",
+      "name": "Casi irrisolti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "178",
+      "name": "Furti e recuperi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "179",
+      "name": "Archeomisteri",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "180",
+      "name": "Thriller psicologico",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "181",
+      "name": "Case infestate",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "182",
+      "name": "Zombie e apocalisse",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "183",
+      "name": "Mostri e creature",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "184",
+      "name": "Horror cosmico",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "185",
+      "name": "Laboratori segreti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "186",
+      "name": "Foreste oscure",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "187",
+      "name": "Navi fantasma",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "188",
+      "name": "Fuga notturna",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "189",
+      "name": "Leggende urbane",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "190",
+      "name": "Sopravvivenza estrema",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "191",
+      "name": "Puzzle tridimensionali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "192",
+      "name": "Tangram e incastri",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "193",
+      "name": "Labirinti complessi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "194",
+      "name": "Circuiti e connessioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "195",
+      "name": "Enigmi visivi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "196",
+      "name": "Puzzle acustici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "197",
+      "name": "Puzzle geometrici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "198",
+      "name": "Deduzione logica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "199",
+      "name": "Sequenze e pattern",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "200",
+      "name": "Puzzle cooperativi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "201",
+      "name": "Lingue straniere",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "202",
+      "name": "Vocabolario",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "203",
+      "name": "Grammatica e sintassi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "204",
+      "name": "Etimologia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "205",
+      "name": "Ortografia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "206",
+      "name": "Letteratura e libri",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "207",
+      "name": "Geografia e mappe",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "208",
+      "name": "Scienze naturali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "209",
+      "name": "Chimica e laboratorio",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "210",
+      "name": "Fisica interattiva",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "211",
+      "name": "Algebra",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "212",
+      "name": "Geometria",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "213",
+      "name": "Probabilità e statistica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "214",
+      "name": "Calcolo mentale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "215",
+      "name": "Astronomia educativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "216",
+      "name": "Biologia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "217",
+      "name": "Genetica educativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "218",
+      "name": "Ecologia scientifica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "219",
+      "name": "Elettronica di base",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "220",
+      "name": "Metodo scientifico",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "221",
+      "name": "Pixel art",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "222",
+      "name": "Illustrazione digitale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "223",
+      "name": "Fumetti e manga",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "224",
+      "name": "Animazione 2D",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "225",
+      "name": "Modellazione 3D",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "226",
+      "name": "Fotografia creativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "227",
+      "name": "Montaggio video",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "228",
+      "name": "Produzione musicale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "229",
+      "name": "Composizione sonora",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "230",
+      "name": "Scrittura creativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "231",
+      "name": "Pianoforte e tastiere",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "232",
+      "name": "Chitarra e corde",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "233",
+      "name": "Batteria e percussioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "234",
+      "name": "DJ e mixing",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "235",
+      "name": "Canto e intonazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "236",
+      "name": "Danza classica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "237",
+      "name": "Danza moderna",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "238",
+      "name": "Coreografia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "239",
+      "name": "Teatro e improvvisazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "240",
+      "name": "Circo e giocoleria",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "241",
+      "name": "Sfilate e passerelle",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "242",
+      "name": "Stilismo e sartoria",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "243",
+      "name": "Accessori e gioielli",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "244",
+      "name": "Make-up creativo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "245",
+      "name": "Acconciature",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "246",
+      "name": "Interior fashion",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "247",
+      "name": "Organizzazione eventi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "248",
+      "name": "Matrimoni e cerimonie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "249",
+      "name": "Collezioni vintage",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "250",
+      "name": "Personal styling",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "251",
+      "name": "Ristrutturazione casa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "252",
+      "name": "Fai da te",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "253",
+      "name": "Restauro mobili",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "254",
+      "name": "Pulizia e organizzazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "255",
+      "name": "Cura del giardino",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "256",
+      "name": "Orto urbano",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "257",
+      "name": "Cura delle piante",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "258",
+      "name": "Architettura sostenibile",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "259",
+      "name": "Domotica domestica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "260",
+      "name": "Gestione della casa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "261",
+      "name": "Cani e addestramento",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "262",
+      "name": "Gatti e cura",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "263",
+      "name": "Cavalli e scuderie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "264",
+      "name": "Uccelli e voliere",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "265",
+      "name": "Insetti e biodiversità",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "266",
+      "name": "Fauna selvatica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "267",
+      "name": "Safari fotografico",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "268",
+      "name": "Riserve naturali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "269",
+      "name": "Soccorso animali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "270",
+      "name": "Veterinaria educativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "271",
+      "name": "Pasticceria",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "272",
+      "name": "Panificazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "273",
+      "name": "Caffetteria",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "274",
+      "name": "Street food",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "275",
+      "name": "Cucina internazionale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "276",
+      "name": "Cucina vegetariana",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "277",
+      "name": "Gestione hotel",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "278",
+      "name": "Gestione resort",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "279",
+      "name": "Gestione ristoranti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "280",
+      "name": "Critica gastronomica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "281",
+      "name": "Startup e innovazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "282",
+      "name": "Marketing e pubblicità",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "283",
+      "name": "Commercio internazionale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "284",
+      "name": "Borsa simulata educativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "285",
+      "name": "Budget personale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "286",
+      "name": "Contabilità di base",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "287",
+      "name": "Negoziazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "288",
+      "name": "Gestione progetti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "289",
+      "name": "Catene di negozi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "290",
+      "name": "Imprenditoria sociale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "291",
+      "name": "Coding per principianti",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "292",
+      "name": "Sviluppo web",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "293",
+      "name": "Sicurezza informatica educativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "294",
+      "name": "Reti e telecomunicazioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "295",
+      "name": "Intelligenza artificiale educativa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "296",
+      "name": "Machine learning concettuale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "297",
+      "name": "Database e dati",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "298",
+      "name": "Sistemi operativi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "299",
+      "name": "Cloud e server",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "300",
+      "name": "Realtà aumentata",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "301",
+      "name": "Robot industriali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "302",
+      "name": "Robot domestici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "303",
+      "name": "Robot esploratori",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "304",
+      "name": "Meccatronica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "305",
+      "name": "Ingegneria aerospaziale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "306",
+      "name": "Ingegneria navale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "307",
+      "name": "Ingegneria civile",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "308",
+      "name": "Circuiti elettronici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "309",
+      "name": "Energia rinnovabile",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "310",
+      "name": "Invenzioni e prototipi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "311",
+      "name": "Viaggi in Europa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "312",
+      "name": "Viaggi in Asia",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "313",
+      "name": "Viaggi in Africa",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "314",
+      "name": "Viaggi nelle Americhe",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "315",
+      "name": "Viaggi in Oceania",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "316",
+      "name": "Culture del mondo",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "317",
+      "name": "Monumenti e patrimoni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "318",
+      "name": "Lingue e tradizioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "319",
+      "name": "Treni panoramici",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "320",
+      "name": "Itinerari e mappe",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "321",
+      "name": "Amicizia e collaborazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "322",
+      "name": "Organizzazione di comunità",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "323",
+      "name": "Volontariato",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "324",
+      "name": "Eventi di quartiere",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "325",
+      "name": "Festival internazionali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "326",
+      "name": "Giochi di conoscenza",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "327",
+      "name": "Sfide tra famiglie",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "328",
+      "name": "Cooperazione scolastica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "329",
+      "name": "Club e associazioni",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "330",
+      "name": "Costruzione di comunità",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "331",
+      "name": "Yoga e flessibilità",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "332",
+      "name": "Pilates",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "333",
+      "name": "Meditazione guidata",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "334",
+      "name": "Respirazione e concentrazione",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "335",
+      "name": "Allenamento funzionale",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "336",
+      "name": "Danza fitness",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "337",
+      "name": "Percorsi a ostacoli",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "338",
+      "name": "Orientamento e trekking",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "339",
+      "name": "Camminata sportiva",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "340",
+      "name": "Abitudini salutari",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "341",
+      "name": "Vigili del fuoco",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "342",
+      "name": "Polizia e sicurezza pubblica",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "343",
+      "name": "Ambulanze e primo soccorso",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "344",
+      "name": "Medici e ospedali",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "345",
+      "name": "Ricerca e soccorso",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "346",
+      "name": "Gestione emergenze",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "347",
+      "name": "Scuola e insegnamento",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "348",
+      "name": "Musei e curatela",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "349",
+      "name": "Biblioteche e archivi",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "350",
+      "name": "Giornalismo e media",
+      "target_concepts": 20000,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    }
+  ],
+  "category_groups": [
+    {
+      "theme": "Acqua e pesca avanzata",
+      "categories": [
+        "Acquari e pesci tropicali",
+        "Pesca sportiva",
+        "Pesca sul ghiaccio",
+        "Creature degli abissi",
+        "Barriere coralline",
+        "Sottomarini e relitti",
+        "Surf e bodyboard",
+        "Kayak e canoa",
+        "Rafting e rapide",
+        "Salvataggio marino"
+      ]
+    },
+    {
+      "theme": "Aria e spazio operativo",
+      "categories": [
+        "Elicotteri e soccorso aereo",
+        "Aerei commerciali",
+        "Aerei acrobatici",
+        "Controllo del traffico aereo",
+        "Droni e robot volanti",
+        "Astronautica",
+        "Stazioni spaziali",
+        "Colonizzazione di pianeti",
+        "Astrofisica e astronomia",
+        "Esplorazione di galassie"
+      ]
+    },
+    {
+      "theme": "Trasporti e logistica",
+      "categories": [
+        "Metropolitane e autobus",
+        "Porti e container",
+        "Aeroporti e terminal",
+        "Corrieri e consegne",
+        "Logistica e magazzini",
+        "Trasporto pubblico",
+        "Macchine da cantiere",
+        "Mezzi agricoli",
+        "Taxi e mobilità urbana",
+        "Gestione flotte"
+      ]
+    },
+    {
+      "theme": "Sport individuali",
+      "categories": [
+        "Atletica leggera",
+        "Maratona e corsa",
+        "Nuoto e tuffi",
+        "Ginnastica artistica",
+        "Ginnastica ritmica",
+        "Scherma",
+        "Tiro con l'arco sportivo",
+        "Arrampicata sportiva",
+        "Equitazione",
+        "Canottaggio"
+      ]
+    },
+    {
+      "theme": "Sport di squadra",
+      "categories": [
+        "Rugby",
+        "Pallamano",
+        "Hockey su ghiaccio",
+        "Hockey su prato",
+        "Baseball e softball",
+        "Cricket",
+        "Football americano",
+        "Football australiano",
+        "Pallanuoto",
+        "Ultimate frisbee"
+      ]
+    },
+    {
+      "theme": "Sport da tavolo e precisione",
+      "categories": [
+        "Bowling",
+        "Freccette",
+        "Snooker",
+        "Bocce e pétanque",
+        "Ping pong",
+        "Shuffleboard",
+        "Minigolf",
+        "Disc golf",
+        "Calcio balilla",
+        "Air hockey"
+      ]
+    },
+    {
+      "theme": "Combattimento e arti",
+      "categories": [
+        "Judo",
+        "Karate",
+        "Taekwondo",
+        "Kickboxing",
+        "MMA sportiva",
+        "Wrestling sportivo",
+        "Capoeira",
+        "Kendo",
+        "Pugilato tecnico",
+        "Allenamento marziale"
+      ]
+    },
+    {
+      "theme": "Avventure storiche",
+      "categories": [
+        "Antico Egitto",
+        "Impero romano",
+        "Grecia antica",
+        "Vichinghi",
+        "Medioevo europeo",
+        "Rinascimento",
+        "Rotte della seta",
+        "Esplorazioni polari",
+        "Archeologia",
+        "Civiltà precolombiane"
+      ]
+    },
+    {
+      "theme": "Mondi fantastici",
+      "categories": [
+        "Draghi e cavalieri",
+        "Streghe e alchimia",
+        "Fate e creature magiche",
+        "Vampiri e licantropi",
+        "Regni sottomarini fantastici",
+        "Scuole di magia",
+        "Creature leggendarie",
+        "Portali dimensionali",
+        "Eroi e superpoteri",
+        "Fiabe interattive"
+      ]
+    },
+    {
+      "theme": "Mistero e investigazione",
+      "categories": [
+        "Gialli classici",
+        "Agenti segreti",
+        "Spionaggio",
+        "Criptogrammi e codici",
+        "Indagini scientifiche",
+        "Processi e tribunali",
+        "Casi irrisolti",
+        "Furti e recuperi",
+        "Archeomisteri",
+        "Thriller psicologico"
+      ]
+    },
+    {
+      "theme": "Horror e tensione",
+      "categories": [
+        "Case infestate",
+        "Zombie e apocalisse",
+        "Mostri e creature",
+        "Horror cosmico",
+        "Laboratori segreti",
+        "Foreste oscure",
+        "Navi fantasma",
+        "Fuga notturna",
+        "Leggende urbane",
+        "Sopravvivenza estrema"
+      ]
+    },
+    {
+      "theme": "Puzzle specialistici",
+      "categories": [
+        "Puzzle tridimensionali",
+        "Tangram e incastri",
+        "Labirinti complessi",
+        "Circuiti e connessioni",
+        "Enigmi visivi",
+        "Puzzle acustici",
+        "Puzzle geometrici",
+        "Deduzione logica",
+        "Sequenze e pattern",
+        "Puzzle cooperativi"
+      ]
+    },
+    {
+      "theme": "Parole e apprendimento",
+      "categories": [
+        "Lingue straniere",
+        "Vocabolario",
+        "Grammatica e sintassi",
+        "Etimologia",
+        "Ortografia",
+        "Letteratura e libri",
+        "Geografia e mappe",
+        "Scienze naturali",
+        "Chimica e laboratorio",
+        "Fisica interattiva"
+      ]
+    },
+    {
+      "theme": "Matematica e scienza",
+      "categories": [
+        "Algebra",
+        "Geometria",
+        "Probabilità e statistica",
+        "Calcolo mentale",
+        "Astronomia educativa",
+        "Biologia",
+        "Genetica educativa",
+        "Ecologia scientifica",
+        "Elettronica di base",
+        "Metodo scientifico"
+      ]
+    },
+    {
+      "theme": "Creatività digitale",
+      "categories": [
+        "Pixel art",
+        "Illustrazione digitale",
+        "Fumetti e manga",
+        "Animazione 2D",
+        "Modellazione 3D",
+        "Fotografia creativa",
+        "Montaggio video",
+        "Produzione musicale",
+        "Composizione sonora",
+        "Scrittura creativa"
+      ]
+    },
+    {
+      "theme": "Musica e spettacolo",
+      "categories": [
+        "Pianoforte e tastiere",
+        "Chitarra e corde",
+        "Batteria e percussioni",
+        "DJ e mixing",
+        "Canto e intonazione",
+        "Danza classica",
+        "Danza moderna",
+        "Coreografia",
+        "Teatro e improvvisazione",
+        "Circo e giocoleria"
+      ]
+    },
+    {
+      "theme": "Moda e lifestyle",
+      "categories": [
+        "Sfilate e passerelle",
+        "Stilismo e sartoria",
+        "Accessori e gioielli",
+        "Make-up creativo",
+        "Acconciature",
+        "Interior fashion",
+        "Organizzazione eventi",
+        "Matrimoni e cerimonie",
+        "Collezioni vintage",
+        "Personal styling"
+      ]
+    },
+    {
+      "theme": "Casa e vita pratica",
+      "categories": [
+        "Ristrutturazione casa",
+        "Fai da te",
+        "Restauro mobili",
+        "Pulizia e organizzazione",
+        "Cura del giardino",
+        "Orto urbano",
+        "Cura delle piante",
+        "Architettura sostenibile",
+        "Domotica domestica",
+        "Gestione della casa"
+      ]
+    },
+    {
+      "theme": "Animali e natura",
+      "categories": [
+        "Cani e addestramento",
+        "Gatti e cura",
+        "Cavalli e scuderie",
+        "Uccelli e voliere",
+        "Insetti e biodiversità",
+        "Fauna selvatica",
+        "Safari fotografico",
+        "Riserve naturali",
+        "Soccorso animali",
+        "Veterinaria educativa"
+      ]
+    },
+    {
+      "theme": "Cibo e ospitalità",
+      "categories": [
+        "Pasticceria",
+        "Panificazione",
+        "Caffetteria",
+        "Street food",
+        "Cucina internazionale",
+        "Cucina vegetariana",
+        "Gestione hotel",
+        "Gestione resort",
+        "Gestione ristoranti",
+        "Critica gastronomica"
+      ]
+    },
+    {
+      "theme": "Imprese e finanza educativa",
+      "categories": [
+        "Startup e innovazione",
+        "Marketing e pubblicità",
+        "Commercio internazionale",
+        "Borsa simulata educativa",
+        "Budget personale",
+        "Contabilità di base",
+        "Negoziazione",
+        "Gestione progetti",
+        "Catene di negozi",
+        "Imprenditoria sociale"
+      ]
+    },
+    {
+      "theme": "Tecnologia e informatica",
+      "categories": [
+        "Coding per principianti",
+        "Sviluppo web",
+        "Sicurezza informatica educativa",
+        "Reti e telecomunicazioni",
+        "Intelligenza artificiale educativa",
+        "Machine learning concettuale",
+        "Database e dati",
+        "Sistemi operativi",
+        "Cloud e server",
+        "Realtà aumentata"
+      ]
+    },
+    {
+      "theme": "Robotica e ingegneria",
+      "categories": [
+        "Robot industriali",
+        "Robot domestici",
+        "Robot esploratori",
+        "Meccatronica",
+        "Ingegneria aerospaziale",
+        "Ingegneria navale",
+        "Ingegneria civile",
+        "Circuiti elettronici",
+        "Energia rinnovabile",
+        "Invenzioni e prototipi"
+      ]
+    },
+    {
+      "theme": "Viaggi e culture",
+      "categories": [
+        "Viaggi in Europa",
+        "Viaggi in Asia",
+        "Viaggi in Africa",
+        "Viaggi nelle Americhe",
+        "Viaggi in Oceania",
+        "Culture del mondo",
+        "Monumenti e patrimoni",
+        "Lingue e tradizioni",
+        "Treni panoramici",
+        "Itinerari e mappe"
+      ]
+    },
+    {
+      "theme": "Comunità e relazioni",
+      "categories": [
+        "Amicizia e collaborazione",
+        "Organizzazione di comunità",
+        "Volontariato",
+        "Eventi di quartiere",
+        "Festival internazionali",
+        "Giochi di conoscenza",
+        "Sfide tra famiglie",
+        "Cooperazione scolastica",
+        "Club e associazioni",
+        "Costruzione di comunità"
+      ]
+    },
+    {
+      "theme": "Benessere e movimento",
+      "categories": [
+        "Yoga e flessibilità",
+        "Pilates",
+        "Meditazione guidata",
+        "Respirazione e concentrazione",
+        "Allenamento funzionale",
+        "Danza fitness",
+        "Percorsi a ostacoli",
+        "Orientamento e trekking",
+        "Camminata sportiva",
+        "Abitudini salutari"
+      ]
+    },
+    {
+      "theme": "Professioni e servizi",
+      "categories": [
+        "Vigili del fuoco",
+        "Polizia e sicurezza pubblica",
+        "Ambulanze e primo soccorso",
+        "Medici e ospedali",
+        "Ricerca e soccorso",
+        "Gestione emergenze",
+        "Scuola e insegnamento",
+        "Musei e curatela",
+        "Biblioteche e archivi",
+        "Giornalismo e media"
+      ]
+    }
+  ],
+  "generation_rules": {
+    "no_duplicate_titles": true,
+    "no_recycled_descriptions": true,
+    "language": "multilingual-ready",
+    "platforms": [
+      "Android",
+      "iOS",
+      "Web"
+    ],
+    "monetization": "free_to_play_optional",
+    "rewards": "No cash prizes or paid chance-based rewards without separate legal, financial and fraud review.",
+    "release_gate": [
+      "original game design",
+      "prototype",
+      "playability test",
+      "device compatibility",
+      "accessibility review",
+      "privacy and security review",
+      "store policy review",
+      "localization review"
+    ]
+  },
+  "note": "Questo blueprint definisce il target di 7 milioni di concept come catalogo parametrico: non crea 7 milioni di schede individuali né dichiara giochi sviluppati. Il catalogo concreto confermato resta 8.000 concept in 80 categorie."
+}
