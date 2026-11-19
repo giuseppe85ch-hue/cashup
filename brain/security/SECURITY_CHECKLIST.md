@@ -1,7 +1,7 @@
 # CASHUP BRAIN — checklist di sicurezza
 
 ## Database
-- [x] Migrazioni BRAIN 0001–0008 e hardening CASHUP applicati il 19 novembre 2026.
+- [x] Migrazioni BRAIN 0001–0009 e hardening CASHUP applicati il 19 novembre 2026.
 - [x] RLS e FORCE RLS attivi su tutte le 12 tabelle pubbliche (7 BRAIN + 5 CASHUP).
 - [x] Nessun privilegio effettivo di anon o service_role sulle tabelle BRAIN; verificato anche TRUNCATE.
 - [x] `brain_founders`: authenticated può solo SELECT; nessun INSERT/UPDATE/DELETE/TRUNCATE.
@@ -9,8 +9,10 @@
 - [x] Altre tabelle BRAIN: accesso RLS consentito solo al fondatore tramite funzione privata.
 - [x] Funzione privata: SECURITY DEFINER, search_path vuoto, EXECUTE solo authenticated; anon senza USAGE su private; la funzione richiede anche claim JWT AAL2.
 - [x] Test negativo simulato con ruolo authenticated non fondatore: nessuna riga BRAIN visibile.
-- [x] Esattamente 8 policy BRAIN previste; nessuna policy aggiuntiva. Default privileges del ruolo postgres in public revocati.
-- [x] RPC `brain_create_task` e `brain_decide_approval`: SECURITY INVOKER, search_path vuoto, EXECUTE solo authenticated; modifica e audit atomici.
+- [x] Esattamente 9 policy BRAIN previste; nessuna policy aggiuntiva. Default privileges del ruolo postgres in public revocati.
+- [x] RPC `brain_create_task` e `brain_decide_approval`: SECURITY INVOKER, search_path vuoto, EXECUTE solo authenticated.
+- [x] Grants minimi: task senza UPDATE/DELETE, agenti/memoria/impostazioni read-only, approvazioni UPDATE solo status e senza INSERT/DELETE.
+- [x] Trigger database che registra automaticamente task e decisioni approvazioni, imposta decided_by/decided_at e aggiorna updated_at; audit atomico.
 - [x] Test transazionale con ruolo authenticated/AAL2 e ROLLBACK: creazione attività e approvazione scrivono i rispettivi eventi audit nella stessa transazione.
 - [!] Nessun oggetto public attualmente posseduto da `supabase_admin`, ma i suoi default ACL in public concedono privilegi a anon/authenticated/service_role. Il ruolo postgres del progetto non è membro di supabase_admin e non può modificarli. Evitare estensioni in public.
 
