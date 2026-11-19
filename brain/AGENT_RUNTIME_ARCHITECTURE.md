@@ -14,6 +14,8 @@ I 550 ruoli sono suddivisi in 20 aree specialistiche, con un orchestratore previ
 - Nessun agente può attivarsi, concedersi permessi, aumentare il budget o disabilitare l'emergency stop.
 - Le azioni finanziarie, contrattuali, legali, irreversibili e ad alto rischio restano subordinate all'approvazione del fondatore.
 
+Le migrazioni 0014 e 0015 registrano il catalogo, i dettagli dei 515 ruoli specialistici e una policy default-deny per l'accesso client alle schede private.
+
 ## Architettura runtime da completare
 1. Console fondatore con MFA AAL2 e sessione breve per operazioni sensibili.
 2. Orchestratore server-side che scompone gli obiettivi e seleziona agenti tramite allowlist.
