@@ -27,6 +27,8 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Controllo approfondito aggiuntivo — 19 novembre 2026
 - [x] Nuova lettura diretta: tutte le 12 tabelle public hanno RLS e FORCE RLS; nessun grant diretto ad anon; nessuna vista public; due RPC `SECURITY INVOKER` in public e nessuna funzione `SECURITY DEFINER`; nessun indice invalido.
+- [x] Test transazionali AAL2 con ROLLBACK: trigger task/approvazioni e RPC riusciti; nessun dato di test rimasto.
+- [!] Repository GitHub pubblico: sorgente e documentazione BRAIN sono visibili. Ricerca puntuale sul branch predefinito `main` senza risultati per `SUPABASE_SERVICE_ROLE_KEY`, `sb_secret_` e `BEGIN PRIVATE KEY`; non equivale a scansione completa dello storico o del branch di lavoro. Secret scanning GitHub non verificato.
 - [x] Funzione privata `private.brain_is_founder()`: SECURITY DEFINER, `search_path` vuoto, EXECUTE negato ad anon e consentito ad authenticated; schema private senza USAGE ad anon.
 - [x] Nessuna tabella applicativa iscritta alla publication `supabase_realtime`.
 - [!] La configurazione effettiva degli schemi esposti dalla Data API non è leggibile dal catalogo SQL (`pgrst.db_schemas` non restituisce un valore). Non considerare verificato che `private` sia escluso: controllare la pagina Data API della Dashboard.
