@@ -98,7 +98,7 @@ select a.agent_key,'core',
 from public.brain_agents a
 on conflict(agent_key) do nothing;
 
-with sectors(department,department_label,slug,scope) as (
+with sectors(ord,department,department_label,slug,scope) as (
  values ('governance','Governance','governance','Supervisione della governance CASHUP, dei controlli interni e delle decisioni del fondatore'),
 ('strategy','Strategia','strategy','Analisi strategica di CASHUP, priorità, scenari e obiettivi misurabili'),
 ('product','Prodotto','product','Definizione e verifica dei requisiti, dell''esperienza e del ciclo di vita del prodotto'),
@@ -119,7 +119,7 @@ with sectors(department,department_label,slug,scope) as (
 ('support','Assistenza utenti','support','Qualità del supporto, risoluzione problemi e documentazione utenti'),
 ('trust','Trust & Safety','trust','Prevenzione abusi, antifrode, moderazione e tutela degli utenti'),
 ('international','Espansione internazionale','international','Localizzazione e valutazione operativa dei mercati internazionali')
-), tasks(task_key,task_label,task_mission) as (
+), tasks(ord,task_key,task_label,task_mission) as (
  values ('requirements','Analisi requisiti','raccoglie requisiti verificabili e criteri di accettazione'),
 ('roadmap','Pianificazione roadmap','ordina iniziative per valore, rischio, dipendenze e fattibilità'),
 ('risk_register','Registro rischi','identifica rischi, probabilità, impatto e mitigazioni'),
@@ -147,7 +147,7 @@ with sectors(department,department_label,slug,scope) as (
 ('retention_policy','Politiche di conservazione','propone tempi e procedure di conservazione e cancellazione'),
 ('customer_journey','Percorso utente','mappa attriti, passaggi, conversione e abbandono')
 ), generated as (
- select row_number() over(order by s.department,t.task_key) as rn,
+ select row_number() over(order by s.ord,t.ord) as rn,
  s.department,s.department_label,s.slug,s.scope,t.task_key,t.task_label,t.task_mission
  from sectors s cross join tasks t
 ), selected as (
