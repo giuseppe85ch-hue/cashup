@@ -28,6 +28,38 @@ select json_build_object(
     join pg_roles r on r.oid = c.relowner
     where n.nspname = 'public' and c.relkind in ('v', 'm')
   ),
+  'public_functions', (
+    select coalesce(json_agg(json_build_object(
+      'name', p.proname, 'owner', r.rolname,
+      'security_definer', p.prosecdef,
+      'config', p.proconfig,
+      'anon_execute', has_function_privilege('anon', p.oid, 'EXECUTE'),
+      'authenticated_execute', has_function_privilege('authenticated', p.oid, 'EXECUTE')
+    ) order by p.proname), '[]'::json)
+    from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    join pg_roles r on r.oid = p.proowner
+    where n.nspname = 'public'
+  ),
+  'brain_triggers', (
+    select coalesce(json_agg(json_build_object(
+      'table', t.tgrelid::regclass::text,
+      'trigger', t.tgname,
+      'function', t.tgfoid::regprocedure::text,
+      'enabled', t.tgenabled
+    ) order by t.tgrelid::regclass::text, t.tgname), '[]'::json)
+    from pg_trigger t
+    where not t.tgisinternal
+      and t.tgrelid::regclass::text like 'public.brain_%'
+  ),
+  'brain_client_privileges', (
+    select coalesce(json_agg(json_build_object(
+      'table', table_name, 'grantee', grantee, 'privilege', privilege_type
+    ) order by table_name, grantee, privilege_type), '[]'::json)
+    from information_schema.role_table_grants
+    where table_schema = 'public' and table_name like 'brain_%'
+      and grantee in ('anon', 'authenticated', 'service_role')
+  ),
   'public_security_definer_functions', (
     select coalesce(json_agg(json_build_object(
       'name', p.proname, 'owner', r.rolname,
