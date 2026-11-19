@@ -39,18 +39,18 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
 - È stato aggiunto `_headers` nella root del repository con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy, limitati al percorso `/brain/dashboard`. Gli header saranno effettivi solo se la root di pubblicazione Cloudflare include questo file; la risposta HTTP reale resta da verificare.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto e richiede `auth.jwt()->>'aal' = 'aal2'`; il controllo MFA è applicato nel database, non soltanto nell'interfaccia. La funzione deve restare non esposta tramite gli schemi API.
-- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 8 policy BRAIN dopo l'hardening.
+- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 9 policy BRAIN dopo l'hardening.
 - I default ACL di `supabase_admin` nello schema `public` sono gestiti da Supabase e concedono privilegi predefiniti ad alcuni ruoli API; il ruolo `postgres` del progetto non è membro di `supabase_admin` e non può modificarli. Non risultano oggetti public attualmente posseduti da quel ruolo; evitare estensioni in `public` e disabilitare l'esposizione automatica di nuove tabelle nella Data API.
 - `brain_founders` consente ad authenticated solo SELECT sulla propria riga attiva; gli altri privilegi sono revocati.
 - `brain_audit_log` è solo SELECT per il client; INSERT/UPDATE/DELETE sono negati. Trigger SECURITY DEFINER in schema private scrivono eventi automatici e atomici; il proprietario DB può comunque alterare il database, perciò servono export esterni firmati/WORM.
-- `brain_create_task` è SECURITY DEFINER con search_path vuoto, eseguibile solo da authenticated e verifica identità fondatore+AAL2; `brain_decide_approval` è SECURITY INVOKER. I trigger generano audit atomico. Test AAL2 con ROLLBACK completato.
+- `brain_create_task` è SECURITY INVOKER con search_path vuoto, eseguibile solo da authenticated e verifica identità fondatore+AAL2; grants colonna limitati a title/description/priority e vincoli DB; `brain_decide_approval` è SECURITY INVOKER. I trigger generano audit atomico. Test AAL2 con ROLLBACK completato.
 - Le approvazioni registrano una decisione ma non devono attivare workflow o operazioni esterne.
 - Autonomia disattivata, arresto di emergenza attivo, spesa automatizzata pari a zero; valori verificati nel database.
 - Nessun agente attivo.
 
 ## Requisiti prima di pubblicare
 
-1. [x] Applicare migrazioni 0004–0010; verificare grants, RLS, RPC e trigger con query completa.
+1. [x] Applicare migrazioni 0004–0011; verificare grants, RLS, RPC e trigger con query completa.
 2. [x] Testare funzione e lettura BRAIN come fondatore.
 3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
 4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
