@@ -14,8 +14,8 @@
 <h1>Accesso fondatore</h1><p class="muted">Accedi con lo stesso account email usato su CASHUP. L'accesso ai dati è comunque verificato da Supabase RLS.</p>
 <label for="email">Email</label><input id="email" type="email" autocomplete="username" placeholder="La tua email">
 <label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="La tua password">
-<div class="actions"><button id="loginBtn">Accedi</button></div>
-<p id="loginStatus" class="status" aria-live="polite">Inserisci le credenziali del tuo account fondatore.</p>
+<div class="actions"><button id="loginBtn">Accedi con email</button><button id="passkeyLogin" class="secondary">Accedi con passkey / impronta / volto</button></div>
+<p id="loginStatus" class="status" aria-live="polite">Puoi usare email e password oppure una passkey già registrata. Il dispositivo può chiedere impronta, volto o PIN.</p>
 </section>
 <section id="mfa" class="panel hidden">
 <h1>Verifica in due passaggi</h1>
@@ -43,7 +43,7 @@
 <div class="metric">Approvazioni in attesa<strong id="approvalsCount">—</strong></div>
 <div class="metric">Voci registro<strong id="auditCount">—</strong></div>
 </div></div>
-<section class="panel"><h2>Protezione e autonomia</h2><p class="muted">Impostazioni consultabili: questa schermata non permette di attivare autonomia o spese.</p><div id="safetySettings" class="grid"><div class="empty">Lettura impostazioni…</div></div></section>
+<section class="panel"><h2>Accesso biometrico e passkey</h2><p class="muted">La passkey usa la sicurezza integrata del telefono o del gestore credenziali. CASHUP non riceve né memorizza impronte o immagini del volto.</p><div class="actions"><button id="registerPasskey">Registra passkey su questo dispositivo</button></div><p id="passkeyStatus" class="status" aria-live="polite">Per usare questa funzione, le passkey devono essere abilitate nelle impostazioni Auth di Supabase per il dominio definitivo.</p><div id="passkeyList" class="empty">Nessuna passkey caricata.</div></section><section class="panel"><h2>Protezione e autonomia</h2><p class="muted">Impostazioni consultabili: questa schermata non permette di attivare autonomia o spese.</p><div id="safetySettings" class="grid"><div class="empty">Lettura impostazioni…</div></div></section>
 <div class="columns">
 <section class="panel"><h2>Nuova attività</h2>
 <label for="taskTitle">Titolo</label><input id="taskTitle" maxlength="120" placeholder="Es. Verificare integrazione login">
