@@ -7,10 +7,54 @@ const setStatus=(id,msg,error=false)=>{$(id).textContent=msg;$(id).classList.tog
 const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=value=>value?new Date(value).toLocaleString('it-IT'):'—';
 let currentUser=null;
+let mfaFactorId=null;
+let mfaMode=null;
+
 async function audit(action,objectType,objectId,details={}){
  const {error}=await supabase.from('brain_audit_log').insert({actor_user_id:currentUser.id,actor_type:'founder',action,object_type:objectType,object_id:objectId?String(objectId):null,outcome:'recorded',details});
  if(error){console.error('Audit log non scritto:',error.message);return false}
  return true;
+}
+function showMfa(mode,factorId,qrCode='',secret=''){
+ mfaMode=mode;mfaFactorId=factorId;
+ $('login').classList.add('hidden');$('app').classList.add('hidden');$('mfa').classList.remove('hidden');$('signout').classList.remove('hidden');
+ $('mfaEnroll').classList.toggle('hidden',mode!=='enroll');
+ $('mfaChallenge').classList.toggle('hidden',mode!=='challenge');
+ $('mfaQr').src=qrCode||'';
+ $('mfaSecret').textContent=secret||'';
+ $('mfaCode').value='';
+ setStatus('mfaStatus',mode==='enroll'?'Scansiona il QR, aggiungi CASHUP BRAIN all’app autenticatrice e poi inserisci il codice a 6 cifre.':'Inserisci il codice a 6 cifre generato dalla tua app autenticatrice.');
+}
+async function requireMfa(){
+ const {data:aal,error:aalError}=await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+ if(aalError){setStatus('loginStatus','Controllo MFA non riuscito: '+aalError.message,true);return false}
+ if(aal?.currentLevel==='aal2')return true;
+ const {data:factors,error:factorsError}=await supabase.auth.mfa.listFactors();
+ if(factorsError){setStatus('loginStatus','Lettura dei fattori MFA non riuscita: '+factorsError.message,true);return false}
+ const verified=(factors?.totp||[]).filter(x=>x.status==='verified');
+ if(verified.length){
+  showMfa('challenge',verified[0].id);
+  return false;
+ }
+ const pending=(factors?.all||[]).filter(x=>x.factor_type==='totp'&&x.status==='unverified');
+ for(const factor of pending){
+  const {error}=await supabase.auth.mfa.unenroll({factorId:factor.id});
+  if(error){setStatus('loginStatus','Non è stato possibile riprendere la configurazione MFA precedente: '+error.message,true);return false}
+ }
+ const {data:enrollment,error:enrollError}=await supabase.auth.mfa.enroll({factorType:'totp',friendlyName:'CASHUP BRAIN Founder'});
+ if(enrollError){setStatus('loginStatus','Configurazione MFA non riuscita: '+enrollError.message,true);return false}
+ showMfa('enroll',enrollment.id,enrollment.totp?.qr_code||'',enrollment.totp?.secret||'');
+ return false;
+}
+async function showApp(user){
+ currentUser=user;
+ const {data:founder,error}=await supabase.from('brain_founders').select('user_id,active').eq('user_id',user.id).eq('active',true).maybeSingle();
+ if(error||!founder){setStatus('loginStatus',error?'Verifica accesso non riuscita: '+error.message:'Questo account non risulta autorizzato come fondatore.',true);await supabase.auth.signOut();return}
+ const mfaReady=await requireMfa();
+ if(!mfaReady)return;
+ $('login').classList.add('hidden');$('mfa').classList.add('hidden');$('app').classList.remove('hidden');$('signout').classList.remove('hidden');
+ $('welcome').textContent='Accesso fondatore verificato con MFA · '+(user.email||'account fondatore');
+ await loadDashboard();
 }
 async function loadDashboard(){
  const [tasks,agents,approvals,auditRows,settings]=await Promise.all([
@@ -35,14 +79,6 @@ async function loadDashboard(){
  $('auditList').innerHTML=auditRows.data.length?auditRows.data.map(x=>'<div class="item"><strong>'+esc(x.action)+'</strong><p class="muted">'+esc(x.object_type)+' · '+esc(x.outcome)+' · '+date(x.created_at)+'</p></div>').join(''):'<div class="empty">Il registro è vuoto.</div>';
  setStatus('appStatus','Dati caricati. Le protezioni del database sono attive.');
 }
-async function showApp(user){
- currentUser=user;
- const {data:founder,error}=await supabase.from('brain_founders').select('user_id,active').eq('user_id',user.id).eq('active',true).maybeSingle();
- if(error||!founder){setStatus('loginStatus',error?'Verifica accesso non riuscita: '+error.message:'Questo account non risulta autorizzato come fondatore.',true);await supabase.auth.signOut();return}
- $('login').classList.add('hidden');$('app').classList.remove('hidden');$('signout').classList.remove('hidden');
- $('welcome').textContent='Accesso verificato · '+(user.email||'account fondatore');
- await loadDashboard();
-}
 $('loginBtn').addEventListener('click',async()=>{
  const email=$('email').value.trim(),password=$('password').value;
  if(!email||!password){setStatus('loginStatus','Inserisci email e password.',true);return}
@@ -51,6 +87,21 @@ $('loginBtn').addEventListener('click',async()=>{
  $('loginBtn').disabled=false;
  if(error){setStatus('loginStatus','Accesso non riuscito: '+error.message,true);return}
  await showApp(data.user);
+});
+$('mfaVerify').addEventListener('click',async()=>{
+ const code=$('mfaCode').value.trim();
+ if(!/^\d{6}$/.test(code)){setStatus('mfaStatus','Inserisci il codice a 6 cifre.',true);return}
+ if(!mfaFactorId){setStatus('mfaStatus','Fattore MFA non disponibile. Esci e ripeti l’accesso.',true);return}
+ $('mfaVerify').disabled=true;setStatus('mfaStatus','Verifica del codice in corso…');
+ const {data:challenge,error:challengeError}=await supabase.auth.mfa.challenge({factorId:mfaFactorId});
+ if(challengeError){$('mfaVerify').disabled=false;setStatus('mfaStatus','Richiesta del codice non riuscita: '+challengeError.message,true);return}
+ const {error:verifyError}=await supabase.auth.mfa.verify({factorId:mfaFactorId,challengeId:challenge.id,code});
+ $('mfaVerify').disabled=false;
+ if(verifyError){setStatus('mfaStatus','Codice non valido o scaduto. Riprova: '+verifyError.message,true);return}
+ $('mfaQr').removeAttribute('src');$('mfaSecret').textContent='';$('mfaCode').value='';
+ const {data:aal,error:aalError}=await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
+ if(aalError||aal?.currentLevel!=='aal2'){setStatus('mfaStatus','Il secondo fattore non risulta verificato. Riprova.',true);return}
+ await showApp(currentUser);
 });
 $('signout').addEventListener('click',async()=>{await supabase.auth.signOut();location.reload()});
 $('addTask').addEventListener('click',async()=>{
