@@ -20,3 +20,6 @@ small{font-size:12px}.empty{color:var(--muted);font-size:13px;padding:12px 0}
 @media(min-width:700px){main{padding-top:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
 
 .metric strong.small-value{font-size:17px}
+
+# mfaQr{display:block;width:min(240px,100%);height:auto;background:#fff;padding:10px;border-radius:12px;margin:14px 0}
+#mfaSecret{display:block;overflow-wrap:anywhere;background:#0b150e;border:1px solid #42634b;border-radius:10px;padding:12px;color:var(--green);font-size:13px;user-select:all}
