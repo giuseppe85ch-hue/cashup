@@ -70,6 +70,9 @@
       try {
         await bridge.scheduleDailyReminders(times);
         localStorage.setItem("cashup_reminder_count_v1",count.value);
+        if (typeof window.CASHUP_SAVE_NOTIFICATION_PREFS === "function") {
+          try { await window.CASHUP_SAVE_NOTIFICATION_PREFS(true,times); } catch (_) {}
+        }
         status.textContent="Promemoria attivati. Puoi disattivarli in qualsiasi momento.";
       } catch (error) {
         status.textContent=error?.message || "Non è stato possibile attivare i promemoria.";
@@ -84,6 +87,9 @@
       try {
         await bridge.cancelDailyReminders();
         localStorage.removeItem("cashup_reminder_count_v1");
+        if (typeof window.CASHUP_SAVE_NOTIFICATION_PREFS === "function") {
+          try { await window.CASHUP_SAVE_NOTIFICATION_PREFS(false,[]); } catch (_) {}
+        }
         status.textContent="Promemoria disattivati.";
       } catch (error) { status.textContent=error?.message || "Non è stato possibile disattivare i promemoria."; }
     });
