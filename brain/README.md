@@ -19,7 +19,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - Il client usa solo la chiave Supabase publishable; nessuna service_role key o password è inserita nel codice.
 - La versione Supabase JS è fissata a `2.119.1` tramite esm.sh bundle; aggiornamenti deliberati e verificati.
 - La dashboard richiede una sessione MFA AAL2 prima di mostrare dati BRAIN e include un flusso TOTP per registrazione/verifica del fattore. Il fondatore non ha ancora fattori MFA registrati: il flusso deve essere completato e collaudato nel browser. Il database è stato testato: sessione AAL1 negata, fondatore AAL2 autorizzato, non fondatore AAL2 negato.
-- Il file `_headers` si trova nella root del repository e contiene regole limitate a `/brain/dashboard` e `/brain/dashboard/*`. Gli header saranno effettivi solo quando il sito sarà pubblicato da una root che include quel file; la risposta HTTP reale non è ancora stata verificata.
+- Il file `_headers` si trova nella root del repository: CSP e header base si applicano a `/*`, mentre `/brain/dashboard` e `/brain/dashboard/*` aggiungono no-store e noindex. Gli header saranno effettivi solo quando il sito sarà pubblicato da una root che include quel file; la risposta HTTP reale non è ancora stata verificata.
 - La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser. Trigger database registrano automaticamente ogni creazione attività e ogni decisione di approvazione nella stessa transazione; la RPC di creazione attività è SECURITY INVOKER con controlli espliciti su identità, fondatore, AAL2 e input; anche la RPC approvazioni è SECURITY INVOKER. Nessuna funzione SECURITY DEFINER è presente nello schema public.
 
 ## Sicurezza e limiti
@@ -47,7 +47,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - MFA TOTP del fondatore: il flusso è pronto, ma il fondatore deve registrare il proprio autenticatore e verificare il codice.
 - Leaked Password Protection non risulta attiva; l'organizzazione è sul piano Free e non è stato richiesto alcun upgrade. Mantenere una password lunga, unica e custodita in un password manager.
 - Verificare redirect URL, rate limits, CAPTCHA e rimuovere `private` dagli schemi esposti dalla Data API (è risultato presente nell'ultimo audit catalogo/configurazione).
-- Verificare MFA/secret scanning/push protection e branch protection in GitHub. È stato aggiunto un workflow statico a permessi minimi; il run #13 era riuscito, ma il run della versione aggiornata deve essere ricontrollato.
+- Verificare MFA/secret scanning/push protection e branch protection in GitHub. È stato aggiunto un workflow statico a permessi minimi; il run dell'ultimo commit deve essere verificato.
 - Il piano Free non include backup automatici: esportare manualmente database e dati Auth e conservare copie cifrate fuori dal progetto; provare il ripristino in ambiente separato prima del rilascio.
 - Pubblicare la console su hosting privato/protetto e verificare gli header HTTP reali.
 - Eseguire il test end-to-end della dashboard e una revisione indipendente.
