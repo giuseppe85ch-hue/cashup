@@ -1,6 +1,6 @@
 {
   "project": "CASHUP",
-  "catalog_version": 7,
+  "catalog_version": 8,
   "total_concepts": 10000,
   "files": [
     {
@@ -32,706 +32,4352 @@
       "path": "games/catalog-6001-7000.json",
       "ids": "CU-6001–CU-7000",
       "count": 1000
-    },
-    {
-      "path": "games/catalog-7001-8000.json",
-      "ids": "CU-7001–CU-8000",
-      "count": 1000
-    },
-    {
-      "path": "games/catalog-8001-9000.json",
-      "ids": "CU-8001–CU-9000",
-      "count": 1000
-    },
-    {
-      "path": "games/catalog-9001-10000.json",
-      "ids": "CU-9001–CU-10000",
-      "count": 1000
     }
   ],
   "categories": [
     {
+      "category_id": "001",
       "name": "Arcade classici",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "002",
       "name": "Platform e salti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "003",
       "name": "Riflessi e precisione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "004",
       "name": "Azione e combattimento",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "005",
       "name": "Ritmo e musica",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "006",
       "name": "Logica e rompicapo",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "007",
       "name": "Abbinamenti e tessere",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "008",
       "name": "Parole e linguaggio",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "009",
       "name": "Numeri e matematica",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "010",
       "name": "Spazio e forme",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "011",
       "name": "Corse automobilistiche",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "012",
       "name": "Moto e due ruote",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "013",
       "name": "Kart e corse arcade",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "014",
       "name": "Rally e fuoristrada",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "015",
       "name": "Garage e personalizzazione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "016",
       "name": "Calcio",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "017",
       "name": "Basket e pallavolo",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "018",
       "name": "Tennis e racchetta",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "019",
       "name": "Sport estremi",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "020",
       "name": "Altri sport",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "021",
       "name": "Esplorazione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "022",
       "name": "Fantasy e magia",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "023",
       "name": "Mistero e investigazione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "024",
       "name": "Fantascienza e spazio",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "025",
       "name": "Sopravvivenza",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "026",
       "name": "Tattica e pianificazione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "027",
       "name": "Regni e civiltà",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "028",
       "name": "Difesa e torri",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "029",
       "name": "Carte strategiche",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "030",
       "name": "Gestione e risorse",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "031",
       "name": "Città e costruzione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "032",
       "name": "Fattoria e animali",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "033",
       "name": "Vita quotidiana",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "034",
       "name": "Imprese e negozi",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "035",
       "name": "Veicoli e professioni",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "036",
       "name": "Match e combinazioni",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "037",
       "name": "Giochi rilassanti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "038",
       "name": "Cucina e ristoranti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "039",
       "name": "Oggetti nascosti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "040",
       "name": "Idle e progressione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "041",
       "name": "Party e quiz",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "042",
       "name": "Cooperazione online",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "043",
       "name": "Competizioni online",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "044",
       "name": "Squadre e leghe",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "045",
       "name": "Social e community",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "046",
       "name": "Fitness e movimento",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "047",
       "name": "Missioni e sfide CASHUP",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "048",
       "name": "Creatività e contenuti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "049",
       "name": "Eventi e stagioni",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "050",
       "name": "Esperienze social CASHUP",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "051",
       "name": "Pesca e vita acquatica",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "052",
       "name": "Vela e navigazione",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "053",
       "name": "Aviazione e volo",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "054",
       "name": "Treni e ferrovie",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "055",
       "name": "Camion e trasporti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "056",
       "name": "Parkour e acrobazie",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "057",
       "name": "Arti marziali",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "058",
       "name": "Boxe e lotta",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "059",
       "name": "Golf e biliardo",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "060",
       "name": "Ciclismo e mountain bike",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "061",
       "name": "Neve e sport invernali",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "062",
       "name": "Mare e immersioni",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "063",
       "name": "Dinosauri e preistoria",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "064",
       "name": "Mitologia e leggende",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "065",
       "name": "Storia e antiche civiltà",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "066",
       "name": "Detective e crimini",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "067",
       "name": "Escape room",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "068",
       "name": "Collezionismo e oggetti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "069",
       "name": "Moda e stile",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "070",
       "name": "Design e arredamento",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "071",
       "name": "Bellezza e benessere",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "072",
       "name": "Animali domestici",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "073",
       "name": "Natura e giardinaggio",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "074",
       "name": "Ecologia e sostenibilità",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "075",
       "name": "Medicina e soccorso",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "076",
       "name": "Programmazione e tecnologia",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "077",
       "name": "Robotica e invenzioni",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "078",
       "name": "Economia e commercio",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "079",
       "name": "Turismo e viaggi",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "080",
       "name": "Giochi per famiglie",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "081",
       "name": "Acquari e pesci tropicali",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "082",
       "name": "Pesca sportiva",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "083",
       "name": "Pesca sul ghiaccio",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "084",
       "name": "Creature degli abissi",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "085",
       "name": "Barriere coralline",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "086",
       "name": "Sottomarini e relitti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "087",
       "name": "Surf e bodyboard",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "088",
       "name": "Kayak e canoa",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "089",
       "name": "Rafting e rapide",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "090",
       "name": "Salvataggio marino",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "091",
       "name": "Elicotteri e soccorso aereo",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "092",
       "name": "Aerei commerciali",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "093",
       "name": "Aerei acrobatici",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "094",
       "name": "Controllo del traffico aereo",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "095",
       "name": "Droni e robot volanti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "096",
       "name": "Astronautica",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "097",
       "name": "Stazioni spaziali",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "098",
       "name": "Colonizzazione di pianeti",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "099",
       "name": "Astrofisica e astronomia",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
     },
     {
+      "category_id": "100",
       "name": "Esplorazione di galassie",
-      "count": 100
+      "count": 100,
+      "status": "existing_category"
+    },
+    {
+      "category_id": "101",
+      "name": "Metropolitane e autobus",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "102",
+      "name": "Porti e container",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "103",
+      "name": "Aeroporti e terminal",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "104",
+      "name": "Corrieri e consegne",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "105",
+      "name": "Logistica e magazzini",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "106",
+      "name": "Trasporto pubblico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "107",
+      "name": "Macchine da cantiere",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "108",
+      "name": "Mezzi agricoli",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "109",
+      "name": "Taxi e mobilità urbana",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "110",
+      "name": "Gestione flotte",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "111",
+      "name": "Atletica leggera",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "112",
+      "name": "Maratona e corsa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "113",
+      "name": "Nuoto e tuffi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "114",
+      "name": "Ginnastica artistica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "115",
+      "name": "Ginnastica ritmica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "116",
+      "name": "Scherma",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "117",
+      "name": "Tiro con l'arco sportivo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "118",
+      "name": "Arrampicata sportiva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "119",
+      "name": "Equitazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "120",
+      "name": "Canottaggio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "121",
+      "name": "Rugby",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "122",
+      "name": "Pallamano",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "123",
+      "name": "Hockey su ghiaccio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "124",
+      "name": "Hockey su prato",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "125",
+      "name": "Baseball e softball",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "126",
+      "name": "Cricket",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "127",
+      "name": "Football americano",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "128",
+      "name": "Football australiano",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "129",
+      "name": "Pallanuoto",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "130",
+      "name": "Ultimate frisbee",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "131",
+      "name": "Bowling",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "132",
+      "name": "Freccette",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "133",
+      "name": "Snooker",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "134",
+      "name": "Bocce e pétanque",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "135",
+      "name": "Ping pong",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "136",
+      "name": "Shuffleboard",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "137",
+      "name": "Minigolf",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "138",
+      "name": "Disc golf",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "139",
+      "name": "Calcio balilla",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "140",
+      "name": "Air hockey",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "141",
+      "name": "Judo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "142",
+      "name": "Karate",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "143",
+      "name": "Taekwondo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "144",
+      "name": "Kickboxing",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "145",
+      "name": "MMA sportiva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "146",
+      "name": "Wrestling sportivo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "147",
+      "name": "Capoeira",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "148",
+      "name": "Kendo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "149",
+      "name": "Pugilato tecnico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "150",
+      "name": "Allenamento marziale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "151",
+      "name": "Antico Egitto",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "152",
+      "name": "Impero romano",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "153",
+      "name": "Grecia antica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "154",
+      "name": "Vichinghi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "155",
+      "name": "Medioevo europeo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "156",
+      "name": "Rinascimento",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "157",
+      "name": "Rotte della seta",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "158",
+      "name": "Esplorazioni polari",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "159",
+      "name": "Archeologia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "160",
+      "name": "Civiltà precolombiane",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "161",
+      "name": "Draghi e cavalieri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "162",
+      "name": "Streghe e alchimia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "163",
+      "name": "Fate e creature magiche",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "164",
+      "name": "Vampiri e licantropi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "165",
+      "name": "Regni sottomarini fantastici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "166",
+      "name": "Scuole di magia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "167",
+      "name": "Creature leggendarie",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "168",
+      "name": "Portali dimensionali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "169",
+      "name": "Eroi e superpoteri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "170",
+      "name": "Fiabe interattive",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "171",
+      "name": "Gialli classici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "172",
+      "name": "Agenti segreti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "173",
+      "name": "Spionaggio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "174",
+      "name": "Criptogrammi e codici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "175",
+      "name": "Indagini scientifiche",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "176",
+      "name": "Processi e tribunali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "177",
+      "name": "Casi irrisolti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "178",
+      "name": "Furti e recuperi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "179",
+      "name": "Archeomisteri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "180",
+      "name": "Thriller psicologico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "181",
+      "name": "Case infestate",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "182",
+      "name": "Zombie e apocalisse",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "183",
+      "name": "Mostri e creature",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "184",
+      "name": "Horror cosmico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "185",
+      "name": "Laboratori segreti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "186",
+      "name": "Foreste oscure",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "187",
+      "name": "Navi fantasma",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "188",
+      "name": "Fuga notturna",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "189",
+      "name": "Leggende urbane",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "190",
+      "name": "Sopravvivenza estrema",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "191",
+      "name": "Puzzle tridimensionali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "192",
+      "name": "Tangram e incastri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "193",
+      "name": "Labirinti complessi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "194",
+      "name": "Circuiti e connessioni",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "195",
+      "name": "Enigmi visivi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "196",
+      "name": "Puzzle acustici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "197",
+      "name": "Puzzle geometrici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "198",
+      "name": "Deduzione logica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "199",
+      "name": "Sequenze e pattern",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "200",
+      "name": "Puzzle cooperativi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "201",
+      "name": "Lingue straniere",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "202",
+      "name": "Vocabolario",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "203",
+      "name": "Grammatica e sintassi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "204",
+      "name": "Etimologia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "205",
+      "name": "Ortografia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "206",
+      "name": "Letteratura e libri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "207",
+      "name": "Geografia e mappe",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "208",
+      "name": "Scienze naturali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "209",
+      "name": "Chimica e laboratorio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "210",
+      "name": "Fisica interattiva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "211",
+      "name": "Algebra",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "212",
+      "name": "Geometria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "213",
+      "name": "Probabilità e statistica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "214",
+      "name": "Calcolo mentale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "215",
+      "name": "Astronomia educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "216",
+      "name": "Biologia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "217",
+      "name": "Genetica educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "218",
+      "name": "Ecologia scientifica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "219",
+      "name": "Elettronica di base",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "220",
+      "name": "Metodo scientifico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "221",
+      "name": "Pixel art",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "222",
+      "name": "Illustrazione digitale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "223",
+      "name": "Fumetti e manga",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "224",
+      "name": "Animazione 2D",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "225",
+      "name": "Modellazione 3D",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "226",
+      "name": "Fotografia creativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "227",
+      "name": "Montaggio video",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "228",
+      "name": "Produzione musicale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "229",
+      "name": "Composizione sonora",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "230",
+      "name": "Scrittura creativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "231",
+      "name": "Pianoforte e tastiere",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "232",
+      "name": "Chitarra e corde",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "233",
+      "name": "Batteria e percussioni",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "234",
+      "name": "DJ e mixing",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "235",
+      "name": "Canto e intonazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "236",
+      "name": "Danza classica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "237",
+      "name": "Danza moderna",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "238",
+      "name": "Coreografia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "239",
+      "name": "Teatro e improvvisazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "240",
+      "name": "Circo e giocoleria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "241",
+      "name": "Sfilate e passerelle",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "242",
+      "name": "Stilismo e sartoria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "243",
+      "name": "Accessori e gioielli",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "244",
+      "name": "Make-up creativo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "245",
+      "name": "Acconciature",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "246",
+      "name": "Interior fashion",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "247",
+      "name": "Organizzazione eventi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "248",
+      "name": "Matrimoni e cerimonie",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "249",
+      "name": "Collezioni vintage",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "250",
+      "name": "Personal styling",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "251",
+      "name": "Ristrutturazione casa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "252",
+      "name": "Fai da te",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "253",
+      "name": "Restauro mobili",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "254",
+      "name": "Pulizia e organizzazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "255",
+      "name": "Cura del giardino",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "256",
+      "name": "Orto urbano",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "257",
+      "name": "Cura delle piante",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "258",
+      "name": "Architettura sostenibile",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "259",
+      "name": "Domotica domestica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "260",
+      "name": "Gestione della casa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "261",
+      "name": "Cani e addestramento",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "262",
+      "name": "Gatti e cura",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "263",
+      "name": "Cavalli e scuderie",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "264",
+      "name": "Uccelli e voliere",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "265",
+      "name": "Insetti e biodiversità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "266",
+      "name": "Fauna selvatica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "267",
+      "name": "Safari fotografico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "268",
+      "name": "Riserve naturali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "269",
+      "name": "Soccorso animali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "270",
+      "name": "Veterinaria educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "271",
+      "name": "Pasticceria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "272",
+      "name": "Panificazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "273",
+      "name": "Caffetteria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "274",
+      "name": "Street food",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "275",
+      "name": "Cucina internazionale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "276",
+      "name": "Cucina vegetariana",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "277",
+      "name": "Gestione hotel",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "278",
+      "name": "Gestione resort",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "279",
+      "name": "Gestione ristoranti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "280",
+      "name": "Critica gastronomica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "281",
+      "name": "Startup e innovazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "282",
+      "name": "Marketing e pubblicità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "283",
+      "name": "Commercio internazionale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "284",
+      "name": "Borsa simulata educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "285",
+      "name": "Budget personale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "286",
+      "name": "Contabilità di base",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "287",
+      "name": "Negoziazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "288",
+      "name": "Gestione progetti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "289",
+      "name": "Catene di negozi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "290",
+      "name": "Imprenditoria sociale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "291",
+      "name": "Coding per principianti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "292",
+      "name": "Sviluppo web",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "293",
+      "name": "Sicurezza informatica educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "294",
+      "name": "Reti e telecomunicazioni",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "295",
+      "name": "Intelligenza artificiale educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "296",
+      "name": "Machine learning concettuale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "297",
+      "name": "Database e dati",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "298",
+      "name": "Sistemi operativi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "299",
+      "name": "Cloud e server",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "300",
+      "name": "Realtà aumentata",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "301",
+      "name": "Robot industriali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "302",
+      "name": "Robot domestici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "303",
+      "name": "Robot esploratori",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "304",
+      "name": "Meccatronica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "305",
+      "name": "Ingegneria aerospaziale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "306",
+      "name": "Ingegneria navale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "307",
+      "name": "Ingegneria civile",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "308",
+      "name": "Circuiti elettronici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "309",
+      "name": "Energia rinnovabile",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "310",
+      "name": "Invenzioni e prototipi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "311",
+      "name": "Viaggi in Europa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "312",
+      "name": "Viaggi in Asia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "313",
+      "name": "Viaggi in Africa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "314",
+      "name": "Viaggi nelle Americhe",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "315",
+      "name": "Viaggi in Oceania",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "316",
+      "name": "Culture del mondo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "317",
+      "name": "Monumenti e patrimoni",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "318",
+      "name": "Lingue e tradizioni",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "319",
+      "name": "Treni panoramici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "320",
+      "name": "Itinerari e mappe",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "321",
+      "name": "Amicizia e collaborazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "322",
+      "name": "Organizzazione di comunità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "323",
+      "name": "Volontariato",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "324",
+      "name": "Eventi di quartiere",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "325",
+      "name": "Festival internazionali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "326",
+      "name": "Giochi di conoscenza",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "327",
+      "name": "Sfide tra famiglie",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "328",
+      "name": "Cooperazione scolastica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "329",
+      "name": "Club e associazioni",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "330",
+      "name": "Costruzione di comunità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "331",
+      "name": "Yoga e flessibilità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "332",
+      "name": "Pilates",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "333",
+      "name": "Meditazione guidata",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "334",
+      "name": "Respirazione e concentrazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "335",
+      "name": "Allenamento funzionale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "336",
+      "name": "Danza fitness",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "337",
+      "name": "Percorsi a ostacoli",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "338",
+      "name": "Orientamento e trekking",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "339",
+      "name": "Camminata sportiva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "340",
+      "name": "Abitudini salutari",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "341",
+      "name": "Vigili del fuoco",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "342",
+      "name": "Polizia e sicurezza pubblica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "343",
+      "name": "Ambulanze e primo soccorso",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "344",
+      "name": "Medici e ospedali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "345",
+      "name": "Ricerca e soccorso",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "346",
+      "name": "Gestione emergenze",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "347",
+      "name": "Scuola e insegnamento",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "348",
+      "name": "Musei e curatela",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "349",
+      "name": "Biblioteche e archivi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "350",
+      "name": "Giornalismo e media",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "351",
+      "name": "Sport olimpici e pentathlon",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "352",
+      "name": "Giochi paralimpici e inclusione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "353",
+      "name": "Sport acquatici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "354",
+      "name": "Tiro sportivo e biathlon",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "355",
+      "name": "Corsa di cavalli e galoppo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "356",
+      "name": "Trotto e ippodromi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "357",
+      "name": "Salti a ostacoli equestri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "358",
+      "name": "Palio e tradizioni equestri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "359",
+      "name": "Allevamento e cura dei cavalli",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "360",
+      "name": "Scuderie e gestione ippica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "361",
+      "name": "Ricette e cucina casalinga",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "362",
+      "name": "Nutrizione e alimentazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "363",
+      "name": "Piani pasti e spesa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "364",
+      "name": "Cucina salutare",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "365",
+      "name": "Cucina per bambini",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "366",
+      "name": "Decorazione e cake design",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "367",
+      "name": "Gelateria e dessert",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "368",
+      "name": "Cucina regionale italiana",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "369",
+      "name": "Cucina asiatica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "370",
+      "name": "Cucina mediterranea",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "371",
+      "name": "Salute preventiva ed educazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "372",
+      "name": "Primo soccorso educativo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "373",
+      "name": "Anatomia e corpo umano",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "374",
+      "name": "Igiene e cura personale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "375",
+      "name": "Skincare e cosmetica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "376",
+      "name": "Parrucchiere e salone",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "377",
+      "name": "Spa e centri benessere",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "378",
+      "name": "Personal training",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "379",
+      "name": "Preparazione atletica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "380",
+      "name": "Sonno e gestione dello stress",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "381",
+      "name": "Libri interattivi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "382",
+      "name": "Audiolibri e narrazione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "383",
+      "name": "Enciclopedie interattive",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "384",
+      "name": "Club di lettura",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "385",
+      "name": "Quiz letterari",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "386",
+      "name": "Racconti e avventure testuali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "387",
+      "name": "Editoria e librerie",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "388",
+      "name": "Ricerca e conoscenza",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "389",
+      "name": "Apprendimento per età",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "390",
+      "name": "Formazione professionale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "391",
+      "name": "Riconoscimento e cultura musicale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "392",
+      "name": "Collezione musicale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "393",
+      "name": "Video brevi e storytelling",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "394",
+      "name": "Creator e streaming",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "395",
+      "name": "Regia e produzione audiovisiva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "396",
+      "name": "Montaggio shorts e reel",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "397",
+      "name": "Podcast e radio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "398",
+      "name": "Giornalismo video",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "399",
+      "name": "Animazione 3D avanzata",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "400",
+      "name": "Esperienze immersive",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "401",
+      "name": "Pentathlon moderno",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "402",
+      "name": "Decathlon",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "403",
+      "name": "Salto con l'asta",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "404",
+      "name": "Salto in alto",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "405",
+      "name": "Salto in lungo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "406",
+      "name": "Lancio del disco",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "407",
+      "name": "Lancio del giavellotto",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "408",
+      "name": "Lancio del martello",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "409",
+      "name": "Marcia atletica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "410",
+      "name": "Staffette e velocità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "411",
+      "name": "Badminton",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "412",
+      "name": "Squash",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "413",
+      "name": "Padel",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "414",
+      "name": "Racquetball",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "415",
+      "name": "Tennis da tavolo avanzato",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "416",
+      "name": "Tennis su erba",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "417",
+      "name": "Tennis su terra rossa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "418",
+      "name": "Doppio e tornei",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "419",
+      "name": "Allenamento al servizio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "420",
+      "name": "Strategie di racchetta",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "421",
+      "name": "Nuoto sincronizzato",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "422",
+      "name": "Nuoto in acque libere",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "423",
+      "name": "Pallanuoto tattica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "424",
+      "name": "Tuffi olimpici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "425",
+      "name": "Nuoto di fondo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "426",
+      "name": "Vela da regata",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "427",
+      "name": "Windsurf",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "428",
+      "name": "Kitesurf",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "429",
+      "name": "Immersioni tecniche",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "430",
+      "name": "Apnea sportiva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "431",
+      "name": "Sci alpino",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "432",
+      "name": "Sci di fondo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "433",
+      "name": "Biathlon",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "434",
+      "name": "Combinata nordica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "435",
+      "name": "Salto con gli sci",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "436",
+      "name": "Bob e skeleton",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "437",
+      "name": "Slittino",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "438",
+      "name": "Curling",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "439",
+      "name": "Pattinaggio artistico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "440",
+      "name": "Pattinaggio di velocità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "441",
+      "name": "Judo olimpico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "442",
+      "name": "Lotta greco-romana",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "443",
+      "name": "Lotta libera",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "444",
+      "name": "Scherma olimpica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "445",
+      "name": "Karate kata",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "446",
+      "name": "Karate kumite",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "447",
+      "name": "Taekwondo forme",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "448",
+      "name": "Grappling sportivo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "449",
+      "name": "Difesa personale educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "450",
+      "name": "Preparazione atletica da ring",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "451",
+      "name": "Formula monoposto",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "452",
+      "name": "Endurance automobilistica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "453",
+      "name": "Rally raid",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "454",
+      "name": "Rallycross",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "455",
+      "name": "Drifting",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "456",
+      "name": "Motocross",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "457",
+      "name": "Supercross",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "458",
+      "name": "Trial motociclistico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "459",
+      "name": "Kart endurance",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "460",
+      "name": "Simulazione pit stop",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "461",
+      "name": "Guida autobus urbani",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "462",
+      "name": "Guida pullman turistici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "463",
+      "name": "Guida tram",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "464",
+      "name": "Guida metropolitana",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "465",
+      "name": "Guida locomotori merci",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "466",
+      "name": "Guida treni ad alta velocità",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "467",
+      "name": "Guida traghetti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "468",
+      "name": "Guida navi cargo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "469",
+      "name": "Guida mezzi antincendio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "470",
+      "name": "Scuola guida simulata",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "471",
+      "name": "Elicotteri civili",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "472",
+      "name": "Elicotteri antincendio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "473",
+      "name": "Voli cargo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "474",
+      "name": "Voli sanitari",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "475",
+      "name": "Alianti e volo a vela",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "476",
+      "name": "Aerei storici",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "477",
+      "name": "Idrovolanti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "478",
+      "name": "Aeromodellismo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "479",
+      "name": "Simulatore torre di controllo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "480",
+      "name": "Manutenzione aeronautica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "481",
+      "name": "Allevamento cavalli",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "482",
+      "name": "Cura dei puledri",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "483",
+      "name": "Ippica e trotto",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "484",
+      "name": "Ippica e galoppo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "485",
+      "name": "Salto ostacoli equestre",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "486",
+      "name": "Dressage",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "487",
+      "name": "Pony club",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "488",
+      "name": "Allevamento cani",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "489",
+      "name": "Allevamento ovini",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "490",
+      "name": "Apicoltura e apiari",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "491",
+      "name": "Clinica veterinaria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "492",
+      "name": "Riabilitazione animali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "493",
+      "name": "Canili e rifugi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "494",
+      "name": "Centri recupero fauna",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "495",
+      "name": "Ornitologia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "496",
+      "name": "Osservazione mammiferi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "497",
+      "name": "Rettili e terrari",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "498",
+      "name": "Anfibi e habitat",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "499",
+      "name": "Insetti impollinatori",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "500",
+      "name": "Fotografia naturalistica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "501",
+      "name": "Pesca a mosca",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "502",
+      "name": "Pesca in mare dalla barca",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "503",
+      "name": "Pesca dalla riva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "504",
+      "name": "Pesca al carp fishing",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "505",
+      "name": "Pesca al spinning",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "506",
+      "name": "Gestione laghetti di pesca",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "507",
+      "name": "Allevamento ittico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "508",
+      "name": "Biologia dei fiumi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "509",
+      "name": "Conservazione delle coste",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "510",
+      "name": "Ecologia delle zone umide",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "511",
+      "name": "Gestione pizzeria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "512",
+      "name": "Gestione bar",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "513",
+      "name": "Gestione pasticceria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "514",
+      "name": "Gestione gelateria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "515",
+      "name": "Gestione panificio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "516",
+      "name": "Gestione supermercato",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "517",
+      "name": "Gestione centro commerciale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "518",
+      "name": "Gestione negozio di abbigliamento",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "519",
+      "name": "Gestione libreria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "520",
+      "name": "Gestione officina",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "521",
+      "name": "Gestione stabilimento balneare",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "522",
+      "name": "Gestione piscina pubblica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "523",
+      "name": "Gestione parco acquatico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "524",
+      "name": "Gestione campeggio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "525",
+      "name": "Gestione villaggio turistico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "526",
+      "name": "Gestione agriturismo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "527",
+      "name": "Gestione cinema",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "528",
+      "name": "Gestione teatro",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "529",
+      "name": "Gestione parco divertimenti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "530",
+      "name": "Gestione sala giochi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "531",
+      "name": "Ricette regionali italiane",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "532",
+      "name": "Cucina vegana",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "533",
+      "name": "Cucina senza glutine",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "534",
+      "name": "Pianificazione pasti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "535",
+      "name": "Tecniche di pasticceria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "536",
+      "name": "Decorazione torte",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "537",
+      "name": "Caffè e latte art",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "538",
+      "name": "Sicurezza alimentare",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "539",
+      "name": "Allenamento in palestra",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "540",
+      "name": "Sollevamento pesi tecnico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "541",
+      "name": "Ginnastica posturale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "542",
+      "name": "Mobilità articolare",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "543",
+      "name": "Preparazione per gare",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "544",
+      "name": "Allenamento a corpo libero",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "545",
+      "name": "Corsa su tapis roulant",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "546",
+      "name": "Ciclismo indoor",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "547",
+      "name": "Nutrizione educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "548",
+      "name": "Primo soccorso interattivo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "549",
+      "name": "Trucco professionale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "550",
+      "name": "Skincare educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "551",
+      "name": "Nail art",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "552",
+      "name": "Acconciatura professionale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "553",
+      "name": "Barber shop",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "554",
+      "name": "Profumeria e fragranze",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "555",
+      "name": "Consulenza d'immagine",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "556",
+      "name": "Moda sostenibile",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "557",
+      "name": "Design di gioielli",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "558",
+      "name": "Gestione centro estetico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "559",
+      "name": "Giochi prescolari",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "560",
+      "name": "Prime parole e lettura",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "561",
+      "name": "Numeri per bambini",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "562",
+      "name": "Colori e forme",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "563",
+      "name": "Puzzle per famiglie",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "564",
+      "name": "Storie interattive per bambini",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "565",
+      "name": "Scienza per bambini",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "566",
+      "name": "Musica per bambini",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "567",
+      "name": "Creatività e lavoretti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "568",
+      "name": "Giochi cooperativi genitori e figli",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "569",
+      "name": "Biblioteca interattiva",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "570",
+      "name": "Club del libro",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "571",
+      "name": "Classici della letteratura",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "572",
+      "name": "Fumetti e graphic novel",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "573",
+      "name": "Atlanti e geografia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "574",
+      "name": "Storia dell'arte",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "575",
+      "name": "Filosofia per tutti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "576",
+      "name": "Riconoscimento musicale educativo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "577",
+      "name": "Storia della musica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "578",
+      "name": "Composizione per principianti",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "579",
+      "name": "Coro e armonia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "580",
+      "name": "Strumenti a fiato",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "581",
+      "name": "Strumenti ad arco",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "582",
+      "name": "Produzione podcast",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "583",
+      "name": "Radio e conduzione",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "584",
+      "name": "Video musicali",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "585",
+      "name": "Editing audio",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "586",
+      "name": "Esperimenti di fisica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "587",
+      "name": "Laboratorio di chimica sicuro",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "588",
+      "name": "Robotica educativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "589",
+      "name": "Elettronica creativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "590",
+      "name": "Programmazione per ragazzi",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "591",
+      "name": "Intelligenza artificiale creativa",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "592",
+      "name": "Cybersecurity consapevole",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "593",
+      "name": "Esplorazione oceanografica",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "594",
+      "name": "Meteorologia",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "595",
+      "name": "Energie pulite",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "596",
+      "name": "Gestione aeroporto regionale",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "597",
+      "name": "Gestione stazione ferroviaria",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "598",
+      "name": "Gestione porto turistico",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "599",
+      "name": "Gestione centro sportivo",
+      "count": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "600",
+      "name": "Gestione maneggio equestre",
+      "count": 0,
+      "status": "planned_category"
     }
   ],
   "category_groups": [
     {
-      "name": "Arcade e abilità",
-      "subcategories": [
-        "Arcade classici",
-        "Platform e salti",
-        "Riflessi e precisione",
-        "Azione e combattimento",
-        "Ritmo e musica"
+      "theme": "Acqua e pesca avanzata",
+      "categories": [
+        "Acquari e pesci tropicali",
+        "Pesca sportiva",
+        "Pesca sul ghiaccio",
+        "Creature degli abissi",
+        "Barriere coralline",
+        "Sottomarini e relitti",
+        "Surf e bodyboard",
+        "Kayak e canoa",
+        "Rafting e rapide",
+        "Salvataggio marino"
       ]
     },
     {
-      "name": "Puzzle e logica",
-      "subcategories": [
-        "Logica e rompicapo",
-        "Abbinamenti e tessere",
-        "Parole e linguaggio",
-        "Numeri e matematica",
-        "Spazio e forme"
+      "theme": "Aria e spazio operativo",
+      "categories": [
+        "Elicotteri e soccorso aereo",
+        "Aerei commerciali",
+        "Aerei acrobatici",
+        "Controllo del traffico aereo",
+        "Droni e robot volanti",
+        "Astronautica",
+        "Stazioni spaziali",
+        "Colonizzazione di pianeti",
+        "Astrofisica e astronomia",
+        "Esplorazione di galassie"
       ]
     },
     {
-      "name": "Corse e motori",
-      "subcategories": [
-        "Corse automobilistiche",
-        "Moto e due ruote",
-        "Kart e corse arcade",
-        "Rally e fuoristrada",
-        "Garage e personalizzazione"
+      "theme": "Trasporti e logistica",
+      "categories": [
+        "Metropolitane e autobus",
+        "Porti e container",
+        "Aeroporti e terminal",
+        "Corrieri e consegne",
+        "Logistica e magazzini",
+        "Trasporto pubblico",
+        "Macchine da cantiere",
+        "Mezzi agricoli",
+        "Taxi e mobilità urbana",
+        "Gestione flotte"
       ]
     },
     {
-      "name": "Sport",
-      "subcategories": [
-        "Calcio",
-        "Basket e pallavolo",
-        "Tennis e racchetta",
-        "Sport estremi",
-        "Altri sport"
+      "theme": "Sport individuali",
+      "categories": [
+        "Atletica leggera",
+        "Maratona e corsa",
+        "Nuoto e tuffi",
+        "Ginnastica artistica",
+        "Ginnastica ritmica",
+        "Scherma",
+        "Tiro con l'arco sportivo",
+        "Arrampicata sportiva",
+        "Equitazione",
+        "Canottaggio"
       ]
     },
     {
-      "name": "Avventura",
-      "subcategories": [
-        "Esplorazione",
-        "Fantasy e magia",
-        "Mistero e investigazione",
-        "Fantascienza e spazio",
-        "Sopravvivenza"
+      "theme": "Sport di squadra",
+      "categories": [
+        "Rugby",
+        "Pallamano",
+        "Hockey su ghiaccio",
+        "Hockey su prato",
+        "Baseball e softball",
+        "Cricket",
+        "Football americano",
+        "Football australiano",
+        "Pallanuoto",
+        "Ultimate frisbee"
       ]
     },
     {
-      "name": "Strategia",
-      "subcategories": [
-        "Tattica e pianificazione",
-        "Regni e civiltà",
-        "Difesa e torri",
-        "Carte strategiche",
-        "Gestione e risorse"
+      "theme": "Sport da tavolo e precisione",
+      "categories": [
+        "Bowling",
+        "Freccette",
+        "Snooker",
+        "Bocce e pétanque",
+        "Ping pong",
+        "Shuffleboard",
+        "Minigolf",
+        "Disc golf",
+        "Calcio balilla",
+        "Air hockey"
       ]
     },
     {
-      "name": "Simulazione",
-      "subcategories": [
-        "Città e costruzione",
-        "Fattoria e animali",
-        "Vita quotidiana",
-        "Imprese e negozi",
-        "Veicoli e professioni"
+      "theme": "Combattimento e arti",
+      "categories": [
+        "Judo",
+        "Karate",
+        "Taekwondo",
+        "Kickboxing",
+        "MMA sportiva",
+        "Wrestling sportivo",
+        "Capoeira",
+        "Kendo",
+        "Pugilato tecnico",
+        "Allenamento marziale"
       ]
     },
     {
-      "name": "Casual",
-      "subcategories": [
-        "Match e combinazioni",
-        "Giochi rilassanti",
-        "Cucina e ristoranti",
-        "Oggetti nascosti",
-        "Idle e progressione"
+      "theme": "Avventure storiche",
+      "categories": [
+        "Antico Egitto",
+        "Impero romano",
+        "Grecia antica",
+        "Vichinghi",
+        "Medioevo europeo",
+        "Rinascimento",
+        "Rotte della seta",
+        "Esplorazioni polari",
+        "Archeologia",
+        "Civiltà precolombiane"
       ]
     },
     {
-      "name": "Multiplayer",
-      "subcategories": [
-        "Party e quiz",
-        "Cooperazione online",
-        "Competizioni online",
-        "Squadre e leghe",
-        "Social e community"
+      "theme": "Mondi fantastici",
+      "categories": [
+        "Draghi e cavalieri",
+        "Streghe e alchimia",
+        "Fate e creature magiche",
+        "Vampiri e licantropi",
+        "Regni sottomarini fantastici",
+        "Scuole di magia",
+        "Creature leggendarie",
+        "Portali dimensionali",
+        "Eroi e superpoteri",
+        "Fiabe interattive"
       ]
     },
     {
-      "name": "Originali CASHUP",
-      "subcategories": [
-        "Fitness e movimento",
-        "Missioni e sfide CASHUP",
-        "Creatività e contenuti",
-        "Eventi e stagioni",
-        "Esperienze social CASHUP"
+      "theme": "Mistero e investigazione",
+      "categories": [
+        "Gialli classici",
+        "Agenti segreti",
+        "Spionaggio",
+        "Criptogrammi e codici",
+        "Indagini scientifiche",
+        "Processi e tribunali",
+        "Casi irrisolti",
+        "Furti e recuperi",
+        "Archeomisteri",
+        "Thriller psicologico"
       ]
     },
     {
-      "name": "Pesca e vita acquatica",
-      "subcategories": [
-        "Pesca e vita acquatica"
+      "theme": "Horror e tensione",
+      "categories": [
+        "Case infestate",
+        "Zombie e apocalisse",
+        "Mostri e creature",
+        "Horror cosmico",
+        "Laboratori segreti",
+        "Foreste oscure",
+        "Navi fantasma",
+        "Fuga notturna",
+        "Leggende urbane",
+        "Sopravvivenza estrema"
       ]
     },
     {
-      "name": "Vela e navigazione",
-      "subcategories": [
-        "Vela e navigazione"
+      "theme": "Puzzle specialistici",
+      "categories": [
+        "Puzzle tridimensionali",
+        "Tangram e incastri",
+        "Labirinti complessi",
+        "Circuiti e connessioni",
+        "Enigmi visivi",
+        "Puzzle acustici",
+        "Puzzle geometrici",
+        "Deduzione logica",
+        "Sequenze e pattern",
+        "Puzzle cooperativi"
       ]
     },
     {
-      "name": "Aviazione e volo",
-      "subcategories": [
-        "Aviazione e volo"
+      "theme": "Parole e apprendimento",
+      "categories": [
+        "Lingue straniere",
+        "Vocabolario",
+        "Grammatica e sintassi",
+        "Etimologia",
+        "Ortografia",
+        "Letteratura e libri",
+        "Geografia e mappe",
+        "Scienze naturali",
+        "Chimica e laboratorio",
+        "Fisica interattiva"
       ]
     },
     {
-      "name": "Treni e ferrovie",
-      "subcategories": [
-        "Treni e ferrovie"
+      "theme": "Matematica e scienza",
+      "categories": [
+        "Algebra",
+        "Geometria",
+        "Probabilità e statistica",
+        "Calcolo mentale",
+        "Astronomia educativa",
+        "Biologia",
+        "Genetica educativa",
+        "Ecologia scientifica",
+        "Elettronica di base",
+        "Metodo scientifico"
       ]
     },
     {
-      "name": "Camion e trasporti",
-      "subcategories": [
-        "Camion e trasporti"
+      "theme": "Creatività digitale",
+      "categories": [
+        "Pixel art",
+        "Illustrazione digitale",
+        "Fumetti e manga",
+        "Animazione 2D",
+        "Modellazione 3D",
+        "Fotografia creativa",
+        "Montaggio video",
+        "Produzione musicale",
+        "Composizione sonora",
+        "Scrittura creativa"
       ]
     },
     {
-      "name": "Parkour e acrobazie",
-      "subcategories": [
-        "Parkour e acrobazie"
+      "theme": "Musica e spettacolo",
+      "categories": [
+        "Pianoforte e tastiere",
+        "Chitarra e corde",
+        "Batteria e percussioni",
+        "DJ e mixing",
+        "Canto e intonazione",
+        "Danza classica",
+        "Danza moderna",
+        "Coreografia",
+        "Teatro e improvvisazione",
+        "Circo e giocoleria"
       ]
     },
     {
-      "name": "Arti marziali",
-      "subcategories": [
-        "Arti marziali"
+      "theme": "Moda e lifestyle",
+      "categories": [
+        "Sfilate e passerelle",
+        "Stilismo e sartoria",
+        "Accessori e gioielli",
+        "Make-up creativo",
+        "Acconciature",
+        "Interior fashion",
+        "Organizzazione eventi",
+        "Matrimoni e cerimonie",
+        "Collezioni vintage",
+        "Personal styling"
       ]
     },
     {
-      "name": "Boxe e lotta",
-      "subcategories": [
-        "Boxe e lotta"
+      "theme": "Casa e vita pratica",
+      "categories": [
+        "Ristrutturazione casa",
+        "Fai da te",
+        "Restauro mobili",
+        "Pulizia e organizzazione",
+        "Cura del giardino",
+        "Orto urbano",
+        "Cura delle piante",
+        "Architettura sostenibile",
+        "Domotica domestica",
+        "Gestione della casa"
       ]
     },
     {
-      "name": "Golf e biliardo",
-      "subcategories": [
-        "Golf e biliardo"
+      "theme": "Animali e natura",
+      "categories": [
+        "Cani e addestramento",
+        "Gatti e cura",
+        "Cavalli e scuderie",
+        "Uccelli e voliere",
+        "Insetti e biodiversità",
+        "Fauna selvatica",
+        "Safari fotografico",
+        "Riserve naturali",
+        "Soccorso animali",
+        "Veterinaria educativa"
       ]
     },
     {
-      "name": "Ciclismo e mountain bike",
-      "subcategories": [
-        "Ciclismo e mountain bike"
+      "theme": "Cibo e ospitalità",
+      "categories": [
+        "Pasticceria",
+        "Panificazione",
+        "Caffetteria",
+        "Street food",
+        "Cucina internazionale",
+        "Cucina vegetariana",
+        "Gestione hotel",
+        "Gestione resort",
+        "Gestione ristoranti",
+        "Critica gastronomica"
       ]
     },
     {
-      "name": "Neve e sport invernali",
-      "subcategories": [
-        "Neve e sport invernali"
+      "theme": "Imprese e finanza educativa",
+      "categories": [
+        "Startup e innovazione",
+        "Marketing e pubblicità",
+        "Commercio internazionale",
+        "Borsa simulata educativa",
+        "Budget personale",
+        "Contabilità di base",
+        "Negoziazione",
+        "Gestione progetti",
+        "Catene di negozi",
+        "Imprenditoria sociale"
       ]
     },
     {
-      "name": "Mare e immersioni",
-      "subcategories": [
-        "Mare e immersioni"
+      "theme": "Tecnologia e informatica",
+      "categories": [
+        "Coding per principianti",
+        "Sviluppo web",
+        "Sicurezza informatica educativa",
+        "Reti e telecomunicazioni",
+        "Intelligenza artificiale educativa",
+        "Machine learning concettuale",
+        "Database e dati",
+        "Sistemi operativi",
+        "Cloud e server",
+        "Realtà aumentata"
       ]
     },
     {
-      "name": "Dinosauri e preistoria",
-      "subcategories": [
-        "Dinosauri e preistoria"
+      "theme": "Robotica e ingegneria",
+      "categories": [
+        "Robot industriali",
+        "Robot domestici",
+        "Robot esploratori",
+        "Meccatronica",
+        "Ingegneria aerospaziale",
+        "Ingegneria navale",
+        "Ingegneria civile",
+        "Circuiti elettronici",
+        "Energia rinnovabile",
+        "Invenzioni e prototipi"
       ]
     },
     {
-      "name": "Mitologia e leggende",
-      "subcategories": [
-        "Mitologia e leggende"
+      "theme": "Viaggi e culture",
+      "categories": [
+        "Viaggi in Europa",
+        "Viaggi in Asia",
+        "Viaggi in Africa",
+        "Viaggi nelle Americhe",
+        "Viaggi in Oceania",
+        "Culture del mondo",
+        "Monumenti e patrimoni",
+        "Lingue e tradizioni",
+        "Treni panoramici",
+        "Itinerari e mappe"
       ]
     },
     {
-      "name": "Storia e antiche civiltà",
-      "subcategories": [
-        "Storia e antiche civiltà"
+      "theme": "Comunità e relazioni",
+      "categories": [
+        "Amicizia e collaborazione",
+        "Organizzazione di comunità",
+        "Volontariato",
+        "Eventi di quartiere",
+        "Festival internazionali",
+        "Giochi di conoscenza",
+        "Sfide tra famiglie",
+        "Cooperazione scolastica",
+        "Club e associazioni",
+        "Costruzione di comunità"
       ]
     },
     {
-      "name": "Detective e crimini",
-      "subcategories": [
-        "Detective e crimini"
+      "theme": "Benessere e movimento",
+      "categories": [
+        "Yoga e flessibilità",
+        "Pilates",
+        "Meditazione guidata",
+        "Respirazione e concentrazione",
+        "Allenamento funzionale",
+        "Danza fitness",
+        "Percorsi a ostacoli",
+        "Orientamento e trekking",
+        "Camminata sportiva",
+        "Abitudini salutari"
       ]
     },
     {
-      "name": "Escape room",
-      "subcategories": [
-        "Escape room"
+      "theme": "Professioni e servizi",
+      "categories": [
+        "Vigili del fuoco",
+        "Polizia e sicurezza pubblica",
+        "Ambulanze e primo soccorso",
+        "Medici e ospedali",
+        "Ricerca e soccorso",
+        "Gestione emergenze",
+        "Scuola e insegnamento",
+        "Musei e curatela",
+        "Biblioteche e archivi",
+        "Giornalismo e media"
       ]
     },
     {
-      "name": "Collezionismo e oggetti",
-      "subcategories": [
-        "Collezionismo e oggetti"
+      "theme": "Sport olimpici e atletica",
+      "categories": [
+        "Pentathlon moderno",
+        "Decathlon",
+        "Salto con l'asta",
+        "Salto in alto",
+        "Salto in lungo",
+        "Lancio del disco",
+        "Lancio del giavellotto",
+        "Lancio del martello",
+        "Marcia atletica",
+        "Staffette e velocità"
       ]
     },
     {
-      "name": "Moda e stile",
-      "subcategories": [
-        "Moda e stile"
+      "theme": "Sport con racchetta",
+      "categories": [
+        "Badminton",
+        "Squash",
+        "Padel",
+        "Racquetball",
+        "Tennis da tavolo avanzato",
+        "Tennis su erba",
+        "Tennis su terra rossa",
+        "Doppio e tornei",
+        "Allenamento al servizio",
+        "Strategie di racchetta"
       ]
     },
     {
-      "name": "Design e arredamento",
-      "subcategories": [
-        "Design e arredamento"
+      "theme": "Sport acquatici",
+      "categories": [
+        "Nuoto sincronizzato",
+        "Nuoto in acque libere",
+        "Pallanuoto tattica",
+        "Tuffi olimpici",
+        "Nuoto di fondo",
+        "Vela da regata",
+        "Windsurf",
+        "Kitesurf",
+        "Immersioni tecniche",
+        "Apnea sportiva"
       ]
     },
     {
-      "name": "Bellezza e benessere",
-      "subcategories": [
-        "Bellezza e benessere"
+      "theme": "Sport invernali",
+      "categories": [
+        "Sci alpino",
+        "Sci di fondo",
+        "Biathlon",
+        "Combinata nordica",
+        "Salto con gli sci",
+        "Bob e skeleton",
+        "Slittino",
+        "Curling",
+        "Pattinaggio artistico",
+        "Pattinaggio di velocità"
       ]
     },
     {
-      "name": "Animali domestici",
-      "subcategories": [
-        "Animali domestici"
+      "theme": "Sport da combattimento",
+      "categories": [
+        "Judo olimpico",
+        "Lotta greco-romana",
+        "Lotta libera",
+        "Scherma olimpica",
+        "Karate kata",
+        "Karate kumite",
+        "Taekwondo forme",
+        "Grappling sportivo",
+        "Difesa personale educativa",
+        "Preparazione atletica da ring"
       ]
     },
     {
-      "name": "Natura e giardinaggio",
-      "subcategories": [
-        "Natura e giardinaggio"
+      "theme": "Sport motoristici",
+      "categories": [
+        "Formula monoposto",
+        "Endurance automobilistica",
+        "Rally raid",
+        "Rallycross",
+        "Drifting",
+        "Motocross",
+        "Supercross",
+        "Trial motociclistico",
+        "Kart endurance",
+        "Simulazione pit stop"
       ]
     },
     {
-      "name": "Ecologia e sostenibilità",
-      "subcategories": [
-        "Ecologia e sostenibilità"
+      "theme": "Trasporti e guida",
+      "categories": [
+        "Guida autobus urbani",
+        "Guida pullman turistici",
+        "Guida tram",
+        "Guida metropolitana",
+        "Guida locomotori merci",
+        "Guida treni ad alta velocità",
+        "Guida traghetti",
+        "Guida navi cargo",
+        "Guida mezzi antincendio",
+        "Scuola guida simulata"
       ]
     },
     {
-      "name": "Medicina e soccorso",
-      "subcategories": [
-        "Medicina e soccorso"
+      "theme": "Aviazione specializzata",
+      "categories": [
+        "Elicotteri civili",
+        "Elicotteri antincendio",
+        "Voli cargo",
+        "Voli sanitari",
+        "Alianti e volo a vela",
+        "Aerei storici",
+        "Idrovolanti",
+        "Aeromodellismo",
+        "Simulatore torre di controllo",
+        "Manutenzione aeronautica"
       ]
     },
     {
-      "name": "Programmazione e tecnologia",
-      "subcategories": [
-        "Programmazione e tecnologia"
+      "theme": "Animali e allevamento",
+      "categories": [
+        "Allevamento cavalli",
+        "Cura dei puledri",
+        "Ippica e trotto",
+        "Ippica e galoppo",
+        "Salto ostacoli equestre",
+        "Dressage",
+        "Pony club",
+        "Allevamento cani",
+        "Allevamento ovini",
+        "Apicoltura e apiari"
       ]
     },
     {
-      "name": "Robotica e invenzioni",
-      "subcategories": [
-        "Robotica e invenzioni"
+      "theme": "Animali e fauna",
+      "categories": [
+        "Clinica veterinaria",
+        "Riabilitazione animali",
+        "Canili e rifugi",
+        "Centri recupero fauna",
+        "Ornitologia",
+        "Osservazione mammiferi",
+        "Rettili e terrari",
+        "Anfibi e habitat",
+        "Insetti impollinatori",
+        "Fotografia naturalistica"
       ]
     },
     {
-      "name": "Economia e commercio",
-      "subcategories": [
-        "Economia e commercio"
+      "theme": "Pesca e ambiente",
+      "categories": [
+        "Pesca a mosca",
+        "Pesca in mare dalla barca",
+        "Pesca dalla riva",
+        "Pesca al carp fishing",
+        "Pesca al spinning",
+        "Gestione laghetti di pesca",
+        "Allevamento ittico",
+        "Biologia dei fiumi",
+        "Conservazione delle coste",
+        "Ecologia delle zone umide"
       ]
     },
     {
-      "name": "Turismo e viaggi",
-      "subcategories": [
-        "Turismo e viaggi"
+      "theme": "Simulazione d'impresa",
+      "categories": [
+        "Gestione pizzeria",
+        "Gestione bar",
+        "Gestione pasticceria",
+        "Gestione gelateria",
+        "Gestione panificio",
+        "Gestione supermercato",
+        "Gestione centro commerciale",
+        "Gestione negozio di abbigliamento",
+        "Gestione libreria",
+        "Gestione officina"
       ]
     },
     {
-      "name": "Giochi per famiglie",
-      "subcategories": [
-        "Giochi per famiglie"
+      "theme": "Ospitalità e tempo libero",
+      "categories": [
+        "Gestione stabilimento balneare",
+        "Gestione piscina pubblica",
+        "Gestione parco acquatico",
+        "Gestione campeggio",
+        "Gestione villaggio turistico",
+        "Gestione agriturismo",
+        "Gestione cinema",
+        "Gestione teatro",
+        "Gestione parco divertimenti",
+        "Gestione sala giochi"
+      ]
+    },
+    {
+      "theme": "Cucina e alimentazione",
+      "categories": [
+        "Ricette regionali italiane",
+        "Cucina asiatica",
+        "Cucina mediterranea",
+        "Cucina vegana",
+        "Cucina senza glutine",
+        "Pianificazione pasti",
+        "Tecniche di pasticceria",
+        "Decorazione torte",
+        "Caffè e latte art",
+        "Sicurezza alimentare"
+      ]
+    },
+    {
+      "theme": "Salute e fitness",
+      "categories": [
+        "Allenamento in palestra",
+        "Sollevamento pesi tecnico",
+        "Ginnastica posturale",
+        "Mobilità articolare",
+        "Preparazione per gare",
+        "Allenamento a corpo libero",
+        "Corsa su tapis roulant",
+        "Ciclismo indoor",
+        "Nutrizione educativa",
+        "Primo soccorso interattivo"
+      ]
+    },
+    {
+      "theme": "Bellezza e cura personale",
+      "categories": [
+        "Trucco professionale",
+        "Skincare educativa",
+        "Nail art",
+        "Acconciatura professionale",
+        "Barber shop",
+        "Profumeria e fragranze",
+        "Consulenza d'immagine",
+        "Moda sostenibile",
+        "Design di gioielli",
+        "Gestione centro estetico"
+      ]
+    },
+    {
+      "theme": "Bambini e famiglia",
+      "categories": [
+        "Giochi prescolari",
+        "Prime parole e lettura",
+        "Numeri per bambini",
+        "Colori e forme",
+        "Puzzle per famiglie",
+        "Storie interattive per bambini",
+        "Scienza per bambini",
+        "Musica per bambini",
+        "Creatività e lavoretti",
+        "Giochi cooperativi genitori e figli"
+      ]
+    },
+    {
+      "theme": "Libri e conoscenza",
+      "categories": [
+        "Biblioteca interattiva",
+        "Club del libro",
+        "Quiz letterari",
+        "Classici della letteratura",
+        "Fumetti e graphic novel",
+        "Audiolibri e narrazione",
+        "Enciclopedie interattive",
+        "Atlanti e geografia",
+        "Storia dell'arte",
+        "Filosofia per tutti"
+      ]
+    },
+    {
+      "theme": "Musica e media",
+      "categories": [
+        "Riconoscimento musicale educativo",
+        "Storia della musica",
+        "Composizione per principianti",
+        "Coro e armonia",
+        "Strumenti a fiato",
+        "Strumenti ad arco",
+        "Produzione podcast",
+        "Radio e conduzione",
+        "Video musicali",
+        "Editing audio"
+      ]
+    },
+    {
+      "theme": "Scienza e tecnologia",
+      "categories": [
+        "Esperimenti di fisica",
+        "Laboratorio di chimica sicuro",
+        "Robotica educativa",
+        "Elettronica creativa",
+        "Programmazione per ragazzi",
+        "Intelligenza artificiale creativa",
+        "Cybersecurity consapevole",
+        "Esplorazione oceanografica",
+        "Meteorologia",
+        "Energie pulite"
+      ]
+    },
+    {
+      "theme": "Gestione di servizi e strutture",
+      "categories": [
+        "Gestione aeroporto regionale",
+        "Gestione stazione ferroviaria",
+        "Gestione porto turistico",
+        "Gestione centro sportivo",
+        "Gestione maneggio equestre"
       ]
     }
   ],
-  "note": "10.000 concept catalogati in 100 categorie, 100 per categoria. Sono idee catalogate, non giochi già sviluppati, giocabili o testati."
+  "note": "10.000 concept catalogati in 100 categorie, 100 per categoria. Sono idee catalogate, non giochi già sviluppati, giocabili o testati.",
+  "category_count": 600,
+  "launch_catalog_titles": 7000,
+  "internationalization": {
+    "language_tag_standard": "BCP-47",
+    "translation_policy": "Human-reviewed translations; locale fallback to English then source language",
+    "initial_ui_locales": [
+      "it",
+      "en",
+      "es",
+      "fr",
+      "de",
+      "pt",
+      "ar",
+      "zh-Hans",
+      "ja",
+      "hi"
+    ],
+    "direction_aware": true,
+    "additional_locales": "Expandable language registry; do not claim every language translated until reviewed"
+  },
+  "currency": {
+    "standard": "ISO-4217",
+    "selection": "User-selectable currency code",
+    "formatting": "Intl.NumberFormat with selected locale and currency",
+    "exchange_rates": "Must be supplied by a verified current-rate provider; no hardcoded conversion rates"
+  }
 }
