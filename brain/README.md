@@ -5,12 +5,12 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 ## Stato verificato — 19 novembre 2026
 - Progetto Supabase CASHUP `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
 - Migrazioni 0001–0003 già eseguite; migrazioni 0004–0009 applicate; 0008/0009 introducono RPC SECURITY INVOKER, trigger audit atomici e privilegi client minimi.
-- Sette tabelle BRAIN con RLS e FORCE RLS, otto policy previste e nessuna policy aggiuntiva.
+- Sette tabelle BRAIN con RLS e FORCE RLS, nove policy previste e nessuna policy aggiuntiva.
 - Funzione `private.brain_is_founder()` SECURITY DEFINER con `search_path` vuoto; esecuzione negata ad anon, consentita ad authenticated; richiede claim JWT `aal2`; vecchia funzione pubblica assente.
 - Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura; `brain_agents`, `brain_memory` e `brain_settings` sono read-only; `brain_tasks` consente SELECT/INSERT; `brain_approvals` consente SELECT e UPDATE solo della colonna status; audit è append-only.
 - Test controllato: l'identità del fondatore vede agenti e impostazioni; un'identità authenticated non fondatrice non vede agenti, impostazioni o audit.
 - Otto agenti in catalogo, nessuno attivo. Cinque impostazioni conservative: autonomia false, emergency stop true, spesa automatizzata zero, approvazione umana richiesta per azioni finanziarie e ad alto rischio.
-- Default privileges del ruolo postgres nello schema public revocati per nuove tabelle, sequenze e funzioni; EXECUTE sulle nuove funzioni creato da postgres revocato anche a PUBLIC. I default ACL di supabase_admin sono gestiti da Supabase e non sono modificabili dal progetto.
+- Default privileges del ruolo postgres nello schema public revocati per nuove tabelle, sequenze e funzioni; EXECUTE sulle nuove funzioni creato da postgres revocato anche a PUBLIC. I default ACL di `supabase_admin` in `public` concedono privilegi predefiniti ai ruoli API; sono gestiti da Supabase e non sono modificabili dal ruolo `postgres` del progetto. Nessun oggetto public è attualmente posseduto da quel ruolo; non installare estensioni in `public` e disattivare l'esposizione automatica di nuove tabelle.
 - Migrazione 0005 ottimizza le policy che usano auth.uid() e aggiunge indici sulle nove chiavi esterne segnalate. Il Performance Advisor non segnala più FK non indicizzate o RLS initplan; rimangono solo avvisi informativi per indici non ancora utilizzati.
 - Il Security Advisor segnala ancora Leaked Password Protection disattivata nelle impostazioni Auth.
 
