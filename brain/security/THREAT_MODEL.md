@@ -39,7 +39,7 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
 - È stato aggiunto `_headers` nella root del repository con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy, limitati al percorso `/brain/dashboard`. Gli header saranno effettivi solo se la root di pubblicazione Cloudflare include questo file; la risposta HTTP reale resta da verificare.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto e richiede `auth.jwt()->>'aal' = 'aal2'`; il controllo MFA è applicato nel database, non soltanto nell'interfaccia. La funzione deve restare non esposta tramite gli schemi API.
-- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 8 policy verificate.
+- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 9 policy verificate.
 - I default ACL di `supabase_admin` nello schema `public` sono gestiti da Supabase e concedono privilegi predefiniti ad alcuni ruoli API; il ruolo `postgres` del progetto non è membro di `supabase_admin` e non può modificarli. Non risultano oggetti public attualmente posseduti da quel ruolo; evitare estensioni in `public` e disabilitare l'esposizione automatica di nuove tabelle nella Data API.
 - `brain_founders` consente ad authenticated solo SELECT sulla propria riga attiva; gli altri privilegi sono revocati.
 - `brain_audit_log` è append-only per il client: SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; la policy INSERT vincola autore, tipo e outcome.
@@ -50,11 +50,11 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 
 ## Requisiti prima di pubblicare
 
-1. [x] Applicare migrazioni 0004 e 0005; verificare tutti i valori con query completa.
+1. [x] Applicare migrazioni 0004–0009; verificare tutti i valori con query completa.
 2. [x] Testare funzione e lettura BRAIN come fondatore.
 3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
 4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
-5. [ ] Attivare MFA TOTP del fondatore e collaudare l'accesso; Leaked Password Protection resta indisponibile sul piano Free.
+5. [ ] Attivare MFA TOTP del fondatore e collaudare l'accesso; Leaked Password Protection resta disattivata sul piano Free.
 6. [ ] Verificare schema esposto, redirect URL, rate limits e CAPTCHA nella console Supabase.
 7. [ ] Applicare e verificare header HTTP sul dominio effettivo prima di pubblicare la console.
 8. [ ] Verificare secret scanning, dipendenze e protezione del branch GitHub.
