@@ -1,0 +1,60 @@
+name: CASHUP BRAIN static security checks
+
+on:
+  push:
+    branches:
+      - cashup-brain-setup
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cashup-brain-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-checks:
+    name: Static checks (no secrets, no deploy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Check dashboard JavaScript syntax
+        run: node --check --input-type=module < brain/dashboard/app.js
+
+      - name: Validate web manifest
+        run: node -e "JSON.parse(require('node:fs').readFileSync('manifest.webmanifest', 'utf8'))"
+
+      - name: Reject server secrets in browser code
+        shell: bash
+        run: |
+          if grep -nE 'SUPABASE_SERVICE_ROLE_KEY|sb_secret_|service_role' brain/dashboard/index.html brain/dashboard/app.js; then
+            echo 'Server-side secret or privileged role reference found in browser code.'
+            exit 1
+          fi
+
+      - name: Reject inline scripts and event handlers in dashboard
+        shell: bash
+        run: |
+          if grep -nE '<script([[:space:]>])' brain/dashboard/index.html | grep -v 'src='; then
+            echo 'Inline script found in dashboard HTML.'
+            exit 1
+          fi
+          if grep -niE '[[:space:]]on[a-z]+[[:space:]]*=' brain/dashboard/index.html; then
+            echo 'Inline event handler found in dashboard HTML.'
+            exit 1
+          fi
+
+      - name: Verify security-critical RPC posture
+        shell: bash
+        run: |
+          grep -q 'security invoker' brain/supabase/migrations/0008_atomic_mutations_audit_integrity.sql
+          grep -q 'actor_user_id = (select auth.uid())' brain/supabase/migrations/0008_atomic_mutations_audit_integrity.sql
+          grep -q 'brain_decide_approval' brain/dashboard/app.js
+          grep -q 'brain_create_task' brain/dashboard/app.js
