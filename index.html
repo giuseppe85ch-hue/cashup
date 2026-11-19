@@ -508,9 +508,9 @@ if ("serviceWorker" in navigator) {
    } else {
     const interval=now-candidateTimes[candidateTimes.length-1];
     // Una camminata normale richiede una cadenza plausibile: scarta impulsi troppo rapidi.
-    if(interval>=350&&interval<=1100){
+    if(interval>=280&&interval<=1400){
      const previous=candidateTimes.length>1?candidateTimes[candidateTimes.length-1]-candidateTimes[candidateTimes.length-2]:0;
-     const stable=!previous||Math.abs(interval-previous)<=Math.max(140,previous*.25);
+     const stable=!previous||Math.abs(interval-previous)<=Math.max(220,previous*.45);
      if(stable){
       candidateTimes.push(now);
       if(candidateTimes.length>=4){
@@ -523,7 +523,7 @@ if ("serviceWorker" in navigator) {
    }
   }
   if(mag<threshold*.40)peak=false;
-  if(candidateTimes.length&&now-candidateTimes[candidateTimes.length-1]>1300)candidateTimes=[];
+  if(candidateTimes.length&&now-candidateTimes[candidateTimes.length-1]>1700)candidateTimes=[];
   if(sensorEvents%12===0){
    statusEl.textContent='Sensore attivo · segnale '+lastMagnitude.toFixed(2)+' · passi '+steps+'. Cammina con il telefono in tasca o in mano.';
   }
