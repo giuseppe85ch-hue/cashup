@@ -46,14 +46,14 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 <div class="balance"><small>IL TUO SALDO</small><div class="amount">0,00 €</div><small>Saldo dimostrativo · premi non ancora attivi</small></div>
 <h2>Il tuo spazio</h2>
 <div class="grid">
-<div class="card"><div class="emoji">👟</div><h3>CASHUP Steps</h3><p>Il progetto dedicato ai tuoi passi e alla tua attività.</p></div>
+<div class="card"><div class="emoji">👟</div><h3>CASHUP Steps</h3><p>Conta i passi con il sensore del telefono e sincronizza il totale giornaliero al tuo account.</p></div>
 <div class="card"><div class="emoji">🎁</div><h3>Ricompense</h3><p>Scopri il catalogo premi, in preparazione.</p></div>
 <div class="card"><div class="emoji">🏪</div><h3>Negozi</h3><p>Le offerte dei negozi arriveranno in futuro.</p></div>
 <div class="card"><div class="emoji">👥</div><h3>Invita amici</h3><p>La funzione inviti è in preparazione.</p></div>
 <div class="card"><div class="emoji">👛</div><h3>Wallet</h3><p>Qui potrai consultare il tuo saldo.</p></div>
 <div class="card"><div class="emoji">👤</div><h3>Profilo</h3><p>La tua area personale CASHUP.</p></div>
 </div>
-<div class="section notice">Questa versione consente la registrazione e l'accesso con email. Il conteggio reale dei passi, i premi e i pagamenti non sono ancora attivi.</div>
+<div class="section notice">Registrazione e accesso email disponibili. CASHUP Steps usa il sensore del telefono in primo piano e può sincronizzare i totali giornalieri con l'account. Premi e pagamenti reali non sono attivi.</div>
 </section>
 <section id="steps" class="page">
 <h1>CASHUP Steps 👟</h1>
@@ -498,7 +498,7 @@ if ("serviceWorker" in navigator) {
    statusEl.textContent='Contapassi attivo. Porta il telefono con te e cammina normalmente.';
   }catch(e){statusEl.textContent='Non riesco ad avviare il sensore. Controlla i permessi del browser e riprova.';}
  }
- function pause(){running=false;window.removeEventListener('devicemotion',onMotion);startBtn.disabled=false;pauseBtn.disabled=true;statusEl.textContent='Conteggio in pausa. I passi di oggi sono stati salvati su questo dispositivo.';}
+ function pause(){running=false;window.removeEventListener('devicemotion',onMotion);save();notifyCloud(true);startBtn.disabled=false;pauseBtn.disabled=true;statusEl.textContent='Conteggio in pausa. I passi di oggi sono stati salvati su questo dispositivo.';}
  startBtn.addEventListener('click',start);pauseBtn.addEventListener('click',pause);
  resetBtn.addEventListener('click',()=>{if(!confirm('Vuoi azzerare i passi di oggi su questo dispositivo?'))return;steps=0;day=today();save();render();notifyCloud(true);statusEl.textContent='Contatore di oggi azzerato.';});
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){pause();statusEl.textContent='Conteggio in pausa perché CASHUP è finito in secondo piano. Premi Avvia quando torni.';}});
