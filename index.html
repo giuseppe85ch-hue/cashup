@@ -172,6 +172,24 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL = 'https://fzcricigqqpzcujrenkf.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_uy1xJ_55eYnmne1K8UrBQg_lV3LEyae';
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+window.CASHUP_RECORD_VISIT = async function () {
+  const { data: sessionData } = await supabase.auth.getSession();
+  if (!sessionData?.session?.user) return { signed_in: false };
+  const { data, error } = await supabase.rpc('cashup_record_app_visit');
+  if (error) throw error;
+  return { signed_in: true, ...(data || {}) };
+};
+window.CASHUP_SAVE_NOTIFICATION_PREFS = async function (enabled, times) {
+  const { data: sessionData } = await supabase.auth.getSession();
+  const user = sessionData?.session?.user;
+  if (!user) return { saved: false, reason: 'sign_in_required' };
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+  const payload = { user_id:user.id, enabled, daily_count:enabled?times.length:0, local_times:times, timezone, updated_at:new Date().toISOString() };
+  const { error } = await supabase.from('cashup_notification_preferences').upsert(payload,{onConflict:'user_id'});
+  if (error) throw error;
+  return { saved:true };
+};
+window.dispatchEvent(new Event('cashup:supabase-ready'));
 const stepCloudStatus = document.getElementById('step-cloud-status');
 const localDateKey = () => {
   const d = new Date();
@@ -209,6 +227,19 @@ async function syncDailySteps(user) {
     : 'Accedi dall’app CASHUP e leggi i passi dal servizio Salute per sincronizzarli.';
 }
 let stepSyncTimer = null;
+async function refreshVisitCount() {
+  if (typeof window.CASHUP_RECORD_VISIT !== 'function') return;
+  try {
+    const result = await window.CASHUP_RECORD_VISIT();
+    if (result?.signed_in && typeof result.visits_today === 'number') {
+      const el=document.getElementById('cashup-visits');
+      if(el)el.textContent=result.visits_today+' / 3';
+    }
+  } catch (error) { console.warn('CASHUP visit sync unavailable', error); }
+}
+window.addEventListener('cashup:supabase-ready', refreshVisitCount);
+setTimeout(refreshVisitCount, 1200);
+
 window.addEventListener('cashup:steps-changed', async (event) => {
   if (stepSyncTimer) clearTimeout(stepSyncTimer);
   stepSyncTimer = setTimeout(async () => {
