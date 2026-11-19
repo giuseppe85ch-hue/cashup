@@ -23,6 +23,7 @@ Questo documento è un piano operativo, non un parere legale e non certifica la 
 - Non è stato possibile cambiare la visibilità con gli strumenti disponibili. Non è stato eseguito alcun cambio.
 - Rendere privato il repository riduce l'accesso futuro al sorgente, ma non recupera copie già scaricate, fork pubblici o archivi esterni. GitHub avverte che i fork pubblici già esistenti restano pubblici e vengono separati dalla rete del repository.
 - Il sito CASHUP è ospitato separatamente su Cloudflare Pages. Prima di rendere privato il repository bisogna verificare che l'integrazione Cloudflare conservi l'accesso al repository privato e che il deploy non venga interrotto.
+- Il file PNG referenziato come icona PWA (circa 1,6 MB, nome file generato) deve essere associato a una prova di provenienza/creazione o licenza prima del rilascio.
 - Nessuna licenza open-source è stata individuata nella root del branch main. Non aggiungere una licenza permissiva senza una decisione esplicita del titolare dei diritti.
 - Il codice contiene una chiave Supabase publishable: è una chiave pubblica prevista per il client, non una credenziale segreta. Non inserire mai chiavi secret/service_role, password, token personali, credenziali DNS o stringhe DB nel repository.
 
