@@ -34,7 +34,7 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 
 ## Architettura di sicurezza attuale
 
-- Il browser usa solo la chiave Supabase publishable, che non è un segreto; la protezione dei dati dipende da RLS.
+- Il browser usa solo la chiave Supabase publishable, che non è un segreto; la protezione dei dati dipende da RLS.\n- La dashboard richiede AAL2 prima di mostrare i dati e include enrollment/challenge TOTP. Il fondatore non ha ancora fattori registrati nel progetto: il flusso deve essere completato e collaudato nel browser.
 - HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
 - È stato aggiunto `dashboard/_headers` con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy. Gli header saranno effettivi solo se `brain/dashboard` è la directory radice di pubblicazione Cloudflare o se vengono replicati nella configurazione dell'hosting definitivo.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto; deve restare non esposta tramite gli schemi API.
