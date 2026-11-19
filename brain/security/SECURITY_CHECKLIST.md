@@ -1,7 +1,7 @@
 # CASHUP BRAIN — checklist di sicurezza
 
 ## Database
-- [x] Migrazioni BRAIN 0001–0011 e hardening CASHUP applicati il 19 novembre 2026.
+- [x] Migrazioni BRAIN/CASHUP 0001–0012 e hardening CASHUP applicati il 19 novembre 2026.
 - [x] RLS e FORCE RLS attivi su tutte le 12 tabelle pubbliche (7 BRAIN + 5 CASHUP).
 - [x] Nessun privilegio effettivo di anon o service_role su tutte le 12 tabelle public; verificato anche TRUNCATE.
 - [x] `brain_founders`: authenticated può solo SELECT; nessun INSERT/UPDATE/DELETE/TRUNCATE.
@@ -43,6 +43,8 @@
 - [x] RLS e FORCE RLS attivi sulle 12 tabelle pubbliche.
 - [x] Grants `authenticated` limitati alle operazioni coperte dalle policy esistenti.
 - [x] Migrazione 0011: nessuna funzione SECURITY DEFINER nello schema public; entrambe le RPC pubbliche SECURITY INVOKER.
+- [x] Migrazione 0012: `daily_steps` read-only per browser, nessuna policy INSERT; profili con grants solo `id/display_name` in insert e `display_name` in update; upsert testato con ROLLBACK.
+- [x] `points_ledger`, `affiliate_clicks` e `commissions` non consentono scritture dal client.
 - [x] Migrazione 0011: colonne task `status`, `sector`, `created_by` non scrivibili dal client; title/description/priority soggetti a vincoli DB e RLS founder+AAL2.
 - [ ] XSS test su titolo/descrizione/etichette e contenuti dal database.
 - [ ] Nessun token o password stampato nei log.
