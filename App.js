@@ -99,7 +99,7 @@ export default function App() {
       if (!Array.isArray(times) || times.length < 1 || times.length > 3) {
         throw new Error("Scegli da 1 a 3 promemoria al giorno.");
       }
-      const normalized = [...new Set(times)].filter((value) => /^([01]\\d|2[0-3]):[0-5]\\d$/.test(value));
+      const normalized = [...new Set(times)].filter((value) => /^([01]\d|2[0-3]):[0-5]\d$/.test(value));
       if (normalized.length !== times.length) throw new Error("Orario dei promemoria non valido.");
       if (Platform.OS === "android") {
         await Notifications.setNotificationChannelAsync("daily-reminders", {
@@ -123,7 +123,7 @@ export default function App() {
             sound: false,
             data: { screen: "home", kind: "daily_reminder" }
           },
-          trigger: { hour, minute, repeats: true, channelId: "daily-reminders" }
+          trigger: { type: Notifications.SchedulableTriggerInputTypes.DAILY, hour, minute, channelId: "daily-reminders" }
         });
         ids.push(id);
       }
