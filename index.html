@@ -43,11 +43,11 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 <section id="home" class="page active">
 <h1>Benvenuto su CASHUP</h1>
 <p class="muted">Ogni passo può essere un'opportunità.</p>
-<div class="balance"><small>IL TUO SALDO</small><div class="amount">0,00 €</div><small>Saldo dimostrativo · premi non ancora attivi</small></div>
+<div class="balance"><small>IL TUO SALDO</small><div class="amount" data-cashup-value="0">0,00 €</div><small>Saldo dimostrativo · premi non ancora attivi</small></div>
 <h2>Il tuo spazio</h2>
 <div class="grid">
 <div class="card"><div class="emoji">👟</div><h3>CASHUP Steps</h3><p>Legge i passi registrati da Google Health Connect o Apple Salute e sincronizza il totale giornaliero.</p></div>
-<div class="card"><div class="emoji">🎮</div><h3>CASHUP GAMES</h3><p>Esplora 400 categorie, cerca i titoli e prova i giochi disponibili.</p><div class="actions"><a class="primary" href="/games/" style="display:inline-block;text-decoration:none">Entra nei giochi</a></div></div>
+<div class="card"><div class="emoji">🎮</div><h3>CASHUP GAMES</h3><p>Esplora 600 categorie e 7.000 titoli catalogati; prova i prototipi disponibili.</p><div class="actions"><a class="primary" href="/games/" style="display:inline-block;text-decoration:none">Entra nei giochi</a></div></div>
 <div class="card"><div class="emoji">🎁</div><h3>Ricompense</h3><p>Scopri il catalogo premi, in preparazione.</p></div>
 <div class="card"><div class="emoji">🏪</div><h3>Negozi</h3><p>Le offerte dei negozi arriveranno in futuro.</p></div>
 <div class="card"><div class="emoji">👥</div><h3>Invita amici</h3><p>La funzione inviti è in preparazione.</p></div>
@@ -79,7 +79,7 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 </section>
 <section id="wallet" class="page">
 <h1>Il tuo Wallet 👛</h1>
-<div class="balance"><small>SALDO DIMOSTRATIVO</small><div class="amount">0,00 €</div><small>Nessun pagamento o prelievo disponibile</small></div>
+<div class="balance"><small>SALDO DIMOSTRATIVO</small><div class="amount" data-cashup-value="0">0,00 €</div><small>Nessun pagamento o prelievo disponibile</small></div>
 <div class="notice">Il wallet è solo una schermata dimostrativa. Non contiene denaro e non effettua transazioni.</div>
 </section>
 <section id="profile" class="page">
@@ -528,5 +528,6 @@ if ("serviceWorker" in navigator) {
 })();
 </script>
 
+<script src="/globalization.js"></script>
 </body>
 </html>
