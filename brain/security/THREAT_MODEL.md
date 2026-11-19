@@ -39,23 +39,23 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
 - È stato aggiunto `_headers` nella root del repository con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy, limitati al percorso `/brain/dashboard`. Gli header saranno effettivi solo se la root di pubblicazione Cloudflare include questo file; la risposta HTTP reale resta da verificare.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto e richiede `auth.jwt()->>'aal' = 'aal2'`; il controllo MFA è applicato nel database, non soltanto nell'interfaccia. La funzione deve restare non esposta tramite gli schemi API.
-- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 9 policy verificate.
+- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 8 policy BRAIN dopo l'hardening.
 - I default ACL di `supabase_admin` nello schema `public` sono gestiti da Supabase e concedono privilegi predefiniti ad alcuni ruoli API; il ruolo `postgres` del progetto non è membro di `supabase_admin` e non può modificarli. Non risultano oggetti public attualmente posseduti da quel ruolo; evitare estensioni in `public` e disabilitare l'esposizione automatica di nuove tabelle nella Data API.
 - `brain_founders` consente ad authenticated solo SELECT sulla propria riga attiva; gli altri privilegi sono revocati.
-- `brain_audit_log` è append-only per il client: SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; la policy INSERT vincola autore, tipo e outcome.
-- Le RPC `brain_create_task` e `brain_decide_approval` sono SECURITY INVOKER e rendono atomici aggiornamento e audit; test AAL2 transazionale con ROLLBACK completato.
+- `brain_audit_log` è solo SELECT per il client; INSERT/UPDATE/DELETE sono negati. Trigger SECURITY DEFINER in schema private scrivono eventi automatici e atomici; il proprietario DB può comunque alterare il database, perciò servono export esterni firmati/WORM.
+- `brain_create_task` è SECURITY DEFINER con search_path vuoto, eseguibile solo da authenticated e verifica identità fondatore+AAL2; `brain_decide_approval` è SECURITY INVOKER. I trigger generano audit atomico. Test AAL2 con ROLLBACK completato.
 - Le approvazioni registrano una decisione ma non devono attivare workflow o operazioni esterne.
 - Autonomia disattivata, arresto di emergenza attivo, spesa automatizzata pari a zero; valori verificati nel database.
 - Nessun agente attivo.
 
 ## Requisiti prima di pubblicare
 
-1. [x] Applicare migrazioni 0004–0009; verificare tutti i valori con query completa.
+1. [x] Applicare migrazioni 0004–0010; verificare grants, RLS, RPC e trigger con query completa.
 2. [x] Testare funzione e lettura BRAIN come fondatore.
 3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
 4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
 5. [ ] Attivare MFA TOTP del fondatore e collaudare l'accesso; Leaked Password Protection resta disattivata sul piano Free.
-6. [ ] Verificare schema esposto, redirect URL, rate limits e CAPTCHA nella console Supabase.
+6. [ ] Rimuovere `private` dagli schemi esposti Data API (l'ultimo audit lo ha trovato esposto), disattivare esposizione automatica, verificare redirect URL, rate limits e CAPTCHA.
 7. [ ] Applicare e verificare header HTTP sul dominio effettivo prima di pubblicare la console.
 8. [ ] Verificare secret scanning, dipendenze e protezione del branch GitHub.
 9. [ ] Esportare manualmente database/dati Auth, cifrare e conservare off-site; provare il ripristino in un ambiente separato (piano Free senza backup automatici).
@@ -71,8 +71,12 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - Ripristinare da backup solo dopo aver identificato il punto di compromissione.
 - Riprendere il servizio solo dopo nuova verifica indipendente.
 
+## Protezione proprietà intellettuale
+
+Il repository è pubblico e il sorgente può essere copiato; la privacy futura non ritira fork o copie già scaricate. Codice e design originali possono avere tutela autoriale, ma idee/funzioni non sono monopolizzate dal copyright. Marchio, titolarità dei diritti, contratti con collaboratori, licenze e segreti commerciali richiedono un piano dedicato in `IP_PROTECTION_PLAN.md`.
+
 ## Limiti aperti
 
 Il Security Advisor Supabase segnala ancora `Leaked Password Protection Disabled`. È una configurazione Auth esterna al database e non è modificabile tramite gli strumenti Supabase disponibili in questa sessione. Anche MFA, rate limits, CAPTCHA, redirect URL, backup e configurazione GitHub/Cloudflare richiedono verifica nelle rispettive console.
 
-La configurazione del progetto Supabase, MFA, rate limits, backup/PITR, impostazioni GitHub, headers del dominio e log del provider non sono verificabili dal solo repository. Vanno controllati nelle rispettive console prima della pubblicazione.
+La configurazione Data API effettiva, MFA, rate limits, backup/PITR, impostazioni GitHub, headers del dominio e log del provider non sono verificabili dal solo repository. Il repository pubblico contiene anche un file PNG di circa 1,6 MB con nome opaco: va controllato per escludere dati personali o riservati prima di continuare a pubblicare il branch. Vanno controllati nelle rispettive console prima della pubblicazione.
