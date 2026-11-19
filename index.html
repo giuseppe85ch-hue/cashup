@@ -35,7 +35,7 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 .auth-status{font-size:13px;line-height:1.5;color:#c1dfca;min-height:20px;margin-top:12px}
 .brain-output{white-space:pre-wrap;overflow-wrap:anywhere;background:#09140d;border:1px solid #294333;border-radius:10px;padding:12px;color:#c8e8d1;font-size:12px;line-height:1.5;max-height:360px;overflow:auto}
 @media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-</style>
+#step-start:disabled,#step-pause:disabled{opacity:.45;cursor:not-allowed}\n</style>
 </head>
 <body>
 <header><div class="logo">CASH<span>UP</span></div><small>IL MOVIMENTO PREMIA</small></header>
@@ -57,9 +57,15 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 </section>
 <section id="steps" class="page">
 <h1>CASHUP Steps 👟</h1>
-<p class="muted">Il movimento è il primo passo. Il conteggio automatico dei passi sarà aggiunto in una fase successiva.</p>
-<div class="balance"><small>PASSI REGISTRATI</small><div class="amount">0</div><small>Nessun dato sanitario collegato</small></div>
-<div class="notice">Per leggere i passi reali servirà integrare una fonte compatibile con il telefono e richiedere il tuo consenso.</div>
+<p class="muted">Contapassi tramite sensore di movimento del telefono. Tieni CASHUP aperto in primo piano mentre cammini.</p>
+<div class="balance"><small>PASSI DI OGGI</small><div class="amount" id="step-count">0</div><small id="step-date">Conteggio giornaliero · si azzera a mezzanotte</small></div>
+<div class="grid">
+<div class="card"><div class="emoji">🎯</div><h3>Obiettivo</h3><p><strong>10.000</strong> passi al giorno</p></div>
+<div class="card"><div class="emoji">⭐</div><h3>Punti di oggi</h3><p><strong id="step-points">0 / 100</strong><br>Massimo 100 punti al giorno · demo</p></div>
+</div>
+<div class="actions"><button class="primary" id="step-start" type="button">Avvia contapassi</button><button class="secondary" id="step-pause" type="button" disabled>Pausa</button><button class="secondary" id="step-reset" type="button">Azzera oggi</button></div>
+<p id="step-status" class="auth-status" aria-live="polite">Premi “Avvia contapassi” e consenti l'accesso al sensore di movimento.</p>
+<div class="section notice">Importante: questa prima versione usa il sensore del telefono mentre la pagina è aperta e attiva. Se chiudi CASHUP o blocchi lo schermo, il browser può interrompere il conteggio. Per il conteggio continuo in background e l'integrazione con Salute/Health Connect servirà una versione nativa e il consenso specifico. I punti mostrati sono dimostrativi: non sono denaro né premi riscattabili.</div>
 </section>
 <section id="rewards" class="page">
 <h1>Ricompense 🎁</h1><p class="muted">Il catalogo CASHUP è in preparazione.</p>
@@ -400,6 +406,41 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("/sw.js");
   });
 }
+</script>
+
+<script>
+(() => {
+ const countEl=document.getElementById('step-count'); if(!countEl)return;
+ const pointsEl=document.getElementById('step-points'), statusEl=document.getElementById('step-status');
+ const startBtn=document.getElementById('step-start'), pauseBtn=document.getElementById('step-pause'), resetBtn=document.getElementById('step-reset');
+ const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+ const KEY='cashup_steps_v1'; let day=today(),steps=0,running=false,lastStep=0,gravity=9.81,peak=false;
+ function save(){try{localStorage.setItem(KEY,JSON.stringify({day,steps}));}catch(e){}}
+ function render(){countEl.textContent=steps.toLocaleString('it-IT');pointsEl.textContent=Math.min(100,Math.floor(steps/100))+' / 100';document.getElementById('step-date').textContent='Conteggio giornaliero · '+new Date().toLocaleDateString('it-IT');}
+ function refreshDay(){if(today()!==day){day=today();steps=0;save();render();}}
+ function onMotion(event){
+  if(!running)return;refreshDay();let a=event.acceleration,linear=!!(a&&(a.x!==null||a.y!==null||a.z!==null)),mag;
+  if(linear){mag=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);}
+  else{a=event.accelerationIncludingGravity;if(!a)return;const total=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);gravity=gravity*.92+total*.08;mag=Math.abs(total-gravity);}
+  const threshold=linear?1.15:1.25,now=Date.now();
+  if(mag>threshold&&!peak&&now-lastStep>300){peak=true;lastStep=now;steps++;save();render();}
+  if(mag<threshold*.55)peak=false;
+ }
+ async function start(){
+  if(!('DeviceMotionEvent' in window)){statusEl.textContent='Questo browser non espone il sensore di movimento. Prova Chrome aggiornato sul telefono.';return;}
+  try{
+   if(typeof DeviceMotionEvent.requestPermission==='function'){const p=await DeviceMotionEvent.requestPermission();if(p!=='granted'){statusEl.textContent='Permesso al sensore non concesso.';return;}}
+   window.addEventListener('devicemotion',onMotion);running=true;startBtn.disabled=true;pauseBtn.disabled=false;
+   statusEl.textContent='Contapassi attivo. Porta il telefono con te e cammina normalmente.';
+  }catch(e){statusEl.textContent='Non riesco ad avviare il sensore. Controlla i permessi del browser e riprova.';}
+ }
+ function pause(){running=false;window.removeEventListener('devicemotion',onMotion);startBtn.disabled=false;pauseBtn.disabled=true;statusEl.textContent='Conteggio in pausa. I passi di oggi sono stati salvati su questo dispositivo.';}
+ startBtn.addEventListener('click',start);pauseBtn.addEventListener('click',pause);
+ resetBtn.addEventListener('click',()=>{if(!confirm('Vuoi azzerare i passi di oggi su questo dispositivo?'))return;steps=0;day=today();save();render();statusEl.textContent='Contatore di oggi azzerato.';});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){pause();statusEl.textContent='Conteggio in pausa perché CASHUP è finito in secondo piano. Premi Avvia quando torni.';}});
+ try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&saved.day===day)steps=Math.max(0,Number(saved.steps)||0);}catch(e){}
+ render();
+})();
 </script>
 
 </body>
