@@ -131,5 +131,6 @@ select jsonb_pretty(jsonb_build_object(
     where n.nspname='public' and p.proname in ('brain_create_task','brain_decide_approval')
   ),
   'brain_trigger_count',(select count(*) from pg_trigger t
-    where not t.tgisinternal and t.tgrelid::regclass::text like 'public.brain_%')
+    join pg_class c on c.oid = t.tgrelid join pg_namespace n on n.oid = c.relnamespace
+    where not t.tgisinternal and n.nspname = 'public' and c.relname like 'brain_%')
 )) as cashup_brain_complete_check;
