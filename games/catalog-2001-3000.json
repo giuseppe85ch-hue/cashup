@@ -1,6 +1,6 @@
 {
   "project": "CASHUP",
-  "catalog_version": 4,
+  "catalog_version": 5,
   "generated_on": "2026-11-19",
   "range": "CU-2001–CU-3000",
   "total_games": 1000,
@@ -206,7 +206,7 @@
       "count": 20
     }
   ],
-  "important": "Catalogo di concept pianificati. Le categorie sono state ampliate a 50; i giochi non sono automaticamente sviluppati, giocabili o testati.",
+  "important": "Catalogo di concept pianificati in 80 categorie. Le voci non sono automaticamente sviluppate, giocabili o testate.",
   "games": [
     {
       "id": "CU-2001",
