@@ -55,7 +55,7 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
 4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
 5. [ ] Attivare MFA TOTP del fondatore e collaudare l'accesso; Leaked Password Protection resta disattivata sul piano Free.
-6. [ ] Rimuovere `private` dagli schemi esposti Data API (l'ultimo audit lo ha trovato esposto), disattivare esposizione automatica, verificare redirect URL, rate limits e CAPTCHA.
+6. [ ] Verificare che `private` sia escluso dagli schemi esposti Data API (la lista effettiva non è leggibile via SQL), disattivare esposizione automatica, verificare redirect URL, rate limits e CAPTCHA.
 7. [ ] Applicare e verificare header HTTP sul dominio effettivo prima di pubblicare la console.
 8. [ ] Verificare secret scanning, dipendenze e protezione del branch GitHub.
 9. [ ] Esportare manualmente database/dati Auth, cifrare e conservare off-site; provare il ripristino in un ambiente separato (piano Free senza backup automatici).
