@@ -21,12 +21,12 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Da completare fuori dal database
 - [ ] Abilitare Leaked Password Protection nelle impostazioni Supabase Auth.
-- [ ] Configurare e testare MFA per l'account fondatore.
+- [ ] Configurare e testare MFA per l'account fondatore: il database mostra 0 fattori registrati. Il flusso TOTP/AAL2 è stato aggiunto alla dashboard ma non ancora collaudato nel browser.
 - [ ] Verificare redirect URL, rate limits, CAPTCHA e schemi esposti nella Data API; mantenere `private` non esposto.
 - [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch.
 - [ ] Verificare backup/retention e fare un test di ripristino.
 - [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `dashboard/_headers`.
-- [ ] Test end-to-end nel browser con login reale e verifica della console.
+- [ ] Test end-to-end nel browser con login reale, enrollment TOTP, challenge AAL2 e verifica della console.
 - [ ] Testare header CSP/HSTS/anti-framing sul dominio effettivo.
 - [ ] Eseguire una revisione indipendente prima di qualsiasi attivazione di agenti o automazioni.
 
