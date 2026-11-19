@@ -1,0 +1,30 @@
+:root{--bg:#08110c;--panel:#111f16;--line:#294333;--green:#42e890;--muted:#a4b8aa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#f4fff7;font-family:Arial,sans-serif}
+header{padding:20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-size:27px;font-weight:900;letter-spacing:2px;color:var(--green)}.logo span{color:white}
+header small{color:var(--muted);font-size:11px}
+main{max-width:850px;margin:auto;padding:22px 16px 95px}
+h1{font-size:27px;margin:8px 0}.muted{color:var(--muted);line-height:1.5;font-size:14px}
+.balance{margin:22px 0;padding:23px;border:1px solid #286b43;border-radius:19px;background:linear-gradient(135deg,#16482d,#0d2115)}
+.balance small{color:#c1dfca}.amount{font-size:38px;font-weight:bold;color:var(--green);margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:16px;min-height:125px}
+.emoji{font-size:27px}.card h3{margin:10px 0 6px;font-size:16px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.section{margin-top:27px}.page{display:none}.page.active{display:block}
+.notice{padding:14px;border-radius:12px;background:#17271c;color:#bfd3c4;font-size:13px;line-height:1.5}
+button{cursor:pointer}.primary{border:0;border-radius:11px;padding:12px 17px;background:var(--green);color:#062012;font-weight:bold}
+.secondary{border:1px solid #42634b;border-radius:10px;padding:11px;background:#17271c;color:#e6f5e9}
+.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#101a13;border-top:1px solid var(--line);padding:11px 2px}
+nav button{border:0;background:none;color:#a7b9ac;font-size:12px;padding:6px}
+nav button.active{color:var(--green)}
+label{display:block;color:#c4d6c9;font-size:13px;margin:12px 0 5px}
+input{width:100%;padding:13px;background:#0b150e;border:1px solid #42634b;border-radius:10px;color:white}
+footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
+.auth-card{margin-top:18px;padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.auth-status{font-size:13px;line-height:1.5;color:#c1dfca;min-height:20px;margin-top:12px}
+@media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.auth-title{margin-top:0}
+.profile-save{margin-top:14px}
