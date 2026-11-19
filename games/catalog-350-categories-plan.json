@@ -1,14 +1,14 @@
 {
   "project": "CASHUP",
   "catalog_version": 7,
-  "status": "scalable_catalog_blueprint",
+  "status": "400_category_launch_blueprint",
   "generated_on": "2026-11-19",
-  "category_count": 350,
-  "target_concepts": 7000000,
-  "target_per_category": 20000,
+  "category_count": 400,
+  "target_concepts": 40000,
+  "target_per_category": 100,
   "currently_authored_concepts": 10000,
   "currently_authored_categories": 100,
-  "additional_categories_planned": 270,
+  "additional_categories_planned": 300,
   "id_scheme": {
     "existing": "CU-0001..CU-8000",
     "virtual_template": "CU-G{category_id}-V{variant_id}",
@@ -2465,6 +2465,426 @@
       "target_concepts": 20000,
       "currently_authored_concepts": 0,
       "status": "planned_category"
+    },
+    {
+      "category_id": "351",
+      "name": "Sport olimpici e pentathlon",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "352",
+      "name": "Giochi paralimpici e inclusione",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "353",
+      "name": "Sport acquatici",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "354",
+      "name": "Tiro sportivo e biathlon",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "355",
+      "name": "Corsa di cavalli e galoppo",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "356",
+      "name": "Trotto e ippodromi",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "357",
+      "name": "Salti a ostacoli equestri",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "358",
+      "name": "Palio e tradizioni equestri",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "359",
+      "name": "Allevamento e cura dei cavalli",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "360",
+      "name": "Scuderie e gestione ippica",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "361",
+      "name": "Ricette e cucina casalinga",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "362",
+      "name": "Nutrizione e alimentazione",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "363",
+      "name": "Piani pasti e spesa",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "364",
+      "name": "Cucina salutare",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "365",
+      "name": "Cucina per bambini",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "366",
+      "name": "Decorazione e cake design",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "367",
+      "name": "Gelateria e dessert",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "368",
+      "name": "Cucina regionale italiana",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "369",
+      "name": "Cucina asiatica",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "370",
+      "name": "Cucina mediterranea",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "371",
+      "name": "Salute preventiva ed educazione",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "372",
+      "name": "Primo soccorso educativo",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "373",
+      "name": "Anatomia e corpo umano",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "374",
+      "name": "Igiene e cura personale",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "375",
+      "name": "Skincare e cosmetica",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "376",
+      "name": "Parrucchiere e salone",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "377",
+      "name": "Spa e centri benessere",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "378",
+      "name": "Personal training",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "379",
+      "name": "Preparazione atletica",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "380",
+      "name": "Sonno e gestione dello stress",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "381",
+      "name": "Libri interattivi",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "382",
+      "name": "Audiolibri e narrazione",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "383",
+      "name": "Enciclopedie interattive",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "384",
+      "name": "Club di lettura",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "385",
+      "name": "Quiz letterari",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "386",
+      "name": "Racconti e avventure testuali",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "387",
+      "name": "Editoria e librerie",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "388",
+      "name": "Ricerca e conoscenza",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "389",
+      "name": "Apprendimento per età",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "390",
+      "name": "Formazione professionale",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "391",
+      "name": "Riconoscimento e cultura musicale",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "392",
+      "name": "Collezione musicale",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "393",
+      "name": "Video brevi e storytelling",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "394",
+      "name": "Creator e streaming",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "395",
+      "name": "Regia e produzione audiovisiva",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "396",
+      "name": "Montaggio shorts e reel",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "397",
+      "name": "Podcast e radio",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "398",
+      "name": "Giornalismo video",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "399",
+      "name": "Animazione 3D avanzata",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "400",
+      "name": "Esperienze immersive",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "401",
+      "name": "Mercati e fiere",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "402",
+      "name": "Supermercati e commercio",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "403",
+      "name": "Moda sostenibile",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "404",
+      "name": "Riciclo e riuso creativo",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "405",
+      "name": "Gestione di parchi divertimento",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "406",
+      "name": "Luna park e attrazioni",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "407",
+      "name": "Sport da spiaggia",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "408",
+      "name": "Giochi da campeggio",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "409",
+      "name": "Campeggio e outdoor",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
+    },
+    {
+      "category_id": "410",
+      "name": "Esplorazione urbana",
+      "target_concepts": 100,
+      "currently_authored_concepts": 0,
+      "status": "planned_category"
     }
   ],
   "category_groups": [
@@ -2896,5 +3316,12 @@
       "localization review"
     ]
   },
-  "note": "Le prime 100 categorie hanno 100 concept ciascuna (10.000 totali). Le altre 250 categorie restano pianificate, non ancora popolate."
+  "note": "Le prime 100 categorie hanno 100 concept ciascuna (10.000 totali). Le altre 250 categorie restano pianificate, non ancora popolate.",
+  "launch_target_titles": 4000,
+  "notes": [
+    "Obiettivo di lancio richiesto: almeno 4000 titoli di gioco nel catalogo.",
+    "Il repository contiene attualmente 10000 concept catalogati; concept non significa automaticamente gioco sviluppato, giocabile o testato.",
+    "Il catalogo prevede 400 categorie; le categorie pianificate diventano disponibili man mano che i contenuti vengono sviluppati e verificati.",
+    "Le funzioni editoriali come audiolibri, enciclopedie, riconoscimento musicale e video brevi richiedono contenuti e integrazioni con licenze e diritti verificati."
+  ]
 }
