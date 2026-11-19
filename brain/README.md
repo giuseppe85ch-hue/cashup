@@ -4,10 +4,10 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 
 ## Stato verificato — 19 novembre 2026
 - Progetto Supabase CASHUP `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- Migrazioni 0001–0003 già eseguite; migrazioni 0004–0008 applicate; 0008 aggiunge funzioni SECURITY INVOKER per creazione attività/decisione approvazioni con scrittura audit atomica tramite collegamento Supabase.
+- Migrazioni 0001–0003 già eseguite; migrazioni 0004–0009 applicate; 0008/0009 introducono RPC SECURITY INVOKER, trigger audit atomici e privilegi client minimi.
 - Sette tabelle BRAIN con RLS e FORCE RLS, otto policy previste e nessuna policy aggiuntiva.
 - Funzione `private.brain_is_founder()` SECURITY DEFINER con `search_path` vuoto; esecuzione negata ad anon, consentita ad authenticated; richiede claim JWT `aal2`; vecchia funzione pubblica assente.
-- Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura per authenticated; `brain_audit_log` è append-only (SELECT/INSERT).
+- Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura; `brain_agents`, `brain_memory` e `brain_settings` sono read-only; `brain_tasks` consente SELECT/INSERT; `brain_approvals` consente SELECT e UPDATE solo della colonna status; audit è append-only.
 - Test controllato: l'identità del fondatore vede agenti e impostazioni; un'identità authenticated non fondatrice non vede agenti, impostazioni o audit.
 - Otto agenti in catalogo, nessuno attivo. Cinque impostazioni conservative: autonomia false, emergency stop true, spesa automatizzata zero, approvazione umana richiesta per azioni finanziarie e ad alto rischio.
 - Default privileges del ruolo postgres nello schema public revocati per nuove tabelle, sequenze e funzioni; EXECUTE sulle nuove funzioni creato da postgres revocato anche a PUBLIC. I default ACL di supabase_admin sono gestiti da Supabase e non sono modificabili dal progetto.
@@ -20,7 +20,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - La versione Supabase JS è fissata a `2.119.1` tramite esm.sh bundle; aggiornamenti deliberati e verificati.
 - La dashboard richiede una sessione MFA AAL2 prima di mostrare dati BRAIN e include un flusso TOTP per registrazione/verifica del fattore. Il fondatore non ha ancora fattori MFA registrati: il flusso deve essere completato e collaudato nel browser. Il database è stato testato: sessione AAL1 negata, fondatore AAL2 autorizzato, non fondatore AAL2 negato.
 - Il file `_headers` si trova nella root del repository e contiene regole limitate a `/brain/dashboard` e `/brain/dashboard/*`. Gli header saranno effettivi solo quando il sito sarà pubblicato da una root che include quel file; la risposta HTTP reale non è ancora stata verificata.
-- La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser. Creazione attività e decisione approvazioni usano RPC SECURITY INVOKER: modifica e audit sono nella stessa transazione.
+- La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser. Trigger database registrano automaticamente ogni creazione attività e ogni decisione di approvazione nella stessa transazione; RPC SECURITY INVOKER validano gli input.
 
 ## Sicurezza e limiti
 1. RLS e grants sono la barriera effettiva ai dati; la chiave publishable è pubblica e non è un segreto.
@@ -41,4 +41,4 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - Pubblicare la console su hosting privato/protetto e verificare gli header HTTP reali.
 - Eseguire il test end-to-end della dashboard e una revisione indipendente.
 
-Il piano aggiornato è in [VERIFICATION.md](./VERIFICATION.md), la checklist in [security/SECURITY_CHECKLIST.md](./security/SECURITY_CHECKLIST.md) e il modello delle minacce in [security/THREAT_MODEL.md](./security/THREAT_MODEL.md). La query di sola lettura completa è `supabase/verification/verify_brain_complete_read_only.sql` e controlla anche il requisito AAL2.
+Le verifiche manuali residue sono elencate in [RELEASE_GATES.md](./RELEASE_GATES.md). Il piano aggiornato è in [VERIFICATION.md](./VERIFICATION.md), la checklist in [security/SECURITY_CHECKLIST.md](./security/SECURITY_CHECKLIST.md) e il modello delle minacce in [security/THREAT_MODEL.md](./security/THREAT_MODEL.md). La query di sola lettura completa è `supabase/verification/verify_brain_complete_read_only.sql` e controlla anche il requisito AAL2.
