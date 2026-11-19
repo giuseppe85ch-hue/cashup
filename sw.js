@@ -1,4 +1,4 @@
-const CACHE_NAME = "cashup-v2";
+const CACHE_NAME = "cashup-v3";
 const OFFLINE_URL = "/";
 
 self.addEventListener("install", (event) => {
