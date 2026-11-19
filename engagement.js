@@ -29,7 +29,7 @@
         </div>
         <p id="cashup-reminder-status" class="auth-status" aria-live="polite">I promemoria sono facoltativi. Attivali solo se li desideri.</p>
       </div>
-      <p class="muted" style="font-size:11px">Le visite e le attività mostrate qui sono un indicatore dimostrativo sul dispositivo. Non generano denaro o punti riscattabili. I premi reali richiedono verifica lato server.</p>
+      <p class="muted" style="font-size:11px">Le aperture dell’app da sole non assegnano punti. Le visite vengono conteggiate per migliorare l’esperienza; i premi arrivano solo dopo la verifica lato server di missioni o visualizzazioni pubblicitarie completate.</p>
     `;
     home.appendChild(panel);
     const today = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
@@ -41,7 +41,7 @@
     const updateVisitCounter = () => {
       const currentDate=today(), now=Date.now();
       if (state.date !== currentDate) state = {date:currentDate,visits:0,lastVisit:0};
-      if (!state.lastVisit || now - state.lastVisit >= 20*60*1000) {
+      if (!state.lastVisit || now - state.lastVisit >= 30*60*1000) {
         state.visits = Math.min(3, (Number(state.visits)||0)+1);
         state.lastVisit = now;
         try { localStorage.setItem(key, JSON.stringify(state)); } catch (_) {}
