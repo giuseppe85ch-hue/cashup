@@ -10,11 +10,6 @@ let currentUser=null;
 let mfaFactorId=null;
 let mfaMode=null;
 
-async function audit(action,objectType,objectId,details={}){
- const {error}=await supabase.from('brain_audit_log').insert({actor_user_id:currentUser.id,actor_type:'founder',action,object_type:objectType,object_id:objectId?String(objectId):null,outcome:'recorded',details});
- if(error){console.error('Audit log non scritto:',error.message);return false}
- return true;
-}
 function showMfa(mode,factorId,qrCode='',secret=''){
  mfaMode=mode;mfaFactorId=factorId;
  $('login').classList.add('hidden');$('app').classList.add('hidden');$('mfa').classList.remove('hidden');$('signout').classList.remove('hidden');
@@ -119,7 +114,7 @@ $('registerPasskey').addEventListener('click',async()=>{
  const {data:aal,error:aalError}=await supabase.auth.mfa.getAuthenticatorAssuranceLevel();
  if(aalError||aal?.currentLevel!=='aal2'){setStatus('passkeyStatus','Prima completa la verifica MFA (AAL2).',true);return}
  $('registerPasskey').disabled=true;setStatus('passkeyStatus','Segui la richiesta di sicurezza del telefono per registrare la passkey…');
- try{const {data,error}=await supabase.auth.registerPasskey();if(error){setStatus('passkeyStatus','Registrazione non riuscita: '+error.message,true)}else{setStatus('passkeyStatus','Passkey registrata. Il telefono potrà richiedere impronta, volto o PIN.');await loadPasskeys();const logged=await audit('passkey_registered','auth_passkey',data?.id||null,{});if(!logged)setStatus('passkeyStatus','Passkey registrata, ma ATTENZIONE: evento non scritto nel registro audit.',true)}}catch(e){setStatus('passkeyStatus','Funzione passkey non disponibile: '+(e?.message||'errore'),true)}finally{$('registerPasskey').disabled=false}
+ try{const {data,error}=await supabase.auth.registerPasskey();if(error){setStatus('passkeyStatus','Registrazione non riuscita: '+error.message,true)}else{setStatus('passkeyStatus','Passkey registrata. Il telefono potrà richiedere impronta, volto o PIN.');await loadPasskeys()}}catch(e){setStatus('passkeyStatus','Funzione passkey non disponibile: '+(e?.message||'errore'),true)}finally{$('registerPasskey').disabled=false}
 });
 $('passkeyList').addEventListener('click',async event=>{
  const button=event.target.closest('button[data-passkey-delete]');if(!button)return;
@@ -127,7 +122,7 @@ $('passkeyList').addEventListener('click',async event=>{
  button.disabled=true;const id=button.dataset.passkeyDelete;
  const {error}=await supabase.auth.passkey.delete({passkeyId:id});
  if(error){button.disabled=false;setStatus('passkeyStatus','Rimozione non riuscita: '+error.message,true);return}
- const logged=await audit('passkey_removed','auth_passkey',id,{});await loadPasskeys();setStatus('passkeyStatus',logged?'Passkey rimossa.':'Passkey rimossa, ma ATTENZIONE: evento non scritto nel registro audit.',!logged);
+ await loadPasskeys();setStatus('passkeyStatus','Passkey rimossa.');
 });
 $('signout').addEventListener('click',async()=>{await supabase.auth.signOut();location.reload()});
 $('addTask').addEventListener('click',async()=>{
