@@ -17,6 +17,23 @@
 <div class="actions"><button id="loginBtn">Accedi</button></div>
 <p id="loginStatus" class="status" aria-live="polite">Inserisci le credenziali del tuo account fondatore.</p>
 </section>
+<section id="mfa" class="panel hidden">
+<h1>Verifica in due passaggi</h1>
+<p class="muted">Per proteggere la console fondatore, serve un codice temporaneo dalla tua app autenticatrice.</p>
+<div id="mfaEnroll" class="hidden">
+<p>1. Apri un'app autenticatrice (ad esempio Google Authenticator o 1Password) e scansiona questo QR.</p>
+<img id="mfaQr" alt="QR per configurare la verifica in due passaggi">
+<p class="muted">Se non puoi scansionare il QR, inserisci manualmente questa chiave nell'app autenticatrice:</p>
+<code id="mfaSecret"></code>
+</div>
+<div id="mfaChallenge" class="hidden">
+<p>Apri la tua app autenticatrice e usa il codice CASHUP BRAIN già registrato.</p>
+</div>
+<label for="mfaCode">Codice di verifica a 6 cifre</label>
+<input id="mfaCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
+<div class="actions"><button id="mfaVerify">Verifica e continua</button></div>
+<p id="mfaStatus" class="status" aria-live="polite">Completa la verifica per accedere.</p>
+</section>
 <section id="app" class="hidden">
 <div class="row"><div><h1>Centro di controllo</h1><p id="welcome" class="muted">Verifica dell'account…</p></div><span class="pill">ACCESSO FONDATORE</span></div>
 <div class="notice">Modalità iniziale: questa console gestisce attività e consultazione. Gli agenti non eseguono operazioni autonome. Pagamenti, contratti, accessi sensibili e azioni irreversibili richiederanno sempre approvazione umana.</div>
