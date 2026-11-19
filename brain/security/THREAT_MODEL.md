@@ -50,7 +50,7 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 
 ## Requisiti prima di pubblicare
 
-1. [x] Applicare migrazioni 0004–0011; verificare grants, RLS, RPC e trigger con query completa.
+1. [x] Applicare migrazioni 0004–0012; verificare grants, RLS, RPC e trigger con query completa.
 2. [x] Testare funzione e lettura BRAIN come fondatore.
 3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
 4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
@@ -70,6 +70,12 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - Verificare accessi, audit, policy, grants e modifiche recenti.
 - Ripristinare da backup solo dopo aver identificato il punto di compromissione.
 - Riprendere il servizio solo dopo nuova verifica indipendente.
+
+## Protezione CASHUP applicativo
+
+- `daily_steps` non accetta più INSERT dal browser: blocca la falsificazione dei passi demo. La raccolta reale dovrà usare HealthKit/Health Connect con validazione lato server, deduplicazione e limiti giornalieri.
+- `points_ledger`, `affiliate_clicks` e `commissions` sono read-only per il browser; i client non possono creare punti o commissioni.
+- `profiles` limita insert/update ai campi necessari; `id` e `created_at` non sono modificabili dal client.
 
 ## Protezione proprietà intellettuale
 
