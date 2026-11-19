@@ -64,7 +64,7 @@
 - [ ] Dipendenze versionate e aggiornate; audit vulnerabilità prima di ogni release.
 - [ ] Branch protection su main: blocco force-push/cancellazione, review obbligatoria e controlli CI prima del merge.
 - [ ] MFA GitHub, secret scanning e push protection attivi, se disponibili nel piano.
-- [x] Workflow CI statico aggiunto con `contents: read` e action checkout fissata a SHA; run #13 completata con SUCCESS; il workflow è stato poi esteso a client root, CSP, service worker, SDK fissato e scan segreti client; l'ultimo run deve essere verificato. Il workflow non è una scansione segreti completa.
+- [x] Workflow CI statico aggiunto con `contents: read` e action checkout fissata a SHA; run #13 completata con SUCCESS; il workflow è stato poi esteso a client root, CSP, service worker, SDK fissato e scan segreti client; run #73 completato con SUCCESS dopo l'estensione dei controlli a client root, CSP, service worker, SDK fissato e scan segreti client. Il workflow non è una scansione segreti completa.
 - [ ] Nessun deploy automatico dalla branch di lavoro.
 
 ## Proprietà intellettuale e anti-impersonificazione
