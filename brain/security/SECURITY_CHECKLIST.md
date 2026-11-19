@@ -53,7 +53,7 @@
 ## Controlli automatici aggiuntivi
 - [x] Privilegi predefiniti del ruolo postgres in public revocati per tabelle, sequenze e funzioni; EXECUTE rimosso da PUBLIC per nuove funzioni create da postgres. I default ACL di supabase_admin sono gestiti dalla piattaforma Supabase e non sono modificabili dal progetto.
 - [x] Policy RLS ottimizzate con (select auth.uid()); indici aggiunti sulle 9 chiavi esterne segnalate.
-- [ ] Security Advisor: abilitare Leaked Password Protection nelle impostazioni Auth.
+- [ ] Leaked Password Protection: non disponibile sul piano Free (Pro+); nessun upgrade autorizzato. Usare password lunga/unica e MFA.
 
 ## Criterio di rilascio
 
