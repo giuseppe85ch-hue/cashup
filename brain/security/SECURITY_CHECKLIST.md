@@ -49,6 +49,12 @@
 - [ ] XSS test su titolo/descrizione/etichette e contenuti dal database.
 - [ ] Nessun token o password stampato nei log.
 
+## Web client e supply chain
+- [x] HTML principale senza script, style o handler inline; CSS/JS esterni.
+- [x] CSP strict senza `unsafe-inline` preparata per root e dashboard; verifica HTTP reale dopo deploy ancora necessaria.
+- [x] SDK Supabase fissato a versione esatta; service worker non intercetta richieste cross-origin e fa fallback solo sulle navigazioni.
+- [x] Password minima 12 caratteri richiesta dall'interfaccia; [ ] allineare impostazione Auth server-side a 12 caratteri e leaked password protection.
+
 ## Codice e supply chain
 - [!] Repository GitHub attualmente pubblico: sorgente e documentazione sono leggibili da chiunque. Verificare Cloudflare Pages e poi rendere privato il repository; fork pubblici/copie già scaricate non diventano privati.
 - [ ] Nessuna service_role key o segreto in Git, HTML, JS, bundle o log.
