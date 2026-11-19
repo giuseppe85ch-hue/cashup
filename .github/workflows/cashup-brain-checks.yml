@@ -56,5 +56,8 @@ jobs:
         run: |
           grep -q 'security invoker' brain/supabase/migrations/0008_atomic_mutations_audit_integrity.sql
           grep -q 'actor_user_id = (select auth.uid())' brain/supabase/migrations/0008_atomic_mutations_audit_integrity.sql
+          grep -q 'security invoker' brain/supabase/migrations/0009_minimal_grants_audit_triggers.sql
+          grep -q 'brain_audit_approval_status_change' brain/supabase/migrations/0009_minimal_grants_audit_triggers.sql
+          grep -q 'grant update (status)' brain/supabase/migrations/0009_minimal_grants_audit_triggers.sql
           grep -q 'brain_decide_approval' brain/dashboard/app.js
           grep -q 'brain_create_task' brain/dashboard/app.js
