@@ -3,7 +3,7 @@ const OFFLINE_URL = "/";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll([OFFLINE_URL, "/globalization.js", "/games/", "/games/arcade.js", "/engagement.js"]))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll([OFFLINE_URL, "/globalization.js", "/games/", "/games/arcade.js", "/games/cloud-progress.js", "/engagement.js"]))
   );
   self.skipWaiting();
 });
