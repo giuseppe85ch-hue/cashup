@@ -38,13 +38,19 @@
     try { state = JSON.parse(localStorage.getItem(key) || "{}") || {}; } catch (_) {}
     const date = today();
     if (state.date !== date) state = {date, visits:0, lastVisit:0};
-    const now = Date.now();
-    if (!state.lastVisit || now - state.lastVisit >= 20*60*1000) {
-      state.visits = Math.min(3, (Number(state.visits)||0)+1);
-      state.lastVisit = now;
-      try { localStorage.setItem(key, JSON.stringify(state)); } catch (_) {}
-    }
-    document.getElementById("cashup-visits").textContent = (state.visits||0) + " / 3";
+    const updateVisitCounter = () => {
+      const currentDate=today(), now=Date.now();
+      if (state.date !== currentDate) state = {date:currentDate,visits:0,lastVisit:0};
+      if (!state.lastVisit || now - state.lastVisit >= 20*60*1000) {
+        state.visits = Math.min(3, (Number(state.visits)||0)+1);
+        state.lastVisit = now;
+        try { localStorage.setItem(key, JSON.stringify(state)); } catch (_) {}
+      }
+      const counter=document.getElementById("cashup-visits");
+      if(counter) counter.textContent=(state.visits||0)+" / 3";
+    };
+    updateVisitCounter();
+    document.addEventListener("visibilitychange",()=>{if(!document.hidden)updateVisitCounter();});
     document.getElementById("cashup-go-steps").addEventListener("click", () => {
       const btn=document.querySelector('nav button[data-page="steps"]');
       if(btn) btn.click();
