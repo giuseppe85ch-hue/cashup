@@ -1,4 +1,4 @@
-const CACHE_NAME = "cashup-v1";
+const CACHE_NAME = "cashup-v2";
 const OFFLINE_URL = "/";
 
 self.addEventListener("install", (event) => {
@@ -9,7 +9,11 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(self.clients.claim());
+  event.waitUntil(
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((key) => key.startsWith("cashup-") && key !== CACHE_NAME).map((key) => caches.delete(key)))
+    ).then(() => self.clients.claim())
+  );
 });
 
 self.addEventListener("fetch", (event) => {
