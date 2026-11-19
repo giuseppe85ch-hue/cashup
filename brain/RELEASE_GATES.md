@@ -35,11 +35,12 @@ Motivo: la funzione fondatore è nello schema `private`; inoltre i default ACL g
 6. Testare che il login TOTP/passkey funzioni con la CSP attiva.
 
 ## 5. GitHub — repository
-1. Attivare MFA per l'account GitHub.
-2. In **Settings → Code security and analysis**, attivare secret scanning, push protection, Dependabot alerts e security updates se disponibili.
-3. In **Settings → Branches / Rulesets**, proteggere `main`: bloccare force-push e cancellazione; richiedere controlli CI superati prima del merge.
-4. Verificare il workflow **CASHUP BRAIN static security checks** e mantenere i permessi minimi.
-5. Non aggiungere segreti al repository. La chiave publishable Supabase è pubblica; una service-role key non deve mai stare nel browser.
+1. Il repository risulta attualmente **pubblico**: tutti i file e i branch, inclusi codice e documentazione BRAIN, sono leggibili da chiunque. Decidere se mantenerlo pubblico; se si desidera riservatezza del sorgente, cambiare la visibilità in **Settings → General → Danger Zone → Change repository visibility**. Non ho modificato questa impostazione.
+2. Attivare MFA per l'account GitHub.
+3. In **Settings → Code security and analysis**, attivare secret scanning, push protection, Dependabot alerts e security updates se disponibili.
+4. In **Settings → Branches / Rulesets**, proteggere `main`: bloccare force-push e cancellazione; richiedere controlli CI superati prima del merge.
+5. Verificare il workflow **CASHUP BRAIN static security checks** e mantenere i permessi minimi.
+6. Non aggiungere segreti al repository. La chiave publishable Supabase è pubblica; una service-role key non deve mai stare nel browser.
 
 ## 6. Backup e ripristino
 Il piano Supabase Free non offre backup automatici giornalieri.
