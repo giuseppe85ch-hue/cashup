@@ -20,8 +20,8 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
 
 ## Da completare fuori dal database
-- [ ] Abilitare Leaked Password Protection nelle impostazioni Supabase Auth.
-- [ ] Configurare e testare MFA per l'account fondatore: il database mostra 0 fattori registrati. Il flusso TOTP/AAL2 è stato aggiunto alla dashboard ma non ancora collaudato nel browser.
+- [ ] Leaked Password Protection non attivabile sul piano Free: Supabase la rende disponibile dal piano Pro. Nessun upgrade è stato richiesto o eseguito; usare password lunga/unica e MFA finché il progetto resta Free.
+- [ ] Configurare e testare MFA per l'account fondatore: il database mostra 0 fattori registrati. Il flusso TOTP/AAL2 è stato aggiunto alla dashboard e al database ma non ancora collaudato nel browser. TOTP è disponibile nel progetto senza richiedere un upgrade.
 - [ ] Verificare redirect URL, rate limits, CAPTCHA e schemi esposti nella Data API; mantenere `private` non esposto.
 - [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch.
 - [ ] Verificare backup/retention e fare un test di ripristino.
