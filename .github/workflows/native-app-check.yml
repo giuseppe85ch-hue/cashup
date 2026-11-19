@@ -59,7 +59,19 @@ jobs:
         run: npm install
       - name: Generate Android native project
         run: npx expo prebuild --platform android --non-interactive
-      - name: Build installable debug APK
+      - name: Embed JavaScript bundle in standalone debug APK
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("android/app/build.gradle")
+          s = p.read_text()
+          old = 'debuggableVariants = ["debug"]'
+          if old not in s:
+              raise SystemExit("Could not find React Native debuggableVariants setting; refusing to build an APK without confirming bundle configuration.")
+          p.write_text(s.replace(old, "debuggableVariants = []", 1))
+          PY
+          grep -n 'debuggableVariants' android/app/build.gradle
+      - name: Build standalone installable APK
         run: cd android && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
