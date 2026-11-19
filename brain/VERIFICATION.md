@@ -4,10 +4,10 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Completato e verificato
 - [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- [x] Migrazioni di hardening 0004–0008 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
+- [x] Migrazioni di hardening 0004–0009 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
 - [!] Le migrazioni iniziali 0001–0003 risultano applicate manualmente in precedenza (tabelle e funzione esistono), ma non compaiono nella cronologia remota restituita da Supabase. Prima di usare `db push`, `db reset`, creare branch DB o ricostruire il progetto, occorre riallineare il baseline senza rieseguire queste DDL sul database attivo.
 - [x] 7 tabelle BRAIN presenti, tutte con RLS e FORCE RLS.
-- [x] 8 policy BRAIN previste e nessuna policy aggiuntiva.
+- [x] 9 policy BRAIN previste e nessuna policy aggiuntiva.
 - [x] 8 agenti registrati, nessuno attivo.
 - [x] 5 impostazioni conservative presenti: autonomia false, emergency stop true, spesa automatizzata 0, approvazione finanziaria true, approvazione alto rischio true.
 - [x] Funzione privata SECURITY DEFINER con search_path vuoto, EXECUTE negato ad anon e consentito ad authenticated, requisito AAL2 nel corpo funzione; funzione pubblica precedente assente.
@@ -20,19 +20,19 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e 8 agenti visibili.
 - [x] Policy utente ottimizzate con `(select auth.uid())`; indici aggiunti sulle 9 chiavi esterne segnalate.
 - [x] Security Advisor dopo le modifiche: resta un avviso Auth per Leaked Password Protection disattivata.
-- [x] Audit approfondito: nessuna vista/materialized view o funzione nello schema `public`; nessun oggetto pubblico posseduto da `supabase_admin`; nessun bucket Storage o policy Storage applicativa.
+- [x] Audit approfondito: nessuna vista/materialized view o funzione `SECURITY DEFINER` nello schema `public`; nessun oggetto pubblico posseduto da `supabase_admin`; nessun bucket Storage o policy Storage applicativa.
 - [x] Nessun oggetto pubblico posseduto da `supabase_admin` al momento; i default privileges interni di quel ruolo non sono modificabili dal progetto e diventano rilevanti se in futuro un'estensione crea oggetti in `public`. Evitare di installare estensioni in `public`; preferire lo schema `extensions` quando supportato.
 - [x] Sequenza `brain_audit_log.id` usa IDENTITY ALWAYS; l'assenza di USAGE su sequence per `authenticated` è intenzionale e non blocca gli INSERT con ID omesso.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
 
 ## Controllo approfondito aggiuntivo — 19 novembre 2026
-- [x] Nuova lettura diretta: tutte le 12 tabelle public hanno RLS e FORCE RLS; nessun grant diretto ad anon; nessuna vista public; nessuna funzione in public; nessun indice invalido.
+- [x] Nuova lettura diretta: tutte le 12 tabelle public hanno RLS e FORCE RLS; nessun grant diretto ad anon; nessuna vista public; due RPC `SECURITY INVOKER` in public e nessuna funzione `SECURITY DEFINER`; nessun indice invalido.
 - [x] Funzione privata `private.brain_is_founder()`: SECURITY DEFINER, `search_path` vuoto, EXECUTE negato ad anon e consentito ad authenticated; schema private senza USAGE ad anon.
 - [x] Nessuna tabella applicativa iscritta alla publication `supabase_realtime`.
 - [!] La configurazione effettiva degli schemi esposti dalla Data API non è leggibile dal catalogo SQL (`pgrst.db_schemas` non restituisce un valore). Non considerare verificato che `private` sia escluso: controllare la pagina Data API della Dashboard.
 - [!] Un vincolo non validato appartiene a `realtime.messages` (schema gestito dal servizio), non alle tabelle public dell'applicazione; non modificarlo manualmente.
 - [!] I default ACL di `supabase_admin` in `public` concedono privilegi predefiniti ad anon/authenticated/service_role. Il ruolo di progetto `postgres` non è membro di `supabase_admin` e non può modificarli. Non risultano oggetti `public` attualmente posseduti da `supabase_admin`; non installare estensioni in `public`.
-- [x] Corretto il flusso approvazioni nella dashboard: ora richiede la conferma della riga effettivamente aggiornata e segnala le richieste già gestite/non più disponibili invece di mostrare un falso successo.
+- [x] Corretto il flusso approvazioni nella dashboard: ora usa la RPC atomica, segnala le richieste già gestite/non più disponibili e il database imposta identità/data e registra il cambio stato.
 
 ## Da completare fuori dal database
 - [ ] Leaked Password Protection non attivabile sul piano Free: Supabase la rende disponibile dal piano Pro. Nessun upgrade è stato richiesto o eseguito; usare password lunga/unica e MFA finché il progetto resta Free.
@@ -40,7 +40,7 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [ ] Abilitare Passkeys nelle impostazioni Supabase Auth e configurare RP ID/origins sul dominio HTTPS definitivo; nessuna passkey è ancora registrata. La funzione Supabase è sperimentale. La console richiede comunque TOTP AAL2. TOTP è disponibile nel progetto senza richiedere un upgrade.
 - [ ] Verificare redirect URL, rate limits, CAPTCHA e schemi esposti nella Data API; mantenere `private` non esposto. La configurazione esposta non è leggibile dal catalogo SQL disponibile.
 - [x] File `brain/supabase/verification/verify_extended_security_read_only.sql` disponibile per audit di sola lettura dopo modifiche a schema, estensioni o permessi.
-- [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch. Workflow statico a permessi minimi aggiunto al branch, run CI non ancora disponibile.
+- [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch. Workflow statico a permessi minimi aggiunto; esito della prima esecuzione da confermare.
 - [ ] Piano Free senza backup automatici: predisporre esportazione manuale cifrata (database e dati Auth) e provare il ripristino in un progetto/ambiente separato; non creare progetti a pagamento senza consenso.
 - [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `_headers` nella root del sito, con regole limitate a `/brain/dashboard/*`.
 - [x] Codice client predisposto per passkey WebAuthn (registrazione, accesso, elenco e revoca) senza trattare o memorizzare dati biometrici.
