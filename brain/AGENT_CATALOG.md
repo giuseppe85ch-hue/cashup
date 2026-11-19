@@ -1,30 +1,19 @@
 # CASHUP BRAIN — catalogo specialistico
 
-## Stato effettivo
-Il catalogo contiene 35 ruoli (8 iniziali + 27 specialistici). Tutti hanno stato `planned`: sono definizioni registrate nel database, non processi AI in esecuzione. La dashboard esistente legge dinamicamente il catalogo e può mostrarli quando la console viene pubblicata e collaudata.
+## Stato verificato (19 novembre 2026)
+Il database contiene **550 ruoli specialistici** e **550 schede di specifica private**. Tutti i 550 sono planned/designed; **0 sono attivi** e nessuno ha runtime o provider collegato. I ruoli comprendono 35 ruoli iniziali e 515 specializzazioni aggiuntive distribuite nelle aree governance, strategia, prodotto, ingegneria, sicurezza, dati, ricerca AI, DevOps, qualità, finanza, crescita, marketing, affiliazioni, partnership, advertising, premi, gaming, supporto, Trust & Safety e internazionalizzazione.
 
-La migrazione `0013_expand_specialist_agent_catalog.sql` aggiunge 27 ruoli in modo idempotente (`ON CONFLICT DO NOTHING`). Non attiva agenti, non crea credenziali, non effettua chiamate a modelli e non avvia spese.
+Ogni scheda privata definisce missione, confini, criteri di accettazione, contratto input/output, allowlist strumenti vuota, budget massimo pari a 0 € e stato del ciclo di vita. Le schede sono conservate nello schema non esposto private; le policy negano l'accesso ai ruoli client. Il catalogo è metadata progettuale, non un insieme di processi AI in esecuzione.
 
-## Ruoli specialistici aggiunti
-| Area | Ruoli |
-|---|---|
-| Direzione e prodotto | Strategia prodotto, Product Management |
-| Tecnologia | Engineering, QA/Release, Infrastructure/DevOps |
-| Sicurezza e difesa | Security, Fraud Detection, Anti-Piracy, Trust & Safety, Incident Response |
-| Fiducia e regole | Privacy/Data, Legal & Compliance, IP & Brand |
-| Economia | Finance, Cost Optimizer, Payments/Reconciliation |
-| Crescita | Growth, Partnerships, Affiliate Operations, Ads Monetization, Marketing & Content |
-| Utenti e community | Customer Support, Community Moderation |
-| Espansione | International Expansion, Research Intelligence |
-| Prodotto interattivo | Game Economy, Rewards & Loyalty |
-| Governance | Analytics, Data Governance, Procurement/Vendor, Operations |
-| Supporto fondatore | Founder Assistant |
+## Permessi e limiti
+- read_only: analisi, ricerche, report, bozze e piani.
+- approval_required: prepara proposte operative ma non esegue azioni esterne.
+- Tutti i nuovi ruoli sono planned; nessun agente ha stato active.
+- Tutti i budget agent sono 0 € e gli strumenti consentiti sono una lista vuota.
+- Nessun agente può modificare saldi, attribuire punti, rimborsare, sospendere utenti, pubblicare contenuti, firmare contratti o spendere denaro.
 
-## Permessi iniziali
-- `read_only`: analisi, ricerche, report, bozze e piani.
-- `approval_required`: anche quando un agente prepara una proposta operativa, nessuna azione esterna è autorizzata senza approvazione.
-- Nessun agente ha permesso `limited` o stato `active` in questa fase.
-- Nessun agente può modificare direttamente i saldi, attribuire punti, rimborsare, sospendere utenti, pubblicare contenuti, firmare contratti o spendere denaro.
+## Attivazione futura
+Un ruolo può avanzare soltanto dopo runtime server-side, provider verificato, identità tecnica separata, strumenti allowlist, limiti di costo approvati, test, audit, kill switch, MFA fondatore e approvazione esplicita per ogni servizio a pagamento. Nessun ruolo può attivarsi da solo, cambiare budget o rimuovere l'arresto di emergenza.
 
-## Regola di attivazione futura
-Un ruolo diventa operativo soltanto dopo: runtime server-side, identità tecnica separata, strumenti allowlist, limiti di costo, test, log immutabili/esterni, approvazioni e kill switch. Attivare prima un agente e poi progettare i suoi limiti è vietato.
+## Migrazione
+La migrazione 0014_agent_specifications_catalog_550.sql definisce in modo riproducibile il catalogo e le specifiche private. Non distribuisce Edge Functions, non configura chiavi, non avvia automazioni e non genera costi.
