@@ -1,7 +1,21 @@
 # CASHUP BRAIN — architettura runtime agenti
 
-## Stato
-Il database ora contiene 40 definizioni di agenti. Il runtime non è installato: Supabase non ha Edge Functions distribuite, non è stato collegato un provider di modelli, non esistono secret runtime e non sono attive automazioni. Il catalogo non va confuso con agenti AI già operativi.
+## Stato verificato (2026-11-19)
+Il database contiene **35 definizioni di agenti**: 35 pianificati e zero attivi. Il runtime non è installato: Supabase non ha Edge Functions distribuite, non è collegato un provider di modelli, non risultano segreti runtime configurati e non sono attive automazioni. Il catalogo non va confuso con agenti AI già operativi.
+
+## Obiettivo di scala: 550 agenti
+Il traguardo di prodotto è una rete di 550 specialisti AI, organizzati in squadre e aree di competenza, coordinati da un orchestratore centrale e controllati dal fondatore. La crescita del catalogo deve avvenire per fasi verificabili, non inserendo 515 righe generiche solo per raggiungere un numero.
+
+Ogni agente dovrà avere:
+- una missione distinta e non duplicata;
+- competenze, limiti e fonti autorizzate espliciti;
+- input e output tipizzati, criteri di qualità e test di valutazione;
+- modello/provider assegnato in base al compito, non necessariamente un modello diverso per agente;
+- strumenti consentiti tramite allowlist, permessi minimi e limiti di costo;
+- supervisione, audit, versionamento e kill switch;
+- stato separato tra progettato, testato, abilitato e operativo.
+
+Il conteggio di 550 rappresenta un obiettivo di architettura, non una dichiarazione che 550 agenti siano già stati creati o attivati. Gli agenti possono condividere modelli e infrastruttura per contenere i costi. La qualità si misura con benchmark, accuratezza, tracciabilità, sicurezza e risultati verificabili, non con il numero di agenti.
 
 ## Architettura richiesta
 1. Console fondatore con MFA AAL2 e sessione breve per operazioni sensibili.
