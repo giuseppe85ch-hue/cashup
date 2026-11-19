@@ -1,9 +1,9 @@
 # CASHUP BRAIN — catalogo specialistico
 
 ## Stato effettivo
-Il catalogo contiene 40 ruoli (8 iniziali + 32 specialistici). Tutti hanno stato `planned`: sono definizioni registrate nel database, non processi AI in esecuzione. La dashboard esistente legge dinamicamente il catalogo e può mostrarli quando la console viene pubblicata e collaudata.
+Il catalogo contiene 35 ruoli (8 iniziali + 27 specialistici). Tutti hanno stato `planned`: sono definizioni registrate nel database, non processi AI in esecuzione. La dashboard esistente legge dinamicamente il catalogo e può mostrarli quando la console viene pubblicata e collaudata.
 
-La migrazione `0013_expand_specialist_agent_catalog.sql` aggiunge 32 ruoli in modo idempotente (`ON CONFLICT DO NOTHING`). Non attiva agenti, non crea credenziali, non effettua chiamate a modelli e non avvia spese.
+La migrazione `0013_expand_specialist_agent_catalog.sql` aggiunge 27 ruoli in modo idempotente (`ON CONFLICT DO NOTHING`). Non attiva agenti, non crea credenziali, non effettua chiamate a modelli e non avvia spese.
 
 ## Ruoli specialistici aggiunti
 | Area | Ruoli |
