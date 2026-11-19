@@ -484,7 +484,7 @@ document.getElementById('signout-btn').addEventListener('click', async () => {
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session?.user) {
     showStatus('Accesso effettuato con: ' + session.user.email);
-    setTimeout(() => { loadCloudProfile(session.user); syncDailySteps(session.user); }, 0);
+    setTimeout(() => { loadCloudProfile(session.user); syncDailySteps(session.user); refreshVisitCount(); }, 0);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
   }
