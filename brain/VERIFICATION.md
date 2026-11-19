@@ -20,6 +20,9 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e 8 agenti visibili.
 - [x] Policy utente ottimizzate con `(select auth.uid())`; indici aggiunti sulle 9 chiavi esterne segnalate.
 - [x] Security Advisor dopo le modifiche: resta un avviso Auth per Leaked Password Protection disattivata.
+- [x] Audit approfondito: nessuna vista/materialized view o funzione nello schema `public`; nessun oggetto pubblico posseduto da `supabase_admin`; nessun bucket Storage o policy Storage applicativa.
+- [x] Nessun oggetto pubblico posseduto da `supabase_admin` al momento; i default privileges interni di quel ruolo non sono modificabili dal progetto e diventano rilevanti se in futuro un'estensione crea oggetti in `public`. Evitare di installare estensioni in `public`; preferire lo schema `extensions` quando supportato.
+- [x] Sequenza `brain_audit_log.id` usa IDENTITY ALWAYS; l'assenza di USAGE su sequence per `authenticated` è intenzionale e non blocca gli INSERT con ID omesso.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
 
 ## Da completare fuori dal database
@@ -27,10 +30,12 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [ ] Configurare e testare MFA per l'account fondatore: il database mostra 0 fattori registrati. Il flusso TOTP/AAL2 è stato aggiunto alla dashboard e al database ma non ancora collaudato nel browser.
 - [ ] Abilitare Passkeys nelle impostazioni Supabase Auth e configurare RP ID/origins sul dominio HTTPS definitivo; nessuna passkey è ancora registrata. La funzione Supabase è sperimentale. La console richiede comunque TOTP AAL2. TOTP è disponibile nel progetto senza richiedere un upgrade.
 - [ ] Verificare redirect URL, rate limits, CAPTCHA e schemi esposti nella Data API; mantenere `private` non esposto. La configurazione esposta non è leggibile dal catalogo SQL disponibile.
+- [ ] Eseguire il file `brain/supabase/verification/verify_extended_security_read_only.sql` dopo modifiche a schema, estensioni o permessi.
 - [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch.
 - [ ] Verificare backup/retention e fare un test di ripristino.
 - [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `_headers` nella root del sito, con regole limitate a `/brain/dashboard/*`.
 - [x] Codice client predisposto per passkey WebAuthn (registrazione, accesso, elenco e revoca) senza trattare o memorizzare dati biometrici.
+- [x] Corretto il caricamento elenco passkey: viene richiesto dopo che la sessione fondatore ha superato MFA AAL2.
 - [ ] Test end-to-end nel browser con login reale, enrollment TOTP, challenge AAL2 e verifica della console.
 - [ ] Testare header CSP/HSTS/anti-framing sul dominio effettivo.
 - [ ] Eseguire una revisione indipendente prima di qualsiasi attivazione di agenti o automazioni.
