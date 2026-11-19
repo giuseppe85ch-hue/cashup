@@ -4,10 +4,10 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Completato e verificato
 - [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- [x] Migrazioni di hardening 0004–0010 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
+- [x] Migrazioni di hardening 0004–0011 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
 - [!] Le migrazioni iniziali 0001–0003 risultano applicate manualmente in precedenza (tabelle e funzione esistono), ma non compaiono nella cronologia remota restituita da Supabase. Prima di usare `db push`, `db reset`, creare branch DB o ricostruire il progetto, occorre riallineare il baseline senza rieseguire queste DDL sul database attivo.
 - [x] 7 tabelle BRAIN presenti, tutte con RLS e FORCE RLS.
-- [x] 8 policy BRAIN dopo la rimozione delle policy di scrittura diretta non necessarie.
+- [x] 9 policy BRAIN: SELECT e INSERT controllato su task, nessun INSERT client su audit.
 - [x] 8 agenti registrati, nessuno attivo.
 - [x] 5 impostazioni conservative presenti: autonomia false, emergency stop true, spesa automatizzata 0, approvazione finanziaria true, approvazione alto rischio true.
 - [x] Funzione privata SECURITY DEFINER con search_path vuoto, EXECUTE negato ad anon e consentito ad authenticated, requisito AAL2 nel corpo funzione; funzione pubblica precedente assente.
@@ -20,17 +20,18 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e 8 agenti visibili.
 - [x] Policy utente ottimizzate con `(select auth.uid())`; indici aggiunti sulle 9 chiavi esterne segnalate.
 - [x] Security Advisor dopo le modifiche: resta un avviso Auth per Leaked Password Protection disattivata.
-- [x] Audit approfondito: nessuna vista/materialized view nello schema `public`; la RPC `brain_create_task` è l'unica SECURITY DEFINER in `public`, con search_path vuoto, EXECUTE solo authenticated e controllo esplicito fondatore+AAL2; nessun oggetto pubblico posseduto da `supabase_admin`; nessun bucket Storage o policy Storage applicativa.
+- [x] Audit approfondito: nessuna vista/materialized view nello schema `public`; nessuna funzione SECURITY DEFINER in `public`; entrambe le RPC sono SECURITY INVOKER con search_path vuoto; nessun oggetto pubblico posseduto da `supabase_admin`; nessun bucket Storage o policy Storage applicativa.
 - [x] Nessun oggetto pubblico posseduto da `supabase_admin` al momento; i default privileges interni di quel ruolo non sono modificabili dal progetto e diventano rilevanti se in futuro un'estensione crea oggetti in `public`. Evitare di installare estensioni in `public`; preferire lo schema `extensions` quando supportato.
 - [x] Sequenza `brain_audit_log.id` usa IDENTITY ALWAYS; l'assenza di USAGE su sequence per `authenticated` è intenzionale e non blocca gli INSERT con ID omesso.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
 
 ## Controllo approfondito aggiuntivo — 19 novembre 2026
-- [x] Nuova lettura diretta: tutte le 12 tabelle public hanno RLS e FORCE RLS; nessun grant diretto ad anon o service_role; nessuna vista public; due RPC in public: `brain_decide_approval` SECURITY INVOKER e `brain_create_task` SECURITY DEFINER con search_path vuoto e verifica fondatore+AAL2; nessun indice invalido.
-- [x] Migrazione 0010 applicata: authenticated non può INSERT su `brain_tasks` o `brain_audit_log`; le policy INSERT audit e ALL task sono state rimosse; task solo SELECT dal client.
-- [x] Migrazione 0010: `brain_create_task` è SECURITY DEFINER, search_path vuoto, EXECUTE solo authenticated, verifica `auth.uid()`, fondatore attivo e AAL2, valida input e imposta server-side status/settore/creatore.
-- [x] Trigger audit task e approvazioni SECURITY DEFINER, search_path vuoto, proprietario postgres, EXECUTE negato ai ruoli client; il client non può più falsificare direttamente eventi audit.
-- [x] Test transazionali AAL2 con ROLLBACK dopo 0010: task RPC e audit automatico riusciti; decisione approvazione e audit automatico riusciti; insert diretto task/audit non consentito dai grants; nessun dato test rimasto.
+- [x] Nuova lettura diretta: tutte le 12 tabelle public hanno RLS e FORCE RLS; nessun grant diretto ad anon o service_role; nessuna vista public; due RPC in public entrambe SECURITY INVOKER con search_path vuoto, anon senza EXECUTE e authenticated con EXECUTE; nessun indice invalido.
+- [x] Migrazione 0010 applicata: authenticated non può INSERT su audit; la policy INSERT audit è stata rimossa; trigger DB scrive audit.
+- [x] Migrazione 0010: rimosso INSERT client su audit; audit scritto dai trigger protetti; nessun inserimento diretto client su audit.
+- [x] Trigger audit task e approvazioni SECURITY DEFINER in schema private, search_path vuoto, proprietario postgres, EXECUTE negato ai ruoli client; il client non può più falsificare direttamente eventi audit.
+- [x] Migrazione 0011 applicata: `brain_create_task` SECURITY INVOKER; grants INSERT solo su title/description/priority; status/sector/created_by non modificabili dal client; vincoli DB su titolo e descrizione; policy INSERT richiede fondatore+AAL2 e valori server-side.
+- [x] Test AAL2 con ROLLBACK dopo 0011: RPC task e audit automatico riusciti; status/sector/created_by non scrivibili; AAL1 e non-fondatore AAL2 respinti; nessun dato test rimasto.
 - [!] Repository GitHub pubblico: sorgente e documentazione BRAIN sono visibili. Ricerca puntuale sul branch predefinito `main` senza risultati per `SUPABASE_SERVICE_ROLE_KEY`, `sb_secret_` e `BEGIN PRIVATE KEY`; non equivale a scansione completa dello storico o del branch di lavoro. Secret scanning GitHub non verificato.
 - [x] Funzione privata `private.brain_is_founder()`: SECURITY DEFINER, `search_path` vuoto, EXECUTE negato ad anon e consentito ad authenticated; schema private senza USAGE ad anon.
 - [x] Nessuna tabella applicativa iscritta alla publication `supabase_realtime`.
@@ -45,7 +46,7 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [ ] Abilitare Passkeys nelle impostazioni Supabase Auth e configurare RP ID/origins sul dominio HTTPS definitivo; nessuna passkey è ancora registrata. La funzione Supabase è sperimentale. La console richiede comunque TOTP AAL2. TOTP è disponibile nel progetto senza richiedere un upgrade.
 - [ ] Rimuovere `private` dagli schemi esposti Data API, lasciare esposti solo gli schemi strettamente necessari e disattivare l'esposizione automatica di nuove tabelle/funzioni. La configurazione esposta non è leggibile dal catalogo SQL disponibile.
 - [x] File `brain/supabase/verification/verify_extended_security_read_only.sql` disponibile per audit di sola lettura dopo modifiche a schema, estensioni o permessi.
-- [ ] Rendere privato il repository dopo aver verificato l'integrazione Cloudflare Pages; il repo è pubblico e fork/copie già esistenti non diventano privati automaticamente. Attivare secret scanning, push protection, MFA GitHub e protezione branch. Workflow statico a permessi minimi: run #13 completata con SUCCESS su JavaScript, manifest, assenza segreti privilegiati nel client, assenza script/eventi inline e controlli RPC. Il controllo CI non sostituisce il secret scanning GitHub dell'intero storico.
+- [ ] Rendere privato il repository dopo aver verificato l'integrazione Cloudflare Pages; il repo è pubblico e fork/copie già esistenti non diventano privati automaticamente. Attivare secret scanning, push protection, MFA GitHub e protezione branch. Il workflow statico aveva un run #13 riuscito, ma i run successivi sono stati annullati o sono in attesa: verificare un run verde sull'ultimo commit. Il controllo CI non sostituisce il secret scanning GitHub dell'intero storico.
 - [ ] Piano Free senza backup automatici: predisporre esportazione manuale cifrata (database e dati Auth) e provare il ripristino in un progetto/ambiente separato; non creare progetti a pagamento senza consenso.
 - [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `_headers` nella root del sito, con regole limitate a `/brain/dashboard/*`.
 - [x] Codice client predisposto per passkey WebAuthn (registrazione, accesso, elenco e revoca) senza trattare o memorizzare dati biometrici.
