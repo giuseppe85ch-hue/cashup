@@ -5,6 +5,26 @@
 
 begin;
 
+-- Rimuove ogni policy preesistente sulle sole tabelle BRAIN, incluse eventuali
+-- policy permissive aggiunte in seguito da configurazioni non previste.
+do $
+declare
+  r record;
+begin
+  for r in
+    select schemaname, tablename, policyname
+    from pg_policies
+    where schemaname = 'public'
+      and tablename in (
+        'brain_founders','brain_tasks','brain_agents','brain_memory',
+        'brain_approvals','brain_settings','brain_audit_log'
+      )
+  loop
+    execute format('drop policy %I on %I.%I',
+      r.policyname, r.schemaname, r.tablename);
+  end loop;
+end $;
+
 -- Il registro fondatori è consultabile solo dall'utente autenticato sulla propria riga.
 alter table public.brain_founders enable row level security;
 alter table public.brain_founders force row level security;
