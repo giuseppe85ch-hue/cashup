@@ -12,7 +12,7 @@ The app does not run its own motion-sensor algorithm. The phone OS / Health Conn
 
 ## Important limitations before release
 
-- This branch is a native-app integration candidate. It has not been built, installed, or tested on a physical Android/iOS device.
+- GitHub Actions has successfully passed Expo dependency compatibility, Expo Doctor, Android prebuild, and a debug APK build. The APK has been generated as a workflow artifact. It has not yet been installed or tested on a physical Android/iOS device.
 - HealthKit requires the HealthKit capability enabled for the final iOS App ID and user permission.
 - Health Connect requires a supported Android device and user permission. Play Console requires a Health Connect declaration and a privacy policy before production release.
 - The package identifier `com.cashup.mobile` is provisional. Confirm the final application identifier before publishing; changing it after store publication is not straightforward.
@@ -22,7 +22,7 @@ The app does not run its own motion-sensor algorithm. The phone OS / Health Conn
 
 ## Build and device verification
 
-Requires Node.js 20+, npm, Android SDK/Android Studio for local Android builds, and Xcode + an Apple Developer App ID with HealthKit capability for iOS.
+For Android, a debug APK has already been built in GitHub Actions. A production/release build still requires signing and store configuration. Local builds require Node.js 20+, npm, and Android SDK/Android Studio. iOS requires macOS, Xcode, and an Apple Developer App ID with HealthKit capability.
 
 1. `npm install`
 2. `npx expo-doctor`
