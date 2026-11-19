@@ -26,6 +26,8 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
 
 ## Controllo approfondito aggiuntivo — 19 novembre 2026
+- [x] Verifica SQL successiva: tutte le 13 tabelle `public`/`private` hanno RLS e FORCE RLS; nessun privilegio SELECT/INSERT/UPDATE/DELETE/TRUNCATE/REFERENCES/TRIGGER concesso direttamente ad `anon` o `service_role`; schema `private` non utilizzabile da `anon` e `service_role`.
+- [x] Verifica catalogo successiva: 550 ruoli `planned`, 0 attivi; 550 schede `designed`, zero strumenti consentiti e zero budget non-zero.
 - [x] Nuova lettura diretta: tutte le 12 tabelle public e l'unica tabella private hanno RLS e FORCE RLS; nessun grant diretto ad anon o service_role sulle tabelle public; nessuna vista public; due RPC in public entrambe SECURITY INVOKER, anon senza EXECUTE e authenticated con EXECUTE; nessun indice invalido.
 - [x] Migrazione 0010 applicata: authenticated non può INSERT su audit; la policy INSERT audit è stata rimossa; trigger DB scrive audit.
 - [x] Migrazione 0010: rimosso INSERT client su audit; audit scritto dai trigger protetti; nessun inserimento diretto client su audit.
