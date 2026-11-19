@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
-import { ActivityIndicator, BackHandler, Platform, StatusBar, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Platform, StatusBar, StyleSheet, Text, View } from "react-native";
 import { WebView } from "react-native-webview";
 import * as HealthKit from "@appeeky/expo-healthkit";
 
@@ -124,7 +124,7 @@ export default function App() {
         originWhitelist={["https://cashup-859.pages.dev"]}
         onShouldStartLoadWithRequest={allowNavigation}
         onMessage={onMessage}
-        injectedJavaScriptBeforeContentLoaded={HEALTH_BRIDGE}
+        injectedJavaScript={HEALTH_BRIDGE}
         javaScriptEnabled
         domStorageEnabled
         sharedCookiesEnabled
