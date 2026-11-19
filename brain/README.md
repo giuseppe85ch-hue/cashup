@@ -5,9 +5,9 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 ## Stato verificato — 19 novembre 2026
 - Progetto Supabase CASHUP `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
 - Migrazioni 0001–0003 già eseguite; migrazioni 0004–0009 applicate; 0008/0009 introducono RPC SECURITY INVOKER, trigger audit atomici e privilegi client minimi.
-- Sette tabelle BRAIN con RLS e FORCE RLS, nove policy previste e nessuna policy aggiuntiva.
+- Sette tabelle BRAIN con RLS e FORCE RLS, otto policy BRAIN dopo la rimozione delle scritture dirette non necessarie.
 - Funzione `private.brain_is_founder()` SECURITY DEFINER con `search_path` vuoto; esecuzione negata ad anon, consentita ad authenticated; richiede claim JWT `aal2`; vecchia funzione pubblica assente.
-- Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura; `brain_agents`, `brain_memory` e `brain_settings` sono read-only; `brain_tasks` consente SELECT/INSERT; `brain_approvals` consente SELECT e UPDATE solo della colonna status; audit è append-only.
+- Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura; `brain_agents`, `brain_memory` e `brain_settings` sono read-only; `brain_tasks` e `brain_audit_log` consentono solo SELECT al client; `brain_approvals` consente SELECT e UPDATE solo della colonna status; audit viene scritto soltanto dai trigger DB.
 - Test controllato: l'identità del fondatore vede agenti e impostazioni; un'identità authenticated non fondatrice non vede agenti, impostazioni o audit.
 - Otto agenti in catalogo, nessuno attivo. Cinque impostazioni conservative: autonomia false, emergency stop true, spesa automatizzata zero, approvazione umana richiesta per azioni finanziarie e ad alto rischio.
 - Default privileges del ruolo postgres nello schema public revocati per nuove tabelle, sequenze e funzioni; EXECUTE sulle nuove funzioni creato da postgres revocato anche a PUBLIC. I default ACL di `supabase_admin` in `public` concedono privilegi predefiniti ai ruoli API; sono gestiti da Supabase e non sono modificabili dal ruolo `postgres` del progetto. Nessun oggetto public è attualmente posseduto da quel ruolo; non installare estensioni in `public` e disattivare l'esposizione automatica di nuove tabelle.
@@ -20,7 +20,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - La versione Supabase JS è fissata a `2.119.1` tramite esm.sh bundle; aggiornamenti deliberati e verificati.
 - La dashboard richiede una sessione MFA AAL2 prima di mostrare dati BRAIN e include un flusso TOTP per registrazione/verifica del fattore. Il fondatore non ha ancora fattori MFA registrati: il flusso deve essere completato e collaudato nel browser. Il database è stato testato: sessione AAL1 negata, fondatore AAL2 autorizzato, non fondatore AAL2 negato.
 - Il file `_headers` si trova nella root del repository e contiene regole limitate a `/brain/dashboard` e `/brain/dashboard/*`. Gli header saranno effettivi solo quando il sito sarà pubblicato da una root che include quel file; la risposta HTTP reale non è ancora stata verificata.
-- La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser. Trigger database registrano automaticamente ogni creazione attività e ogni decisione di approvazione nella stessa transazione; RPC SECURITY INVOKER validano gli input.
+- La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser. Trigger database registrano automaticamente ogni creazione attività e ogni decisione di approvazione nella stessa transazione; la RPC di creazione attività è SECURITY DEFINER con controlli espliciti su identità, fondatore, AAL2 e input; la RPC approvazioni resta SECURITY INVOKER.
 
 ## Sicurezza e limiti
 1. RLS e grants sono la barriera effettiva ai dati; la chiave publishable è pubblica e non è un segreto.
@@ -35,10 +35,10 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 ## Da completare prima di pubblicare
 - MFA TOTP del fondatore: il flusso è pronto, ma il fondatore deve registrare il proprio autenticatore e verificare il codice.
 - Leaked Password Protection non risulta attiva; l'organizzazione è sul piano Free e non è stato richiesto alcun upgrade. Mantenere una password lunga, unica e custodita in un password manager.
-- Verificare redirect URL, rate limits, CAPTCHA e che `private` non sia tra gli schemi esposti dalla Data API.
+- Verificare redirect URL, rate limits, CAPTCHA e rimuovere `private` dagli schemi esposti dalla Data API (è risultato presente nell'ultimo audit catalogo/configurazione).
 - Verificare MFA/secret scanning/push protection e branch protection in GitHub. È stato aggiunto un workflow statico a permessi minimi; run #13 completata con successo.
 - Il piano Free non include backup automatici: esportare manualmente database e dati Auth e conservare copie cifrate fuori dal progetto; provare il ripristino in ambiente separato prima del rilascio.
 - Pubblicare la console su hosting privato/protetto e verificare gli header HTTP reali.
 - Eseguire il test end-to-end della dashboard e una revisione indipendente.
 
-Le verifiche manuali residue sono elencate in [RELEASE_GATES.md](./RELEASE_GATES.md). Il piano aggiornato è in [VERIFICATION.md](./VERIFICATION.md), la checklist in [security/SECURITY_CHECKLIST.md](./security/SECURITY_CHECKLIST.md) e il modello delle minacce in [security/THREAT_MODEL.md](./security/THREAT_MODEL.md). La query di sola lettura completa è `supabase/verification/verify_brain_complete_read_only.sql` e controlla anche il requisito AAL2.
+Il piano per marchio, copyright, segreti commerciali e anti-impersonificazione è in [IP_PROTECTION_PLAN.md](./IP_PROTECTION_PLAN.md). Le verifiche manuali residue sono elencate in [RELEASE_GATES.md](./RELEASE_GATES.md). Il piano aggiornato è in [VERIFICATION.md](./VERIFICATION.md), la checklist in [security/SECURITY_CHECKLIST.md](./security/SECURITY_CHECKLIST.md) e il modello delle minacce in [security/THREAT_MODEL.md](./security/THREAT_MODEL.md). La query di sola lettura completa è `supabase/verification/verify_brain_complete_read_only.sql` e controlla anche il requisito AAL2.
