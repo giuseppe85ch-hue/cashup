@@ -12,14 +12,14 @@ Questo piano è una checklist di collaudo. Non abilita agenti, non esegue automa
 
 ## Da verificare insieme in Supabase
 
-La query unica `supabase/verification/verify_brain_complete_read_only.sql` controlla agenti, impostazioni conservative, funzione privata, `search_path`, RLS e privilegi. È esclusivamente di lettura e non modifica il database.
+La query unica `supabase/verification/verify_brain_complete_read_only.sql` controlla agenti, impostazioni conservative, funzione privata, `search_path`, RLS e privilegi effettivi del ruolo `anon` sulle sette tabelle (inclusi eventuali privilegi ereditati da `PUBLIC`). È esclusivamente di lettura e non modifica il database.
 - [ ] Query unica di sola lettura: presenza degli otto agenti previsti.
 - [ ] Query di sola lettura: presenza delle cinque impostazioni iniziali e valori conservativi.
 - [ ] Confermare che `emergency_stop` sia true, `autonomy_enabled` sia false e la spesa automatizzata sia zero.
 - [ ] Confermare che nessun agente sia nello stato `active`.
 - [x] Migrazione 0003 eseguita una sola volta (19 novembre 2026).
 - [x] Verifica di sola lettura successiva alla migrazione: schema/funzione privata presenti, `SECURITY DEFINER` attivo, `anon` senza EXECUTE/USAGE, `authenticated` con EXECUTE/USAGE, vecchia funzione pubblica assente, 7 tabelle con RLS e FORCE RLS.
-- [ ] Confermare che nessun ruolo `anon` o `PUBLIC` abbia privilegi sulle tabelle BRAIN.
+- [ ] Confermare che `anon_effective_privilege_tables` sia `0`: il controllo usa i privilegi effettivi del ruolo `anon`, includendo anche quelli ereditati da `PUBLIC`.
 - [x] Confermati `SECURITY DEFINER`, permessi EXECUTE (solo `authenticated`) e assenza della funzione nello schema `public`. Il controllo specifico del valore `search_path` resta da verificare tramite il file SQL di verifica aggiornato.
 - [ ] Verificare policy RLS e accesso fondatore con test controllato.
 
