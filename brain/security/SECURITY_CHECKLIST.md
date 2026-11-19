@@ -25,13 +25,13 @@
 ## Browser e hosting
 - [ ] Solo HTTPS e HSTS sul dominio definitivo.
 - [x] JS/CSS estratti in file esterni; nessuno script o foglio di stile inline nella pagina.
-- [ ] Console non pubblicata: prima del deploy verificare che `dashboard/_headers` sia effettivamente applicato nella root di pubblicazione.
+- [ ] Console non pubblicata: prima del deploy verificare che `_headers` nella root del sito, con regole limitate a `/brain/dashboard/*` sia effettivamente applicato nella root di pubblicazione.
 - [x] WebAuthn/passkey predisposta nel client con opt-in sperimentale, accesso, registrazione e rimozione dopo AAL2.
 - [ ] Abilitare Passkeys in Supabase Auth e configurare RP ID/origins sul dominio HTTPS definitivo; test Android biometria/PIN ancora da fare.
 - [ ] Passkeys Supabase è sperimentale: mantenere TOTP AAL2 come requisito separato e metodo di recupero.
 - [x] Versione Supabase JS fissata a `2.119.1` tramite esm.sh con bundle; gli aggiornamenti devono essere deliberati e verificati.
 - [x] CSP preparata senza `unsafe-eval` e senza `unsafe-inline`; resta da verificarla sul dominio dopo il deploy.
-- [x] Header preparati: frame-ancestors 'none', nosniff, Referrer-Policy restrittiva; verifica HTTP reale ancora da fare.
+- [x] Header preparati nel file `_headers` alla root Pages e limitati al percorso `/brain/dashboard/*`: CSP, HSTS, anti-framing, nosniff, Referrer-Policy, Permissions-Policy, no-store e noindex; verifica HTTP reale ancora da fare.
 - [x] Permissions-Policy minima preparata; verifica HTTP reale ancora da fare.
 - [ ] Nessun dato sensibile in URL, console, analytics o errori.
 - [x] Privilegi `anon` rimossi dalle cinque tabelle applicative; `TRUNCATE`, `REFERENCES` e `TRIGGER` rimossi dai ruoli browser e dal ruolo service per queste tabelle.
