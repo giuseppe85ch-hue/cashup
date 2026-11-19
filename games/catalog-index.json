@@ -1,7 +1,7 @@
 {
   "project": "CASHUP",
-  "catalog_version": 4,
-  "total_concepts": 3000,
+  "catalog_version": 5,
+  "total_concepts": 8000,
   "files": [
     {
       "path": "games/catalog.json",
@@ -12,208 +12,353 @@
       "path": "games/catalog-2001-3000.json",
       "ids": "CU-2001–CU-3000",
       "count": 1000
+    },
+    {
+      "path": "games/catalog-3001-4000.json",
+      "ids": "CU-3001–CU-4000",
+      "count": 1000
+    },
+    {
+      "path": "games/catalog-4001-5000.json",
+      "ids": "CU-4001–CU-5000",
+      "count": 1000
+    },
+    {
+      "path": "games/catalog-5001-6000.json",
+      "ids": "CU-5001–CU-6000",
+      "count": 1000
+    },
+    {
+      "path": "games/catalog-6001-7000.json",
+      "ids": "CU-6001–CU-7000",
+      "count": 1000
+    },
+    {
+      "path": "games/catalog-7001-8000.json",
+      "ids": "CU-7001–CU-8000",
+      "count": 1000
     }
   ],
   "categories": [
     {
       "name": "Arcade classici",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Platform e salti",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Riflessi e precisione",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Azione e combattimento",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Ritmo e musica",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Logica e rompicapo",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Abbinamenti e tessere",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Parole e linguaggio",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Numeri e matematica",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Spazio e forme",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Corse automobilistiche",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Moto e due ruote",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Kart e corse arcade",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Rally e fuoristrada",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Garage e personalizzazione",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Calcio",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Basket e pallavolo",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Tennis e racchetta",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Sport estremi",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Altri sport",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Esplorazione",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Fantasy e magia",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Mistero e investigazione",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Fantascienza e spazio",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Sopravvivenza",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Tattica e pianificazione",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Regni e civiltà",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Difesa e torri",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Carte strategiche",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Gestione e risorse",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Città e costruzione",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Fattoria e animali",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Vita quotidiana",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Imprese e negozi",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Veicoli e professioni",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Match e combinazioni",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Giochi rilassanti",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Cucina e ristoranti",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Oggetti nascosti",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Idle e progressione",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Party e quiz",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Cooperazione online",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Competizioni online",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Squadre e leghe",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Social e community",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Fitness e movimento",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Missioni e sfide CASHUP",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Creatività e contenuti",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Eventi e stagioni",
-      "count": 60
+      "count": 100
     },
     {
       "name": "Esperienze social CASHUP",
-      "count": 60
+      "count": 100
+    },
+    {
+      "name": "Pesca e vita acquatica",
+      "count": 100
+    },
+    {
+      "name": "Vela e navigazione",
+      "count": 100
+    },
+    {
+      "name": "Aviazione e volo",
+      "count": 100
+    },
+    {
+      "name": "Treni e ferrovie",
+      "count": 100
+    },
+    {
+      "name": "Camion e trasporti",
+      "count": 100
+    },
+    {
+      "name": "Parkour e acrobazie",
+      "count": 100
+    },
+    {
+      "name": "Arti marziali",
+      "count": 100
+    },
+    {
+      "name": "Boxe e lotta",
+      "count": 100
+    },
+    {
+      "name": "Golf e biliardo",
+      "count": 100
+    },
+    {
+      "name": "Ciclismo e mountain bike",
+      "count": 100
+    },
+    {
+      "name": "Neve e sport invernali",
+      "count": 100
+    },
+    {
+      "name": "Mare e immersioni",
+      "count": 100
+    },
+    {
+      "name": "Dinosauri e preistoria",
+      "count": 100
+    },
+    {
+      "name": "Mitologia e leggende",
+      "count": 100
+    },
+    {
+      "name": "Storia e antiche civiltà",
+      "count": 100
+    },
+    {
+      "name": "Detective e crimini",
+      "count": 100
+    },
+    {
+      "name": "Escape room",
+      "count": 100
+    },
+    {
+      "name": "Collezionismo e oggetti",
+      "count": 100
+    },
+    {
+      "name": "Moda e stile",
+      "count": 100
+    },
+    {
+      "name": "Design e arredamento",
+      "count": 100
+    },
+    {
+      "name": "Bellezza e benessere",
+      "count": 100
+    },
+    {
+      "name": "Animali domestici",
+      "count": 100
+    },
+    {
+      "name": "Natura e giardinaggio",
+      "count": 100
+    },
+    {
+      "name": "Ecologia e sostenibilità",
+      "count": 100
+    },
+    {
+      "name": "Medicina e soccorso",
+      "count": 100
+    },
+    {
+      "name": "Programmazione e tecnologia",
+      "count": 100
+    },
+    {
+      "name": "Robotica e invenzioni",
+      "count": 100
+    },
+    {
+      "name": "Economia e commercio",
+      "count": 100
+    },
+    {
+      "name": "Turismo e viaggi",
+      "count": 100
+    },
+    {
+      "name": "Giochi per famiglie",
+      "count": 100
     }
   ],
   "category_groups": [
@@ -316,7 +461,187 @@
         "Eventi e stagioni",
         "Esperienze social CASHUP"
       ]
+    },
+    {
+      "name": "Pesca e vita acquatica",
+      "subcategories": [
+        "Pesca e vita acquatica"
+      ]
+    },
+    {
+      "name": "Vela e navigazione",
+      "subcategories": [
+        "Vela e navigazione"
+      ]
+    },
+    {
+      "name": "Aviazione e volo",
+      "subcategories": [
+        "Aviazione e volo"
+      ]
+    },
+    {
+      "name": "Treni e ferrovie",
+      "subcategories": [
+        "Treni e ferrovie"
+      ]
+    },
+    {
+      "name": "Camion e trasporti",
+      "subcategories": [
+        "Camion e trasporti"
+      ]
+    },
+    {
+      "name": "Parkour e acrobazie",
+      "subcategories": [
+        "Parkour e acrobazie"
+      ]
+    },
+    {
+      "name": "Arti marziali",
+      "subcategories": [
+        "Arti marziali"
+      ]
+    },
+    {
+      "name": "Boxe e lotta",
+      "subcategories": [
+        "Boxe e lotta"
+      ]
+    },
+    {
+      "name": "Golf e biliardo",
+      "subcategories": [
+        "Golf e biliardo"
+      ]
+    },
+    {
+      "name": "Ciclismo e mountain bike",
+      "subcategories": [
+        "Ciclismo e mountain bike"
+      ]
+    },
+    {
+      "name": "Neve e sport invernali",
+      "subcategories": [
+        "Neve e sport invernali"
+      ]
+    },
+    {
+      "name": "Mare e immersioni",
+      "subcategories": [
+        "Mare e immersioni"
+      ]
+    },
+    {
+      "name": "Dinosauri e preistoria",
+      "subcategories": [
+        "Dinosauri e preistoria"
+      ]
+    },
+    {
+      "name": "Mitologia e leggende",
+      "subcategories": [
+        "Mitologia e leggende"
+      ]
+    },
+    {
+      "name": "Storia e antiche civiltà",
+      "subcategories": [
+        "Storia e antiche civiltà"
+      ]
+    },
+    {
+      "name": "Detective e crimini",
+      "subcategories": [
+        "Detective e crimini"
+      ]
+    },
+    {
+      "name": "Escape room",
+      "subcategories": [
+        "Escape room"
+      ]
+    },
+    {
+      "name": "Collezionismo e oggetti",
+      "subcategories": [
+        "Collezionismo e oggetti"
+      ]
+    },
+    {
+      "name": "Moda e stile",
+      "subcategories": [
+        "Moda e stile"
+      ]
+    },
+    {
+      "name": "Design e arredamento",
+      "subcategories": [
+        "Design e arredamento"
+      ]
+    },
+    {
+      "name": "Bellezza e benessere",
+      "subcategories": [
+        "Bellezza e benessere"
+      ]
+    },
+    {
+      "name": "Animali domestici",
+      "subcategories": [
+        "Animali domestici"
+      ]
+    },
+    {
+      "name": "Natura e giardinaggio",
+      "subcategories": [
+        "Natura e giardinaggio"
+      ]
+    },
+    {
+      "name": "Ecologia e sostenibilità",
+      "subcategories": [
+        "Ecologia e sostenibilità"
+      ]
+    },
+    {
+      "name": "Medicina e soccorso",
+      "subcategories": [
+        "Medicina e soccorso"
+      ]
+    },
+    {
+      "name": "Programmazione e tecnologia",
+      "subcategories": [
+        "Programmazione e tecnologia"
+      ]
+    },
+    {
+      "name": "Robotica e invenzioni",
+      "subcategories": [
+        "Robotica e invenzioni"
+      ]
+    },
+    {
+      "name": "Economia e commercio",
+      "subcategories": [
+        "Economia e commercio"
+      ]
+    },
+    {
+      "name": "Turismo e viaggi",
+      "subcategories": [
+        "Turismo e viaggi"
+      ]
+    },
+    {
+      "name": "Giochi per famiglie",
+      "subcategories": [
+        "Giochi per famiglie"
+      ]
     }
   ],
-  "note": "3.000 concept organizzati in 50 categorie, 60 concept per categoria. Sono idee catalogate, non giochi già sviluppati o giocabili."
+  "note": "8.000 concept in 80 categorie, esattamente 100 per categoria. Sono idee catalogate, non giochi già sviluppati, giocabili o testati."
 }
