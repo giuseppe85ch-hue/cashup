@@ -18,3 +18,5 @@ button:disabled{opacity:.5;cursor:not-allowed}.actions{display:flex;gap:8px;flex
 .notice{border-left:3px solid var(--amber);padding:11px 13px;background:#251f12;color:#f6e3b7;border-radius:8px;font-size:13px;line-height:1.5}
 small{font-size:12px}.empty{color:var(--muted);font-size:13px;padding:12px 0}
 @media(min-width:700px){main{padding-top:30px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:14px}}
+
+.metric strong.small-value{font-size:17px}
