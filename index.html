@@ -65,6 +65,7 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 </div>
 <div class="actions"><button class="primary" id="step-start" type="button">Avvia contapassi</button><button class="secondary" id="step-pause" type="button" disabled>Pausa</button><button class="secondary" id="step-reset" type="button">Azzera oggi</button></div>
 <p id="step-status" class="auth-status" aria-live="polite">Premi “Avvia contapassi” e consenti l'accesso al sensore di movimento.</p>
+<p id="step-cloud-status" class="auth-status" aria-live="polite">Accedi a CASHUP per sincronizzare i passi con il tuo account.</p>
 <div class="section notice">Importante: questa prima versione usa il sensore del telefono mentre la pagina è aperta e attiva. Se chiudi CASHUP o blocchi lo schermo, il browser può interrompere il conteggio. Per il conteggio continuo in background e l'integrazione con Salute/Health Connect servirà una versione nativa e il consenso specifico. I punti mostrati sono dimostrativi: non sono denaro né premi riscattabili.</div>
 </section>
 <section id="rewards" class="page">
@@ -170,6 +171,65 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 const SUPABASE_URL = 'https://fzcricigqqpzcujrenkf.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_uy1xJ_55eYnmne1K8UrBQg_lV3LEyae';
 const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const stepCloudStatus = document.getElementById('step-cloud-status');
+const localDateKey = () => {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+};
+async function syncDailySteps(user) {
+  if (!user) {
+    stepCloudStatus.textContent = 'Passi salvati su questo dispositivo. Accedi per sincronizzarli online.';
+    return;
+  }
+  const date = localDateKey();
+  stepCloudStatus.textContent = 'Sincronizzazione dei passi con il tuo account…';
+  const { data, error } = await supabase.from('cashup_daily_steps')
+    .select('steps').eq('user_id', user.id).eq('step_date', date).maybeSingle();
+  if (error) {
+    stepCloudStatus.textContent = 'Sincronizzazione non disponibile: ' + (error.message || 'riprova più tardi.');
+    return;
+  }
+  const local = (() => {
+    try { const v=JSON.parse(localStorage.getItem('cashup_steps_v1')||'null'); return v?.day===date ? Math.max(0,Number(v.steps)||0) : 0; }
+    catch(e) { return 0; }
+  })();
+  const merged = Math.max(local, Number(data?.steps)||0);
+  if (merged > 0) {
+    window.dispatchEvent(new CustomEvent('cashup:steps-cloud-load',{detail:{day:date,steps:merged}}));
+    const { error: saveError } = await supabase.from('cashup_daily_steps').upsert(
+      { user_id:user.id, step_date:date, steps:merged, updated_at:new Date().toISOString() },
+      { onConflict:'user_id,step_date' }
+    );
+    if (saveError) {
+      stepCloudStatus.textContent = 'Passi caricati ma non salvati online: ' + saveError.message;
+      return;
+    }
+  }
+  stepCloudStatus.textContent = 'Passi sincronizzati con il tuo account per oggi.';
+}
+let stepSyncTimer = null;
+window.addEventListener('cashup:steps-changed', async (event) => {
+  if (stepSyncTimer) clearTimeout(stepSyncTimer);
+  stepSyncTimer = setTimeout(async () => {
+    const { data } = await supabase.auth.getSession();
+    const user = data?.session?.user;
+    if (!user) {
+      stepCloudStatus.textContent = 'Passi salvati su questo dispositivo. Accedi per sincronizzarli online.';
+      return;
+    }
+    const date = event.detail?.day;
+    const steps = Math.max(0, Math.min(200000, Number(event.detail?.steps)||0));
+    if (!date) return;
+    const { error } = await supabase.from('cashup_daily_steps').upsert(
+      { user_id:user.id, step_date:date, steps, updated_at:new Date().toISOString() },
+      { onConflict:'user_id,step_date' }
+    );
+    stepCloudStatus.textContent = error
+      ? 'Errore di sincronizzazione: ' + error.message
+      : 'Passi salvati nel tuo account CASHUP.';
+  }, 1200);
+});
+
 
 const statusEl = document.getElementById('auth-status');
 const emailEl = document.getElementById('auth-email');
@@ -331,6 +391,7 @@ async function refreshSession() {
   if (data.session?.user) {
     showStatus('Accesso effettuato con: ' + data.session.user.email);
     await loadCloudProfile(data.session.user);
+    await syncDailySteps(data.session.user);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
   }
@@ -391,7 +452,7 @@ document.getElementById('signout-btn').addEventListener('click', async () => {
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session?.user) {
     showStatus('Accesso effettuato con: ' + session.user.email);
-    setTimeout(() => loadCloudProfile(session.user), 0);
+    setTimeout(() => { loadCloudProfile(session.user); syncDailySteps(session.user); }, 0);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
   }
@@ -415,7 +476,10 @@ if ("serviceWorker" in navigator) {
  const startBtn=document.getElementById('step-start'), pauseBtn=document.getElementById('step-pause'), resetBtn=document.getElementById('step-reset');
  const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
  const KEY='cashup_steps_v1'; let day=today(),steps=0,running=false,lastStep=0,gravity=9.81,peak=false;
+ let lastCloudSent=0;
  function save(){try{localStorage.setItem(KEY,JSON.stringify({day,steps}));}catch(e){}}
+ function notifyCloud(force=false){const now=Date.now();if(!force&&steps%10!==0&&now-lastCloudSent<15000)return;lastCloudSent=now;window.dispatchEvent(new CustomEvent('cashup:steps-changed',{detail:{day,steps}}));}
+ window.addEventListener('cashup:steps-cloud-load',event=>{if(event.detail?.day===day){steps=Math.max(steps,Number(event.detail.steps)||0);save();render();}});
  function render(){countEl.textContent=steps.toLocaleString('it-IT');pointsEl.textContent=Math.min(100,Math.floor(steps/100))+' / 100';document.getElementById('step-date').textContent='Conteggio giornaliero · '+new Date().toLocaleDateString('it-IT');}
  function refreshDay(){if(today()!==day){day=today();steps=0;save();render();}}
  function onMotion(event){
@@ -423,7 +487,7 @@ if ("serviceWorker" in navigator) {
   if(linear){mag=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);}
   else{a=event.accelerationIncludingGravity;if(!a)return;const total=Math.sqrt((a.x||0)**2+(a.y||0)**2+(a.z||0)**2);gravity=gravity*.92+total*.08;mag=Math.abs(total-gravity);}
   const threshold=linear?1.15:1.25,now=Date.now();
-  if(mag>threshold&&!peak&&now-lastStep>300){peak=true;lastStep=now;steps++;save();render();}
+  if(mag>threshold&&!peak&&now-lastStep>300){peak=true;lastStep=now;steps++;save();render();notifyCloud();}
   if(mag<threshold*.55)peak=false;
  }
  async function start(){
@@ -436,7 +500,7 @@ if ("serviceWorker" in navigator) {
  }
  function pause(){running=false;window.removeEventListener('devicemotion',onMotion);startBtn.disabled=false;pauseBtn.disabled=true;statusEl.textContent='Conteggio in pausa. I passi di oggi sono stati salvati su questo dispositivo.';}
  startBtn.addEventListener('click',start);pauseBtn.addEventListener('click',pause);
- resetBtn.addEventListener('click',()=>{if(!confirm('Vuoi azzerare i passi di oggi su questo dispositivo?'))return;steps=0;day=today();save();render();statusEl.textContent='Contatore di oggi azzerato.';});
+ resetBtn.addEventListener('click',()=>{if(!confirm('Vuoi azzerare i passi di oggi su questo dispositivo?'))return;steps=0;day=today();save();render();notifyCloud(true);statusEl.textContent='Contatore di oggi azzerato.';});
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&running){pause();statusEl.textContent='Conteggio in pausa perché CASHUP è finito in secondo piano. Premi Avvia quando torni.';}});
  try{const saved=JSON.parse(localStorage.getItem(KEY)||'null');if(saved&&saved.day===day)steps=Math.max(0,Number(saved.steps)||0);}catch(e){}
  render();
