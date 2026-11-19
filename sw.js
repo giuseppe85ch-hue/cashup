@@ -1,9 +1,9 @@
-const CACHE_NAME = "cashup-v4";
+const CACHE_NAME = "cashup-v5";
 const OFFLINE_URL = "/";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll([OFFLINE_URL, "/globalization.js", "/games/"]))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll([OFFLINE_URL, "/globalization.js", "/games/", "/engagement.js"]))
   );
   self.skipWaiting();
 });
