@@ -17,6 +17,9 @@
 - [ ] Email di recupero protetta con MFA.
 - [ ] Sessioni e dispositivi non riconosciuti revocati.
 - [ ] Rate limits e protezione brute-force configurati nel provider.
+- [ ] CAPTCHA / protezione anti-bot attivata se supportata e adeguata al flusso di accesso.
+- [ ] URL del sito e redirect URL Supabase limitati ai soli domini CASHUP autorizzati.
+- [ ] Schema `private` escluso dagli schemi esposti nella Data API Supabase; esporre solo `public` se necessario.
 
 ## Browser e hosting
 - [ ] Solo HTTPS e HSTS sul dominio definitivo.
@@ -34,7 +37,8 @@
 - [ ] Nessuna service_role key o segreto in Git, HTML, JS, bundle o log.
 - [ ] Secret scanning attivo e storico repository controllato.
 - [ ] Dipendenze versionate e aggiornate; audit vulnerabilità prima di ogni release.
-- [ ] Branch protection su main, MFA GitHub e revisione obbligatoria.
+- [ ] Branch protection su main: blocco force-push/cancellazione, review obbligatoria e controlli CI prima del merge.
+- [ ] MFA GitHub, secret scanning e push protection attivi, se disponibili nel piano.
 - [ ] Workflow CI con permessi minimi e pin delle GitHub Actions a SHA.
 - [ ] Nessun deploy automatico dalla branch di lavoro.
 
