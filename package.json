@@ -21,5 +21,8 @@
     "@appeeky/expo-healthkit": "0.4.2",
     "react-native-webview": "~13.15.0",
     "expo-notifications": "~0.32.17"
+  },
+  "devDependencies": {
+    "babel-preset-expo": "~54.0.10"
   }
 }
