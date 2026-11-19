@@ -25,7 +25,7 @@
 - [ ] Rate limits e protezione brute-force da verificare nelle impostazioni Auth.
 - [ ] CAPTCHA / protezione anti-bot da valutare e configurare se supportata.
 - [ ] URL del sito e redirect URL Supabase limitati ai soli domini CASHUP autorizzati.
-- [!] Audit ha rilevato `private` tra gli schemi esposti: rimuoverlo in Project Settings → Data API → Exposed schemas e salvare. Disattivare Automatically expose new tables and functions.
+- [ ] Verificare in Project Settings → Data API → Exposed schemas che `private` sia escluso; la lista effettiva non è leggibile via SQL in questo progetto. Disattivare Automatically expose new tables and functions.
 
 ## Browser e hosting
 - [ ] Solo HTTPS e HSTS sul dominio definitivo.
