@@ -49,8 +49,10 @@ select json_build_object(
       'enabled', t.tgenabled
     ) order by t.tgrelid::regclass::text, t.tgname), '[]'::json)
     from pg_trigger t
+    join pg_class c on c.oid = t.tgrelid
+    join pg_namespace n on n.oid = c.relnamespace
     where not t.tgisinternal
-      and t.tgrelid::regclass::text like 'public.brain_%'
+      and n.nspname = 'public' and c.relname like 'brain_%'
   ),
   'brain_client_privileges', (
     select coalesce(json_agg(json_build_object(
