@@ -4,7 +4,7 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Completato e verificato
 - [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- [x] Migrazioni di hardening 0004–0011 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
+- [x] Migrazioni di hardening 0004–0012 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
 - [!] Le migrazioni iniziali 0001–0003 risultano applicate manualmente in precedenza (tabelle e funzione esistono), ma non compaiono nella cronologia remota restituita da Supabase. Prima di usare `db push`, `db reset`, creare branch DB o ricostruire il progetto, occorre riallineare il baseline senza rieseguire queste DDL sul database attivo.
 - [x] 7 tabelle BRAIN presenti, tutte con RLS e FORCE RLS.
 - [x] 9 policy BRAIN: SELECT e INSERT controllato su task, nessun INSERT client su audit.
@@ -32,6 +32,9 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Trigger audit task e approvazioni SECURITY DEFINER in schema private, search_path vuoto, proprietario postgres, EXECUTE negato ai ruoli client; il client non può più falsificare direttamente eventi audit.
 - [x] Migrazione 0011 applicata: `brain_create_task` SECURITY INVOKER; grants INSERT solo su title/description/priority; status/sector/created_by non modificabili dal client; vincoli DB su titolo e descrizione; policy INSERT richiede fondatore+AAL2 e valori server-side.
 - [x] Test AAL2 con ROLLBACK dopo 0011: RPC task e audit automatico riusciti; status/sector/created_by non scrivibili; AAL1 e non-fondatore AAL2 respinti; nessun dato test rimasto.
+- [x] Migrazione 0012 applicata: browser senza INSERT su `daily_steps` e nessuna policy INSERT; `profiles` consente INSERT solo su id/display_name e UPDATE solo su display_name; id/created_at non modificabili.
+- [x] Test transazionale profilo: upsert id/display_name riuscito con grants ristretti e ROLLBACK; nessun dato test conservato.
+- [x] `points_ledger`, `affiliate_clicks`, `commissions` restano read-only per authenticated; il client non può creare punti, clic o commissioni.
 - [!] Repository GitHub pubblico: sorgente e documentazione BRAIN sono visibili. Ricerca puntuale sul branch predefinito `main` senza risultati per `SUPABASE_SERVICE_ROLE_KEY`, `sb_secret_` e `BEGIN PRIVATE KEY`; non equivale a scansione completa dello storico o del branch di lavoro. Secret scanning GitHub non verificato.
 - [x] Funzione privata `private.brain_is_founder()`: SECURITY DEFINER, `search_path` vuoto, EXECUTE negato ad anon e consentito ad authenticated; schema private senza USAGE ad anon.
 - [x] Nessuna tabella applicativa iscritta alla publication `supabase_realtime`.
