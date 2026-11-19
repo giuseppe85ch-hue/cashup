@@ -20,7 +20,8 @@ La migrazione 0004 `supabase/migrations/0004_least_privilege_hardening.sql` è s
 - [x] Migrazione 0003 eseguita una sola volta (19 novembre 2026).
 - [x] Verifica di sola lettura successiva alla migrazione: schema/funzione privata presenti, `SECURITY DEFINER` attivo, `anon` senza EXECUTE/USAGE, `authenticated` con EXECUTE/USAGE, vecchia funzione pubblica assente, 7 tabelle con RLS e FORCE RLS.
 - [ ] Confermare che `anon_effective_privilege_tables` sia `0`: il controllo usa i privilegi effettivi del ruolo `anon`, includendo anche quelli ereditati da `PUBLIC`.
-- [ ] Confermare che tutti i privilegi di scrittura di `authenticated` su `brain_founders` siano `false`.
+- [ ] Confermare che `founder_authenticated_required_select` sia `true` e tutti i privilegi di scrittura di `authenticated` su `brain_founders` siano `false`.
+- [ ] Confermare che `core_authenticated_full_crud_tables` sia `5`; RLS deve comunque limitare questi privilegi al fondatore autorizzato.
 - [ ] Confermare che UPDATE/DELETE/TRUNCATE su `brain_audit_log` siano `false` e SELECT/INSERT siano `true`.
 - [x] Confermati `SECURITY DEFINER`, permessi EXECUTE (solo `authenticated`) e assenza della funzione nello schema `public`. Il controllo specifico del valore `search_path` resta da verificare tramite il file SQL di verifica aggiornato.
 - [ ] Verificare policy RLS e accesso fondatore con test controllato.
