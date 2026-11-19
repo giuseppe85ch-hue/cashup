@@ -145,8 +145,9 @@ $('approvalsList').addEventListener('click',async event=>{
  const id=button.dataset.approval,decision=button.dataset.decision;
  if(!confirm((decision==='approved'?'Approvare':'Rifiutare')+' questa richiesta? La decisione non esegue l’azione.'))return;
  button.disabled=true;
- const {error}=await supabase.from('brain_approvals').update({status:decision,decided_by:currentUser.id,decided_at:new Date().toISOString()}).eq('id',id).eq('status','pending');
+ const {data:updatedApproval,error}=await supabase.from('brain_approvals').update({status:decision,decided_by:currentUser.id,decided_at:new Date().toISOString()}).eq('id',id).eq('status','pending').select('id').maybeSingle();
  if(error){button.disabled=false;setStatus('appStatus','Decisione non salvata: '+error.message,true);return}
+ if(!updatedApproval){button.disabled=false;setStatus('appStatus','Nessuna modifica: la richiesta potrebbe essere già stata gestita o non essere più disponibile. Aggiorno l’elenco.',true);await loadDashboard();return}
  const logged=await audit('approval_'+decision,'brain_approval',id,{decision});
  if(!logged)setStatus('appStatus','Decisione salvata, ma ATTENZIONE: registrazione audit non riuscita.',true);
  await loadDashboard();
