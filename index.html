@@ -507,23 +507,25 @@ if ("serviceWorker" in navigator) {
     candidateTimes=[now];
    } else {
     const interval=now-candidateTimes[candidateTimes.length-1];
-    if(interval>=250&&interval<=1500){
+    // Una camminata normale richiede una cadenza plausibile: scarta impulsi troppo rapidi.
+    if(interval>=350&&interval<=1100){
      const previous=candidateTimes.length>1?candidateTimes[candidateTimes.length-1]-candidateTimes[candidateTimes.length-2]:0;
-     const stable=!previous||Math.abs(interval-previous)<=Math.max(300,previous*.60);
+     const stable=!previous||Math.abs(interval-previous)<=Math.max(140,previous*.25);
      if(stable){
       candidateTimes.push(now);
-      if(candidateTimes.length>=2){
-       // Due picchi a ritmo di camminata confermano l'avvio; poi si conta ogni nuovo passo valido.
-       steps += candidateTimes.length===2 ? 2 : 1;
-       save();render();notifyCloud();
+      if(candidateTimes.length>=4){
+       // Conta solo dopo quattro movimenti consecutivi e regolari, non dopo un singolo gesto.
+       if(candidateTimes.length===4||candidateTimes.length>4){
+        steps+=1;save();render();notifyCloud();
+       }
+       if(candidateTimes.length>4)candidateTimes.shift();
       }
-      if(candidateTimes.length>5)candidateTimes.shift();
      } else candidateTimes=[now];
     } else candidateTimes=[now];
    }
   }
-  if(mag<threshold*.50)peak=false;
-  if(candidateTimes.length&&now-candidateTimes[candidateTimes.length-1]>1600)candidateTimes=[];
+  if(mag<threshold*.40)peak=false;
+  if(candidateTimes.length&&now-candidateTimes[candidateTimes.length-1]>1300)candidateTimes=[];
   if(sensorEvents%12===0){
    statusEl.textContent='Sensore attivo · segnale '+lastMagnitude.toFixed(2)+' · passi '+steps+'. Cammina con il telefono in tasca o in mano.';
   }
