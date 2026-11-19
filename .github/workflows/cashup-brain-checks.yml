@@ -1,0 +1,107 @@
+name: CASHUP BRAIN static security checks
+
+on:
+  push:
+    branches:
+      - cashup-brain-setup
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cashup-brain-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-checks:
+    name: Static checks (no secrets, no deploy)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Check JavaScript syntax
+        run: |
+          node --input-type=module --check < app.js
+          node --check sw.js
+          node --input-type=module --check < brain/dashboard/app.js
+
+      - name: Validate web manifest
+        run: node -e "JSON.parse(require('node:fs').readFileSync('manifest.webmanifest', 'utf8'))"
+
+      - name: Reject server secrets in browser code
+        shell: bash
+        run: |
+          if grep -nE 'SUPABASE_SERVICE_ROLE_KEY|sb_secret_|service_role|BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|postgres(ql)?://[^[:space:]]+' index.html app.js styles.css sw.js brain/dashboard/index.html brain/dashboard/app.js; then
+            echo 'Server-side secret or privileged role reference found in browser code.'
+            exit 1
+          fi
+
+      - name: Reject inline scripts and event handlers in dashboard
+        shell: bash
+        run: |
+          if grep -nE '<script([[:space:]>])' brain/dashboard/index.html | grep -v 'src='; then
+            echo 'Inline script found in dashboard HTML.'
+            exit 1
+          fi
+          if grep -niE '[[:space:]]on[a-z]+[[:space:]]*=' brain/dashboard/index.html; then
+            echo 'Inline event handler found in dashboard HTML.'
+            exit 1
+          fi
+
+      - name: Reject inline scripts, styles and event handlers in CASHUP app
+        shell: bash
+        run: |
+          if grep -nE '<script([[:space:]>])' index.html | grep -v 'src="/app.js"'; then
+            echo 'Inline script found in CASHUP HTML.'
+            exit 1
+          fi
+          if grep -niE 'style=|[[:space:]]on[a-z]+[[:space:]]*=' index.html; then
+            echo 'Inline style or event handler found in CASHUP HTML.'
+            exit 1
+          fi
+          grep -qF 'https://esm.sh/@supabase/supabase-js@2.119.1?bundle' app.js
+          grep -q "style-src 'self'" _headers
+          grep -q "script-src 'self' https://esm.sh" _headers
+
+      - name: Verify security-critical RPC posture
+        shell: bash
+        run: |
+          grep -q 'security invoker' brain/supabase/migrations/0008_atomic_mutations_audit_integrity.sql
+          grep -q 'actor_user_id = (select auth.uid())' brain/supabase/migrations/0008_atomic_mutations_audit_integrity.sql
+          grep -q 'security invoker' brain/supabase/migrations/0009_minimal_grants_audit_triggers.sql
+          grep -q 'brain_audit_approval_status_change' brain/supabase/migrations/0009_minimal_grants_audit_triggers.sql
+          grep -q 'grant update (status)' brain/supabase/migrations/0009_minimal_grants_audit_triggers.sql
+          grep -q 'brain_decide_approval' brain/dashboard/app.js
+          grep -q 'brain_create_task' brain/dashboard/app.js
+          grep -q 'security definer' brain/supabase/migrations/0010_close_direct_write_and_audit_forgery.sql
+          grep -q 'revoke insert on table public.brain_audit_log' brain/supabase/migrations/0010_close_direct_write_and_audit_forgery.sql
+          grep -q 'revoke insert on table public.brain_tasks' brain/supabase/migrations/0010_close_direct_write_and_audit_forgery.sql
+          grep -q 'security invoker' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql
+          grep -q 'grant insert (title, description, priority)' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql
+          grep -q 'brain_tasks_founder_insert' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql
+          grep -q 'revoke insert on table public.daily_steps' brain/supabase/migrations/0012_cashup_profile_and_step_write_lockdown.sql
+          grep -q 'grant update (display_name)' brain/supabase/migrations/0012_cashup_profile_and_step_write_lockdown.sql
+          grep -q "'anti_piracy'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
+          grep -q "'founder_assistant'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
+          grep -q "'planned'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
+          test -f brain/supabase/migrations/0014_agent_specifications_catalog_550.sql
+          grep -q 'max_spend_eur=0' brain/supabase/migrations/0014_agent_specifications_catalog_550.sql
+          test -f brain/supabase/migrations/0015_agent_catalog_metadata_and_default_deny.sql
+          grep -q 'brain_agent_specs_deny_all' brain/supabase/migrations/0015_agent_catalog_metadata_and_default_deny.sql
+          grep -q '550 ruoli specialistici' brain/AGENT_CATALOG.md
+          grep -q '0 agenti sono attivi' brain/AGENT_RUNTIME_ARCHITECTURE.md
+          grep -q '10 policy BRAIN complessive' brain/VERIFICATION.md
+          if grep -q 'security definer' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql; then
+            echo 'Public task RPC must remain SECURITY INVOKER.'
+            exit 1
+          fi
+          if grep -nE "brain_audit_log['\"].insert|\.from\(['\"]brain_audit_log['\"]\)\.insert" brain/dashboard/app.js; then
+            echo 'Client-side audit write is forbidden.'
+            exit 1
+          fi

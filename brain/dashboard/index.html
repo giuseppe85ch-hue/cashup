@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#08110c">
+<title>CASHUP BRAIN — Console fondatore</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header><div><div class="logo">CASH<span>UP</span> BRAIN</div><small>Console privata del fondatore · fase iniziale</small></div><button id="signout" class="secondary hidden">Esci</button></header>
+<main>
+<section id="login" class="panel">
+<h1>Accesso fondatore</h1><p class="muted">Accedi con lo stesso account email usato su CASHUP. L'accesso ai dati è comunque verificato da Supabase RLS.</p>
+<label for="email">Email</label><input id="email" type="email" autocomplete="username" placeholder="La tua email">
+<label for="password">Password</label><input id="password" type="password" autocomplete="current-password" placeholder="La tua password">
+<div class="actions"><button id="loginBtn">Accedi con email</button><button id="passkeyLogin" class="secondary">Accedi con passkey / impronta / volto</button></div>
+<p id="loginStatus" class="status" aria-live="polite">Puoi usare email e password oppure una passkey già registrata. Il dispositivo può chiedere impronta, volto o PIN.</p>
+</section>
+<section id="mfa" class="panel hidden">
+<h1>Verifica in due passaggi</h1>
+<p class="muted">Per proteggere la console fondatore, serve un codice temporaneo dalla tua app autenticatrice.</p>
+<div id="mfaEnroll" class="hidden">
+<p>1. Apri un'app autenticatrice (ad esempio Google Authenticator o 1Password) e scansiona questo QR.</p>
+<img id="mfaQr" alt="QR per configurare la verifica in due passaggi">
+<p class="muted">Se non puoi scansionare il QR, inserisci manualmente questa chiave nell'app autenticatrice:</p>
+<code id="mfaSecret"></code>
+</div>
+<div id="mfaChallenge" class="hidden">
+<p>Apri la tua app autenticatrice e usa il codice CASHUP BRAIN già registrato.</p>
+</div>
+<label for="mfaCode">Codice di verifica a 6 cifre</label>
+<input id="mfaCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
+<div class="actions"><button id="mfaVerify">Verifica e continua</button></div>
+<p id="mfaStatus" class="status" aria-live="polite">Completa la verifica per accedere.</p>
+</section>
+<section id="app" class="hidden">
+<div class="row"><div><h1>Centro di controllo</h1><p id="welcome" class="muted">Verifica dell'account…</p></div><span class="pill">ACCESSO FONDATORE</span></div>
+<div class="notice">Modalità iniziale: questa console gestisce attività e consultazione. Gli agenti non eseguono operazioni autonome. Pagamenti, contratti, accessi sensibili e azioni irreversibili richiederanno sempre approvazione umana.</div>
+<div class="panel"><h2>Panoramica</h2><div class="grid">
+<div class="metric">Attività aperte<strong id="tasksOpen">—</strong></div>
+<div class="metric">Agenti registrati<strong id="agentsCount">—</strong></div>
+<div class="metric">Approvazioni in attesa<strong id="approvalsCount">—</strong></div>
+<div class="metric">Voci registro<strong id="auditCount">—</strong></div>
+</div></div>
+<section class="panel"><h2>Accesso biometrico e passkey</h2><p class="muted">La passkey usa la sicurezza integrata del telefono o del gestore credenziali. CASHUP non riceve né memorizza impronte o immagini del volto.</p><div class="actions"><button id="registerPasskey">Registra passkey su questo dispositivo</button></div><p id="passkeyStatus" class="status" aria-live="polite">Per usare questa funzione, le passkey devono essere abilitate nelle impostazioni Auth di Supabase per il dominio definitivo.</p><div id="passkeyList" class="empty">Nessuna passkey caricata.</div></section><section class="panel"><h2>Protezione e autonomia</h2><p class="muted">Impostazioni consultabili: questa schermata non permette di attivare autonomia o spese.</p><div id="safetySettings" class="grid"><div class="empty">Lettura impostazioni…</div></div></section>
+<div class="columns">
+<section class="panel"><h2>Nuova attività</h2>
+<label for="taskTitle">Titolo</label><input id="taskTitle" maxlength="120" placeholder="Es. Verificare integrazione login">
+<label for="taskDesc">Descrizione</label><textarea id="taskDesc" maxlength="1000" placeholder="Descrivi il risultato desiderato"></textarea>
+<label for="taskPriority">Priorità</label><select id="taskPriority"><option value="normal">Normale</option><option value="low">Bassa</option><option value="high">Alta</option><option value="urgent">Urgente</option></select>
+<div class="actions"><button id="addTask">Crea attività</button></div><p id="taskStatus" class="muted" aria-live="polite"></p>
+</section>
+<section class="panel"><h2>Agenti AI</h2><p class="muted">Catalogo e stato degli agenti. Nessun agente viene avviato da questa console.</p><div id="agentsList" class="empty">Caricamento…</div></section>
+</div>
+<div class="columns">
+<section class="panel"><h2>Attività recenti</h2><div id="tasksList" class="empty">Caricamento…</div></section>
+<section class="panel"><h2>Approvazioni</h2><p class="muted">Le decisioni registrano l'esito ma non eseguono automaticamente l'azione richiesta.</p><div id="approvalsList" class="empty">Caricamento…</div></section>
+</div>
+<section class="panel"><h2>Registro attività</h2><div id="auditList" class="empty">Caricamento…</div></section>
+<p id="appStatus" class="status" aria-live="polite">Caricamento dati…</p>
+</section>
+</main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
