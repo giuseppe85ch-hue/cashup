@@ -1,0 +1,60 @@
+{
+  "project": "CASHUP",
+  "catalog_version": 3,
+  "total_concepts": 3000,
+  "files": [
+    {
+      "path": "games/catalog.json",
+      "ids": "CU-0001–CU-2000",
+      "count": 2000
+    },
+    {
+      "path": "games/catalog-2001-3000.json",
+      "ids": "CU-2001–CU-3000",
+      "count": 1000
+    }
+  ],
+  "categories": [
+    {
+      "name": "Arcade e abilità",
+      "count": 300
+    },
+    {
+      "name": "Puzzle e logica",
+      "count": 300
+    },
+    {
+      "name": "Corse e motori",
+      "count": 300
+    },
+    {
+      "name": "Sport",
+      "count": 300
+    },
+    {
+      "name": "Avventura",
+      "count": 300
+    },
+    {
+      "name": "Strategia",
+      "count": 300
+    },
+    {
+      "name": "Simulazione",
+      "count": 300
+    },
+    {
+      "name": "Casual",
+      "count": 300
+    },
+    {
+      "name": "Multiplayer",
+      "count": 300
+    },
+    {
+      "name": "Originali CASHUP",
+      "count": 300
+    }
+  ],
+  "note": "Totale aggregato dei due file. Sono concept pianificati, non giochi già giocabili."
+}
