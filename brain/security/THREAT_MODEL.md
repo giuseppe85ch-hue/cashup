@@ -35,6 +35,8 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 ## Architettura di sicurezza attuale
 
 - Il browser usa solo la chiave Supabase publishable, che non è un segreto; la protezione dei dati dipende da RLS.
+- HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
+- È stato aggiunto `dashboard/_headers` con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy. Gli header saranno effettivi solo se `brain/dashboard` è la directory radice di pubblicazione Cloudflare o se vengono replicati nella configurazione dell'hosting definitivo.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto; deve restare non esposta tramite gli schemi API.
 - Le tabelle BRAIN devono avere RLS e FORCE RLS attivi.
 - `brain_founders` non deve consentire inserimenti o modifiche dal client.
