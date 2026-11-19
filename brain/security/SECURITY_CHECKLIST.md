@@ -3,7 +3,7 @@
 ## Database
 - [x] Migrazioni BRAIN 0001–0009 e hardening CASHUP applicati il 19 novembre 2026.
 - [x] RLS e FORCE RLS attivi su tutte le 12 tabelle pubbliche (7 BRAIN + 5 CASHUP).
-- [x] Nessun privilegio effettivo di anon o service_role sulle tabelle BRAIN; verificato anche TRUNCATE.
+- [x] Nessun privilegio effettivo di anon o service_role su tutte le 12 tabelle public; verificato anche TRUNCATE.
 - [x] `brain_founders`: authenticated può solo SELECT; nessun INSERT/UPDATE/DELETE/TRUNCATE.
 - [x] `brain_audit_log`: authenticated può solo SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; policy INSERT vincola actor_user_id=auth.uid(), actor_type=founder e outcome=recorded.
 - [x] Altre tabelle BRAIN: accesso RLS consentito solo al fondatore tramite funzione privata.
