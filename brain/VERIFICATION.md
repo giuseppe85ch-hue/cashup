@@ -1,44 +1,41 @@
-# CASHUP BRAIN — piano di verifica con il fondatore
+# CASHUP BRAIN — stato di verifica aggiornato
 
-Questo piano è una checklist di collaudo. Non abilita agenti, non esegue automazioni e non modifica il database.
+Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
-## Già riportato dall'utente
-- [x] Migrazione iniziale 0001 eseguita in Supabase con esito Success.
-- [x] Sette tabelle `brain_*` viste in Supabase.
-- [x] Account fondatore inserito in `brain_founders`.
-- [x] Migrazione catalogo 0002 eseguita in Supabase con esito Success.
-- [x] Migrazione 0003 eseguita: funzione fondatore spostata nello schema `private` e policy aggiornate.
-- [x] Il branch di lavoro resta separato da `main`.
+## Completato e verificato
+- [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
+- [x] Migrazioni 0004 e 0005 applicate tramite connessione Supabase.
+- [x] 7 tabelle BRAIN presenti, tutte con RLS e FORCE RLS.
+- [x] 8 policy BRAIN previste e nessuna policy aggiuntiva.
+- [x] 8 agenti registrati, nessuno attivo.
+- [x] 5 impostazioni conservative presenti: autonomia false, emergency stop true, spesa automatizzata 0, approvazione finanziaria true, approvazione alto rischio true.
+- [x] Funzione privata SECURITY DEFINER con search_path vuoto; EXECUTE negato ad anon e consentito ad authenticated; funzione pubblica precedente assente.
+- [x] Schema private: USAGE negato ad anon e consentito ad authenticated.
+- [x] Grants BRAIN: zero privilegi diretti per anon e service_role; founder table sola lettura per authenticated; audit solo SELECT/INSERT.
+- [x] Default privileges del ruolo postgres in public revocati per nuovi oggetti tabella, sequenza e funzione; EXECUTE su nuove funzioni create da postgres revocato anche a PUBLIC.
+- [x] Test RLS con identità fondatore: funzione true e visibili gli 8 agenti/5 impostazioni.
+- [x] Test RLS con identità non fondatore: funzione false e zero righe visibili su agenti, impostazioni e audit.
+- [x] Policy utente ottimizzate con `(select auth.uid())`; indici aggiunti sulle 9 chiavi esterne segnalate.
+- [x] Security Advisor dopo le modifiche: resta un avviso Auth per Leaked Password Protection disattivata.
+- [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
 
-## Da verificare insieme in Supabase
+## Da completare fuori dal database
+- [ ] Abilitare Leaked Password Protection nelle impostazioni Supabase Auth.
+- [ ] Configurare e testare MFA per l'account fondatore.
+- [ ] Verificare redirect URL, rate limits, CAPTCHA e schemi esposti nella Data API; mantenere `private` non esposto.
+- [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch.
+- [ ] Verificare backup/retention e fare un test di ripristino.
+- [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `dashboard/_headers`.
+- [ ] Test end-to-end nel browser con login reale e verifica della console.
+- [ ] Testare header CSP/HSTS/anti-framing sul dominio effettivo.
+- [ ] Eseguire una revisione indipendente prima di qualsiasi attivazione di agenti o automazioni.
 
-La migrazione 0004 `supabase/migrations/0004_least_privilege_hardening.sql` è stata preparata ma non eseguita. Dopo aver verificato il progetto corretto, applicarla e poi eseguire la query unica `supabase/verification/verify_brain_complete_read_only.sql`, che controlla agenti, impostazioni conservative, funzione privata, `search_path`, RLS, privilegi effettivi di `anon`, privilegi vietati su `brain_founders` e append-only dell'audit. È esclusivamente di lettura e non modifica il database.
-- [ ] Query unica di sola lettura: presenza degli otto agenti previsti.
-- [ ] Query di sola lettura: presenza delle cinque impostazioni iniziali e valori conservativi.
-- [ ] Confermare che `emergency_stop` sia true, `autonomy_enabled` sia false e la spesa automatizzata sia zero.
-- [ ] Confermare che nessun agente sia nello stato `active`.
-- [x] Migrazione 0003 eseguita una sola volta (19 novembre 2026).
-- [x] Verifica di sola lettura successiva alla migrazione: schema/funzione privata presenti, `SECURITY DEFINER` attivo, `anon` senza EXECUTE/USAGE, `authenticated` con EXECUTE/USAGE, vecchia funzione pubblica assente, 7 tabelle con RLS e FORCE RLS.
-- [ ] Confermare che `anon_effective_privilege_tables` sia `0`: il controllo usa i privilegi effettivi del ruolo `anon`, includendo anche quelli ereditati da `PUBLIC`.
-- [ ] Confermare che `founder_authenticated_required_select` sia `true` e tutti i privilegi di scrittura di `authenticated` su `brain_founders` siano `false`.
-- [ ] Confermare che `core_authenticated_full_crud_tables` sia `5`; RLS deve comunque limitare questi privilegi al fondatore autorizzato.
-- [ ] Confermare che UPDATE/DELETE/TRUNCATE su `brain_audit_log` siano `false` e SELECT/INSERT siano `true`.
-- [x] Confermati `SECURITY DEFINER`, permessi EXECUTE (solo `authenticated`) e assenza della funzione nello schema `public`. Il controllo specifico del valore `search_path` resta da verificare tramite il file SQL di verifica aggiornato.
-- [ ] Verificare policy RLS e accesso fondatore con test controllato.
+## Vincoli attivi
+- Nessun merge in `main` e nessun deploy Cloudflare eseguito.
+- Console BRAIN non pubblicata.
+- Nessun agente attivo e nessuna automazione.
+- `autonomy_enabled=false`, `emergency_stop=true`, `max_automated_spend_eur=0`.
+- Pagamenti, contratti, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
-## Da verificare insieme nella console, solo dopo i controlli database
-- [ ] Login con account fondatore.
-- [ ] Caricamento dei contatori, delle schede agente e delle impostazioni di sicurezza in sola lettura.
-- [ ] Creazione di una attività di prova e presenza nel registro.
-- [ ] Verificare che un account non autorizzato non possa leggere o modificare i dati BRAIN.
-- [ ] Verificare che approvare/rifiutare una richiesta registri solo una decisione e non esegua azioni esterne.
-
-## Vincoli fino al completamento dei test
-- Nessun merge in `main`, nessun deploy Cloudflare e nessuna pubblicazione della console.
-- Nessuna attivazione degli agenti o delle automazioni.
-- Nessun pagamento, trasferimento, contratto o comunicazione esterna automatica.
-- Non chiedere password, token o chiavi segrete in chat.
-- Per test con account non autorizzato usare un account di prova controllato; non modificare o disattivare l'account principale.
-
-## Limite operativo attuale
-Non è disponibile in questa sessione una connessione diretta al database Supabase. Il fondatore ha fornito l'output di una query di sola lettura eseguita il 19 novembre 2026: i controlli principali della migrazione 0003 sono positivi e tutte le sette tabelle risultano protette da RLS e FORCE RLS. Il valore effettivo di `search_path`, i dati di catalogo/impostazioni e i test end-to-end della console restano da confermare.
+## Nota
+Questi test dimostrano i controlli esaminati nel database, non una sicurezza assoluta né una certificazione di sicurezza. Le impostazioni Auth, GitHub, Cloudflare, backup e il test end-to-end restano separati e non vanno dichiarati completati finché non sono verificati con evidenza.
