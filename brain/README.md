@@ -47,7 +47,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - MFA TOTP del fondatore: il flusso è pronto, ma il fondatore deve registrare il proprio autenticatore e verificare il codice.
 - Leaked Password Protection non risulta attiva; l'organizzazione è sul piano Free e non è stato richiesto alcun upgrade. Mantenere una password lunga, unica e custodita in un password manager.
 - Verificare redirect URL, rate limits, CAPTCHA e verificare nella Dashboard che `private` NON sia tra gli schemi esposti dalla Data API; il catalogo SQL non permette di confermare la lista effettiva.
-- Verificare MFA/secret scanning/push protection e branch protection in GitHub. È stato aggiunto un workflow statico a permessi minimi; run #88 è in attesa sul commit corrente dopo l'aggiunta del catalogo agenti e dei gate anti-pirateria; run #73 era un controllo precedente e non copre queste ultime modifiche.
+- Verificare MFA/secret scanning/push protection e branch protection in GitHub. Il workflow statico a permessi minimi ha completato con SUCCESS il run #92 sul commit `d6e1e31c09681371681bb5b105a4c68e51b002dc` (19 novembre 2026). Il controllo copre sintassi JS, manifest, assenza di segreti server nel codice browser, assenza di script/eventi inline e postura delle RPC critiche; non sostituisce secret scanning completo, test runtime o revisione indipendente.
 - Il piano Free non include backup automatici: esportare manualmente database e dati Auth e conservare copie cifrate fuori dal progetto; provare il ripristino in ambiente separato prima del rilascio.
 - Pubblicare la console su hosting privato/protetto e verificare gli header HTTP reali.
 - Eseguire il test end-to-end della dashboard e una revisione indipendente.
