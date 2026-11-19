@@ -2,14 +2,15 @@
 
 ## Database
 - [x] Migrazioni BRAIN 0001–0006 e hardening CASHUP 0007 applicati il 19 novembre 2026.
-- [x] RLS e FORCE RLS attivi su tutte le 7 tabelle BRAIN.
+- [x] RLS e FORCE RLS attivi su tutte le 12 tabelle pubbliche (7 BRAIN + 5 CASHUP).
 - [x] Nessun privilegio effettivo di anon o service_role sulle tabelle BRAIN; verificato anche TRUNCATE.
 - [x] `brain_founders`: authenticated può solo SELECT; nessun INSERT/UPDATE/DELETE/TRUNCATE.
 - [x] `brain_audit_log`: authenticated può solo SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE.
 - [x] Altre tabelle BRAIN: accesso RLS consentito solo al fondatore tramite funzione privata.
 - [x] Funzione privata: SECURITY DEFINER, search_path vuoto, EXECUTE solo authenticated; anon senza USAGE su private; la funzione richiede anche claim JWT AAL2.
 - [x] Test negativo simulato con ruolo authenticated non fondatore: nessuna riga BRAIN visibile.
-- [x] Esattamente 8 policy BRAIN previste; nessuna policy aggiuntiva. Default privileges postgres in public revocati.
+- [x] Esattamente 8 policy BRAIN previste; nessuna policy aggiuntiva. Default privileges del ruolo postgres in public revocati.
+- [x] Verificato che non esistono oggetti pubblici posseduti da `supabase_admin`; i suoi default privileges interni non sono modificabili dal progetto e non vanno confusi con i default del ruolo `postgres`.
 
 ## Identità e account
 - [ ] MFA TOTP da attivare e testare per il fondatore: il database al 19 novembre 2026 mostra 0 fattori registrati.
