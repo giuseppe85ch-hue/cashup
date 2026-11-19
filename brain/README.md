@@ -18,7 +18,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - `dashboard/index.html`, `dashboard/styles.css`, `dashboard/app.js`: console web iniziale per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni, audit e impostazioni.
 - Il client usa solo la chiave Supabase publishable; nessuna service_role key o password è inserita nel codice.
 - La versione Supabase JS è fissata a `2.119.1` tramite esm.sh bundle; aggiornamenti deliberati e verificati.
-- `dashboard/_headers` prepara CSP, HSTS, anti-framing, nosniff, referrer e permissions policy. Gli header sono effettivi solo se il file viene servito dalla root di pubblicazione o replicato nella configurazione hosting.
+- La dashboard richiede una sessione MFA AAL2 prima di mostrare dati BRAIN e include un flusso TOTP per registrazione/verifica del fattore. Il fondatore non ha ancora fattori MFA registrati: il flusso deve essere completato e collaudato nel browser.\n- `dashboard/_headers` prepara CSP, HSTS, anti-framing, nosniff, referrer e permissions policy. Gli header sono effettivi solo se il file viene servito dalla root di pubblicazione o replicato nella configurazione hosting.
 - La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser.
 
 ## Sicurezza e limiti
