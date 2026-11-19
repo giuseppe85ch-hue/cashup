@@ -33,6 +33,7 @@ input{width:100%;padding:13px;background:#0b150e;border:1px solid #42634b;border
 footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 .auth-card{margin-top:18px;padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
 .auth-status{font-size:13px;line-height:1.5;color:#c1dfca;min-height:20px;margin-top:12px}
+.brain-output{white-space:pre-wrap;overflow-wrap:anywhere;background:#09140d;border:1px solid #294333;border-radius:10px;padding:12px;color:#c8e8d1;font-size:12px;line-height:1.5;max-height:360px;overflow:auto}
 @media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
@@ -85,6 +86,28 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 <button class="secondary" id="signout-btn" type="button">Esci</button>
 </div>
 <p id="auth-status" class="auth-status" aria-live="polite">Controllo dello stato dell'account…</p>
+</div>
+<div class="auth-card">
+<h2 style="margin-top:0">CASHUP BRAIN · Test gratuito</h2>
+<p class="muted">Verifica il collegamento con il planner. Questa prova prepara solo una proposta: non esegue operazioni, non modifica il database e non usa un modello AI.</p>
+<label for="brain-title">Titolo della prova</label>
+<input id="brain-title" type="text" maxlength="160" value="Verifica collegamento CASHUP BRAIN">
+<label for="brain-description">Descrizione</label>
+<input id="brain-description" type="text" maxlength="4000" value="Controllare che il mio accesso CASHUP possa invocare il planner gratuito in modalità prova.">
+<label for="brain-sector">Area</label>
+<select id="brain-sector" style="width:100%;padding:13px;background:#0b150e;border:1px solid #42634b;border-radius:10px;color:white">
+<option value="general">Generale</option>
+<option value="product">Prodotto</option>
+<option value="engineering">Tecnologia</option>
+<option value="security">Sicurezza</option>
+<option value="data">Dati</option>
+<option value="international">Internazionale</option>
+<option value="legal">Normativa</option>
+<option value="operations">Operazioni</option>
+</select>
+<div class="actions"><button class="primary" id="brain-test-btn" type="button">Esegui test BRAIN</button></div>
+<p id="brain-test-status" class="auth-status" aria-live="polite">Il test è disponibile dopo l'accesso con un account fondatore autorizzato.</p>
+<pre id="brain-test-output" class="brain-output" hidden></pre>
 </div>
 <div class="card section">
 <h3>Il mio profilo</h3>
@@ -198,6 +221,57 @@ async function saveCloudProfile() {
 }
 
 document.getElementById('save-profile-btn').addEventListener('click', saveCloudProfile);
+
+const brainTestButton = document.getElementById('brain-test-btn');
+brainTestButton.addEventListener('click', async () => {
+  const status = document.getElementById('brain-test-status');
+  const output = document.getElementById('brain-test-output');
+  const title = document.getElementById('brain-title').value.trim();
+  const description = document.getElementById('brain-description').value.trim();
+  const sector = document.getElementById('brain-sector').value;
+  output.hidden = true;
+  output.textContent = '';
+  if (title.length < 3) {
+    status.textContent = 'Inserisci un titolo di almeno 3 caratteri.';
+    return;
+  }
+  brainTestButton.disabled = true;
+  brainTestButton.textContent = 'Test in corso…';
+  status.textContent = 'Verifica accesso e collegamento al planner…';
+  try {
+    const { data, error } = await supabase.functions.invoke('cashup-brain-free-planner', {
+      body: { title, description, sector }
+    });
+    if (error) {
+      let detail = error.message || 'Richiesta non riuscita.';
+      if (error.context && typeof error.context.text === 'function') {
+        try { detail += ' ' + await error.context.text(); } catch (e) {}
+      }
+      status.textContent = detail.includes('active_founder_access_required')
+        ? 'Accesso negato: questo account non risulta abilitato come fondatore attivo.'
+        : 'Test non completato: ' + detail;
+      return;
+    }
+    if (data?.error) {
+      status.textContent = data.error === 'active_founder_access_required'
+        ? 'Accesso negato: questo account non risulta abilitato come fondatore attivo.'
+        : 'Il planner ha restituito un errore: ' + data.error;
+      output.textContent = JSON.stringify(data, null, 2);
+      output.hidden = false;
+      return;
+    }
+    status.textContent = data?.mode === 'dry_run_only'
+      ? 'Collegamento riuscito: il planner ha risposto correttamente in modalità prova.'
+      : 'Risposta ricevuta dal planner.';
+    output.textContent = JSON.stringify(data, null, 2);
+    output.hidden = false;
+  } catch (err) {
+    status.textContent = 'Errore di collegamento: ' + (err?.message || 'riprova più tardi.');
+  } finally {
+    brainTestButton.disabled = false;
+    brainTestButton.textContent = 'Esegui test BRAIN';
+  }
+});
 
 async function refreshSession() {
   const { data, error } = await supabase.auth.getSession();
