@@ -1,7 +1,7 @@
 # CASHUP BRAIN — checklist di sicurezza
 
 ## Database
-- [x] Migrazioni BRAIN/CASHUP 0001–0012 e hardening CASHUP applicati il 19 novembre 2026.
+- [x] Migrazioni BRAIN/CASHUP 0001–0013 e hardening CASHUP applicati il 19 novembre 2026.
 - [x] RLS e FORCE RLS attivi su tutte le 12 tabelle pubbliche (7 BRAIN + 5 CASHUP).
 - [x] Nessun privilegio effettivo di anon o service_role su tutte le 12 tabelle public; verificato anche TRUNCATE.
 - [x] `brain_founders`: authenticated può solo SELECT; nessun INSERT/UPDATE/DELETE/TRUNCATE.
@@ -81,6 +81,9 @@
 - [ ] Monitoraggio accessi, errori e anomalie.
 - [ ] Procedura di revoca sessioni/rotazione segreti/incident response pronta.
 - [ ] Emergency stop testato e indipendente dall'autonomia.
+- [x] Catalogo BRAIN esteso a 35 agenti (27 specialistici aggiunti); tutti planned e zero attivi.
+- [ ] Runtime agenti, tool gateway, policy engine, coda, budget e audit esterno da implementare prima di attivare agenti.
+- [ ] Entitlement premium server-side, webhook firmati/idempotenti, revoca e ricorsi da implementare prima di vendere pacchetti.
 - [ ] Nessun agente, pagamento o integrazione esterna attiva prima di test e approvazione.
 
 ## Controlli automatici aggiuntivi
