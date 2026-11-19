@@ -25,22 +25,25 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 | XSS / HTML injection | Furto sessione o azioni a nome utente | Escape di ogni dato dinamico, evitare HTML dinamico non sanificato, CSP rigorosa |
 | Clickjacking / framing | Azioni indotte | `frame-ancestors 'none'` via header HTTP |
 | CSRF / richieste cross-site | Azioni indesiderate | Supabase JWT, SameSite/controlli browser, origini ristrette dove applicabile |
-| Dipendenza CDN compromessa | Esecuzione codice ostile | Versioni bloccate, audit dipendenze, ridurre dipendenze esterne e SRI dove compatibile |
+| Dipendenza CDN compromessa | Esecuzione codice ostile | Versioni bloccate, workflow statico, ridurre dipendenze esterne e SRI dove compatibile |
 | Segreti committati | Accesso a servizi | Nessun service-role key o segreto nel client/repository; secret scanning e rotazione |
 | Abuso approvazioni | Falsa autorizzazione | Decisioni tracciate; nessuna esecuzione automatica collegata allo stato approved |
-| Ransomware / cancellazione / errore umano | Perdita dati | Backup automatici, PITR se disponibile, prove periodiche di restore |
+| Ransomware / cancellazione / errore umano | Perdita dati | Piano Free senza backup automatici: esportazioni manuali cifrate, copia off-site e prove di restore |
 | DDoS / abuso risorse | Indisponibilità/costi | Rate limits, limiti Supabase/Cloudflare, monitoraggio e kill switch |
 | Compromissione GitHub/deploy | Modifica codice pubblicato | MFA GitHub, branch protection, review, deploy separato e approvazione |
 
 ## Architettura di sicurezza attuale
 
-- Il browser usa solo la chiave Supabase publishable, che non è un segreto; la protezione dei dati dipende da RLS.\n- La dashboard richiede AAL2 prima di mostrare i dati e include enrollment/challenge TOTP. Il fondatore non ha ancora fattori registrati nel progetto: il flusso deve essere completato e collaudato nel browser.
+- Il browser usa solo la chiave Supabase publishable, che non è un segreto; la protezione dei dati dipende da RLS.
+- La dashboard richiede AAL2 prima di mostrare i dati e include enrollment/challenge TOTP. Il fondatore non ha ancora fattori registrati nel progetto: il flusso deve essere completato e collaudato nel browser.
 - HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
 - È stato aggiunto `_headers` nella root del repository con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy, limitati al percorso `/brain/dashboard`. Gli header saranno effettivi solo se la root di pubblicazione Cloudflare include questo file; la risposta HTTP reale resta da verificare.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto e richiede `auth.jwt()->>'aal' = 'aal2'`; il controllo MFA è applicato nel database, non soltanto nell'interfaccia. La funzione deve restare non esposta tramite gli schemi API.
-- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; la verifica del 19 novembre 2026 ha confermato grants minimi, zero privilegi anon/service_role, 8 policy previste e test RLS positivo per fondatore e negativo per non fondatore.
+- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 8 policy verificate.
+- I default ACL di `supabase_admin` nello schema `public` sono gestiti da Supabase e concedono privilegi predefiniti ad alcuni ruoli API; il ruolo `postgres` del progetto non è membro di `supabase_admin` e non può modificarli. Non risultano oggetti public attualmente posseduti da quel ruolo; evitare estensioni in `public` e disabilitare l'esposizione automatica di nuove tabelle nella Data API.
 - `brain_founders` consente ad authenticated solo SELECT sulla propria riga attiva; gli altri privilegi sono revocati.
-- `brain_audit_log` è append-only per il client: SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; test dei privilegi completato.
+- `brain_audit_log` è append-only per il client: SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; la policy INSERT vincola autore, tipo e outcome.
+- Le RPC `brain_create_task` e `brain_decide_approval` sono SECURITY INVOKER e rendono atomici aggiornamento e audit; test AAL2 transazionale con ROLLBACK completato.
 - Le approvazioni registrano una decisione ma non devono attivare workflow o operazioni esterne.
 - Autonomia disattivata, arresto di emergenza attivo, spesa automatizzata pari a zero; valori verificati nel database.
 - Nessun agente attivo.
@@ -51,11 +54,11 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 2. [x] Testare funzione e lettura BRAIN come fondatore.
 3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
 4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
-5. [ ] Attivare Leaked Password Protection e MFA nelle impostazioni Auth.
+5. [ ] Attivare MFA TOTP del fondatore e collaudare l'accesso; Leaked Password Protection resta indisponibile sul piano Free.
 6. [ ] Verificare schema esposto, redirect URL, rate limits e CAPTCHA nella console Supabase.
 7. [ ] Applicare e verificare header HTTP sul dominio effettivo prima di pubblicare la console.
 8. [ ] Verificare secret scanning, dipendenze e protezione del branch GitHub.
-9. [ ] Verificare backup, retention e test di ripristino.
+9. [ ] Esportare manualmente database/dati Auth, cifrare e conservare off-site; provare il ripristino in un ambiente separato (piano Free senza backup automatici).
 10. [ ] Definire logging, alert, contatti e procedura di risposta agli incidenti.
 
 ## Risposta agli incidenti
