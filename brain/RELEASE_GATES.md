@@ -5,7 +5,7 @@ Questa lista contiene solo attività che richiedono l'accesso del fondatore alle
 ## 1. Supabase — Data API (priorità massima)
 1. Aprire il progetto CASHUP nella Dashboard Supabase.
 2. Aprire **Integrations → Data API** (in alcune versioni la voce può essere sotto **Settings → API**).
-3. L'ultimo audit ha trovato `private` esposto: rimuoverlo. Lasciare `public` e solo eventuali schemi strettamente necessari; `graphql_public` soltanto se GraphQL è effettivamente utilizzato. Verificare che `private` NON sia presente.
+3. Verificare che `private` NON sia tra gli schemi esposti. Lasciare `public` e solo eventuali schemi strettamente necessari; `graphql_public` soltanto se GraphQL è effettivamente utilizzato.
 4. Disattivare **Automatically expose new tables and functions** (o le voci equivalenti).
 5. Salvare e ricontrollare la configurazione.
 
