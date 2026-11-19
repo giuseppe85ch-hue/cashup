@@ -109,6 +109,13 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 <p id="brain-test-status" class="auth-status" aria-live="polite">Il test è disponibile dopo l'accesso con un account fondatore autorizzato.</p>
 <pre id="brain-test-output" class="brain-output" hidden></pre>
 </div>
+<div class="auth-card">
+<h2 style="margin-top:0">CASHUP BRAIN · Stato operativo</h2>
+<p class="muted">Controllo in sola lettura degli agenti, delle memorie e delle protezioni.</p>
+<div class="actions"><button class="secondary" id="brain-status-btn" type="button">Verifica stato BRAIN</button></div>
+<p id="brain-status-message" class="auth-status" aria-live="polite">Disponibile dopo l'accesso.</p>
+<pre id="brain-status-output" class="brain-output" hidden></pre>
+</div>
 <div class="card section">
 <h3>Il mio profilo</h3>
 <label for="name">Nome</label><input id="name" type="text" placeholder="Inserisci il tuo nome">
@@ -221,6 +228,42 @@ async function saveCloudProfile() {
 }
 
 document.getElementById('save-profile-btn').addEventListener('click', saveCloudProfile);
+
+const brainStatusButton = document.getElementById('brain-status-btn');
+brainStatusButton.addEventListener('click', async () => {
+  const message = document.getElementById('brain-status-message');
+  const output = document.getElementById('brain-status-output');
+  brainStatusButton.disabled = true;
+  message.textContent = 'Lettura dello stato BRAIN…';
+  output.hidden = true;
+  try {
+    const { data, error } = await supabase.functions.invoke('cashup-brain-status', { method: 'GET' });
+    if (error) {
+      let detail = error.message || 'Richiesta non riuscita.';
+      if (error.context && typeof error.context.text === 'function') {
+        try { detail += ' ' + await error.context.text(); } catch (e) {}
+      }
+      message.textContent = 'Stato non disponibile: ' + detail;
+      return;
+    }
+    if (data?.error) {
+      message.textContent = 'Stato non disponibile: ' + data.error;
+      output.textContent = JSON.stringify(data, null, 2);
+      output.hidden = false;
+      return;
+    }
+    const counts = data.agents_by_status || {};
+    message.textContent = 'Stato letto correttamente: ' + (data.agents_total ?? 0) +
+      ' agenti catalogati · ' + (counts.active ?? 0) + ' attivi · ' +
+      (data.memories ?? 0) + ' memorie.';
+    output.textContent = JSON.stringify(data, null, 2);
+    output.hidden = false;
+  } catch (err) {
+    message.textContent = 'Errore di collegamento: ' + (err?.message || 'riprova più tardi.');
+  } finally {
+    brainStatusButton.disabled = false;
+  }
+});
 
 const brainTestButton = document.getElementById('brain-test-btn');
 brainTestButton.addEventListener('click', async () => {
