@@ -81,7 +81,7 @@
 - [ ] Monitoraggio accessi, errori e anomalie.
 - [ ] Procedura di revoca sessioni/rotazione segreti/incident response pronta.
 - [ ] Emergency stop testato e indipendente dall'autonomia.
-- [x] Catalogo BRAIN esteso a 35 agenti (27 specialistici aggiunti); tutti planned e zero attivi.
+- [x] Catalogo BRAIN esteso a 550 ruoli: `public.brain_agents` tutti `planned`; `private.brain_agent_specs` tutte `designed`; zero agenti attivi.
 - [ ] Runtime agenti, tool gateway, policy engine, coda, budget e audit esterno da implementare prima di attivare agenti.
 - [ ] Entitlement premium server-side, webhook firmati/idempotenti, revoca e ricorsi da implementare prima di vendere pacchetti.
 - [ ] Nessun agente, pagamento o integrazione esterna attiva prima di test e approvazione.
