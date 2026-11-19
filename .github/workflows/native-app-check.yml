@@ -1,4 +1,7 @@
 name: CASHUP native app validation
+concurrency:
+  group: cashup-validation-${{ github.ref }}
+  cancel-in-progress: true
 on:
   push:
     branches: [main, cashup-native-steps]
