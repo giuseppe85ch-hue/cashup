@@ -12,10 +12,10 @@ Questo piano è una checklist di collaudo. Non abilita agenti, non esegue automa
 
 ## Da verificare insieme in Supabase
 
-La query `supabase/verification/verify_brain_read_only.sql` controlla agenti, impostazioni e stato RLS. La query aggiuntiva `supabase/verification/verify_brain_security_read_only.sql` legge anche policy RLS, privilegi SQL e configurazione della funzione `private.brain_is_founder()` (dopo migrazione 0003). Entrambe sono esclusivamente di lettura e non modificano il database.
-- [ ] Query di sola lettura: presenza degli otto agenti previsti.
+La query unica `supabase/verification/verify_brain_complete_read_only.sql` controlla agenti, impostazioni conservative, funzione privata, `search_path`, RLS e privilegi. È esclusivamente di lettura e non modifica il database.
+- [ ] Query unica di sola lettura: presenza degli otto agenti previsti.
 - [ ] Query di sola lettura: presenza delle cinque impostazioni iniziali e valori conservativi.
-- [ ] Confermare che `emergency_stop` sia true e `autonomy_enabled` sia false.
+- [ ] Confermare che `emergency_stop` sia true, `autonomy_enabled` sia false e la spesa automatizzata sia zero.
 - [ ] Confermare che nessun agente sia nello stato `active`.
 - [x] Migrazione 0003 eseguita una sola volta (19 novembre 2026).
 - [x] Verifica di sola lettura successiva alla migrazione: schema/funzione privata presenti, `SECURITY DEFINER` attivo, `anon` senza EXECUTE/USAGE, `authenticated` con EXECUTE/USAGE, vecchia funzione pubblica assente, 7 tabelle con RLS e FORCE RLS.
@@ -25,7 +25,7 @@ La query `supabase/verification/verify_brain_read_only.sql` controlla agenti, im
 
 ## Da verificare insieme nella console, solo dopo i controlli database
 - [ ] Login con account fondatore.
-- [ ] Caricamento dei contatori e delle schede agente.
+- [ ] Caricamento dei contatori, delle schede agente e delle impostazioni di sicurezza in sola lettura.
 - [ ] Creazione di una attività di prova e presenza nel registro.
 - [ ] Verificare che un account non autorizzato non possa leggere o modificare i dati BRAIN.
 - [ ] Verificare che approvare/rifiutare una richiesta registri solo una decisione e non esegua azioni esterne.
