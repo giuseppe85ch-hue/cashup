@@ -1,6 +1,6 @@
 # CASHUP BRAIN — fondazione tecnica
 
-Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard è separata dal sito CASHUP e non viene pubblicata automaticamente.
+Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard è separata dal sito CASHUP e non viene pubblicata automaticamente. Il repository GitHub è attualmente pubblico: anche codice e documentazione sono leggibili da chiunque.
 
 ## Stato verificato — 19 novembre 2026
 - Progetto Supabase CASHUP `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
@@ -36,7 +36,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - MFA TOTP del fondatore: il flusso è pronto, ma il fondatore deve registrare il proprio autenticatore e verificare il codice.
 - Leaked Password Protection non risulta attiva; l'organizzazione è sul piano Free e non è stato richiesto alcun upgrade. Mantenere una password lunga, unica e custodita in un password manager.
 - Verificare redirect URL, rate limits, CAPTCHA e che `private` non sia tra gli schemi esposti dalla Data API.
-- Verificare MFA/secret scanning/push protection e branch protection in GitHub. È stato aggiunto un workflow statico a permessi minimi, ancora da eseguire sul branch.
+- Verificare MFA/secret scanning/push protection e branch protection in GitHub. È stato aggiunto un workflow statico a permessi minimi; run #13 completata con successo.
 - Il piano Free non include backup automatici: esportare manualmente database e dati Auth e conservare copie cifrate fuori dal progetto; provare il ripristino in ambiente separato prima del rilascio.
 - Pubblicare la console su hosting privato/protetto e verificare gli header HTTP reali.
 - Eseguire il test end-to-end della dashboard e una revisione indipendente.
