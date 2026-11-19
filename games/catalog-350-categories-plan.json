@@ -10,10 +10,10 @@
   "currently_authored_categories": 100,
   "additional_categories_planned": 300,
   "id_scheme": {
-    "existing": "CU-0001..CU-8000",
+    "existing": "CU-0001..CU-10000",
     "virtual_template": "CU-G{category_id}-V{variant_id}",
-    "category_id": "001..350",
-    "variant_id": "00001..20000"
+    "category_id": "001..400",
+    "variant_id": "00001..00100"
   },
   "categories": [
     {
@@ -3252,6 +3252,8 @@
     "Obiettivo di lancio richiesto: almeno 4000 titoli di gioco nel catalogo.",
     "Il repository contiene attualmente 10000 concept catalogati; concept non significa automaticamente gioco sviluppato, giocabile o testato.",
     "Il catalogo prevede 400 categorie; le categorie pianificate diventano disponibili man mano che i contenuti vengono sviluppati e verificati.",
-    "Le funzioni editoriali come audiolibri, enciclopedie, riconoscimento musicale e video brevi richiedono contenuti e integrazioni con licenze e diritti verificati."
+    "Le funzioni editoriali come audiolibri, enciclopedie, riconoscimento musicale e video brevi richiedono contenuti e integrazioni con licenze e diritti verificati.",
+    "La pagina CASHUP GAMES mostra i primi 4000 titoli del catalogo esistente; le schede marcate planned/in sviluppo non sono giochi pubblicati.",
+    "La pagina giochi include un prototipo giocabile di riflessi; il punteggio viene salvato localmente sul dispositivo e non attribuisce premi o denaro."
   ]
 }
