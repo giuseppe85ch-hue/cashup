@@ -90,3 +90,11 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Nota
 Questi test dimostrano i controlli esaminati nel database, non una sicurezza assoluta né una certificazione di sicurezza. Le impostazioni Auth, GitHub, Cloudflare, backup e il test end-to-end restano separati e non vanno dichiarati completati finché non sono verificati con evidenza.
+
+## Correzioni di sicurezza successive — 19 novembre 2026
+- [x] Tabella `public.cashup_daily_steps`: abilitato FORCE ROW LEVEL SECURITY; verifica successiva conferma RLS e FORCE RLS attivi, con policy di lettura/inserimento/aggiornamento limitate a `auth.uid() = user_id`.
+- [x] Edge Function `cashup-brain-ai-review` aggiornata alla versione 2, `verify_jwt=true`: richiede esplicitamente claim MFA `aal2` prima di ogni elaborazione e accetta richieste browser solo dall'origine web CASHUP attualmente pubblicata.
+- [x] Chiamate a modelli AI esterni disattivate per impostazione predefinita tramite `CASHUP_BRAIN_AI_ENABLED`; senza autorizzazione esplicita del budget la funzione restituisce `ai_disabled_cost_control` e non contatta il provider. Nessuna spesa AI avviata.
+- [x] Verifica SQL successiva: tutte le 14 tabelle applicative tra `public` e `private` hanno RLS e FORCE RLS attivi.
+- [!] La MFA dell'utente Supabase Auth del fondatore resta da registrare: `auth.mfa_factors` conta ancora 0 fattori verificati. La MFA del dashboard Supabase è distinta.
+- [!] Il branch `cashup-brain-setup` resta separato da `main` (divergenza rilevata: 225 commit avanti e 39 indietro); nessun merge o deploy Cloudflare eseguito.
