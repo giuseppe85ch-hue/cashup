@@ -86,6 +86,7 @@ select jsonb_pretty(jsonb_build_object(
     'exists',exists(select 1 from fn),
     'security_definer',coalesce((select prosecdef from fn),false),
     'empty_search_path',coalesce((select proconfig @> array['search_path=""'] from fn),false),
+    'requires_aal2',coalesce((select position('aal2' in pg_get_functiondef(oid))>0 from fn),false),
     'anon_execute',coalesce((select has_function_privilege('anon',oid,'EXECUTE') from fn),false),
     'authenticated_execute',coalesce((select has_function_privilege('authenticated',oid,'EXECUTE') from fn),false),
     'old_public_function_exists',exists(select 1 from pg_proc p join pg_namespace n on n.oid=p.pronamespace
