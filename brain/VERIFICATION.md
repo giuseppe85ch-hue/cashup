@@ -4,17 +4,17 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Completato e verificato
 - [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- [x] Migrazioni 0004 e 0005 applicate tramite connessione Supabase.
+- [x] Migrazioni 0004, 0005 e 0006 applicate tramite connessione Supabase.
 - [x] 7 tabelle BRAIN presenti, tutte con RLS e FORCE RLS.
 - [x] 8 policy BRAIN previste e nessuna policy aggiuntiva.
 - [x] 8 agenti registrati, nessuno attivo.
 - [x] 5 impostazioni conservative presenti: autonomia false, emergency stop true, spesa automatizzata 0, approvazione finanziaria true, approvazione alto rischio true.
-- [x] Funzione privata SECURITY DEFINER con search_path vuoto; EXECUTE negato ad anon e consentito ad authenticated; funzione pubblica precedente assente.
+- [x] Funzione privata SECURITY DEFINER con search_path vuoto, EXECUTE negato ad anon e consentito ad authenticated, requisito AAL2 nel corpo funzione; funzione pubblica precedente assente.
 - [x] Schema private: USAGE negato ad anon e consentito ad authenticated.
 - [x] Grants BRAIN: zero privilegi diretti per anon e service_role; founder table sola lettura per authenticated; audit solo SELECT/INSERT.
 - [x] Default privileges del ruolo postgres in public revocati per nuovi oggetti tabella, sequenza e funzione; EXECUTE su nuove funzioni create da postgres revocato anche a PUBLIC.
 - [x] Test RLS con identità fondatore: funzione true e visibili gli 8 agenti/5 impostazioni.
-- [x] Test RLS con identità non fondatore: funzione false e zero righe visibili su agenti, impostazioni e audit.
+- [x] Test RLS non fondatore AAL1/AAL2: funzione false e zero righe BRAIN visibili.\n- [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e 8 agenti visibili.
 - [x] Policy utente ottimizzate con `(select auth.uid())`; indici aggiunti sulle 9 chiavi esterne segnalate.
 - [x] Security Advisor dopo le modifiche: resta un avviso Auth per Leaked Password Protection disattivata.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
