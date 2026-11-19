@@ -47,6 +47,7 @@ small{font-size:12px}.empty{color:var(--muted);font-size:13px;padding:12px 0}
 <div class="metric">Approvazioni in attesa<strong id="approvalsCount">—</strong></div>
 <div class="metric">Voci registro<strong id="auditCount">—</strong></div>
 </div></div>
+<section class="panel"><h2>Protezione e autonomia</h2><p class="muted">Impostazioni consultabili: questa schermata non permette di attivare autonomia o spese.</p><div id="safetySettings" class="grid"><div class="empty">Lettura impostazioni…</div></div></section>
 <div class="columns">
 <section class="panel"><h2>Nuova attività</h2>
 <label for="taskTitle">Titolo</label><input id="taskTitle" maxlength="120" placeholder="Es. Verificare integrazione login">
@@ -76,21 +77,26 @@ const date=value=>value?new Date(value).toLocaleString('it-IT'):'—';
 let currentUser=null;
 async function audit(action,objectType,objectId,details={}){
  const {error}=await supabase.from('brain_audit_log').insert({actor_user_id:currentUser.id,actor_type:'founder',action,object_type:objectType,object_id:objectId?String(objectId):null,outcome:'recorded',details});
- if(error) console.warn('Audit log non scritto:',error.message);
+ if(error){console.error('Audit log non scritto:',error.message);return false}
+ return true;
 }
 async function loadDashboard(){
- const [tasks,agents,approvals,auditRows]=await Promise.all([
+ const [tasks,agents,approvals,auditRows,settings]=await Promise.all([
   supabase.from('brain_tasks').select('id,title,description,status,priority,sector,created_at').order('created_at',{ascending:false}).limit(12),
   supabase.from('brain_agents').select('id,display_name,description,status,permission_level').order('display_name'),
   supabase.from('brain_approvals').select('id,action_type,description,risk_level,status,created_at').order('created_at',{ascending:false}).limit(12),
-  supabase.from('brain_audit_log').select('id,action,object_type,outcome,created_at').order('created_at',{ascending:false}).limit(10)
+  supabase.from('brain_audit_log').select('id,action,object_type,outcome,created_at').order('created_at',{ascending:false}).limit(10),
+  supabase.from('brain_settings').select('setting_key,setting_value,description').order('setting_key')
  ]);
- const firstError=[tasks,agents,approvals,auditRows].find(x=>x.error)?.error;
+ const firstError=[tasks,agents,approvals,auditRows,settings].find(x=>x.error)?.error;
  if(firstError){setStatus('appStatus','Errore nel caricamento: '+firstError.message,true);return}
  $('tasksOpen').textContent=tasks.data.filter(x=>!['done','cancelled'].includes(x.status)).length;
  $('agentsCount').textContent=agents.data.length;
  $('approvalsCount').textContent=approvals.data.filter(x=>x.status==='pending').length;
  $('auditCount').textContent=auditRows.data.length;
+ const settingMap=Object.fromEntries(settings.data.map(x=>[x.setting_key,x.setting_value]));
+ const safetyItems=[['Autonomia',settingMap.autonomy_enabled===true?'ATTIVA':'DISATTIVATA'],['Arresto di emergenza',settingMap.emergency_stop===true?'ATTIVO':'NON ATTIVO'],['Spesa automatizzata',String(settingMap.max_automated_spend_eur??'—')+' €'],['Approvazione azioni finanziarie',settingMap.require_human_approval_for_financial_actions===true?'OBBLIGATORIA':'NON CONFERMATA'],['Approvazione alto rischio',settingMap.require_human_approval_for_high_risk===true?'OBBLIGATORIA':'NON CONFERMATA']];
+ $('safetySettings').innerHTML=safetyItems.map(([label,value])=>'<div class="metric">'+esc(label)+'<strong style="font-size:17px">'+esc(value)+'</strong></div>').join('');
  $('tasksList').innerHTML=tasks.data.length?tasks.data.map(x=>'<div class="item"><div class="row"><strong>'+esc(x.title)+'</strong><span class="pill">'+esc(x.status)+'</span></div><small class="muted">Priorità: '+esc(x.priority)+' · '+date(x.created_at)+'</small><p class="muted">'+esc(x.description)+'</p></div>').join(''):'<div class="empty">Nessuna attività ancora. Puoi crearne una qui sopra.</div>';
  $('agentsList').innerHTML=agents.data.length?agents.data.map(x=>'<div class="item"><div class="row"><strong>'+esc(x.display_name)+'</strong><span class="pill">'+esc(x.status)+'</span></div><p class="muted">'+esc(x.description)+'<br>Permessi: '+esc(x.permission_level)+'</p></div>').join(''):'<div class="empty">Nessun agente configurato. Gli agenti verranno aggiunti e testati uno alla volta.</div>';
  $('approvalsList').innerHTML=approvals.data.length?approvals.data.map(x=>'<div class="item"><div class="row"><strong>'+esc(x.action_type)+'</strong><span class="pill">'+esc(x.status)+'</span></div><p class="muted">'+esc(x.description)+'<br>Rischio: '+esc(x.risk_level)+' · '+date(x.created_at)+'</p>'+(x.status==='pending'?'<div class="actions"><button class="secondary" data-approval="'+x.id+'" data-decision="approved">Approva richiesta</button><button class="danger" data-approval="'+x.id+'" data-decision="rejected">Rifiuta</button></div>':'')+'</div>').join(''):'<div class="empty">Nessuna approvazione in attesa.</div>';
@@ -121,8 +127,8 @@ $('addTask').addEventListener('click',async()=>{
  const {data,error}=await supabase.from('brain_tasks').insert({title,description:$('taskDesc').value.trim(),priority:$('taskPriority').value,sector:'core',created_by:currentUser.id}).select('id').single();
  $('addTask').disabled=false;
  if(error){$('taskStatus').textContent='Non è stato possibile creare l’attività: '+error.message;return}
- await audit('task_created','brain_task',data.id,{title});
- $('taskTitle').value='';$('taskDesc').value='';$('taskStatus').textContent='Attività creata.';
+ const logged=await audit('task_created','brain_task',data.id,{title});
+ $('taskTitle').value='';$('taskDesc').value='';$('taskStatus').textContent=logged?'Attività creata e registrata.':'Attività creata, ma ATTENZIONE: registrazione audit non riuscita.';
  await loadDashboard();
 });
 $('approvalsList').addEventListener('click',async event=>{
@@ -132,7 +138,8 @@ $('approvalsList').addEventListener('click',async event=>{
  button.disabled=true;
  const {error}=await supabase.from('brain_approvals').update({status:decision,decided_by:currentUser.id,decided_at:new Date().toISOString()}).eq('id',id).eq('status','pending');
  if(error){button.disabled=false;setStatus('appStatus','Decisione non salvata: '+error.message,true);return}
- await audit('approval_'+decision,'brain_approval',id,{decision});
+ const logged=await audit('approval_'+decision,'brain_approval',id,{decision});
+ if(!logged)setStatus('appStatus','Decisione salvata, ma ATTENZIONE: registrazione audit non riuscita.',true);
  await loadDashboard();
 });
 const {data:sessionData}=await supabase.auth.getSession();
