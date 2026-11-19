@@ -30,6 +30,8 @@ jobs:
         run: node scripts/validate-games.mjs
       - name: Check CASHUP mini-game JavaScript syntax
         run: node --check games/arcade.js
+      - name: Check CASHUP cloud progress module syntax
+        run: node --input-type=module --check < games/cloud-progress.js
       - name: Check Expo dependency compatibility
         run: npx expo install --check
       - name: Run Expo Doctor
