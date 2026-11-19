@@ -22,7 +22,7 @@
 - [ ] Solo HTTPS e HSTS sul dominio definitivo.
 - [x] JS/CSS estratti in file esterni; nessuno script o foglio di stile inline nella pagina.
 - [ ] Verificare sul dominio reale che la CSP fornita in `dashboard/_headers` sia effettivamente applicata e non generi errori; gli header valgono solo se il file si trova alla radice della directory pubblicata.
-- [ ] Bloccare a una versione esatta la dipendenza Supabase JS da esm.sh o servirla da bundle controllato.
+- [x] Versione Supabase JS fissata a `2.119.1` tramite esm.sh con bundle; gli aggiornamenti devono essere deliberati e verificati.
 - [ ] CSP rigorosa senza `unsafe-eval` e senza `unsafe-inline`.
 - [ ] `frame-ancestors 'none'`, X-Content-Type-Options nosniff, Referrer-Policy restrittiva.
 - [ ] Permissions-Policy minima.
