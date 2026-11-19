@@ -36,7 +36,7 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 
 - Il browser usa solo la chiave Supabase publishable, che non è un segreto; la protezione dei dati dipende da RLS.
 - La dashboard richiede AAL2 prima di mostrare i dati e include enrollment/challenge TOTP. Il fondatore non ha ancora fattori registrati nel progetto: il flusso deve essere completato e collaudato nel browser.
-- HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
+- HTML, CSS e JavaScript della console e del client web sono separati per consentire una Content Security Policy senza script/style inline; il client root è stato esternalizzato e usa SDK Supabase fissato a versione esatta.
 - È stato aggiunto `_headers` nella root del repository con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy, limitati al percorso `/brain/dashboard`. Gli header saranno effettivi solo se la root di pubblicazione Cloudflare include questo file; la risposta HTTP reale resta da verificare.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto e richiede `auth.jwt()->>'aal' = 'aal2'`; il controllo MFA è applicato nel database, non soltanto nell'interfaccia. La funzione deve restare non esposta tramite gli schemi API.
 - Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; grants minimi, zero privilegi anon/service_role sulle tabelle BRAIN e 9 policy BRAIN dopo l'hardening.
@@ -85,4 +85,4 @@ Il repository è pubblico e il sorgente può essere copiato; la privacy futura n
 
 Il Security Advisor Supabase segnala ancora `Leaked Password Protection Disabled`. È una configurazione Auth esterna al database e non è modificabile tramite gli strumenti Supabase disponibili in questa sessione. Anche MFA, rate limits, CAPTCHA, redirect URL, backup e configurazione GitHub/Cloudflare richiedono verifica nelle rispettive console.
 
-La configurazione Data API effettiva, MFA, rate limits, backup/PITR, impostazioni GitHub, headers del dominio e log del provider non sono verificabili dal solo repository. Il repository pubblico contiene anche un file PNG di circa 1,6 MB con nome opaco: va controllato per escludere dati personali o riservati prima di continuare a pubblicare il branch. Vanno controllati nelle rispettive console prima della pubblicazione.
+La configurazione Data API effettiva, MFA, rate limits, backup/PITR, impostazioni GitHub, headers del dominio e log del provider non sono verificabili dal solo repository. Il repository contiene un PNG di circa 1,6 MB referenziato come icona PWA; la provenienza, l'autore e la licenza dell'asset vanno documentati nel registro IP prima del rilascio. Vanno controllati nelle rispettive console prima della pubblicazione.
