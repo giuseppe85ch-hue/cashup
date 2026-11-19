@@ -11,7 +11,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - La seconda migrazione inserisce otto schede di agenti in stato `planned` e impostazioni iniziali conservative: autonomia disattivata, spesa automatizzata zero, approvazione umana per azioni ad alto rischio e finanziarie, arresto di emergenza attivo.
 - Le sette tabelle `brain_*` risultavano presenti dopo la prima migrazione.
 - L'account del fondatore è stato inserito in `brain_founders`.
-- `dashboard/index.html` contiene una prima console web per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni e registro.
+- `dashboard/index.html` contiene una console web iniziale per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni, registro e visualizzazione in sola lettura delle impostazioni di sicurezza. Segnala anche eventuali errori di scrittura nel registro audit.
 - La dashboard non è ancora pubblicata né collaudata end-to-end. Non esistono ancora agenti autonomi attivi.
 
 ## Sicurezza e limiti
@@ -24,7 +24,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 7. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
 ## Piano di verifica
-La checklist dettagliata dei controlli da svolgere insieme è in [VERIFICATION.md](./VERIFICATION.md). Le query SQL di verifica, entrambe di sola lettura, sono in `supabase/verification/`: `verify_brain_read_only.sql` per catalogo/impostazioni/RLS e `verify_brain_security_read_only.sql` per policy/privilegi/funzione fondatore nello schema privato (dopo 0003). I controlli principali della migrazione 0003 sono stati confermati dall'output Supabase fornito dal fondatore. Restano da completare la verifica del catalogo/impostazioni, i test reali della console e il test con account non autorizzato.
+La checklist dettagliata dei controlli da svolgere insieme è in [VERIFICATION.md](./VERIFICATION.md). La query `supabase/verification/verify_brain_complete_read_only.sql` riunisce in un solo controllo catalogo agenti, impostazioni, RLS, privilegi e configurazione della funzione fondatore. È di sola lettura. I controlli principali della migrazione 0003 sono stati confermati dall'output Supabase fornito dal fondatore. Restano da completare la verifica del catalogo/impostazioni, i test reali della console e il test con account non autorizzato.
 
 ## Prossimi passaggi
 1. Migrazione 0003 eseguita e controlli principali confermati il 19 novembre 2026.
