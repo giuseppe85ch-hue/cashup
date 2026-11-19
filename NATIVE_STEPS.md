@@ -12,7 +12,7 @@ The app does not run its own motion-sensor algorithm. The phone OS / Health Conn
 
 ## Important limitations before release
 
-- This branch is a native-app integration candidate. It has not been built, installed, or tested on a physical Android/iOS device.
+- The native integration is merged into `main`. The Android debug APK has been built successfully in GitHub Actions and is available as the `cashup-android-debug` artifact (workflow run 44531101728). It has not yet been installed or tested on a physical phone.
 - HealthKit requires the HealthKit capability enabled for the final iOS App ID and user permission.
 - Health Connect requires a supported Android device and user permission. Play Console requires a Health Connect declaration and a privacy policy before production release.
 - The package identifier `com.cashup.mobile` is provisional. Confirm the final application identifier before publishing; changing it after store publication is not straightforward.
@@ -27,7 +27,7 @@ Requires Node.js 20+, npm, Android SDK/Android Studio for local Android builds, 
 1. `npm install`
 2. `npx expo-doctor`
 3. `npx expo prebuild`
-4. Android: `npx expo run:android`
+4. Android: `npx expo run:android` (or download the `cashup-android-debug` artifact from the GitHub Actions workflow run)
 5. iOS (macOS only): `npx expo run:ios`
 
 On the phone, open CASHUP Steps, press **Collega Salute e leggi i passi**, grant only step-count permission, walk, then refresh. Compare against the Health Connect / Apple Health daily total. Test date rollover, denied/revoked permission, no-data state, offline mode, duplicate reads, and user logout.
