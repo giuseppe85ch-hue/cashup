@@ -1,6 +1,6 @@
 {
   "project": "CASHUP",
-  "catalog_version": 3,
+  "catalog_version": 4,
   "total_concepts": 3000,
   "files": [
     {
@@ -16,45 +16,307 @@
   ],
   "categories": [
     {
+      "name": "Arcade classici",
+      "count": 60
+    },
+    {
+      "name": "Platform e salti",
+      "count": 60
+    },
+    {
+      "name": "Riflessi e precisione",
+      "count": 60
+    },
+    {
+      "name": "Azione e combattimento",
+      "count": 60
+    },
+    {
+      "name": "Ritmo e musica",
+      "count": 60
+    },
+    {
+      "name": "Logica e rompicapo",
+      "count": 60
+    },
+    {
+      "name": "Abbinamenti e tessere",
+      "count": 60
+    },
+    {
+      "name": "Parole e linguaggio",
+      "count": 60
+    },
+    {
+      "name": "Numeri e matematica",
+      "count": 60
+    },
+    {
+      "name": "Spazio e forme",
+      "count": 60
+    },
+    {
+      "name": "Corse automobilistiche",
+      "count": 60
+    },
+    {
+      "name": "Moto e due ruote",
+      "count": 60
+    },
+    {
+      "name": "Kart e corse arcade",
+      "count": 60
+    },
+    {
+      "name": "Rally e fuoristrada",
+      "count": 60
+    },
+    {
+      "name": "Garage e personalizzazione",
+      "count": 60
+    },
+    {
+      "name": "Calcio",
+      "count": 60
+    },
+    {
+      "name": "Basket e pallavolo",
+      "count": 60
+    },
+    {
+      "name": "Tennis e racchetta",
+      "count": 60
+    },
+    {
+      "name": "Sport estremi",
+      "count": 60
+    },
+    {
+      "name": "Altri sport",
+      "count": 60
+    },
+    {
+      "name": "Esplorazione",
+      "count": 60
+    },
+    {
+      "name": "Fantasy e magia",
+      "count": 60
+    },
+    {
+      "name": "Mistero e investigazione",
+      "count": 60
+    },
+    {
+      "name": "Fantascienza e spazio",
+      "count": 60
+    },
+    {
+      "name": "Sopravvivenza",
+      "count": 60
+    },
+    {
+      "name": "Tattica e pianificazione",
+      "count": 60
+    },
+    {
+      "name": "Regni e civiltà",
+      "count": 60
+    },
+    {
+      "name": "Difesa e torri",
+      "count": 60
+    },
+    {
+      "name": "Carte strategiche",
+      "count": 60
+    },
+    {
+      "name": "Gestione e risorse",
+      "count": 60
+    },
+    {
+      "name": "Città e costruzione",
+      "count": 60
+    },
+    {
+      "name": "Fattoria e animali",
+      "count": 60
+    },
+    {
+      "name": "Vita quotidiana",
+      "count": 60
+    },
+    {
+      "name": "Imprese e negozi",
+      "count": 60
+    },
+    {
+      "name": "Veicoli e professioni",
+      "count": 60
+    },
+    {
+      "name": "Match e combinazioni",
+      "count": 60
+    },
+    {
+      "name": "Giochi rilassanti",
+      "count": 60
+    },
+    {
+      "name": "Cucina e ristoranti",
+      "count": 60
+    },
+    {
+      "name": "Oggetti nascosti",
+      "count": 60
+    },
+    {
+      "name": "Idle e progressione",
+      "count": 60
+    },
+    {
+      "name": "Party e quiz",
+      "count": 60
+    },
+    {
+      "name": "Cooperazione online",
+      "count": 60
+    },
+    {
+      "name": "Competizioni online",
+      "count": 60
+    },
+    {
+      "name": "Squadre e leghe",
+      "count": 60
+    },
+    {
+      "name": "Social e community",
+      "count": 60
+    },
+    {
+      "name": "Fitness e movimento",
+      "count": 60
+    },
+    {
+      "name": "Missioni e sfide CASHUP",
+      "count": 60
+    },
+    {
+      "name": "Creatività e contenuti",
+      "count": 60
+    },
+    {
+      "name": "Eventi e stagioni",
+      "count": 60
+    },
+    {
+      "name": "Esperienze social CASHUP",
+      "count": 60
+    }
+  ],
+  "category_groups": [
+    {
       "name": "Arcade e abilità",
-      "count": 300
+      "subcategories": [
+        "Arcade classici",
+        "Platform e salti",
+        "Riflessi e precisione",
+        "Azione e combattimento",
+        "Ritmo e musica"
+      ]
     },
     {
       "name": "Puzzle e logica",
-      "count": 300
+      "subcategories": [
+        "Logica e rompicapo",
+        "Abbinamenti e tessere",
+        "Parole e linguaggio",
+        "Numeri e matematica",
+        "Spazio e forme"
+      ]
     },
     {
       "name": "Corse e motori",
-      "count": 300
+      "subcategories": [
+        "Corse automobilistiche",
+        "Moto e due ruote",
+        "Kart e corse arcade",
+        "Rally e fuoristrada",
+        "Garage e personalizzazione"
+      ]
     },
     {
       "name": "Sport",
-      "count": 300
+      "subcategories": [
+        "Calcio",
+        "Basket e pallavolo",
+        "Tennis e racchetta",
+        "Sport estremi",
+        "Altri sport"
+      ]
     },
     {
       "name": "Avventura",
-      "count": 300
+      "subcategories": [
+        "Esplorazione",
+        "Fantasy e magia",
+        "Mistero e investigazione",
+        "Fantascienza e spazio",
+        "Sopravvivenza"
+      ]
     },
     {
       "name": "Strategia",
-      "count": 300
+      "subcategories": [
+        "Tattica e pianificazione",
+        "Regni e civiltà",
+        "Difesa e torri",
+        "Carte strategiche",
+        "Gestione e risorse"
+      ]
     },
     {
       "name": "Simulazione",
-      "count": 300
+      "subcategories": [
+        "Città e costruzione",
+        "Fattoria e animali",
+        "Vita quotidiana",
+        "Imprese e negozi",
+        "Veicoli e professioni"
+      ]
     },
     {
       "name": "Casual",
-      "count": 300
+      "subcategories": [
+        "Match e combinazioni",
+        "Giochi rilassanti",
+        "Cucina e ristoranti",
+        "Oggetti nascosti",
+        "Idle e progressione"
+      ]
     },
     {
       "name": "Multiplayer",
-      "count": 300
+      "subcategories": [
+        "Party e quiz",
+        "Cooperazione online",
+        "Competizioni online",
+        "Squadre e leghe",
+        "Social e community"
+      ]
     },
     {
       "name": "Originali CASHUP",
-      "count": 300
+      "subcategories": [
+        "Fitness e movimento",
+        "Missioni e sfide CASHUP",
+        "Creatività e contenuti",
+        "Eventi e stagioni",
+        "Esperienze social CASHUP"
+      ]
     }
   ],
-  "note": "Totale aggregato dei due file. Sono concept pianificati, non giochi già giocabili."
+  "note": "3.000 concept organizzati in 50 categorie, 60 concept per categoria. Sono idee catalogate, non giochi già sviluppati o giocabili."
 }
