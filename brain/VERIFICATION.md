@@ -15,7 +15,8 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Tabelle CASHUP applicative: nessun privilegio anon, nessun TRUNCATE/REFERENCES/TRIGGER per anon/authenticated/service_role; grants authenticated limitati alle operazioni richieste dalle policy.
 - [x] Default privileges del ruolo postgres in public revocati per nuovi oggetti tabella, sequenza e funzione; EXECUTE su nuove funzioni create da postgres revocato anche a PUBLIC.
 - [x] Test RLS con identità fondatore: funzione true e visibili gli 8 agenti/5 impostazioni.
-- [x] Test RLS non fondatore AAL1/AAL2: funzione false e zero righe BRAIN visibili.\n- [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e 8 agenti visibili.
+- [x] Test RLS non fondatore AAL1/AAL2: funzione false e zero righe BRAIN visibili.
+- [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e 8 agenti visibili.
 - [x] Policy utente ottimizzate con `(select auth.uid())`; indici aggiunti sulle 9 chiavi esterne segnalate.
 - [x] Security Advisor dopo le modifiche: resta un avviso Auth per Leaked Password Protection disattivata.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
