@@ -27,4 +27,4 @@ function newTarget(){const icons=['🎯','🟢','⭐','💎','⚡'];$('target').
 $('start').onclick=()=>{if(active)return;active=true;score=0;deadline=Date.now()+30000;$('score').textContent='0 punti';$('gameMsg').textContent='Vai! Tocca il bersaglio.';$('target').disabled=false;$('start').disabled=true;newTarget();tick=setInterval(()=>{const left=Math.max(0,Math.ceil((deadline-Date.now())/1000));$('gameMsg').textContent='Tempo rimasto: '+left+' secondi';if(!left){clearInterval(tick);active=false;$('target').disabled=true;$('start').disabled=false;$('gameMsg').textContent='Partita terminata! Hai totalizzato '+score+' punti.';played++;localStorage.setItem('cashup_games_played',played);$('playedCount').textContent=played}},200)};
 $('target').onclick=()=>{if(!active)return;score++;$('score').textContent=score+' punti';newTarget()};
 load();
-</script></body></html>
+</script><script src="/globalization.js"></script></body></html>
