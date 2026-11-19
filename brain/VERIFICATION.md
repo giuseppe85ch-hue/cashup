@@ -4,20 +4,20 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 
 ## Completato e verificato
 - [x] Progetto corretto `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- [x] Migrazioni di hardening 0004–0012 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
+- [x] Migrazioni di hardening 0004–0013 applicate tramite connessione Supabase e presenti nella cronologia remota con versioni timestamp.
 - [!] Le migrazioni iniziali 0001–0003 risultano applicate manualmente in precedenza (tabelle e funzione esistono), ma non compaiono nella cronologia remota restituita da Supabase. Prima di usare `db push`, `db reset`, creare branch DB o ricostruire il progetto, occorre riallineare il baseline senza rieseguire queste DDL sul database attivo.
 - [x] 7 tabelle BRAIN presenti, tutte con RLS e FORCE RLS.
 - [x] 9 policy BRAIN: SELECT e INSERT controllato su task, nessun INSERT client su audit.
-- [x] 8 agenti registrati, nessuno attivo.
+- [x] 35 agenti registrati (8 iniziali + 27 specialistici), tutti planned; 0 attivi.
 - [x] 5 impostazioni conservative presenti: autonomia false, emergency stop true, spesa automatizzata 0, approvazione finanziaria true, approvazione alto rischio true.
 - [x] Funzione privata SECURITY DEFINER con search_path vuoto, EXECUTE negato ad anon e consentito ad authenticated, requisito AAL2 nel corpo funzione; funzione pubblica precedente assente.
 - [x] Schema private: USAGE negato ad anon e consentito ad authenticated.
 - [x] Grants BRAIN: zero privilegi diretti per anon e service_role; founder table sola lettura per authenticated; audit solo SELECT per il client, scrittura riservata ai trigger DB.
 - [x] Tabelle CASHUP applicative: nessun privilegio anon, nessun TRUNCATE/REFERENCES/TRIGGER per anon/authenticated/service_role; grants authenticated limitati alle operazioni richieste dalle policy.
 - [x] Default privileges del ruolo postgres in public revocati per nuovi oggetti tabella, sequenza e funzione; EXECUTE su nuove funzioni create da postgres revocato anche a PUBLIC.
-- [x] Test RLS con identità fondatore: funzione true e visibili gli 8 agenti/5 impostazioni.
+- [x] Test RLS con identità fondatore: funzione true e visibili gli agenti del catalogo/5 impostazioni.
 - [x] Test RLS non fondatore AAL1/AAL2: funzione false e zero righe BRAIN visibili.
-- [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e 8 agenti visibili.
+- [x] Test RLS fondatore: AAL1 negato e zero agenti visibili; AAL2 autorizzato e tutti i 35 agenti visibili.
 - [x] Policy utente ottimizzate con `(select auth.uid())`; indici aggiunti sulle 9 chiavi esterne segnalate.
 - [x] Security Advisor dopo le modifiche: resta un avviso Auth per Leaked Password Protection disattivata.
 - [x] Audit approfondito: nessuna vista/materialized view nello schema `public`; nessuna funzione SECURITY DEFINER in `public`; entrambe le RPC sono SECURITY INVOKER con search_path vuoto; nessun oggetto pubblico posseduto da `supabase_admin`; nessun bucket Storage o policy Storage applicativa.
@@ -32,6 +32,7 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Trigger audit task e approvazioni SECURITY DEFINER in schema private, search_path vuoto, proprietario postgres, EXECUTE negato ai ruoli client; il client non può più falsificare direttamente eventi audit.
 - [x] Migrazione 0011 applicata: `brain_create_task` SECURITY INVOKER; grants INSERT solo su title/description/priority; status/sector/created_by non modificabili dal client; vincoli DB su titolo e descrizione; policy INSERT richiede fondatore+AAL2 e valori server-side.
 - [x] Test AAL2 con ROLLBACK dopo 0011: RPC task e audit automatico riusciti; status/sector/created_by non scrivibili; AAL1 e non-fondatore AAL2 respinti; nessun dato test rimasto.
+- [x] Migrazione 0013 applicata: catalogo ampliato da 8 a 35 agenti; 27 ruoli specialistici aggiunti, tutti planned; zero runtime, chiavi o automazioni attivate. Verifica DB: 35 totali, 35 planned, 0 active.
 - [x] Migrazione 0012 applicata: browser senza INSERT su `daily_steps` e nessuna policy INSERT; `profiles` consente INSERT solo su id/display_name e UPDATE solo su display_name; id/created_at non modificabili.
 - [x] Test transazionale profilo: upsert id/display_name riuscito con grants ristretti e ROLLBACK; nessun dato test conservato.
 - [x] `points_ledger`, `affiliate_clicks`, `commissions` restano read-only per authenticated; il client non può creare punti, clic o commissioni.
@@ -56,13 +57,15 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Corretto il caricamento elenco passkey: viene richiesto dopo che la sessione fondatore ha superato MFA AAL2.
 - [ ] Test end-to-end nel browser con login reale, enrollment TOTP, challenge AAL2 e verifica della console; richiede intervento del fondatore.
 - [ ] Testare header CSP/HSTS/anti-framing sul dominio effettivo.
+- [ ] Implementare runtime agenti server-side, tool gateway, policy engine, coda, budget, audit esterno e test; nessun agente catalogato è ancora operativo.
+- [ ] Implementare entitlement premium, webhook firmati, anti-replay, revoca/rimborso, case management e ricorsi prima di introdurre pacchetti a pagamento.
 - [ ] Eseguire una revisione indipendente prima di qualsiasi attivazione di agenti o automazioni.
 - [ ] Completare il piano IP: ricerca marchio, verifica titolarità, accordi di cessione/riservatezza, inventario licenze e prove di paternità. Vedere `IP_PROTECTION_PLAN.md`.
 
 ## Vincoli attivi
 - Nessun merge in `main` e nessun deploy Cloudflare eseguito.
 - Console BRAIN non pubblicata.
-- Nessun agente attivo e nessuna automazione.
+- 35 agenti in catalogo ma nessuno attivo; nessun runtime o automazione.
 - `autonomy_enabled=false`, `emergency_stop=true`, `max_automated_spend_eur=0`.
 - Pagamenti, contratti, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 
