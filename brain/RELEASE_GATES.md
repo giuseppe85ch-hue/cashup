@@ -14,7 +14,7 @@ Motivo: la funzione fondatore è nello schema `private`; inoltre i default ACL g
 ## 2. Supabase — autenticazione
 1. Aprire **Authentication → URL Configuration**.
 2. Impostare il Site URL sul dominio CASHUP definitivo e rimuovere redirect URL non utilizzati o di test.
-3. Impostare la lunghezza minima password a 12 caratteri (il client la richiede già; il controllo server Auth deve essere allineato) e abilitare password strength/leaked password protection se disponibile nel piano.
+3. Impostare la lunghezza minima password a 12 caratteri (il client la richiede già; il controllo server Auth deve essere allineato). Leaked Password Protection è deliberatamente esclusa sul piano Free perché richiede un upgrade a pagamento: nessun upgrade è autorizzato.
 4. Aprire le impostazioni di **Rate Limits** e verificare i limiti per login, OTP e invio email.
 5. Configurare CAPTCHA se disponibile e compatibile con il flusso.
 6. Non cambiare dominio/RP ID dopo aver registrato passkey.
