@@ -31,7 +31,7 @@ window.addEventListener("cashup:game-played", async (event) => {
   if (!currentUser) return;
   const best = Math.max(0, Math.floor(Number(detail.best ?? detail.score) || 0));
   const score = Math.max(0, Math.floor(Number(detail.score) || 0));
-  const plays = Math.max(1, Math.floor(Number(detail.count) || 1));
+  const plays = Math.max(1, Math.floor(Number(detail.plays) || 1));
   const { error } = await supabase.from("player_game_progress").upsert({
     user_id: currentUser.id,
     game_id: "cashup-" + gameId,
