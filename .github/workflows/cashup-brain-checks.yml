@@ -96,6 +96,7 @@ jobs:
           grep -q 'brain_agent_specs_deny_all' brain/supabase/migrations/0015_agent_catalog_metadata_and_default_deny.sql
           grep -q '550 ruoli specialistici' brain/AGENT_CATALOG.md
           grep -q '0 agenti sono attivi' brain/AGENT_RUNTIME_ARCHITECTURE.md
+          grep -q '10 policy BRAIN complessive' brain/VERIFICATION.md
           if grep -q 'security definer' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql; then
             echo 'Public task RPC must remain SECURITY INVOKER.'
             exit 1
