@@ -4,10 +4,10 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 
 ## Stato verificato — 19 novembre 2026
 - Progetto Supabase CASHUP `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- Migrazioni 0001–0003 già eseguite; migrazioni 0004–0011 applicate. Le RPC pubbliche sono entrambe SECURITY INVOKER; i trigger audit interni sono SECURITY DEFINER in `private`.
+- Migrazioni 0001–0003 già eseguite; migrazioni 0004–0012 applicate. Le RPC pubbliche sono entrambe SECURITY INVOKER; i trigger audit interni sono SECURITY DEFINER in `private`.
 - Sette tabelle BRAIN con RLS e FORCE RLS, nove policy BRAIN dopo aver aggiunto l'inserimento controllato delle attività.
 - Funzione `private.brain_is_founder()` SECURITY DEFINER con `search_path` vuoto; esecuzione negata ad anon, consentita ad authenticated; richiede claim JWT `aal2`; vecchia funzione pubblica assente.
-- Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura; `brain_agents`, `brain_memory` e `brain_settings` sono read-only; `brain_tasks` consente SELECT e INSERT solo delle colonne title/description/priority con RLS; il client non può impostare status/sector/created_by. `brain_audit_log` consente solo SELECT; audit viene scritto soltanto dai trigger DB. `brain_approvals` consente SELECT e UPDATE solo della colonna status.
+- Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura; `brain_agents`, `brain_memory` e `brain_settings` sono read-only; `brain_tasks` consente SELECT e INSERT solo delle colonne title/description/priority con RLS; il client non può impostare status/sector/created_by. `daily_steps` è read-only per il browser finché non esiste un flusso server verificato; `profiles` consente solo insert id/display_name e update display_name. `brain_audit_log` consente solo SELECT; audit viene scritto soltanto dai trigger DB. `brain_approvals` consente SELECT e UPDATE solo della colonna status.
 - Test controllato: l'identità del fondatore vede agenti e impostazioni; un'identità authenticated non fondatrice non vede agenti, impostazioni o audit.
 - Otto agenti in catalogo, nessuno attivo. Cinque impostazioni conservative: autonomia false, emergency stop true, spesa automatizzata zero, approvazione umana richiesta per azioni finanziarie e ad alto rischio.
 - Default privileges del ruolo postgres nello schema public revocati per nuove tabelle, sequenze e funzioni; EXECUTE sulle nuove funzioni creato da postgres revocato anche a PUBLIC. I default ACL di `supabase_admin` in `public` concedono privilegi predefiniti ai ruoli API; sono gestiti da Supabase e non sono modificabili dal ruolo `postgres` del progetto. Nessun oggetto public è attualmente posseduto da quel ruolo; non installare estensioni in `public` e disattivare l'esposizione automatica di nuove tabelle.
@@ -31,6 +31,11 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 6. Nessun agente, autonomia o automazione è attivo.
 7. Pagamenti, trasferimenti, contratti, decisioni legali, accessi sensibili e azioni irreversibili richiedono approvazione umana.
 8. La sicurezza assoluta non esiste: restano controlli Auth, MFA, hosting, GitHub, backup e revisione indipendente.
+
+## CASHUP — protezione dati applicativi
+- La migrazione 0012 ha disabilitato gli inserimenti diretti client in `daily_steps`: non è possibile simulare passi via API browser. La registrazione reale dovrà essere implementata con una fonte verificata lato server.
+- `points_ledger`, `affiliate_clicks` e `commissions` sono read-only per authenticated; il client non può attribuire punti, clic o commissioni.
+- Il profilo può essere creato/aggiornato solo nei campi consentiti; `id` e `created_at` non sono aggiornabili dal client.
 
 ## Da completare prima di pubblicare
 - MFA TOTP del fondatore: il flusso è pronto, ma il fondatore deve registrare il proprio autenticatore e verificare il codice.
