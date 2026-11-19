@@ -14,9 +14,10 @@ Motivo: la funzione fondatore è nello schema `private`; inoltre i default ACL g
 ## 2. Supabase — autenticazione
 1. Aprire **Authentication → URL Configuration**.
 2. Impostare il Site URL sul dominio CASHUP definitivo e rimuovere redirect URL non utilizzati o di test.
-3. Aprire le impostazioni di **Rate Limits** e verificare i limiti per login, OTP e invio email.
-4. Configurare CAPTCHA se disponibile e compatibile con il flusso.
-5. Non cambiare dominio/RP ID dopo aver registrato passkey.
+3. Impostare la lunghezza minima password a 12 caratteri (il client la richiede già; il controllo server Auth deve essere allineato) e abilitare password strength/leaked password protection se disponibile nel piano.
+4. Aprire le impostazioni di **Rate Limits** e verificare i limiti per login, OTP e invio email.
+5. Configurare CAPTCHA se disponibile e compatibile con il flusso.
+6. Non cambiare dominio/RP ID dopo aver registrato passkey.
 
 ## 3. MFA del fondatore
 1. Prima di pubblicare la console, predisporre l'accesso privato all'URL `/brain/dashboard` con Cloudflare Access.
@@ -31,7 +32,7 @@ Motivo: la funzione fondatore è nello schema `private`; inoltre i default ACL g
 2. Consentire esclusivamente l'identità del fondatore; richiedere MFA.
 3. Verificare da una finestra anonima che senza autenticazione la console non sia raggiungibile.
 4. Pubblicare il branch solo dopo approvazione esplicita.
-5. Verificare gli header HTTP effettivi: CSP, HSTS, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, Cache-Control no-store e X-Robots-Tag.
+5. Verificare gli header HTTP effettivi: CSP strict senza unsafe-inline, HSTS, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, Cache-Control no-store e X-Robots-Tag. La CSP root richiede che `app.js` e `styles.css` restino esterni e che l'SDK esm.sh resti fissato alla versione approvata.
 6. Testare che il login TOTP/passkey funzioni con la CSP attiva.
 
 ## 5. GitHub — repository
