@@ -23,7 +23,7 @@
   if (!header || document.getElementById("cashup-global-controls")) return;
   const controls = document.createElement("div");
   controls.id = "cashup-global-controls";
-  controls.innerHTML = '<label for="cashup-language">Language</label><select id="cashup-language" aria-label="Language"></select><label for="cashup-currency">Currency</label><select id="cashup-currency" aria-label="Currency"></select><small id="cashup-global-note">Preferred language and display currency</small>';
+  controls.innerHTML = '<label for="cashup-language">Language</label><select id="cashup-language" aria-label="Language"></select><label for="cashup-currency">Currency</label><select id="cashup-currency" aria-label="Currency"></select><small id="cashup-global-note">Language preference · display currency only; live exchange rates are not connected</small>';
   header.appendChild(controls);
   const style = document.createElement("style");
   style.textContent = '#cashup-global-controls{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-left:auto;font-size:11px}#cashup-global-controls label{margin:0;color:#a4b8aa}#cashup-global-controls select{max-width:145px;width:auto;padding:7px 8px;background:#0b150e;color:#fff;border:1px solid #42634b;border-radius:8px;font-size:12px}#cashup-global-note{display:none;color:#a4b8aa}@media(max-width:560px){header{flex-wrap:wrap}#cashup-global-controls{width:100%;margin:8px 0 0}#cashup-global-controls select{flex:1;min-width:100px}}';
@@ -49,11 +49,5 @@
   }
   langSelect.addEventListener("change",()=>{locale=langSelect.value;applyLanguage()});
   currencySelect.addEventListener("change",()=>{currency=currencySelect.value;localStorage.setItem("cashup_currency",currency);formatBalances()});
-  document.querySelectorAll(".amount").forEach(el=>{
-    if(!el.hasAttribute("data-cashup-value")){
-      const raw=el.textContent.trim();
-      if(/^[0-9.,]+\\s*€$/.test(raw))el.dataset.cashupValue="0";
-    }
-  });
   applyLanguage();
 })();
