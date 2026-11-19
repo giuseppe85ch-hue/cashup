@@ -7,28 +7,12 @@ const supabase = createClient(
 );
 
 let currentUser = null;
-supabase.auth.getSession().then(({ data, error }) => {
-  if (error) throw error;
-  currentUser = data.session?.user || null;
-  if (status) status.textContent = currentUser
-    ? "Progressi collegati al tuo account CASHUP."
-    : "Accedi a CASHUP per sincronizzare i progressi su più dispositivi.";
-}).catch(() => {
-  if (status) status.textContent = "Sincronizzazione online momentaneamente non disponibile.";
-});
+let sessionReady = false;
+const pendingEvents = [];
 
-supabase.auth.onAuthStateChange((_event, session) => {
-  currentUser = session?.user || null;
-  if (status) status.textContent = currentUser
-    ? "Progressi collegati al tuo account CASHUP."
-    : "Progressi salvati solo su questo dispositivo. Accedi per sincronizzarli.";
-});
-
-window.addEventListener("cashup:game-played", async (event) => {
-  const detail = event.detail || {};
+async function saveProgress(detail) {
   const gameId = String(detail.key || "");
-  if (!/^(reflex|memory|math|quiz)$/.test(gameId)) return;
-  if (!currentUser) return;
+  if (!/^(reflex|memory|math|quiz)$/.test(gameId) || !currentUser) return;
   const best = Math.max(0, Math.floor(Number(detail.best ?? detail.score) || 0));
   const score = Math.max(0, Math.floor(Number(detail.score) || 0));
   const plays = Math.max(1, Math.floor(Number(detail.plays) || 1));
@@ -45,4 +29,37 @@ window.addEventListener("cashup:game-played", async (event) => {
   if (status) status.textContent = error
     ? "Partita salvata sul dispositivo; sincronizzazione online non riuscita."
     : "Progressi sincronizzati con il tuo account CASHUP.";
+}
+
+window.addEventListener("cashup:game-played", (event) => {
+  const detail = event.detail || {};
+  if (!sessionReady) pendingEvents.push(detail);
+  else if (currentUser) saveProgress(detail).catch(() => {
+    if (status) status.textContent = "Partita salvata sul dispositivo; sincronizzazione online non riuscita.";
+  });
+});
+
+supabase.auth.getSession().then(async ({ data, error }) => {
+  if (error) throw error;
+  currentUser = data.session?.user || null;
+  sessionReady = true;
+  if (status) status.textContent = currentUser
+    ? "Progressi collegati al tuo account CASHUP."
+    : "Accedi a CASHUP per sincronizzare i progressi su più dispositivi.";
+  if (currentUser) {
+    for (const detail of pendingEvents.splice(0)) await saveProgress(detail);
+  } else {
+    pendingEvents.length = 0;
+  }
+}).catch(() => {
+  sessionReady = true;
+  pendingEvents.length = 0;
+  if (status) status.textContent = "Sincronizzazione online momentaneamente non disponibile.";
+});
+
+supabase.auth.onAuthStateChange((_event, session) => {
+  currentUser = session?.user || null;
+  if (status) status.textContent = currentUser
+    ? "Progressi collegati al tuo account CASHUP."
+    : "Progressi salvati solo su questo dispositivo. Accedi per sincronizzarli.";
 });
