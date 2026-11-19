@@ -7,7 +7,7 @@ Questo piano è una checklist di collaudo. Non abilita agenti, non esegue automa
 - [x] Sette tabelle `brain_*` viste in Supabase.
 - [x] Account fondatore inserito in `brain_founders`.
 - [x] Migrazione catalogo 0002 eseguita in Supabase con esito Success.
-- [ ] Migrazione 0003: spostare la funzione fondatore nello schema non esposto `private` e aggiornare le policy.
+- [x] Migrazione 0003 eseguita: funzione fondatore spostata nello schema `private` e policy aggiornate.
 - [x] Il branch di lavoro resta separato da `main`.
 
 ## Da verificare insieme in Supabase
@@ -17,10 +17,10 @@ La query `supabase/verification/verify_brain_read_only.sql` controlla agenti, im
 - [ ] Query di sola lettura: presenza delle cinque impostazioni iniziali e valori conservativi.
 - [ ] Confermare che `emergency_stop` sia true e `autonomy_enabled` sia false.
 - [ ] Confermare che nessun agente sia nello stato `active`.
-- [ ] Eseguire la migrazione 0003 una sola volta.
-- [ ] Eseguire la query aggiornata `verify_brain_security_read_only.sql` e controllare policy, privilegi e funzione nello schema `private`.
+- [x] Migrazione 0003 eseguita una sola volta (19 novembre 2026).
+- [x] Verifica di sola lettura successiva alla migrazione: schema/funzione privata presenti, `SECURITY DEFINER` attivo, `anon` senza EXECUTE/USAGE, `authenticated` con EXECUTE/USAGE, vecchia funzione pubblica assente, 7 tabelle con RLS e FORCE RLS.
 - [ ] Confermare che nessun ruolo `anon` o `PUBLIC` abbia privilegi sulle tabelle BRAIN.
-- [ ] Confermare che `private.brain_is_founder()` sia `SECURITY DEFINER`, abbia `search_path` vuoto, sia eseguibile solo da `authenticated` e non sia presente nello schema `public`.
+- [x] Confermati `SECURITY DEFINER`, permessi EXECUTE (solo `authenticated`) e assenza della funzione nello schema `public`. Il controllo specifico del valore `search_path` resta da verificare tramite il file SQL di verifica aggiornato.
 - [ ] Verificare policy RLS e accesso fondatore con test controllato.
 
 ## Da verificare insieme nella console, solo dopo i controlli database
@@ -38,4 +38,4 @@ La query `supabase/verification/verify_brain_read_only.sql` controlla agenti, im
 - Per test con account non autorizzato usare un account di prova controllato; non modificare o disattivare l'account principale.
 
 ## Limite operativo attuale
-Non è disponibile in questa sessione una connessione diretta al database Supabase. Il risultato `Success` della migrazione 0002 è stato riferito dall'utente, ma i dati effettivi e le policy non sono ancora stati letti direttamente. Le verifiche che richiedono il pannello Supabase dovranno essere confermate insieme.
+Non è disponibile in questa sessione una connessione diretta al database Supabase. Il fondatore ha fornito l'output di una query di sola lettura eseguita il 19 novembre 2026: i controlli principali della migrazione 0003 sono positivi e tutte le sette tabelle risultano protette da RLS e FORCE RLS. Il valore effettivo di `search_path`, i dati di catalogo/impostazioni e i test end-to-end della console restano da confermare.
