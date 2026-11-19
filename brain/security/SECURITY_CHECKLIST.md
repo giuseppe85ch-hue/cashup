@@ -1,18 +1,18 @@
 # CASHUP BRAIN — checklist di sicurezza
 
 ## Database
-- [x] Migrazioni BRAIN 0001–0009 e hardening CASHUP applicati il 19 novembre 2026.
+- [x] Migrazioni BRAIN 0001–0010 e hardening CASHUP applicati il 19 novembre 2026.
 - [x] RLS e FORCE RLS attivi su tutte le 12 tabelle pubbliche (7 BRAIN + 5 CASHUP).
 - [x] Nessun privilegio effettivo di anon o service_role su tutte le 12 tabelle public; verificato anche TRUNCATE.
 - [x] `brain_founders`: authenticated può solo SELECT; nessun INSERT/UPDATE/DELETE/TRUNCATE.
-- [x] `brain_audit_log`: authenticated può solo SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; policy INSERT vincola actor_user_id=auth.uid(), actor_type=founder e outcome=recorded.
+- [x] `brain_audit_log`: authenticated può solo SELECT; nessuna policy INSERT; scrittura esclusivamente dai trigger SECURITY DEFINER protetti.
 - [x] Altre tabelle BRAIN: accesso RLS consentito solo al fondatore tramite funzione privata.
 - [x] Funzione privata: SECURITY DEFINER, search_path vuoto, EXECUTE solo authenticated; anon senza USAGE su private; la funzione richiede anche claim JWT AAL2.
 - [x] Test negativo simulato con ruolo authenticated non fondatore: nessuna riga BRAIN visibile.
-- [x] Esattamente 9 policy BRAIN previste; nessuna policy aggiuntiva. Default privileges del ruolo postgres in public revocati.
-- [x] RPC `brain_create_task` e `brain_decide_approval`: SECURITY INVOKER, search_path vuoto, EXECUTE solo authenticated.
-- [x] Grants minimi: task senza UPDATE/DELETE, agenti/memoria/impostazioni read-only, approvazioni UPDATE solo status e senza INSERT/DELETE.
-- [x] Trigger database che registra automaticamente task e decisioni approvazioni, imposta decided_by/decided_at e aggiorna updated_at; audit atomico.
+- [x] 8 policy BRAIN attese dopo la rimozione delle scritture dirette; nessuna policy aggiuntiva. Default privileges del ruolo postgres in public revocati.
+- [x] RPC `brain_create_task`: SECURITY DEFINER con search_path vuoto, EXECUTE solo authenticated e controllo fondatore+AAL2; `brain_decide_approval`: SECURITY INVOKER, search_path vuoto, EXECUTE solo authenticated.
+- [x] Grants minimi: task e audit solo SELECT per client, creazione task solo via RPC controllata, agenti/memoria/impostazioni read-only, approvazioni UPDATE solo status e senza INSERT/DELETE.
+- [x] Trigger database SECURITY DEFINER, search_path vuoto, registra automaticamente task e decisioni approvazioni, imposta decided_by/decided_at e aggiorna updated_at; audit atomico e non falsificabile con INSERT client.
 - [x] Test transazionale con ruolo authenticated/AAL2 e ROLLBACK: creazione attività e approvazione scrivono i rispettivi eventi audit nella stessa transazione.
 - [!] Nessun oggetto public attualmente posseduto da `supabase_admin`, ma i suoi default ACL in public concedono privilegi a anon/authenticated/service_role. Il ruolo postgres del progetto non è membro di supabase_admin e non può modificarli. Evitare estensioni in public.
 
@@ -25,7 +25,7 @@
 - [ ] Rate limits e protezione brute-force da verificare nelle impostazioni Auth.
 - [ ] CAPTCHA / protezione anti-bot da valutare e configurare se supportata.
 - [ ] URL del sito e redirect URL Supabase limitati ai soli domini CASHUP autorizzati.
-- [ ] Verificare nelle impostazioni Data API che `private` sia escluso dagli schemi esposti; i privilegi SQL anon su private sono già negati.
+- [!] Audit ha rilevato `private` tra gli schemi esposti: rimuoverlo in Project Settings → Data API → Exposed schemas e salvare. Disattivare Automatically expose new tables and functions.
 
 ## Browser e hosting
 - [ ] Solo HTTPS e HSTS sul dominio definitivo.
@@ -46,7 +46,7 @@
 - [ ] Nessun token o password stampato nei log.
 
 ## Codice e supply chain
-- [!] Repository GitHub attualmente pubblico: sorgente e documentazione sono leggibili da chiunque; decidere se renderlo privato. Nessuna modifica di visibilità eseguita.
+- [!] Repository GitHub attualmente pubblico: sorgente e documentazione sono leggibili da chiunque. Verificare Cloudflare Pages e poi rendere privato il repository; fork pubblici/copie già scaricate non diventano privati.
 - [ ] Nessuna service_role key o segreto in Git, HTML, JS, bundle o log.
 - [ ] Secret scanning attivo e storico repository controllato.
 - [ ] Dipendenze versionate e aggiornate; audit vulnerabilità prima di ogni release.
@@ -54,6 +54,14 @@
 - [ ] MFA GitHub, secret scanning e push protection attivi, se disponibili nel piano.
 - [x] Workflow CI statico aggiunto con `contents: read` e action checkout fissata a SHA; run #13 completata con SUCCESS. Il workflow non è una scansione segreti completa.
 - [ ] Nessun deploy automatico dalla branch di lavoro.
+
+## Proprietà intellettuale e anti-impersonificazione
+- [ ] Ricerca anteriorità e deposito marchio CASHUP/logo (UIBM/EUIPO/WIPO secondo territori e budget).
+- [ ] Verifica titolarità di codice, design, testi e asset; accordi scritti con collaboratori/fornitori e inventario licenze.
+- [ ] Conservare prove datate, hash e release firmate; valutare deposito software SIAE.
+- [ ] Classificare e mantenere segreti commerciali con accessi limitati, cifratura e NDA.
+- [ ] Proteggere domini/DNS/email; configurare SPF, DKIM, DMARC e monitorare imitazioni.
+- [ ] Procedura per preservare prove e segnalare impersonificazione, frodi e contenuti diffamatori.
 
 ## Operazioni e resilienza
 - [!] Piano Free: nessun backup automatico. [ ] Esportazione manuale cifrata e test restore ancora da eseguire.
