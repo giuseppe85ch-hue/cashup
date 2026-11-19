@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "CASHUP",
+    "slug": "cashup-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "scheme": "cashup",
+    "ios": {
+      "bundleIdentifier": "com.cashup.mobile",
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.cashup.mobile",
+      "versionCode": 1
+    },
+    "plugins": [
+      [
+        "@appeeky/expo-healthkit",
+        {
+          "healthSharePermission": "CASHUP legge il numero dei tuoi passi giornalieri per aggiornare CASHUP Steps.",
+          "healthUpdatePermission": false,
+          "healthConnectPermissions": [
+            "READ_STEPS"
+          ]
+        }
+      ]
+    ]
+  }
+}
