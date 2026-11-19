@@ -97,6 +97,16 @@ select jsonb_pretty(jsonb_build_object(
           has_table_privilege('anon',c.oid,'TRIGGER')
         )
     ),
+    'founder_authenticated_required_select',has_table_privilege('authenticated','public.brain_founders','SELECT'),
+    'core_authenticated_full_crud_tables',(
+      select count(*) from pg_class c join pg_namespace n on n.oid=c.relnamespace
+      where n.nspname='public' and c.relkind='r'
+        and c.relname in ('brain_tasks','brain_agents','brain_memory','brain_approvals','brain_settings')
+        and has_table_privilege('authenticated',c.oid,'SELECT')
+        and has_table_privilege('authenticated',c.oid,'INSERT')
+        and has_table_privilege('authenticated',c.oid,'UPDATE')
+        and has_table_privilege('authenticated',c.oid,'DELETE')
+    ),
     'founder_authenticated_write_privileges',jsonb_build_object(
       'insert',has_table_privilege('authenticated','public.brain_founders','INSERT'),
       'update',has_table_privilege('authenticated','public.brain_founders','UPDATE'),
