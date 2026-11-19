@@ -55,10 +55,20 @@ select jsonb_pretty(jsonb_build_object(
           'brain_approvals','brain_settings','brain_audit_log')
         and c.relrowsecurity and c.relforcerowsecurity
     ),
-    'anon_or_public_grants',(
-      select count(*) from information_schema.role_table_grants
-      where table_schema='public' and table_name like 'brain_%'
-        and grantee in ('PUBLIC','anon')
+    'anon_effective_privilege_tables',(
+      select count(*) from pg_class c join pg_namespace n on n.oid=c.relnamespace
+      where n.nspname='public' and c.relkind='r'
+        and c.relname in ('brain_founders','brain_tasks','brain_agents','brain_memory',
+          'brain_approvals','brain_settings','brain_audit_log')
+        and (
+          has_table_privilege('anon',c.oid,'SELECT') or
+          has_table_privilege('anon',c.oid,'INSERT') or
+          has_table_privilege('anon',c.oid,'UPDATE') or
+          has_table_privilege('anon',c.oid,'DELETE') or
+          has_table_privilege('anon',c.oid,'TRUNCATE') or
+          has_table_privilege('anon',c.oid,'REFERENCES') or
+          has_table_privilege('anon',c.oid,'TRIGGER')
+        )
     )
   ),
   'private_schema',jsonb_build_object(
