@@ -54,6 +54,16 @@ select json_build_object(
     where not t.tgisinternal
       and n.nspname = 'public' and c.relname like 'brain_%'
   ),
+  'brain_anti_forgery', json_build_object(
+    'authenticated_task_insert', has_table_privilege('authenticated','public.brain_tasks','INSERT'),
+    'authenticated_audit_insert', has_table_privilege('authenticated','public.brain_audit_log','INSERT'),
+    'task_rpc_security_definer', (select prosecdef from pg_proc where oid='public.brain_create_task(text,text,text)'::regprocedure),
+    'task_rpc_search_path_empty', (select coalesce(proconfig @> array['search_path=""'],false) from pg_proc where oid='public.brain_create_task(text,text,text)'::regprocedure),
+    'task_rpc_anon_execute', has_function_privilege('anon','public.brain_create_task(text,text,text)','EXECUTE'),
+    'task_rpc_authenticated_execute', has_function_privilege('authenticated','public.brain_create_task(text,text,text)','EXECUTE'),
+    'audit_insert_policy_count', (select count(*) from pg_policies where schemaname='public' and tablename='brain_audit_log' and cmd='INSERT'),
+    'task_write_policy_count', (select count(*) from pg_policies where schemaname='public' and tablename='brain_tasks' and cmd in ('INSERT','UPDATE','DELETE','ALL'))
+  ),
   'brain_client_privileges', (
     select coalesce(json_agg(json_build_object(
       'table', table_name, 'grantee', grantee, 'privilege', privilege_type
