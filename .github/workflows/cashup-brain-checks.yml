@@ -90,6 +90,9 @@ jobs:
           grep -q "'anti_piracy'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
           grep -q "'founder_assistant'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
           grep -q "'planned'" brain/supabase/migrations/0013_expand_specialist_agent_catalog.sql
+          test -f brain/supabase/migrations/0014_agent_specifications_catalog_550.sql
+          grep -q 'max_spend_eur=0' brain/supabase/migrations/0014_agent_specifications_catalog_550.sql
+          grep -q 'brain_agent_specs_deny_all' brain/supabase/migrations/0014_agent_specifications_catalog_550.sql
           if grep -q 'security definer' brain/supabase/migrations/0011_invoker_task_rpc_column_grants.sql; then
             echo 'Public task RPC must remain SECURITY INVOKER.'
             exit 1
