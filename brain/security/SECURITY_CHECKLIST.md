@@ -9,7 +9,7 @@
 - [x] Altre tabelle BRAIN: accesso RLS consentito solo al fondatore tramite funzione privata.
 - [x] Funzione privata: SECURITY DEFINER, search_path vuoto, EXECUTE solo authenticated; anon senza USAGE su private; la funzione richiede anche claim JWT AAL2.
 - [x] Test negativo simulato con ruolo authenticated non fondatore: nessuna riga BRAIN visibile.
-- [x] 8 policy BRAIN attese dopo la rimozione delle scritture dirette; nessuna policy aggiuntiva. Default privileges del ruolo postgres in public revocati.
+- [x] 9 policy BRAIN verificate: task SELECT e INSERT limitato; audit solo SELECT. Default privileges del ruolo postgres in public revocati.
 - [x] RPC `brain_create_task`: SECURITY INVOKER con search_path vuoto, EXECUTE solo authenticated e controllo fondatore+AAL2; `brain_decide_approval`: SECURITY INVOKER, search_path vuoto, EXECUTE solo authenticated.
 - [x] Grants minimi: task SELECT più INSERT limitato a title/description/priority, audit solo SELECT per client, agenti/memoria/impostazioni read-only, approvazioni UPDATE solo status e senza INSERT/DELETE.
 - [x] Trigger database SECURITY DEFINER in private, search_path vuoto, registra automaticamente task e decisioni approvazioni, imposta decided_by/decided_at e aggiorna updated_at; audit atomico e non falsificabile con INSERT client.
@@ -36,7 +36,7 @@
 - [ ] Passkeys Supabase è sperimentale: mantenere TOTP AAL2 come requisito separato e metodo di recupero.
 - [x] Versione Supabase JS fissata a `2.119.1` tramite esm.sh con bundle; gli aggiornamenti devono essere deliberati e verificati.
 - [x] CSP preparata senza `unsafe-eval` e senza `unsafe-inline`; resta da verificarla sul dominio dopo il deploy.
-- [x] Header preparati nel file `_headers` alla root Pages e limitati al percorso `/brain/dashboard/*`: CSP, HSTS, anti-framing, nosniff, Referrer-Policy, Permissions-Policy, no-store e noindex; verifica HTTP reale ancora da fare.
+- [x] Header preparati nel file `_headers` alla root Pages: CSP/HSTS/anti-framing base su `/*`, con no-store/noindex aggiuntivi su `/brain/dashboard/*`: CSP, HSTS, anti-framing, nosniff, Referrer-Policy, Permissions-Policy, no-store e noindex; verifica HTTP reale ancora da fare.
 - [x] Permissions-Policy minima preparata; verifica HTTP reale ancora da fare.
 - [ ] Nessun dato sensibile in URL, console, analytics o errori.
 - [x] Privilegi `anon` rimossi dalle cinque tabelle applicative; `TRUNCATE`, `REFERENCES` e `TRIGGER` rimossi dai ruoli browser e dal ruolo service per queste tabelle.
@@ -45,6 +45,8 @@
 - [x] Migrazione 0011: nessuna funzione SECURITY DEFINER nello schema public; entrambe le RPC pubbliche SECURITY INVOKER.
 - [x] Migrazione 0012: `daily_steps` read-only per browser, nessuna policy INSERT; profili con grants solo `id/display_name` in insert e `display_name` in update; upsert testato con ROLLBACK.
 - [x] `points_ledger`, `affiliate_clicks` e `commissions` non consentono scritture dal client.
+- [x] `daily_steps` nessun INSERT dal browser e nessuna policy INSERT fino a integrazione server-verificata.
+- [x] `profiles` INSERT solo id/display_name, UPDATE solo display_name; id e created_at non modificabili; upsert testato con ROLLBACK.
 - [x] Migrazione 0011: colonne task `status`, `sector`, `created_by` non scrivibili dal client; title/description/priority soggetti a vincoli DB e RLS founder+AAL2.
 - [ ] XSS test su titolo/descrizione/etichette e contenuti dal database.
 - [ ] Nessun token o password stampato nei log.
@@ -62,7 +64,7 @@
 - [ ] Dipendenze versionate e aggiornate; audit vulnerabilità prima di ogni release.
 - [ ] Branch protection su main: blocco force-push/cancellazione, review obbligatoria e controlli CI prima del merge.
 - [ ] MFA GitHub, secret scanning e push protection attivi, se disponibili nel piano.
-- [x] Workflow CI statico aggiunto con `contents: read` e action checkout fissata a SHA; run #13 completata con SUCCESS; i run successivi sono in attesa/annullati per gli aggiornamenti rapidi e devono essere ricontrollati. Il workflow non è una scansione segreti completa.
+- [x] Workflow CI statico aggiunto con `contents: read` e action checkout fissata a SHA; run #13 completata con SUCCESS; il workflow è stato poi esteso a client root, CSP, service worker, SDK fissato e scan segreti client; l'ultimo run deve essere verificato. Il workflow non è una scansione segreti completa.
 - [ ] Nessun deploy automatico dalla branch di lavoro.
 
 ## Proprietà intellettuale e anti-impersonificazione
