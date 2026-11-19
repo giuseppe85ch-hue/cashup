@@ -4,7 +4,7 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 
 ## Stato verificato — 19 novembre 2026
 - Progetto Supabase CASHUP `fzcricigqqpzcujrenkf`, stato ACTIVE_HEALTHY.
-- Migrazioni 0001–0003 già eseguite; migrazioni 0004 (privilegio minimo), 0005 (ottimizzazione RLS/indici) e 0006 (MFA AAL2 obbligatoria anche nel database) applicate tramite collegamento Supabase.
+- Migrazioni 0001–0003 già eseguite; migrazioni 0004 (privilegio minimo), 0005 (ottimizzazione RLS/indici), 0006 (MFA AAL2 obbligatoria anche nel database) e 0007 (privilegio minimo sulle tabelle CASHUP) applicate tramite collegamento Supabase.
 - Sette tabelle BRAIN con RLS e FORCE RLS, otto policy previste e nessuna policy aggiuntiva.
 - Funzione `private.brain_is_founder()` SECURITY DEFINER con `search_path` vuoto; esecuzione negata ad anon, consentita ad authenticated; richiede claim JWT `aal2`; vecchia funzione pubblica assente.
 - Zero privilegi diretti per anon e service_role sulle tabelle BRAIN. `brain_founders` è sola lettura per authenticated; `brain_audit_log` è append-only (SELECT/INSERT).
@@ -18,8 +18,8 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - `dashboard/index.html`, `dashboard/styles.css`, `dashboard/app.js`: console web iniziale per accesso fondatore, riepilogo, creazione attività, consultazione agenti, approvazioni, audit e impostazioni.
 - Il client usa solo la chiave Supabase publishable; nessuna service_role key o password è inserita nel codice.
 - La versione Supabase JS è fissata a `2.119.1` tramite esm.sh bundle; aggiornamenti deliberati e verificati.
-- La dashboard richiede una sessione MFA AAL2 prima di mostrare dati BRAIN e include un flusso TOTP per registrazione/verifica del fattore. Il fondatore non ha ancora fattori MFA registrati: il flusso deve essere completato e collaudato nel browser. Il database è stato testato: sessione AAL1 negata, fondatore AAL2 autorizzato, non fondatore AAL2 negato.\n- `dashboard/_headers` prepara CSP, HSTS, anti-framing, nosniff, referrer e permissions policy. Gli header sono effettivi solo se il file viene servito dalla root di pubblicazione o replicato nella configurazione hosting.
-- La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser.
+- La dashboard richiede una sessione MFA AAL2 prima di mostrare dati BRAIN e include un flusso TOTP per registrazione/verifica del fattore. Il fondatore non ha ancora fattori MFA registrati: il flusso deve essere completato e collaudato nel browser. Il database è stato testato: sessione AAL1 negata, fondatore AAL2 autorizzato, non fondatore AAL2 negato.\n- Il file `_headers` si trova nella root del repository e contiene regole limitate a `/brain/dashboard` e `/brain/dashboard/*`. Gli header saranno effettivi solo quando il sito sarà pubblicato da una root che include quel file; la risposta HTTP reale non è ancora stata verificata.
+- La dashboard non è stata ancora pubblicata né collaudata end-to-end nel browser. Il flusso di approvazione verifica ora che una riga pending sia stata effettivamente aggiornata prima di confermare l'esito.
 
 ## Sicurezza e limiti
 1. RLS e grants sono la barriera effettiva ai dati; la chiave publishable è pubblica e non è un segreto.
