@@ -16,4 +16,4 @@ Ogni scheda privata definisce missione, confini, criteri di accettazione, contra
 Un ruolo può avanzare soltanto dopo runtime server-side, provider verificato, identità tecnica separata, strumenti allowlist, limiti di costo approvati, test, audit, kill switch, MFA fondatore e approvazione esplicita per ogni servizio a pagamento. Nessun ruolo può attivarsi da solo, cambiare budget o rimuovere l'arresto di emergenza.
 
 ## Migrazione
-La migrazione 0014_agent_specifications_catalog_550.sql definisce in modo riproducibile il catalogo e le specifiche private. Non distribuisce Edge Functions, non configura chiavi, non avvia automazioni e non genera costi.
+Le migrazioni 0014_agent_specifications_catalog_550.sql e 0015_agent_catalog_metadata_and_default_deny.sql definiscono in modo riproducibile il catalogo, le specifiche private e la policy di negazione predefinita. Non distribuisce Edge Functions, non configura chiavi, non avvia automazioni e non genera costi.
