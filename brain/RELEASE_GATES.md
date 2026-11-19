@@ -60,5 +60,20 @@ Il piano Supabase Free non offre backup automatici giornalieri.
 6. Proteggere domini, DNS, email e account social; impostare SPF, DKIM e DMARC.
 7. Definire procedura per impersonificazione, frode, copia del marchio e diffamazione: conservazione prove, segnalazioni e assistenza legale.
 
+
+## 8. Pacchetti a pagamento, anti-pirateria e ban
+Prima di vendere qualsiasi pacchetto premium:
+1. Scegliere e collegare il provider di pagamento/store senza mettere segreti nel client.
+2. Verificare sul server ogni ricevuta o webhook: firma, prodotto, importo, valuta, ambiente, utente, scadenza e stato.
+3. Implementare entitlement server-side con idempotenza, protezione replay, rinnovi, scadenze, rimborsi, chargeback e revoche.
+4. Far verificare l'entitlement a ogni API che consegna contenuti premium o esegue azioni a pagamento.
+5. Provare bypass del client, REST diretto, replay, downgrade, token scaduti, acquisti rimborsati e account diversi.
+6. Implementare rate limit, rilevamento anomalie e casi antifrode con prove verificabili.
+7. Consentire limitazioni progressive e sospensioni temporanee; ban permanenti solo con prove e revisione umana, motivazione e ricorso.
+8. Non attivare blocchi automatici basati soltanto su IP, VPN, device fingerprint o punteggio AI.
+9. Non vendere pacchetti finché test end-to-end, assistenza e procedura di ricorso non sono pronti.
+
+**Stato attuale:** pacchetti a pagamento, provider, webhook, entitlement e ban applicativi non sono implementati. CASHUP continua a mostrare contenuti dimostrativi; nessun acquisto reale è attivo.
+
 ## Criterio finale
 CASHUP BRAIN non è pronto per la produzione finché tutte le verifiche sopra non hanno evidenza verificabile. Il branch di lavoro non va unito a `main` e la console non va pubblicata senza un'autorizzazione specifica.
