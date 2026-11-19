@@ -5,8 +5,8 @@ Questa lista contiene solo attività che richiedono l'accesso del fondatore alle
 ## 1. Supabase — Data API (priorità massima)
 1. Aprire il progetto CASHUP nella Dashboard Supabase.
 2. Aprire **Integrations → Data API** (in alcune versioni la voce può essere sotto **Settings → API**).
-3. In **Exposed schemas**, lasciare esposto solo lo schema necessario all'applicazione, attualmente `public`; verificare che `private` NON sia presente.
-4. Disattivare **Automatically expose new tables** (o la voce equivalente).
+3. L'ultimo audit ha trovato `private` esposto: rimuoverlo. Lasciare `public` e solo eventuali schemi strettamente necessari; `graphql_public` soltanto se GraphQL è effettivamente utilizzato. Verificare che `private` NON sia presente.
+4. Disattivare **Automatically expose new tables and functions** (o le voci equivalenti).
 5. Salvare e ricontrollare la configurazione.
 
 Motivo: la funzione fondatore è nello schema `private`; inoltre i default ACL gestiti da Supabase per il ruolo `supabase_admin` in `public` non sono modificabili dal ruolo del progetto. Evitare di installare estensioni nello schema `public`.
@@ -35,7 +35,7 @@ Motivo: la funzione fondatore è nello schema `private`; inoltre i default ACL g
 6. Testare che il login TOTP/passkey funzioni con la CSP attiva.
 
 ## 5. GitHub — repository
-1. Il repository risulta attualmente **pubblico**: tutti i file e i branch, inclusi codice e documentazione BRAIN, sono leggibili da chiunque. Decidere se mantenerlo pubblico; se si desidera riservatezza del sorgente, cambiare la visibilità in **Settings → General → Danger Zone → Change repository visibility**. Non ho modificato questa impostazione.
+1. Il repository risulta attualmente **pubblico**: tutti i file e i branch, inclusi codice e documentazione BRAIN, sono leggibili da chiunque. Verificare prima che Cloudflare Pages possa continuare a leggere il repository privato; poi cambiare la visibilità in **Settings → General → Danger Zone → Change repository visibility**. Non ho modificato questa impostazione.
 2. Attivare MFA per l'account GitHub.
 3. In **Settings → Code security and analysis**, attivare secret scanning, push protection, Dependabot alerts e security updates se disponibili.
 4. In **Settings → Branches / Rulesets**, proteggere `main`: bloccare force-push e cancellazione; richiedere controlli CI superati prima del merge.
@@ -49,6 +49,15 @@ Il piano Supabase Free non offre backup automatici giornalieri.
 3. Non incollare stringhe di connessione o password in chat.
 4. Provare il ripristino in un ambiente separato prima di considerare affidabile il backup.
 5. Ripetere l'esportazione dopo ogni modifica importante a schema o dati.
+
+## 7. Proprietà intellettuale, marchio e reputazione
+1. Aprire `IP_PROTECTION_PLAN.md` e completare la verifica del titolare giuridico dei diritti.
+2. Eseguire ricerca anteriorità CASHUP e logo su UIBM, EUIPO/TMview e WIPO; valutare deposito con consulente.
+3. Inventariare autori e licenze di codice, font, icone, immagini, testi, video e componenti di terzi.
+4. Ottenere accordi scritti su riservatezza e diritti economici da sviluppatori, grafici, agenzie e collaboratori.
+5. Conservare prove datate, hash, commit e release firmate; valutare deposito SIAE del software.
+6. Proteggere domini, DNS, email e account social; impostare SPF, DKIM e DMARC.
+7. Definire procedura per impersonificazione, frode, copia del marchio e diffamazione: conservazione prove, segnalazioni e assistenza legale.
 
 ## Criterio finale
 CASHUP BRAIN non è pronto per la produzione finché tutte le verifiche sopra non hanno evidenza verificabile. Il branch di lavoro non va unito a `main` e la console non va pubblicata senza un'autorizzazione specifica.
