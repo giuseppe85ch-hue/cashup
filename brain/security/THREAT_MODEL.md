@@ -38,25 +38,25 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - HTML, CSS e JavaScript della console sono separati per consentire una Content Security Policy senza script/style inline.
 - È stato aggiunto `dashboard/_headers` con CSP, HSTS, protezione anti-framing, nosniff, referrer policy e permissions policy. Gli header saranno effettivi solo se `brain/dashboard` è la directory radice di pubblicazione Cloudflare o se vengono replicati nella configurazione dell'hosting definitivo.
 - La funzione `private.brain_is_founder()` è SECURITY DEFINER con search_path vuoto; deve restare non esposta tramite gli schemi API.
-- Le tabelle BRAIN devono avere RLS e FORCE RLS attivi.
-- `brain_founders` non deve consentire inserimenti o modifiche dal client.
-- `brain_audit_log` è append-only per il client: SELECT/INSERT, senza UPDATE/DELETE.
+- Le sette tabelle BRAIN hanno RLS e FORCE RLS attivi; la verifica del 19 novembre 2026 ha confermato grants minimi, zero privilegi anon/service_role, 8 policy previste e test RLS positivo per fondatore e negativo per non fondatore.
+- `brain_founders` consente ad authenticated solo SELECT sulla propria riga attiva; gli altri privilegi sono revocati.
+- `brain_audit_log` è append-only per il client: SELECT/INSERT, senza UPDATE/DELETE/TRUNCATE; test dei privilegi completato.
 - Le approvazioni registrano una decisione ma non devono attivare workflow o operazioni esterne.
-- Autonomia disattivata, arresto di emergenza attivo, spesa automatizzata pari a zero.
+- Autonomia disattivata, arresto di emergenza attivo, spesa automatizzata pari a zero; valori verificati nel database.
 - Nessun agente attivo.
 
 ## Requisiti prima di pubblicare
 
-1. Eseguire le query di verifica e ottenere tutti i valori attesi.
-2. Applicare e verificare la migrazione 0004 solo dopo aver confermato il database corretto.
-3. Testare con account fondatore e account autenticato non fondatore.
-4. Provare esplicitamente SELECT/INSERT/UPDATE/DELETE/TRUNCATE su ogni tabella con il non fondatore: tutte devono essere negate.
-5. Testare che l'audit non consenta UPDATE/DELETE.
-6. Abilitare MFA per l'account fondatore e verificare il recupero account.
-7. Applicare header HTTP di sicurezza sul dominio effettivo; controllare CSP, HSTS, frame-ancestors e HTTPS.
-8. Verificare secret scanning, dipendenze e protezione del branch.
-9. Configurare backup e test di ripristino.
-10. Definire logging, alert, contatti e procedura di risposta agli incidenti.
+1. [x] Applicare migrazioni 0004 e 0005; verificare tutti i valori con query completa.
+2. [x] Testare funzione e lettura BRAIN come fondatore.
+3. [x] Testare identità authenticated non fondatore: zero righe visibili su agenti, impostazioni e audit.
+4. [x] Verificare grants, RLS/FORCE RLS, funzione privata, search_path, policy e default ACL.
+5. [ ] Attivare Leaked Password Protection e MFA nelle impostazioni Auth.
+6. [ ] Verificare schema esposto, redirect URL, rate limits e CAPTCHA nella console Supabase.
+7. [ ] Applicare e verificare header HTTP sul dominio effettivo prima di pubblicare la console.
+8. [ ] Verificare secret scanning, dipendenze e protezione del branch GitHub.
+9. [ ] Verificare backup, retention e test di ripristino.
+10. [ ] Definire logging, alert, contatti e procedura di risposta agli incidenti.
 
 ## Risposta agli incidenti
 
@@ -69,5 +69,7 @@ Questo documento descrive controlli e rischi noti; non è una certificazione e n
 - Riprendere il servizio solo dopo nuova verifica indipendente.
 
 ## Limiti aperti
+
+Il Security Advisor Supabase segnala ancora `Leaked Password Protection Disabled`. È una configurazione Auth esterna al database e non è modificabile tramite gli strumenti Supabase disponibili in questa sessione. Anche MFA, rate limits, CAPTCHA, redirect URL, backup e configurazione GitHub/Cloudflare richiedono verifica nelle rispettive console.
 
 La configurazione del progetto Supabase, MFA, rate limits, backup/PITR, impostazioni GitHub, headers del dominio e log del provider non sono verificabili dal solo repository. Vanno controllati nelle rispettive console prima della pubblicazione.
