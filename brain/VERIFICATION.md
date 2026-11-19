@@ -25,6 +25,14 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [x] Sequenza `brain_audit_log.id` usa IDENTITY ALWAYS; l'assenza di USAGE su sequence per `authenticated` è intenzionale e non blocca gli INSERT con ID omesso.
 - [x] Performance Advisor: nessun avviso di foreign key non indicizzate e nessun avviso RLS initplan; restano solo avvisi informativi per indici nuovi/non ancora utilizzati.
 
+## Controllo approfondito aggiuntivo — 19 novembre 2026
+- [x] Nuova lettura diretta: tutte le 12 tabelle public hanno RLS e FORCE RLS; nessun grant diretto ad anon; nessuna vista public; nessuna funzione in public; nessun indice invalido.
+- [x] Funzione privata `private.brain_is_founder()`: SECURITY DEFINER, `search_path` vuoto, EXECUTE negato ad anon e consentito ad authenticated; schema private senza USAGE ad anon.
+- [x] Nessuna tabella applicativa iscritta alla publication `supabase_realtime`.
+- [!] La configurazione effettiva degli schemi esposti dalla Data API non è stata leggibile dal catalogo SQL (`pgrst.db_schemas` non restituisce un valore). Non considerare verificato che `private` sia escluso: controllare la pagina Data API della Dashboard.
+- [!] Un vincolo non validato appartiene a `realtime.messages` (schema gestito dal servizio), non alle tabelle public dell'applicazione; non modificarlo manualmente.
+- [x] Corretto il flusso approvazioni nella dashboard: ora richiede la conferma della riga effettivamente aggiornata e segnala le richieste già gestite/non più disponibili invece di mostrare un falso successo.
+
 ## Da completare fuori dal database
 - [ ] Leaked Password Protection non attivabile sul piano Free: Supabase la rende disponibile dal piano Pro. Nessun upgrade è stato richiesto o eseguito; usare password lunga/unica e MFA finché il progetto resta Free.
 - [ ] Configurare e testare MFA per l'account fondatore: il database mostra 0 fattori registrati. Il flusso TOTP/AAL2 è stato aggiunto alla dashboard e al database ma non ancora collaudato nel browser.
