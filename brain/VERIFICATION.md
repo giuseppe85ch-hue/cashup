@@ -40,7 +40,7 @@ Ultimo controllo diretto sul progetto Supabase CASHUP: 19 novembre 2026.
 - [ ] Abilitare Passkeys nelle impostazioni Supabase Auth e configurare RP ID/origins sul dominio HTTPS definitivo; nessuna passkey è ancora registrata. La funzione Supabase è sperimentale. La console richiede comunque TOTP AAL2. TOTP è disponibile nel progetto senza richiedere un upgrade.
 - [ ] Verificare redirect URL, rate limits, CAPTCHA e schemi esposti nella Data API; mantenere `private` non esposto. La configurazione esposta non è leggibile dal catalogo SQL disponibile.
 - [x] File `brain/supabase/verification/verify_extended_security_read_only.sql` disponibile per audit di sola lettura dopo modifiche a schema, estensioni o permessi.
-- [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch. Workflow statico a permessi minimi aggiunto; esito della prima esecuzione da confermare.
+- [ ] Verificare secret scanning, push protection, MFA GitHub e protezione branch. Workflow statico a permessi minimi: run #13 completata con SUCCESS su JavaScript, manifest, assenza segreti privilegiati nel client, assenza script/eventi inline e controlli RPC. Il controllo CI non sostituisce il secret scanning GitHub dell'intero storico.
 - [ ] Piano Free senza backup automatici: predisporre esportazione manuale cifrata (database e dati Auth) e provare il ripristino in un progetto/ambiente separato; non creare progetti a pagamento senza consenso.
 - [ ] Pubblicare la dashboard solo su hosting privato/protetto; applicare davvero gli header HTTP di `_headers` nella root del sito, con regole limitate a `/brain/dashboard/*`.
 - [x] Codice client predisposto per passkey WebAuthn (registrazione, accesso, elenco e revoca) senza trattare o memorizzare dati biometrici.
