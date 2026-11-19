@@ -100,12 +100,7 @@ export default function App() {
   }, [readTodaySteps]);
 
   const allowNavigation = useCallback((request) => {
-    try {
-      const url = new URL(request.url);
-      return url.origin === TRUSTED_ORIGIN;
-    } catch (_) {
-      return false;
-    }
+    return request.url === TRUSTED_ORIGIN || request.url.startsWith(TRUSTED_ORIGIN + "/");
   }, []);
 
   return (
