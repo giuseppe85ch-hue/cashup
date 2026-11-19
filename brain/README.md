@@ -37,6 +37,12 @@ Questa cartella contiene la preparazione tecnica di CASHUP BRAIN. La dashboard �
 - `points_ledger`, `affiliate_clicks` e `commissions` sono read-only per authenticated; il client non può attribuire punti, clic o commissioni.
 - Il profilo può essere creato/aggiornato solo nei campi consentiti; `id` e `created_at` non sono aggiornabili dal client.
 
+## Web client hardening
+- `index.html` non contiene più script, stili o handler inline; usa `app.js` e `styles.css` separati.
+- La CSP strict e gli header anti-framing/HSTS sono preparati in `_headers`; diventano effettivi solo dopo deploy Pages e verifica HTTP reale.
+- SDK Supabase web fissato a una versione esatta; il service worker limita il fallback offline alle navigazioni same-origin e non intercetta le API esterne.
+- La registrazione dall'interfaccia richiede 12 caratteri; va impostato lo stesso minimo lato Supabase Auth per impedire bypass via API diretta.
+
 ## Da completare prima di pubblicare
 - MFA TOTP del fondatore: il flusso è pronto, ma il fondatore deve registrare il proprio autenticatore e verificare il codice.
 - Leaked Password Protection non risulta attiva; l'organizzazione è sul piano Free e non è stato richiesto alcun upgrade. Mantenere una password lunga, unica e custodita in un password manager.
