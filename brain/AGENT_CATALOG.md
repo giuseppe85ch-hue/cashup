@@ -3,7 +3,7 @@
 ## Stato verificato (19 novembre 2026)
 Il database contiene **550 ruoli specialistici** e **550 schede di specifica private**. Tutti i 550 sono planned/designed; **0 sono attivi** e nessuno ha runtime o provider collegato. I ruoli comprendono 35 ruoli iniziali e 515 specializzazioni aggiuntive distribuite nelle aree governance, strategia, prodotto, ingegneria, sicurezza, dati, ricerca AI, DevOps, qualità, finanza, crescita, marketing, affiliazioni, partnership, advertising, premi, gaming, supporto, Trust & Safety e internazionalizzazione.
 
-Ogni scheda privata definisce missione, confini, criteri di accettazione, contratto input/output, allowlist strumenti vuota, budget massimo pari a 0 € e stato del ciclo di vita. Le schede sono conservate nello schema non esposto private; le policy negano l'accesso ai ruoli client. Il catalogo è metadata progettuale, non un insieme di processi AI in esecuzione.
+Ogni scheda privata definisce missione, confini, criteri di accettazione, contratto input/output, allowlist strumenti vuota, budget massimo pari a 0 € e stato del ciclo di vita. Verifica SQL: 550 chiavi uniche, 550 missioni uniche, 550 test di accettazione validi; 263 ruoli read_only e 287 approval_required. Le schede sono conservate nello schema non esposto private; le policy negano l'accesso ai ruoli client. Il catalogo è metadata progettuale, non un insieme di processi AI in esecuzione.
 
 ## Permessi e limiti
 - read_only: analisi, ricerche, report, bozze e piani.
