@@ -98,3 +98,5 @@ Questi test dimostrano i controlli esaminati nel database, non una sicurezza ass
 - [x] Verifica SQL successiva: tutte le 14 tabelle applicative tra `public` e `private` hanno RLS e FORCE RLS attivi.
 - [!] La MFA dell'utente Supabase Auth del fondatore resta da registrare: `auth.mfa_factors` conta ancora 0 fattori verificati. La MFA del dashboard Supabase è distinta.
 - [!] Il branch `cashup-brain-setup` resta separato da `main` (divergenza rilevata: 225 commit avanti e 39 indietro); nessun merge o deploy Cloudflare eseguito.
+
+- [x] Edge Functions BRAIN ricontrollate dopo l'hardening: `cashup-brain-status` v4, `cashup-brain-free-planner` v3 e `cashup-brain-ai-review` v2 risultano ACTIVE con `verify_jwt=true`; tutte richiedono AAL2 e consentono l'origine del sito CASHUP pubblicato.
