@@ -62,6 +62,7 @@ async function showApp(user){
  $('login').classList.add('hidden');$('mfa').classList.add('hidden');$('app').classList.remove('hidden');$('signout').classList.remove('hidden');
  $('welcome').textContent='Accesso fondatore verificato con MFA · '+(user.email||'account fondatore');
  await loadDashboard();
+ await loadPasskeys();
 }
 async function loadDashboard(){
  const [tasks,agents,approvals,auditRows,settings]=await Promise.all([
