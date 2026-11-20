@@ -162,3 +162,119 @@ Requisito esplicito dell'utente: consentire ai venditori di trasmettere in diret
 
 ### 12.3 Ricavi
 Commissioni sulle vendite concluse, promozione delle dirette, sponsorizzazioni, abbonamenti e strumenti premium per venditori, analytics, pubblicità, affiliazioni ed eventi speciali. Non attivare aste reali prima di aver definito pagamenti, termini, verifica venditori, tutela acquirenti, fiscalità e regole locali.
+
+
+# PARTE II — RICOSTRUZIONE INTEGRATA DELL'ECOSISTEMA (20 NOVEMBRE 2026)
+
+Questa parte consolida ulteriori decisioni recuperate dalle conversazioni: presenza social mondiale e monetizzazione dei canali, marketplace con venditori terzi, visione AI proprietaria, distribuzione multipiattaforma, identità visiva, completezza al lancio e architettura di crescita. Integra la Parte I: non la sostituisce e non cancella requisiti precedenti.
+
+## 13. Architettura commerciale: tre modalità da distinguere
+
+CASHUP MARKET deve supportare una strategia commerciale articolata, senza confondere modelli con responsabilità diverse.
+
+### A. Vetrina affiliata internazionale (modello prioritario a basso capitale)
+1. CASHUP aggrega prodotti e offerte da programmi affiliate, feed e API autorizzati.
+2. Il cliente cerca, filtra, confronta e salva prodotti dentro CASHUP.
+3. Il collegamento affiliato porta al checkout del negozio/marketplace partner, salvo integrazioni differenti espressamente autorizzate.
+4. Il partner vende al cliente, incassa, gestisce stock, spedizione, consegna, resi, garanzia e servizio clienti secondo i suoi termini.
+5. CASHUP riceve commissioni attribuite e convalidate.
+6. Importazione cataloghi, immagini, descrizioni, recensioni, prezzi e disponibilità deve rispettare licenze, API, termini e frequenze di aggiornamento.
+
+### B. Marketplace con venditori terzi (modello tipo eBay)
+- Negozi, aziende e, dove legalmente consentito, privati possono creare profilo e pubblicare inserzioni.
+- Catalogo, schede, immagini, varianti, disponibilità, prezzo, condizioni e reputazione venditore.
+- Ricerca, filtri, messaggistica e strumenti di gestione inserzioni.
+- Ordini e pagamenti attraverso provider/soluzioni autorizzati quando il modello è attivo.
+- Il venditore resta responsabile di preparazione e spedizione quando così stabilito dal modello contrattuale; CASHUP non presume di possedere o gestire magazzini.
+- Commissioni, promozioni, abbonamenti venditore e servizi professionali.
+- Servono verifica identità/impresa, moderazione, tutela acquirenti, dispute, resi, frodi, obblighi fiscali e regolamentari.
+
+### C. Integrazioni con checkout/ordini dentro CASHUP
+Da valutare solo per partner che forniscono API e accordi espliciti. Prima di adottarle occorre definire chi è il venditore legale, chi incassa, chi gestisce rimborsi e dati, chi risponde al cliente e quali obblighi ricadono sulla piattaforma. Non assumere che un checkout integrato elimini responsabilità.
+
+## 14. CASHUP LIVE, aste e social commerce
+
+CASHUP LIVE è sia una sezione interna sia un motore di distribuzione e vendita in diretta.
+- Dirette di negozi, brand, creator e venditori verificati.
+- Aste, acquisto immediato a prezzo fisso, offerte temporanee e presentazioni prodotto.
+- Schede prodotto sincronizzate con la diretta, domande, moderazione, segui venditore, notifiche e calendario.
+- Aste con prezzo iniziale, incremento minimo, durata, timer, cronologia verificabile, chiusura e gestione vincitore; eventuale anti-sniping/estensione deve essere spiegato nel regolamento.
+- Protezioni per identità, offerte fittizie, collusione, account multipli, mancato pagamento, manipolazione, chargeback e contestazioni.
+- Monetizzazione: commissioni, promozione, sponsor, ads, abbonamenti seller, strumenti analytics e eventi.
+- Streaming, pagamenti e commercio richiedono provider, moderazione, termini e verifiche locali. Le dirette possono essere distribuite anche sui social esterni nei limiti delle loro API e policy.
+
+## 15. CASHUP e presenza sui social network mondiali
+
+Richiesta esplicita: costruire presenza ufficiale CASHUP sui principali social network mondiali e monetizzare la distribuzione, non limitarsi a usare i social come semplice pubblicità.
+- Creare e gestire canali ufficiali per mercati e lingue, con identità coerente e calendario editoriale.
+- Canali da valutare in base a disponibilità geografica e policy: TikTok, YouTube, Instagram, Facebook, X, Pinterest, Snapchat, Twitch, LinkedIn e piattaforme regionali pertinenti.
+- Contenuti: dimostrazioni prodotti, selezioni offerte verificate, video brevi, dirette, aste, gare e giochi, tutorial, creator, eventi, community e campagne sponsor.
+- Monetizzazione: ricavi creator/platform quando si è idonei, sponsorizzazioni, affiliazioni tracciate, campagne brand, vendite generate verso CASHUP e LIVE, partnership e produzione contenuti per terzi.
+- Non presumere che ogni social paghi in ogni paese o che ogni account sia immediatamente monetizzabile: soglie, programmi, disponibilità e regole cambiano.
+- Strategia omnicanale: i social portano pubblico e vendite; CASHUP resta la piattaforma proprietaria per account, catalogo, giochi, community e conversioni.
+- Rispetto di diritti musicali/audiovisivi, disclosure pubblicitaria, privacy, minori, policy affiliate e policy di ogni social.
+- Dashboard per attribuire visite, lead, click, vendite e ricavi per canale/campagna.
+
+## 16. CASHUP BRAIN e visione di intelligenza artificiale proprietaria
+
+L'utente ha espresso interesse per AI integrata e, come obiettivo futuro, per una nuova intelligenza artificiale proprietaria e autonoma.
+- CASHUP BRAIN coordina i servizi intelligenti dell'ecosistema: assistenza, ricerca, raccomandazioni, traduzioni, supporto seller, analisi, moderazione assistita e automazioni autorizzate.
+- CASHUP LABS sperimenta modelli, prodotti e nuove capacità.
+- CASHUP STUDIO fornisce strumenti creativi per immagini, video, testi e contenuti, nel rispetto dei diritti.
+- CASHUP TRANSLATE supporta localizzazione e traduzione multilingue.
+- CASHUP AGENTS gestisce flussi ripetitivi con permessi minimi, log e approvazione umana per azioni ad alto impatto.
+- Integrare inizialmente modelli e API di terzi con architettura modulare e controllo dei costi; valutare modelli open-weight o proprietari quando fattibile.
+- L'AI proprietaria non è un semplice toggle: richiede ricerca, dati leciti e di qualità, infrastruttura, competenze, sicurezza, valutazioni, investimenti e manutenzione. Svilupparla per fasi, senza dichiararla già esistente.
+- L'AI non deve effettuare pagamenti, firmare contratti, cambiare accessi o compiere azioni irreversibili senza approvazione.
+
+## 17. CASHUP ARCADE e catalogo esperienze
+
+- Obiettivo concettuale ampio: 10.000 giochi/esperienze e 100 categorie iniziali; ambizioni successive citate: 350 categorie e fino a 7 milioni di esperienze. Sono obiettivi di catalogo/visione, non giochi già sviluppati.
+- I quattro prototipi presenti sono Reflexes, Memory, Math Challenge e Quick Quiz.
+- Generi richiesti includono azione, avventura, arcade, puzzle, strategia, quiz, memoria, sport, corse, simulazione, sopravvivenza, horror, fantascienza, fantasy, investigazione, escape, costruzione, città, economia, agricoltura, animali, aviazione, treni, navi, spazio, cucina, moda, casa, giardinaggio, musica, arte, collezionismo e viaggi.
+- Ogni titolo va definito con loop di gioco, tutorial, livelli, obiettivi, progressione, salvataggio, accessibilità, QA, classifiche e multiplayer quando applicabile.
+- Monetizzazione: pacchetti facoltativi, livelli/mondi aggiuntivi, stagioni, cosmetici, booster non competitivi, bundle e VIP; pubblicità equilibrata e sponsorizzazioni.
+- Catalogo editoriale, prototipo, gioco giocabile e gioco pronto al pubblico sono stati distinti e devono rimanere distinti nel registro.
+
+## 18. Piattaforme, identità e accessibilità
+
+- Obiettivo multipiattaforma: web, PWA, Android, iOS e dispositivi compatibili; tablet e desktop da supportare con layout adattivi.
+- Esperienza coerente e account condiviso, con test specifici per ciascun sistema operativo e browser.
+- Il brand corrente è CASHUP e il claim è “IL MOVIMENTO PREMIA”.
+- Identità visiva già impostata su verde scuro e accento verde brillante; l'utente ha chiesto un'icona più attraente e ha apprezzato una delle proposte “Neon Energy” come base visiva. La versione finale deve essere verificata e mantenuta coerente su icona, store, web e social.
+- Localizzazione, valute, formati data/numero, supporto e cataloghi devono essere progettati per mercati internazionali, ma la disponibilità effettiva dipende da leggi e partner locali.
+- Accessibilità, prestazioni, sicurezza, privacy e semplicità d'uso sono requisiti trasversali.
+
+## 19. Esperienza e servizi condivisi
+
+Account unico e servizi comuni tra app, ove tecnicamente e legalmente appropriato:
+- Registrazione/login, profilo, preferenze e lingua.
+- Wallet con contabilità distinta per punti, crediti promozionali, cashback e denaro/premi reali.
+- Storico movimenti, premi, riscatti, ordini e attività.
+- Notifiche, preferiti, liste, referral e assistenza.
+- Abbonamenti e acquisti digitali con ricevute e controlli.
+- Reputazione e profili venditore/creator separati dal profilo acquirente, con verifica dove necessaria.
+- Protezione account, RLS, audit log, antifrode, gestione consenso e minimizzazione dati.
+- Non confondere punti CASHUP con denaro, non promettere riscatti non finanziati e non attribuire premi per azioni non verificate.
+
+## 20. Strategia di realizzazione e criteri di completezza
+
+La visione è globale, ma lo sviluppo va organizzato in blocchi verificabili e senza spese non approvate:
+1. Stabilità piattaforma centrale, web, Android e iOS.
+2. Sicurezza, account, profilo, dati e servizi condivisi.
+3. CASHUP MARKET affiliato con una prima integrazione partner reale, poi espansione progressiva del catalogo.
+4. CASHUP DEALS e tracciamento delle conversioni.
+5. CASHUP SELLER e successivamente marketplace di venditori terzi.
+6. CASHUP LIVE con streaming; aste e pagamenti solo dopo le verifiche legali/tecniche.
+7. STEPS reale, premi finanziati e controlli antifrode.
+8. ARCADE con giochi realmente completati e collaudati.
+9. Social omnicanale e dashboard di attribuzione.
+10. BRAIN/AI, prima con servizi integrati e poi ricerca proprietaria.
+11. App specializzate MOTOR, DAKAR, ELECTRIC, NASCAR e altre divisioni.
+12. Espansione internazionale per paese, lingua, valuta, provider e conformità.
+
+Un'app o una sezione si considera pronta solo quando: contenuti reali e autorizzati sono disponibili; flussi principali funzionano; errori e casi limite sono testati; sicurezza/privacy sono controllate; monetizzazione e assistenza sono reali; compatibilità dichiarata è verificata. Un catalogo enorme non deve essere riempito con prodotti inventati o link non funzionanti.
+
+## 21. Requisito di continuità e recupero delle idee
+
+Ogni idea nuova o recuperata deve essere registrata con data e origine, collegata alla sezione corretta, classificata come richiesta esplicita/proposta accettata/da confermare e inserita nel Registro con stato verificabile. Le idee non recuperate dall'archivio non devono essere inventate: segnalare le lacune e integrare quando riemergono.
