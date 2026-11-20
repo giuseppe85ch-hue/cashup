@@ -61,14 +61,10 @@ jobs:
         run: npx expo install babel-preset-expo
       - name: Generate Android native project
         run: npx expo prebuild --platform android --non-interactive
-      - name: Bundle JavaScript for standalone Android APK
-        run: |
-          mkdir -p android/app/src/main/assets
-          npx expo export:embed --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
-      - name: Build standalone installable APK
-        run: cd android && ./gradlew assembleDebug
+      - name: Build standalone release APK with embedded Hermes bundle
+        run: cd android && ./gradlew assembleRelease
       - uses: actions/upload-artifact@v4
         with:
-          name: cashup-android-debug
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: cashup-android-release
+          path: android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
