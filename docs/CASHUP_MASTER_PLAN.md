@@ -278,3 +278,21 @@ Un'app o una sezione si considera pronta solo quando: contenuti reali e autorizz
 ## 21. Requisito di continuità e recupero delle idee
 
 Ogni idea nuova o recuperata deve essere registrata con data e origine, collegata alla sezione corretta, classificata come richiesta esplicita/proposta accettata/da confermare e inserita nel Registro con stato verificabile. Le idee non recuperate dall'archivio non devono essere inventate: segnalare le lacune e integrare quando riemergono.
+
+
+## 22. Blueprint operativo di dettaglio
+
+Il dettaglio funzionale, commerciale, tecnico e operativo dell'intero portafoglio è mantenuto nel documento complementare:
+
+**[CASHUP Ecosystem Blueprint](CASHUP_ECOSYSTEM_BLUEPRINT.md)**
+
+Il Blueprint approfondisce:
+- ricostruzione del nucleo iniziale e dell'espansione approvata;
+- architettura CASHUP Core e servizi condivisi;
+- marketplace affiliato, marketplace venditori e checkout integrato;
+- aste, dirette e social commerce;
+- STEPS, fitness, ARCADE e tutte le verticali motoristiche;
+- ulteriori settori accettati: finanza, musica, fotografia, education, pets, real estate, beauty, tech, productivity, local services, mobility e sustainability;
+- AI, social, creator, monetizzazione, internazionalizzazione, sicurezza, roadmap e criteri di completamento.
+
+Il Blueprint distingue richieste utente recuperate (U), proposte accettate (A), approfondimenti progettuali (P) e decisioni ancora aperte (D). Non sostituisce il Master Plan: lo rende operativo e più dettagliato.
