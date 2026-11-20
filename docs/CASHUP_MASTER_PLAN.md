@@ -110,3 +110,55 @@ Interfacce multilingue, valute e formati regionali, supporto, pagamenti e offert
 ## 10. Regola di aggiornamento
 
 Ogni nuova idea, correzione o requisito va aggiunto qui e al Registro di sviluppo, integrandolo con tutto il precedente. Non cancellare requisiti senza decisione esplicita. Ogni elemento deve avere uno stato: Pianificato, In sviluppo, Verificato oppure Operativo.
+
+
+## 11. Modello commerciale CASHUP MARKET: grande vetrina affiliata internazionale
+
+Requisito esplicito: offrire nell'app un'esperienza di ricerca e scoperta ampia, simile per ampiezza di assortimento a un grande marketplace generalista come Amazon, ma senza assumere automaticamente il ruolo logistico del venditore.
+
+### 11.1 Come funziona il modello principale di affiliazione
+- CASHUP organizza una grande vetrina internazionale per categorie, sottocategorie, marchi, caratteristiche, fasce di prezzo, occasioni e bisogni.
+- Gli articoli sono proposti da negozi, brand e marketplace terzi che aderiscono a programmi di affiliazione o accordi commerciali autorizzati.
+- L'utente scopre e confronta i prodotti dentro CASHUP; il pulsante di acquisto utilizza il link di tracciamento affiliato o un'integrazione ufficiale consentita.
+- Nel modello standard, il cliente completa l'acquisto sul sito/app del venditore. Il venditore/marketplace gestisce checkout, incasso, disponibilità, magazzino, imballaggio, spedizione, consegna, resi, garanzia e assistenza secondo i propri termini.
+- CASHUP riceve la commissione prevista solo quando il partner attribuisce e convalida l'acquisto secondo le sue regole.
+- CASHUP non deve acquistare stock, possedere magazzini o organizzare consegne per questo modello affiliato.
+- Dove un partner offre API, checkout integrato o altro flusso autorizzato, si può valutare un'esperienza più fluida, ma non presumere che sia disponibile né che trasferisca a CASHUP zero responsabilità.
+
+### 11.2 Catalogo e categorie
+Il catalogo deve essere ampio e progressivamente internazionale: elettronica, computer, telefonia, accessori, gaming, TV/audio, fotografia, elettrodomestici, casa, cucina, arredamento, bricolage, giardino, abbigliamento, scarpe, borse, orologi, gioielli, bellezza, salute e cura personale nei limiti normativi, sport, outdoor, pesca, giocattoli, bambini, libri/media, auto, moto, ricambi, accessori, animali, viaggi e tempo libero. Questa è una tassonomia iniziale estendibile, non una dichiarazione che tutti i prodotti siano già disponibili.
+
+### 11.3 Funzioni di scoperta e conversione
+- Ricerca globale, suggerimenti, filtri, ordinamento, pagine categoria e schede prodotto.
+- Confronto tra offerte dello stesso prodotto quando i dati e i diritti d'uso lo consentono.
+- Prezzo, disponibilità, condizioni di spedizione e commissioni sempre aggiornati dal feed/API del partner o marcati con data/avvertenza quando non in tempo reale.
+- Etichette chiare: negozio venditore, link esterno, contenuto sponsorizzato, affiliazione e condizioni.
+- Preferiti, liste, cronologia, notifiche prezzo e offerte, ove supportate.
+- Tracciamento click e conversioni nel rispetto di privacy, consenso e policy del partner.
+- Ranking trasparente: pertinenza, qualità del dato, prezzo/valore e disponibilità; non spacciare risultati sponsorizzati per risultati neutrali.
+
+### 11.4 Ricavi e limiti
+Commissioni affiliate, campagne sponsorizzate, placement pubblicitari dichiarati, promozioni dei brand e servizi B2B ai venditori. Non inventare prezzi, sconti, disponibilità o commissioni. Verificare paese, categoria ammessa, attribuzione, cookie/app tracking, finestre di conversione, resi, cancellazioni, soglie e tempi di pagamento per ogni programma. Il modello riduce l'onere logistico, ma richiede accordi, qualità catalogo, traffico, conversioni, assistenza informativa e conformità.
+
+## 12. CASHUP LIVE: aste online e vendite in diretta
+
+Requisito esplicito dell'utente: consentire ai venditori di trasmettere in diretta, presentare articoli e venderli tramite aste oppure a prezzo fisso.
+
+### 12.1 Esperienza
+- Dirette di venditori e negozi con profili, reputazione, catalogo e calendario.
+- Presentazione dal vivo dei prodotti, dimostrazioni, domande e risposte e collegamento alla scheda articolo.
+- Asta con prezzo iniziale, durata, incremento minimo e regole di chiusura configurabili.
+- Timer visibile; possibile estensione automatica negli ultimi secondi per ridurre offerte all'ultimo istante, secondo regole pubblicate.
+- Modalità prezzo fisso/acquisto immediato oltre all'asta.
+- Categorie iniziali da sviluppare: moda e sneakers, tecnologia, collezionismo, pesca/outdoor, orologi e accessori, casa, auto e ricambi; ampliare in base a domanda e conformità.
+- Ricerca dirette, promemoria, segui venditore, notifiche, replay/clip dove consentiti e classifiche/eventi.
+
+### 12.2 Affidabilità e protezioni
+- Verifica venditori e requisiti professionali/consumer applicabili.
+- Regole d'asta leggibili prima dell'offerta; registrazione cronologica delle offerte e gestione delle disconnessioni.
+- Prevenzione offerte false, account multipli, collusione, manipolazione e mancato pagamento.
+- Gestione contestazioni, cancellazioni, frodi, rimborsi e moderazione.
+- Pagamenti e consegne devono essere gestiti da venditore e provider/partner secondo il modello contrattuale scelto; responsabilità di piattaforma, marketplace o intermediario vanno definite legalmente prima del lancio.
+
+### 12.3 Ricavi
+Commissioni sulle vendite concluse, promozione delle dirette, sponsorizzazioni, abbonamenti e strumenti premium per venditori, analytics, pubblicità, affiliazioni ed eventi speciali. Non attivare aste reali prima di aver definito pagamenti, termini, verifica venditori, tutela acquirenti, fiscalità e regole locali.
