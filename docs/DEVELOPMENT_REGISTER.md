@@ -129,3 +129,20 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Identità visiva e icona | In sviluppo | Brand CASHUP, claim “IL MOVIMENTO PREMIA”; finalizzare asset coerenti |
 | Account e servizi condivisi | In sviluppo | Consolidare wallet, notifiche, preferiti, referral, supporto e audit tra app |
 | Completezza globale e cataloghi reali | Pianificato | Partner e fonti autorizzate per paese, traduzioni, valute e conformità |
+
+
+## 11. Blueprint e nuove aree da specificare
+
+| Documento / area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| CASHUP Ecosystem Blueprint | Verificato | Documento di progettazione creato; non significa che le app siano implementate |
+| CASHUP Core condiviso | Pianificato | Definire servizi, confini dati, permessi, wallet ledger e audit |
+| Marketplace affiliato — catalog ingestion | Pianificato | Selezionare partner/feed/API autorizzati e validare freschezza dati |
+| Marketplace venditori terzi | Pianificato | Onboarding, trader verification, ordini, pagamenti, dispute e compliance |
+| CASHUP LIVE streaming | Pianificato | Provider, moderazione, chat, schede prodotto e diritti |
+| Motore aste server-authoritative | Pianificato | Offerte atomiche, timer, anti-sniping, pagamenti e contestazioni |
+| Fitness oltre STEPS | Pianificato | Specifiche, privacy salute e integrazioni |
+| Verticali aggiuntive accettate | Pianificato | Finance, music, photo, education, pets, real estate, beauty, tech, productivity, local, mobility, green |
+| Social/creator/media | Pianificato | Canali, strumenti, policy, attribuzione e monetizzazione |
+| CASHUP BRAIN e AI proprietaria | Pianificato | Prima integrazioni modulari; ricerca proprietaria di lungo periodo |
+| Global compliance e localizzazione | Pianificato | Analisi paese per paese prima dell'attivazione commerciale |
