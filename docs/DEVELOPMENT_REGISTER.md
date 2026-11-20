@@ -109,3 +109,23 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | CASHUP LIVE — vendita a prezzo fisso | Pianificato | Flusso alternativo all'asta, checkout tramite modello/partner autorizzato |
 | Sicurezza aste e tutela acquirenti | Pianificato | Prevenire offerte false, collusione, mancati pagamenti; definire contestazioni e rimborsi |
 | Monetizzazione LIVE | Pianificato | Commissioni, promozione dirette, sponsor, abbonamenti venditori, analytics e ads |
+
+
+## 10. Requisiti recuperati e consolidati (20 novembre 2026)
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| Vetrina affiliata generalista CASHUP MARKET | Pianificato | Tassonomia ampia, ricerca, filtri, confronto, preferiti, schede e link affiliati |
+| Marketplace con venditori terzi tipo eBay | Pianificato | Onboarding, inserzioni, reputazione, ordini, pagamenti provider, dispute e moderazione |
+| Checkout integrato partner | Pianificato | Solo con API/accordi; chiarire venditore legale, incasso, rimborsi e responsabilità |
+| CASHUP LIVE social commerce | Pianificato | Dirette, schede collegate, Q&A, calendario, notifiche e moderazione |
+| Aste live | Pianificato | Regole, offerte cronologiche, timer, anti-manipolazione, pagamenti e dispute |
+| CASHUP social network presence | Pianificato | Canali ufficiali globali, calendario contenuti, monetizzazione e dashboard attribuzione |
+| CASHUP BRAIN coordinamento AI | Pianificato | Integrazioni AI per supporto, ricerca, raccomandazioni e automazioni con controlli |
+| AI proprietaria CASHUP | Pianificato | Ricerca e valutazione fattibilità; non esiste ancora un modello proprietario |
+| CASHUP LABS/STUDIO/TRANSLATE/AGENTS | Pianificato | Definire prodotti, strumenti, permessi, costi e valutazione qualità |
+| Catalogo ARCADE esteso | In sviluppo | Visione 10.000 giochi/esperienze; prototipi e categorie non equivalgono a giochi finiti |
+| Esperienza multipiattaforma | In sviluppo | Web/PWA, Android e iOS da verificare separatamente su dispositivi e browser |
+| Identità visiva e icona | In sviluppo | Brand CASHUP, claim “IL MOVIMENTO PREMIA”; finalizzare asset coerenti |
+| Account e servizi condivisi | In sviluppo | Consolidare wallet, notifiche, preferiti, referral, supporto e audit tra app |
+| Completezza globale e cataloghi reali | Pianificato | Partner e fonti autorizzate per paese, traduzioni, valute e conformità |
