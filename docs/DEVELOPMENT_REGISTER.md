@@ -93,3 +93,19 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 - Conservare le decisioni precedenti; aggiungere nuove specifiche invece di sovrascriverle.
 - Non spendere, sottoscrivere servizi o accettare accordi senza approvazione esplicita.
 - Prima di chiedere all'utente operazioni sul telefono, esaurire i controlli che si possono svolgere in autonomia.
+
+
+## 9. Nuovi requisiti commerciali emersi e da portare in sviluppo
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| CASHUP MARKET come grande vetrina internazionale affiliata | Pianificato | Requisito aggiunto: assortimento generalista molto ampio, ricerca e schede prodotto |
+| Acquisti indirizzati ai negozi/marketplace partner | Pianificato | Link affiliati o integrazioni ufficiali; checkout e ordine gestiti dal partner nel modello standard |
+| Esclusione di magazzino e logistica CASHUP nel modello affiliato | Pianificato | Nessuno stock/spedizione propri; verificare responsabilità e termini di ogni partner |
+| Feed/API catalogo, aggiornamento prezzi e disponibilità | Pianificato | Selezionare programmi, fonti autorizzate e gestione dati obsoleti |
+| Attribuzione click e conversioni affiliate | Pianificato | Implementare tracking conforme a privacy, consenso e policy partner |
+| CASHUP LIVE — dirette venditori | Pianificato | Streaming, profili verificati, moderazione, calendario e schede articolo |
+| CASHUP LIVE — aste online | Pianificato | Prezzo iniziale, durata, incrementi, timer, estensione finale e registro offerte |
+| CASHUP LIVE — vendita a prezzo fisso | Pianificato | Flusso alternativo all'asta, checkout tramite modello/partner autorizzato |
+| Sicurezza aste e tutela acquirenti | Pianificato | Prevenire offerte false, collusione, mancati pagamenti; definire contestazioni e rimborsi |
+| Monetizzazione LIVE | Pianificato | Commissioni, promozione dirette, sponsor, abbonamenti venditori, analytics e ads |
