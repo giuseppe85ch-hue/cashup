@@ -63,6 +63,21 @@ jobs:
         run: npx expo prebuild --platform android --non-interactive
       - name: Build standalone release APK with embedded Hermes bundle
         run: cd android && ./gradlew assembleRelease
+      - name: Install and launch APK on Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_2
+          script: |
+            adb install -r android/app/build/outputs/apk/release/app-release.apk
+            adb shell monkey -p com.cashup.mobile 1
+            sleep 30
+            adb logcat -d -t 5000 > android-emulator-log.txt
+            if grep -E -i "Unable to load script|Unable to load JS bundle|FATAL EXCEPTION|ReactNativeJS.*(Error|error)" android-emulator-log.txt; then
+              echo "Android emulator reported an app startup error."
+              exit 1
+            fi
       - uses: actions/upload-artifact@v4
         with:
           name: cashup-android-release
