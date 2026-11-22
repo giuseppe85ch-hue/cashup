@@ -1,0 +1,60 @@
+name: CASHUP iOS simulator build
+
+on:
+  push:
+    branches: [build/ios-simulator-package, fix/ios-cocoapods-workspace]
+  pull_request:
+    branches: [main]
+    paths:
+      - "App.js"
+      - "app.json"
+      - "index.js"
+      - "package.json"
+      - "package-lock.json"
+      - "games/**"
+      - ".github/workflows/ios-simulator-build.yml"
+  workflow_dispatch:
+
+jobs:
+  ios-simulator-build:
+    name: Compile CASHUP for iPhone simulator
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Check Expo dependencies
+        run: npx expo install --check
+      - name: Generate iOS native project
+        run: npx expo prebuild --platform ios --non-interactive
+      - name: Install CocoaPods dependencies
+        run: |
+          cd ios
+          pod install --repo-update
+      - name: Bundle JavaScript for iOS
+        run: |
+          mkdir -p /tmp/cashup-ios-assets
+          npx expo export:embed --platform ios --dev false --entry-file index.js --bundle-output /tmp/cashup-ios.bundle --assets-dest /tmp/cashup-ios-assets
+          test -s /tmp/cashup-ios.bundle
+      - name: Compile iOS simulator app without Apple signing
+        shell: bash
+        run: |
+          set -euo pipefail
+          WORKSPACE="$(find ios -maxdepth 1 -name '*.xcworkspace' -print -quit)"
+          test -n "$WORKSPACE"
+          SCHEME="$(xcodebuild -list -workspace "$WORKSPACE" -json | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const j=JSON.parse(s);process.stdout.write(j.workspace.schemes[0])})')"
+          test -n "$SCHEME"
+          xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -configuration Debug -derivedDataPath "$PWD/ios/build" CODE_SIGNING_ALLOWED=NO build
+          APP="$(find ios/build/Build/Products/Debug-iphonesimulator -maxdepth 1 -name '*.app' -print -quit)"
+          test -n "$APP"
+          mkdir -p artifacts
+          ditto -c -k --sequesterRsrc --keepParent "$APP" artifacts/CASHUP-iOS-Simulator.app.zip
+      - name: Save iOS simulator app artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cashup-ios-simulator-app
+          path: artifacts/CASHUP-iOS-Simulator.app.zip
+          if-no-files-found: error
