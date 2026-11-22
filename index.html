@@ -497,7 +497,6 @@ async function refreshSession() {
     await loadCloudProfile(data.session.user);
     await syncDailySteps(data.session.user);
     await loadNotificationPreferences(data.session.user);
-    await loadNotificationPreferences(data.session.user);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
   }
