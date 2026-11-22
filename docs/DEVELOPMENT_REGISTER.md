@@ -146,3 +146,15 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Social/creator/media | Pianificato | Canali, strumenti, policy, attribuzione e monetizzazione |
 | CASHUP BRAIN e AI proprietaria | Pianificato | Prima integrazioni modulari; ricerca proprietaria di lungo periodo |
 | Global compliance e localizzazione | Pianificato | Analisi paese per paese prima dell'attivazione commerciale |
+
+## 12. Aggiornamento CI Android (22 novembre 2026)
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| Build APK Android release | Verificato | Nel run precedente la compilazione Gradle è terminata con successo |
+| Avvio emulatore Android in CI | In sviluppo | Il run #41 è fallito per timeout di avvio dell'emulatore (ADB non ha rilevato emulator-5554); il log non dimostra un crash dell'app |
+| Ambiente runner Android | In sviluppo | Il job Android è stato spostato da ubuntu-latest a ubuntu-24.04 per isolare il problema dell'ambiente; nuova verifica avviata il 22 novembre 2026 |
+| Nuovo test Android CI | In sviluppo | Run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45030049592; attendere esito prima di generare/consegnare un APK da provare sul telefono |
+| Verifica Web/PWA aggiornata | Verificato | Run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45030049619: job Web e PWA completato con successo; controlli iOS ancora in corso al momento dell'aggiornamento |
+
+**Vincolo di test:** non chiedere di disinstallare la vecchia app. Installare un APK nuovo sul dispositivo solo dopo un controllo automatico affidabile e conservare la vecchia versione finché login, profilo e funzioni principali non sono verificati sullo Xiaomi.
