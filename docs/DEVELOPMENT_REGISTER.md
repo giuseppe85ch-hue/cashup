@@ -163,3 +163,16 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 **Vincolo di test:** non chiedere di disinstallare la vecchia app. Installare un APK nuovo sul dispositivo solo dopo un controllo automatico affidabile e conservare la vecchia versione finché login, profilo e funzioni principali non sono verificati sullo Xiaomi.
 
 **Nota sicurezza:** le funzioni SECURITY DEFINER controllate verificano l'identità tramite `auth.uid()` e vincolano le operazioni ai dati dell'utente; non revocare permessi in modo indiscriminato perché si potrebbe interrompere il flusso applicativo. Prima del lancio verificare i grant, i test negativi e la necessità di ogni funzione. La protezione delle password compromesse va attivata dopo una valutazione delle impostazioni Auth e della relativa esperienza di accesso.
+
+
+## 13. Correzione privilegi Supabase — 22 novembre 2026
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| Policy RLS su `public.profiles` | Verificato | Prima della modifica: SELECT, INSERT e UPDATE limitati a `auth.uid() = id`; UPDATE include USING e WITH CHECK |
+| Policy RLS su `public.cashup_notification_preferences` | Verificato | Prima della modifica: SELECT, INSERT e UPDATE limitati a `auth.uid() = user_id`; UPDATE include USING e WITH CHECK |
+| GRANT minimi a `authenticated` | Verificato | Con autorizzazione esplicita dell'utente, concessi solo INSERT e UPDATE sulle due tabelle indicate; nessun grant ad anon e nessuna modifica alle policy |
+| Verifica successiva | Verificato | Query di controllo conferma RLS attiva su entrambe, SELECT/INSERT/UPDATE disponibili a authenticated e tre policy per authenticated su ciascuna tabella |
+| Test funzionale end-to-end | Da eseguire | Verificare da sessione utente reale salvataggio profilo e preferenze notifiche; il controllo SQL dei privilegi non sostituisce il test applicativo |
+
+**Perimetro della modifica:** nessuna altra tabella, policy RLS, impostazione Auth o funzione è stata modificata.
