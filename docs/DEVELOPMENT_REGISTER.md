@@ -200,3 +200,23 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Verifica sul dispositivo Android fisico | Pianificato | Installare il nuovo APK verificato e controllare avvio, login, Health Connect e notifiche |
 | Errore storico "Unable to load script" sul telefono | Non ancora verificato | Non attribuirlo al run CI; confrontare il pacchetto installato con il nuovo package com.cashup.mobile e raccogliere l'eventuale messaggio esatto |
 
+
+
+## 15. CASHUP CONNECT — requisiti social e multiplayer approvati (22 novembre 2026)
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| CASHUP CONNECT come servizio sociale condiviso | Pianificato | Specifica aggiunta al Blueprint; non implementato |
+| Nickname, profilo pubblico e presenza | Pianificato | Definire privacy, stato online/offline/invisibile e ricerca pubblica |
+| Amici, ricerca e inviti | Pianificato | Richieste, link revocabili, email/SMS/social tramite condivisione esplicita e anti-spam |
+| Matchmaking casuale | Pianificato | Code server-side, preferenze, lingua/regione/livello e modalità opt-in |
+| Gruppi persistenti, clan e community | Pianificato | Ruoli, inviti, richieste, moderazione e ritrovo tra sessioni |
+| Chat testuale | Pianificato | Conversazioni private, di gruppo e lobby; access control e retention |
+| Chat vocale durante il gioco | Pianificato | Valutare WebRTC/provider; mute, controlli, moderazione e costo/minuti |
+| CASHUP GAMES multiplayer | Pianificato | Sfide, lobby, squadre, rematch, tornei, classifiche, cloud progress e anti-cheat |
+| Social layer nelle altre app | Pianificato | Abilitare gruppi/eventi/community solo dove pertinenti, riutilizzando CONNECT |
+| Sicurezza e tutela minori | Pianificato | Blocco, segnalazioni, privacy granulare, limiti di contatto e moderazione |
+| Costi realtime e voce | Da valutare | MVP testuale/inviti prima; stimare costo per utente e traffico prima della voce |
+| Test cross-platform | Pianificato | Verificare ogni funzione su web, Android e iOS; non promettere cross-play universale |
+
+**Ordine di realizzazione proposto:** (1) profilo pubblico/nickname e privacy; (2) amici e inviti; (3) gruppi e chat testuale; (4) presenza e matchmaking casuale; (5) voce in lobby/partita; (6) tornei, anti-cheat e integrazione progressiva nei giochi. Tutte le funzioni restano pianificate fino a sviluppo e test documentati.
