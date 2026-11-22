@@ -147,14 +147,19 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | CASHUP BRAIN e AI proprietaria | Pianificato | Prima integrazioni modulari; ricerca proprietaria di lungo periodo |
 | Global compliance e localizzazione | Pianificato | Analisi paese per paese prima dell'attivazione commerciale |
 
-## 12. Aggiornamento CI Android (22 novembre 2026)
+## 12. Aggiornamento CI Android e multipiattaforma (22 novembre 2026)
 
 | Area | Stato | Evidenza / lavoro residuo |
 |---|---|---|
-| Build APK Android release | Verificato | Nel run precedente la compilazione Gradle è terminata con successo |
-| Avvio emulatore Android in CI | In sviluppo | Il run #41 è fallito per timeout di avvio dell'emulatore (ADB non ha rilevato emulator-5554); il log non dimostra un crash dell'app |
-| Ambiente runner Android | In sviluppo | Il job Android è stato spostato da ubuntu-latest a ubuntu-24.04 per isolare il problema dell'ambiente; nuova verifica avviata il 22 novembre 2026 |
-| Nuovo test Android CI | In sviluppo | Run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45030049592; attendere esito prima di generare/consegnare un APK da provare sul telefono |
-| Verifica Web/PWA aggiornata | Verificato | Run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45030049619: job Web e PWA completato con successo; controlli iOS ancora in corso al momento dell'aggiornamento |
+| Build APK Android release | Verificato in un run precedente | La compilazione Gradle era terminata con successo nel run #41; non equivale al test su dispositivo |
+| Avvio emulatore Android in CI | In sviluppo | Il run #41 era fallito per timeout dell'emulatore (ADB non ha rilevato emulator-5554); il log non dimostra un crash dell'app |
+| Ambiente runner Android | In sviluppo | Job spostato su ubuntu-24.04 per isolare il problema dell'ambiente |
+| Nuovo test Android CI — run #42 | In sviluppo | https://github.com/giuseppe85ch-hue/cashup/actions/runs/45030107409 — Expo check superato; generazione progetto Android superata; compilazione APK ancora in corso all'ultimo controllo; test emulatore e artifact non ancora disponibili |
+| Verifica Web/PWA — run #7 | Verificato | https://github.com/giuseppe85ch-hue/cashup/actions/runs/45030107441 — job Web/PWA completato con successo |
+| Verifica iOS — run #7 | Verificato | https://github.com/giuseppe85ch-hue/cashup/actions/runs/45030107441 — generazione progetto iOS e bundle JavaScript completati con successo |
+| Audit Supabase sicurezza | Verificato con avvisi | RLS e policy di proprietà utente presenti nelle tabelle controllate; tre funzioni SECURITY DEFINER sono eseguibili da utenti autenticati e richiedono revisione del modello di permessi; protezione password compromesse disabilitata |
+| Ottimizzazione database | Da monitorare | Gli advisor segnalano indici non ancora utilizzati; non rimuoverli prima di avere dati di traffico e test prestazionali |
 
 **Vincolo di test:** non chiedere di disinstallare la vecchia app. Installare un APK nuovo sul dispositivo solo dopo un controllo automatico affidabile e conservare la vecchia versione finché login, profilo e funzioni principali non sono verificati sullo Xiaomi.
+
+**Nota sicurezza:** le funzioni SECURITY DEFINER controllate verificano l'identità tramite `auth.uid()` e vincolano le operazioni ai dati dell'utente; non revocare permessi in modo indiscriminato perché si potrebbe interrompere il flusso applicativo. Prima del lancio verificare i grant, i test negativi e la necessità di ogni funzione. La protezione delle password compromesse va attivata dopo una valutazione delle impostazioni Auth e della relativa esperienza di accesso.
