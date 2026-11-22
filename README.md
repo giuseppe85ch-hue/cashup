@@ -9,7 +9,7 @@ CASHUP is an international-first rewards and engagement platform prototype. The 
 ### Web app
 - Email sign-up, sign-in and profile storage use Supabase Auth and the `profiles` table.
 - CASHUP Steps has a web/native bridge. The native Expo app uses `@appeeky/expo-healthkit` to read step totals from Android Health Connect and Apple HealthKit after permission is granted.
-- Daily engagement and reminder preferences have database support. Native daily reminders require an installed native build and notification permission.
+- Daily engagement and reminder preferences have database support. Native daily reminders require an installed native build and notification permission. The web session refresh now loads saved notification preferences once (duplicate request removed).
 - Rewards, cash wallet, partner shops, referral payouts and withdrawals are not live. The displayed balance and step points are demonstrative.
 
 ### CASHUP GAMES
