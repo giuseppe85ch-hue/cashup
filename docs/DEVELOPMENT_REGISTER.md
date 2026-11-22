@@ -220,3 +220,21 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Test cross-platform | Pianificato | Verificare ogni funzione su web, Android e iOS; non promettere cross-play universale |
 
 **Ordine di realizzazione proposto:** (1) profilo pubblico/nickname e privacy; (2) amici e inviti; (3) gruppi e chat testuale; (4) presenza e matchmaking casuale; (5) voce in lobby/partita; (6) tornei, anti-cheat e integrazione progressiva nei giochi. Tutte le funzioni restano pianificate fino a sviluppo e test documentati.
+
+
+## 16. CASHUP GAMES — giochi classici, carte e tornei (22 novembre 2026)
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| Scacchi e dama | Pianificato | Motori regole completi, partite online, rating, tornei e varianti regionali |
+| Biliardo | Pianificato | 8-ball, 9-ball, 10-ball, snooker e carambola; fisica e regole da sviluppare/testare |
+| Carte italiane | Pianificato | Scopa, Briscola, Tressette, Burraco, Scala 40, Ramino e varianti |
+| Carte internazionali | Pianificato | Poker gratuito, Bridge, Hearts, Spades, Canasta, Whist, Euchre e solitari; regole/localizzazione |
+| Altri classici | Pianificato | Backgammon, domino, mahjong, forza 4, battaglia navale, giochi di parole e puzzle |
+| Tornei e campionati | Pianificato | Eliminazione, doppia eliminazione, gironi, round-robin, Swiss, stagioni e competizioni a squadre |
+| CASHUP CONNECT nei giochi | Pianificato | Amici, inviti, nickname, gruppi, chat e voce; integrazione progressiva |
+| Equità e sicurezza competitiva | Pianificato | Server autorevole, anti-cheat, anti-collusione, disconnessioni, contestazioni e audit |
+| Premi di valore | Da valutare | Solo dopo revisione legale paese per paese, copertura finanziaria e approvazione esplicita; niente puntate in denaro come requisito |
+| MVP giochi classici | Pianificato | Valutare scacchi, dama, biliardo 8-ball, Scopa, Briscola, Burraco, Scala 40 e solitario come prima selezione |
+
+**Nota:** questa registrazione documenta requisiti approvati, non giochi già disponibili. La priorità è costruire pochi titoli completi e affidabili prima di ampliare il catalogo.
