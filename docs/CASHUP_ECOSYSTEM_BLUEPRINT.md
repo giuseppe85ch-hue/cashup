@@ -486,3 +486,42 @@ CONNECT è un servizio condiviso, ma ogni verticale abilita solo le funzioni per
 - Inviti inviati/accettati, amici attivi, gruppi attivi, match completati, tempo di matchmaking, riconnessioni, minuti vocali, latenza, crash, segnalazioni e tempi di moderazione.
 - Rilascio per verticale solo dopo test funzionali, carico, sicurezza, privacy, moderazione, accessibilità e costi per utente.
 - La presenza di un requisito in questo blueprint non significa che la funzione sia già disponibile o implementata.
+
+
+## 23. CASHUP GAMES — giochi classici, carte e tornei (requisito approvato 22 novembre 2026)
+
+### 23.1 Giochi da tavolo e strategia
+- Scacchi: partite rapide e classiche, matchmaking, rating, partite private, tornei e analisi post-partita.
+- Dama: varianti regionali/internazionali configurabili, partite amichevoli e classificate.
+- Backgammon, domino, dama cinese, mahjong (distinguere le varianti e le regole regionali), forza 4, tris, battaglia navale, giochi di parole e puzzle competitivi.
+- Biliardo: 8-ball, 9-ball, 10-ball, snooker e carambola, con tavoli, regole, mira e fisica coerenti con la modalità scelta.
+- Altri giochi di abilità e classici da aggiungere per paese e domanda.
+
+### 23.2 Giochi di carte
+Catalogo esteso, con regole, mazzi e varianti configurabili per paese:
+- Poker: Texas Hold'em e Omaha; modalità gratuite e tornei senza puntate in denaro nella fase iniziale.
+- Briscola, Tressette, Scopa, Scala 40, Burraco, Ramino e varianti regionali.
+- Pinnacola, Canasta, Hearts, Spades, Whist, Bridge e Euchre.
+- Solitario, Klondike, Spider, FreeCell e varianti.
+- Uno e giochi simili solo con regole/contenuti originali o licenze necessarie; non copiare marchi, grafica o testi protetti.
+- Altri giochi tradizionali di carte internazionali, selezionati e localizzati per area geografica.
+
+### 23.3 Tornei e competizioni
+- Tornei giornalieri, settimanali, stagionali e speciali; iscrizione aperta, a invito o per qualificazione.
+- Formati: eliminazione diretta, doppia eliminazione, gironi, round-robin, campionato a punti, Swiss system e classifiche a squadre.
+- Matchmaking per livello, lingua, latenza e modalità; tavoli privati, pubblici e con amici.
+- Calendario, iscrizioni, bracket, turni, risultati, replay dove supportati, classifiche, rating, premi e storico.
+- Regole pubbliche prima dell'iscrizione, gestione assenze/disconnessioni, contestazioni, abbandoni e anti-collusione.
+- Risultati e premi verificati dal server; anti-cheat e audit per competizioni classificate.
+- Eventuali premi di valore o denaro solo dopo verifica legale per paese, finanziamento, regole ufficiali e approvazione esplicita; niente scommesse o puntate in denaro come requisito del gioco.
+
+### 23.4 Requisiti comuni
+- Modalità single-player contro AI, allenamento, partita amichevole, classificata, privata e torneo, secondo il gioco.
+- Cross-platform dove tecnicamente compatibile, senza promettere compatibilità universale.
+- Regole e tutorial multilingua, accessibilità, opzioni per velocità/tempo e riconnessione.
+- CASHUP CONNECT: amici, nickname, clan, chat testuale e vocale, inviti e ritrovo degli avversari, con controlli privacy e sicurezza.
+- Nessun pay-to-win nelle competizioni con premi; acquisti cosmetici o contenuti opzionali non devono alterare l'equità.
+- Licenze per marchi, artwork, musiche e contenuti di terzi; regole dei giochi tradizionali vanno comunque implementate con testi e grafica originali.
+
+### 23.5 Priorità di produzione
+MVP da valutare: scacchi, dama, biliardo 8-ball, Scopa, Briscola, Burraco, Scala 40 e solitario; poi ampliare con dati di utilizzo, QA e localizzazione. Prima multiplayer competitivo e tornei, completare motore regole, sincronizzazione server, test di disconnessione, anti-cheat e moderazione. Tutti i titoli qui elencati restano Pianificati finché non sviluppati e collaudati.
