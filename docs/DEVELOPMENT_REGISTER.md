@@ -238,3 +238,29 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | MVP giochi classici | Pianificato | Valutare scacchi, dama, biliardo 8-ball, Scopa, Briscola, Burraco, Scala 40 e solitario come prima selezione |
 
 **Nota:** questa registrazione documenta requisiti approvati, non giochi già disponibili. La priorità è costruire pochi titoli completi e affidabili prima di ampliare il catalogo.
+
+
+## 17. Audit tecnico e sicurezza Supabase — 22 novembre 2026
+
+| Controllo | Stato | Risultato / azione |
+|---|---|---|
+| Tabelle esposte nello schema public | Verificato | 19 tabelle controllate; RLS attiva su tutte le 19 |
+| Funzioni SECURITY DEFINER accessibili ad authenticated | Da mantenere sotto controllo | 3 RPC: `cashup_claim_verified_ad_reward`, `cashup_claim_verified_mission`, `cashup_record_app_visit`. La lettura delle definizioni conferma il controllo `auth.uid()`; le prime due bloccano la riga con `FOR UPDATE`, verificano lo stato e registrano il ledger in modo atomico. EXECUTE risulta negato ad anon e consentito ad authenticated. L'advisor le segnala perché SECURITY DEFINER: non revocare senza sostituire prima il flusso client che le usa |
+| Protezione password compromesse | Da configurare con approvazione | Advisor Auth segnala la protezione leaked-password disattivata. Richiede una modifica alle impostazioni Auth; nessun cambiamento eseguito in questo audit |
+| Indici non utilizzati | Da monitorare | Advisor segnala 13 indici mai usati; database con traffico ancora minimo. Non eliminare indici preventivamente: rivalutare dopo test e traffico reale |
+| Evento pubblicitario duplicato | Verificato | Vincolo univoco su `(provider, provider_event_id)` presente; la Edge Function usa la chiave per riconoscere eventi duplicati |
+| Segreto provider pubblicitario | Non configurato / da verificare | La funzione restituisce 503 se mancano `CASHUP_AD_PROVIDER_SECRET`, URL o service key. Nessun provider pubblicitario reale è quindi dichiarato attivo |
+| AI esterna CASHUP BRAIN | Disattivata per controllo costi | La funzione di revisione richiede MFA AAL2 e fondatore attivo; chiamate esterne restano disattivate finché `CASHUP_BRAIN_AI_ENABLED` non viene autorizzato |
+| CASHUP BRAIN planner gratuito | Verificato come dry-run | Planner deterministico: non usa un modello generativo, non modifica database e non chiama servizi esterni |
+| Doppio caricamento preferenze notifiche | Corretto nel codice | Rimossa la seconda chiamata duplicata in `refreshSession()`; nuovi workflow automatici avviati sul commit `9cb29ec1334cd19aa22ebd850cf779a46f172e19` |
+
+**Esito:** nessuna modifica a policy RLS, privilegi, funzioni privilegiate, impostazioni Auth, segreti o servizi a pagamento durante questo audit. Le segnalazioni residue richiedono approvazione e/o traffico di produzione per essere affrontate in sicurezza.
+
+## 18. Verifica continua dopo la correzione notifiche
+
+| Workflow | Stato | Evidenza |
+|---|---|---|
+| Web/PWA sul commit `9cb29ec` | Verificato | Catalogo, sintassi JavaScript e sito/manifest pubblicato superati; run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45039792804 |
+| Controllo Expo/Android sul commit `9cb29ec` | In corso all'ultimo controllo | Expo check superato; compilazione APK ed emulatore ancora in esecuzione; run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45039792770 |
+| iOS sul commit `9cb29ec` | In corso all'ultimo controllo | Installazione dipendenze in corso; run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45039792804 |
+
