@@ -368,3 +368,52 @@ Etichette:
 - **D — da decidere:** richiede scelta futura dell'utente.
 
 L'archivio recuperabile non equivale a una trascrizione completa di ogni conversazione storica. Nuove idee recuperate vanno aggiunte senza cancellare le precedenti e con la loro provenienza.
+
+
+## 18. Nuovi moduli approvati: CLUB, PRICE, MISSIONS, SOCIAL, AI ASSISTANT e VIP
+
+Stato di tutte le funzioni qui sotto: **Pianificato**. L'approvazione della direzione non equivale a sviluppo o disponibilità operativa.
+
+### 18.1 CASHUP CLUB — membership e vantaggi
+- Tessera digitale/account unico per identificazione presso partner, raccolta punti e consultazione vantaggi.
+- Coupon, offerte e benefit collegati a condizioni, paese, periodo e partner verificato.
+- QR o codice membership solo con validazione server-side e protezione da riutilizzo.
+- Livelli e vantaggi fedeltà sostenibili; niente valore monetario implicito per punti non convertibili.
+- KPI: membri attivi, utilizzo benefit, redemption, retention e ricavo/margine per membro.
+
+### 18.2 CASHUP PRICE — ricerca e monitoraggio prezzi
+- Ricerca prodotti e confronto tra offerte omogenee provenienti da feed/API autorizzati.
+- Liste preferiti, cronologia prezzo e avvisi di variazione quando la fonte supporta aggiornamenti affidabili.
+- Ogni prezzo mostra valuta, venditore, fonte e momento dell'ultimo aggiornamento; disponibilità e spedizione solo se fornite.
+- Disclosure affiliate e sponsorizzazioni ben visibili; ranking sponsorizzato distinto da quello organico.
+- KPI: ricerche, click-out, CTR, conversioni convalidate, EPC, freschezza feed e link non validi.
+
+### 18.3 CASHUP MISSIONS — motore di attività
+- Missioni giornaliere, settimanali, stagionali e sponsorizzate: passi, giochi, scoperta offerte e attività partner.
+- Ogni missione definisce requisiti, finestra temporale, paese, limiti, prova richiesta, stato e fonte di finanziamento.
+- Verifica lato server, idempotenza, limiti per account/dispositivo e controlli antifrode; nessun premio per semplice apertura o click non qualificato.
+- Il tetto STEPS resta massimo 100 punti al giorno; le altre missioni hanno budget e limiti separati e sostenibili.
+- KPI: completamento, costo per completamento verificato, ritorno, frodi e margine sponsor.
+
+### 18.4 CASHUP SOCIAL — community
+- Profili, gruppi, sfide tra amici, classifiche e condivisione volontaria dei risultati.
+- Privacy granulare, blocco/segnalazione, moderazione, protezione minori e strumenti anti-abuso.
+- Nessuna pubblicazione automatica di dati salute, posizione o informazioni personali.
+- KPI: utenti attivi, interazioni significative, retention, segnalazioni e tempi di moderazione.
+
+### 18.5 CASHUP AI ASSISTANT — assistente per l'ecosistema
+- Aiuto nella ricerca di offerte, confronto prodotti, navigazione dei servizi e supporto account.
+- Risposte ancorate a cataloghi e condizioni correnti; indicare chiaramente quando una fonte non è aggiornata o non disponibile.
+- Consenso e minimizzazione dei dati; niente uso dei dati salute per targeting pubblicitario.
+- Azioni sensibili (acquisti, pagamenti, modifiche account, riscatti) richiedono conferma esplicita dell'utente.
+- Iniziare con servizi AI modulari e costi misurabili; non dichiarare esistente un modello proprietario finché non è stato sviluppato.
+
+### 18.6 CASHUP VIP — abbonamento facoltativo
+- Benefici premium concreti: funzioni avanzate, strumenti, contenuti, personalizzazione e vantaggi partner effettivamente disponibili.
+- Prezzo, rinnovo, prova, cancellazione e benefici sempre trasparenti prima dell'acquisto.
+- Il piano gratuito deve restare utile; nessuna promessa di guadagni o vantaggi economici non finanziati.
+- Verificare policy Apple/Google per beni e servizi digitali e per eventuali benefit reali.
+- KPI: conversione, churn, ricavo netto, costo benefit, rimborsi e soddisfazione.
+
+### 18.7 CASHUP CORE e integrazione tra moduli
+Club, Price, Missions, Social, AI Assistant e VIP riutilizzano identità, preferenze, notifiche, catalogo, analytics e controlli del CASHUP Core. Wallet/ledger e sistemi premio restano separati per tipologia di valore e non devono essere aggirati dai moduli verticali.
