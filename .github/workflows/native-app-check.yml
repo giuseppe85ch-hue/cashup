@@ -4,7 +4,7 @@ concurrency:
   cancel-in-progress: true
 on:
   push:
-    branches: [main, cashup-native-steps]
+    branches: [main, cashup-native-steps, fix/android-embedded-js-bundle]
   pull_request:
     branches: [main]
     paths:
