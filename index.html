@@ -31,6 +31,7 @@ nav button.active{color:var(--green)}
 label{display:block;color:#c4d6c9;font-size:13px;margin:12px 0 5px}
 input{width:100%;padding:13px;background:#0b150e;border:1px solid #42634b;border-radius:10px;color:white}
 footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
+.notification-times{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notification-toggle{display:flex;align-items:center;gap:10px;margin:12px 0;color:#e6f5e9}.notification-toggle input{width:auto;accent-color:var(--green)}
 .auth-card{margin-top:18px;padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
 .auth-status{font-size:13px;line-height:1.5;color:#c1dfca;min-height:20px;margin-top:12px}
 .brain-output{white-space:pre-wrap;overflow-wrap:anywhere;background:#09140d;border:1px solid #294333;border-radius:10px;padding:12px;color:#c8e8d1;font-size:12px;line-height:1.5;max-height:360px;overflow:auto}
@@ -94,6 +95,17 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 <button class="secondary" id="signout-btn" type="button">Esci</button>
 </div>
 <p id="auth-status" class="auth-status" aria-live="polite">Controllo dello stato dell'account…</p>
+</div>
+<div class="auth-card" id="notification-settings">
+<h2 style="margin-top:0">Notifiche CASHUP 🔔</h2>
+<p class="muted">Imposta fino a due orari preferiti. Per ora salviamo soltanto le tue preferenze: l'invio delle notifiche non è ancora attivo.</p>
+<label class="notification-toggle"><input id="notifications-enabled" type="checkbox"> Attiva le preferenze di promemoria</label>
+<div class="notification-times">
+<div><label for="notification-time-1">Primo orario</label><input id="notification-time-1" type="time" value="12:00"></div>
+<div><label for="notification-time-2">Secondo orario</label><input id="notification-time-2" type="time" value="18:00"></div>
+</div>
+<div class="actions"><button class="primary" id="save-notifications-btn" type="button">Salva preferenze</button></div>
+<p id="notification-status" class="auth-status" aria-live="polite">Accedi per caricare e salvare le tue preferenze.</p>
 </div>
 <div class="auth-card">
 <h2 style="margin-top:0">CASHUP BRAIN · Test gratuito</h2>
@@ -267,6 +279,66 @@ const statusEl = document.getElementById('auth-status');
 const emailEl = document.getElementById('auth-email');
 const passwordEl = document.getElementById('auth-password');
 
+const notificationEnabledEl = document.getElementById('notifications-enabled');
+const notificationTime1El = document.getElementById('notification-time-1');
+const notificationTime2El = document.getElementById('notification-time-2');
+const notificationStatusEl = document.getElementById('notification-status');
+const saveNotificationsButton = document.getElementById('save-notifications-btn');
+
+async function loadNotificationPreferences(user) {
+  if (!user) {
+    notificationStatusEl.textContent = 'Accedi per caricare e salvare le tue preferenze.';
+    return;
+  }
+  notificationStatusEl.textContent = 'Caricamento preferenze…';
+  const { data, error } = await supabase.from('cashup_notification_preferences')
+    .select('enabled,local_times').eq('user_id', user.id).maybeSingle();
+  if (error) {
+    notificationStatusEl.textContent = 'Preferenze non disponibili: ' + readableError(error);
+    return;
+  }
+  if (data) {
+    notificationEnabledEl.checked = !!data.enabled;
+    notificationTime1El.value = data.local_times?.[0] || '12:00';
+    notificationTime2El.value = data.local_times?.[1] || '18:00';
+    notificationStatusEl.textContent = 'Preferenze caricate dal tuo account.';
+  } else {
+    notificationEnabledEl.checked = false;
+    notificationTime1El.value = '12:00';
+    notificationTime2El.value = '18:00';
+    notificationStatusEl.textContent = 'Nessuna preferenza salvata. Puoi impostarla qui.';
+  }
+}
+
+saveNotificationsButton.addEventListener('click', async () => {
+  if (typeof window.CASHUP_SAVE_NOTIFICATION_PREFS !== 'function') {
+    notificationStatusEl.textContent = 'Collegamento al servizio non ancora pronto. Riprova tra poco.';
+    return;
+  }
+  const times = [notificationTime1El.value, notificationTime2El.value].filter(Boolean);
+  if (notificationEnabledEl.checked && times.length === 0) {
+    notificationStatusEl.textContent = 'Scegli almeno un orario.';
+    return;
+  }
+  saveNotificationsButton.disabled = true;
+  notificationStatusEl.textContent = 'Salvataggio preferenze…';
+  try {
+    const result = await window.CASHUP_SAVE_NOTIFICATION_PREFS(notificationEnabledEl.checked, times);
+    if (!result.saved) {
+      notificationStatusEl.textContent = result.reason === 'sign_in_required'
+        ? 'Prima accedi al tuo account CASHUP.'
+        : 'Preferenze non salvate. Riprova.';
+    } else {
+      notificationStatusEl.textContent = 'Preferenze salvate nel tuo account CASHUP.';
+    }
+  } catch (error) {
+    notificationStatusEl.textContent = 'Salvataggio non riuscito: ' + readableError(error);
+  } finally {
+    saveNotificationsButton.disabled = false;
+  }
+});
+
+
 function showStatus(message) {
   statusEl.textContent = message;
 }
@@ -424,6 +496,8 @@ async function refreshSession() {
     showStatus('Accesso effettuato con: ' + data.session.user.email);
     await loadCloudProfile(data.session.user);
     await syncDailySteps(data.session.user);
+    await loadNotificationPreferences(data.session.user);
+    await loadNotificationPreferences(data.session.user);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
   }
@@ -487,6 +561,7 @@ supabase.auth.onAuthStateChange((_event, session) => {
     setTimeout(() => { loadCloudProfile(session.user); syncDailySteps(session.user); refreshVisitCount(); }, 0);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
+    loadNotificationPreferences(null);
   }
 });
 
