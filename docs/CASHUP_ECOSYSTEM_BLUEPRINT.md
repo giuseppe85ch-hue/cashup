@@ -417,3 +417,72 @@ Stato di tutte le funzioni qui sotto: **Pianificato**. L'approvazione della dire
 
 ### 18.7 CASHUP CORE e integrazione tra moduli
 Club, Price, Missions, Social, AI Assistant e VIP riutilizzano identità, preferenze, notifiche, catalogo, analytics e controlli del CASHUP Core. Wallet/ledger e sistemi premio restano separati per tipologia di valore e non devono essere aggirati dai moduli verticali.
+
+
+## 22. CASHUP CONNECT — identità sociale e multiplayer trasversale
+
+**Stato: Pianificato e approvato come requisito di piattaforma il 22 novembre 2026.** La direzione è condivisa; le funzioni non sono ancora implementate.
+
+CASHUP CONNECT è il livello sociale comune dell'ecosistema. Deve consentire agli utenti, in base alle funzioni offerte dalla singola app, di incontrarsi, comunicare, invitarsi e ritrovarsi senza creare account separati per ogni verticale.
+
+### 22.1 Identità, amici e presenza
+- Account CASHUP unico con nickname scelto dall'utente, avatar, profilo e preferenze sociali.
+- Richieste e lista amici, preferiti, blocco, rimozione e segnalazione.
+- Presenza configurabile: online, offline, occupato/non disturbare o invisibile.
+- Ricerca utenti tramite nickname/ID pubblico; nessuna esposizione di email o telefono.
+- Inviti tramite link CASHUP e canali esterni (email, SMS e social) usando le funzioni di condivisione disponibili; non presumere accesso automatico ai contatti o alle API dei social.
+- Inviti revocabili, con scadenza e controlli anti-spam.
+
+### 22.2 Incontri casuali e matchmaking
+- Ricerca casuale opt-in, con preferenze, lingua, regione, modalità e livello quando pertinenti.
+- Code e lobby con disponibilità, regole, posti, stato e riconnessione.
+- Matchmaking server-authoritative; evitare che il client possa falsificare risultati, punteggi o assegnazioni.
+- Opzioni per giocare con amici, con utenti casuali o in modalità privata.
+- Nessuna condivisione precisa della posizione geografica per impostazione predefinita.
+
+### 22.3 Gruppi, clan e comunità
+- Gruppi persistenti e temporanei, nome, descrizione, immagine, proprietari, moderatori e membri.
+- Ruoli e permessi: proprietario, amministratore, moderatore, membro e ospite.
+- Inviti, richieste di accesso, ricerca gruppi, calendario, chat e attività condivise.
+- Possibilità di ritrovare un gruppo e i suoi membri in sessioni successive.
+- Strumenti per espellere, silenziare, bloccare, segnalare e moderare.
+
+### 22.4 Comunicazione in tempo reale
+- Chat testuale privata, di gruppo e di lobby.
+- Voce in lobby e durante la partita, con mute individuale, mute globale, volume e uscita rapida.
+- Push-to-talk e controlli per ridurre rumore e consumo dati dove supportati.
+- Valutare provider WebRTC/voice gestiti o infrastruttura dedicata in base a costo, latenza, qualità e copertura regionale.
+- La voce non è registrata per impostazione predefinita; eventuale registrazione/moderazione audio richiede base giuridica, informativa e controlli adeguati.
+
+### 22.5 Requisiti specifici per CASHUP GAMES
+- Inviti diretti, sfide, matchmaking casuale, lobby private e pubbliche.
+- Partite individuali e a squadre, rematch e possibilità di ritrovare gli avversari.
+- Clan, tornei, eventi, classifiche e statistiche verificate.
+- Sincronizzazione cloud di nickname, progressi e risultati; gestione disconnessioni e riconnessione.
+- Anti-cheat, server autorevole per modalità competitive e audit dei risultati.
+- Chat/voce integrate durante il gioco, se tecnicamente supportate dal titolo e dalla piattaforma.
+- Non promettere cross-play universale: verificare per ogni gioco rete, piattaforme, input, versione e compatibilità.
+
+### 22.6 Riutilizzo in tutte le app CASHUP
+CONNECT è un servizio condiviso, ma ogni verticale abilita solo le funzioni pertinenti. Esempi: gruppi di viaggio, community musicali, sessioni creator, eventi LIVE, gruppi di acquisto, squadre sportive e sfide STEPS. Le funzioni sociali non devono essere forzate in contesti dove non aggiungono valore.
+
+### 22.7 Privacy, sicurezza e protezione degli utenti
+- Impostazioni granulari per visibilità, inviti, messaggi, voce e ricerca; impostazioni conservative per i nuovi account.
+- Blocco e segnalazione sempre accessibili; rate limit, rilevamento spam e anti-harassment.
+- Moderazione umana e automatizzata con procedure di escalation e appello.
+- Protezioni specifiche per minori: limiti di contatto, chat/voce e discoverability conformi a età, paese e legge; niente contatti casuali non protetti.
+- Non mostrare email, numero di telefono, posizione precisa o altri dati privati nei profili pubblici.
+- Consenso e controlli per notifiche; niente invio di inviti ai contatti senza azione esplicita.
+- Conservazione limitata dei dati di chat e log, accessi controllati e procedure per richieste privacy.
+
+### 22.8 Architettura e costi
+- Servizi condivisi: profilo pubblico separato dai dati privati, social graph, presence, invitations, groups, matchmaking, chat, voice signaling, moderation e notifications.
+- Autenticazione e autorizzazione lato server; RLS e controlli di accesso per gruppi/conversazioni; rate limit e audit.
+- Presenza e matchmaking richiedono componenti realtime; chat e voce possono avere costi variabili per utenti attivi, traffico, minuti e regioni.
+- Iniziare con MVP testuale e inviti; introdurre presenza/matchmaking, quindi voce e tornei quando la domanda giustifica i costi.
+- Non attivare servizi a pagamento o contratti senza approvazione esplicita e stima dei costi.
+
+### 22.9 KPI e criteri di rilascio
+- Inviti inviati/accettati, amici attivi, gruppi attivi, match completati, tempo di matchmaking, riconnessioni, minuti vocali, latenza, crash, segnalazioni e tempi di moderazione.
+- Rilascio per verticale solo dopo test funzionali, carico, sicurezza, privacy, moderazione, accessibilità e costi per utente.
+- La presenza di un requisito in questo blueprint non significa che la funzione sia già disponibile o implementata.
