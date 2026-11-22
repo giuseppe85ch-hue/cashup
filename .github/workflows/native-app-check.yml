@@ -1,7 +1,9 @@
 name: CASHUP native app validation
+
 concurrency:
   group: cashup-validation-${{ github.ref }}
   cancel-in-progress: true
+
 on:
   push:
     branches: [main, cashup-native-steps, fix/android-embedded-js-bundle]
@@ -19,6 +21,7 @@ on:
       - "sw.js"
       - "globalization.js"
       - ".github/workflows/native-app-check.yml"
+
 jobs:
   expo-check:
     runs-on: ubuntu-latest
@@ -27,27 +30,29 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Validate CASHUP Games catalog
         run: node scripts/validate-games.mjs
-      - name: Check CASHUP mini-game JavaScript syntax
+      - name: Check mini-game JavaScript syntax
         run: node --check games/arcade.js
-      - name: Check CASHUP cloud progress module syntax
+      - name: Check cloud progress module syntax
         run: node --input-type=module --check < games/cloud-progress.js
       - name: Check Expo dependency compatibility
         run: npx expo install --check
       - name: Run Expo Doctor
         run: npx expo-doctor
 
-  android-debug:
+  android-release:
     needs: expo-check
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -56,57 +61,34 @@ jobs:
         with:
           packages: platform-tools platforms;android-36 build-tools;36.0.0
       - name: Install dependencies
-        run: npm install
-      - name: Install the Expo Babel preset required for bundling
+        run: npm ci
+      - name: Install Expo Babel preset
         run: npx expo install babel-preset-expo
       - name: Generate Android native project
         run: npx expo prebuild --platform android --non-interactive
-      - name: Export Android JavaScript bundle explicitly
+      - name: Export standalone Android JavaScript bundle
         run: |
           mkdir -p android/app/src/main/assets
           npx expo export:embed --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
           test -s android/app/src/main/assets/index.android.bundle
           echo "Embedded JS bundle size: $(wc -c < android/app/src/main/assets/index.android.bundle) bytes"
-      - name: Build standalone release APK with embedded Hermes bundle
+      - name: Build release APK
         run: cd android && ./gradlew --no-daemon clean assembleRelease
-      - name: Verify JavaScript bundle is inside the APK
+      - name: Verify embedded bundle in APK
         run: |
           APK=android/app/build/outputs/apk/release/app-release.apk
           test -s "$APK"
-          unzip -l "$APK" | grep -E 'assets/index.android.bundle      - name: Save installable APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: cashup-android-release
-          path: android/app/build/outputs/apk/release/app-release.apk
-          if-no-files-found: error
-      - name: Install and launch APK on Android emulator (runner-dependent smoke test)
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 34
-          target: google_apis
-          arch: x86_64
-          profile: pixel_2
-          emulator-boot-timeout: 900
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          disable-animations: true
-          script: |
-            adb install -r android/app/build/outputs/apk/release/app-release.apk
-            adb shell monkey -p com.cashup.mobile 1
-            sleep 30
-            adb logcat -d -t 5000 > android-emulator-log.txt
-            if grep -E -i "Unable to load script|Unable to load JS bundle|FATAL EXCEPTION|ReactNativeJS.*(Error|error)" android-emulator-log.txt; then
-              echo "Android emulator reported an app startup error."
-              exit 1
-            fi
-
-          unzip -p "$APK" assets/index.android.bundle | wc -c
+          unzip -l "$APK" | grep -F 'assets/index.android.bundle'
+          BUNDLE_SIZE=$(unzip -p "$APK" assets/index.android.bundle | wc -c)
+          test "$BUNDLE_SIZE" -gt 0
+          echo "APK embedded JS bundle size: $BUNDLE_SIZE bytes"
       - name: Save installable APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: cashup-android-release
           path: android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
-      - name: Install and launch APK on Android emulator (runner-dependent smoke test)
+      - name: Install and launch APK on Android emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
