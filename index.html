@@ -80,8 +80,14 @@ footer{text-align:center;color:#718477;font-size:11px;padding:25px 0}
 </section>
 <section id="wallet" class="page">
 <h1>Il tuo Wallet 👛</h1>
-<div class="balance"><small>SALDO DIMOSTRATIVO</small><div class="amount" data-cashup-value="0">0,00 €</div><small>Nessun pagamento o prelievo disponibile</small></div>
-<div class="notice">Il wallet è solo una schermata dimostrativa. Non contiene denaro e non effettua transazioni.</div>
+<div class="balance"><small>SALDO IN EURO</small><div class="amount">0,00 €</div><small>Saldo dimostrativo · nessun denaro disponibile</small></div>
+<div class="card section">
+<h3>Movimenti punti CASHUP</h3>
+<p class="muted">Qui compariranno i movimenti effettivamente registrati nel tuo account. I punti non sono denaro e non sono riscattabili finché CASHUP non attiva ufficialmente le ricompense.</p>
+<p id="wallet-status" class="auth-status" aria-live="polite">Accedi per consultare i movimenti del tuo account.</p>
+<ul id="wallet-history" style="padding-left:20px;color:#dcefe1;font-size:13px;line-height:1.7"></ul>
+</div>
+<div class="section notice">CASHUP mantiene separati punti, cashback, crediti promozionali e denaro. Nessun accredito in euro, prelievo o riscatto è attivo in questa versione.</div>
 </section>
 <section id="profile" class="page">
 <h1>Profilo 👤</h1><p class="muted">Crea il tuo account CASHUP oppure accedi.</p>
@@ -352,6 +358,47 @@ function readableError(error) {
   return messages[error?.message] || error?.message || 'Si è verificato un errore. Riprova.';
 }
 
+async function loadWalletHistory(user) {
+  const status = document.getElementById('wallet-status');
+  const list = document.getElementById('wallet-history');
+  list.replaceChildren();
+  if (!user) {
+    status.textContent = 'Accedi al tuo account CASHUP per consultare i movimenti.';
+    return;
+  }
+  status.textContent = 'Caricamento movimenti…';
+  const { data, error } = await supabase.from('points_ledger')
+    .select('points,reason,created_at')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+    .limit(20);
+  if (error) {
+    status.textContent = 'Movimenti non disponibili: ' + readableError(error);
+    return;
+  }
+  if (!data?.length) {
+    status.textContent = 'Non ci sono ancora movimenti punti registrati.';
+    return;
+  }
+  const labels = {
+    steps_reward: 'Ricompensa passi',
+    mission_reward: 'Ricompensa missione',
+    ad_reward: 'Ricompensa pubblicità verificata',
+    admin_adjustment: 'Rettifica account',
+    reward_redemption: 'Riscatto ricompensa',
+    reversal: 'Storno'
+  };
+  for (const item of data) {
+    const li = document.createElement('li');
+    const points = Number(item.points) || 0;
+    const date = item.created_at ? new Date(item.created_at).toLocaleString() : '';
+    li.textContent = (points > 0 ? '+' : '') + points + ' punti · ' +
+      (labels[item.reason] || 'Movimento') + (date ? ' · ' + date : '');
+    list.appendChild(li);
+  }
+  status.textContent = 'Ultimi ' + data.length + ' movimenti registrati.';
+}
+
 async function loadCloudProfile(user) {
   const { data, error } = await supabase
     .from('profiles')
@@ -497,8 +544,10 @@ async function refreshSession() {
     await loadCloudProfile(data.session.user);
     await syncDailySteps(data.session.user);
     await loadNotificationPreferences(data.session.user);
+    await loadWalletHistory(data.session.user);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
+    await loadWalletHistory(null);
   }
 }
 
@@ -557,10 +606,11 @@ document.getElementById('signout-btn').addEventListener('click', async () => {
 supabase.auth.onAuthStateChange((_event, session) => {
   if (session?.user) {
     showStatus('Accesso effettuato con: ' + session.user.email);
-    setTimeout(() => { loadCloudProfile(session.user); syncDailySteps(session.user); refreshVisitCount(); }, 0);
+    setTimeout(() => { loadCloudProfile(session.user); syncDailySteps(session.user); loadWalletHistory(session.user); refreshVisitCount(); }, 0);
   } else {
     showStatus('Non hai ancora effettuato l’accesso.');
     loadNotificationPreferences(null);
+    setTimeout(() => loadWalletHistory(null), 0);
   }
 });
 
