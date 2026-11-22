@@ -176,3 +176,27 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Test funzionale end-to-end | Da eseguire | Verificare da sessione utente reale salvataggio profilo e preferenze notifiche; il controllo SQL dei privilegi non sostituisce il test applicativo |
 
 **Perimetro della modifica:** nessuna altra tabella, policy RLS, impostazione Auth o funzione è stata modificata.
+
+
+## 13. Moduli approvati il 22 novembre 2026
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| CASHUP CLUB — tessera digitale e vantaggi partner | Pianificato | Definire membership, QR/codici sicuri, benefit e partner |
+| CASHUP PRICE — confronto e avvisi prezzo | Pianificato | Feed/API autorizzati, freschezza dati, comparabilità e disclosure affiliate |
+| CASHUP MISSIONS — missioni multi-settore | Pianificato | Regole, prove server-side, budget, limiti e antifrode |
+| CASHUP SOCIAL — community e sfide | Pianificato | Profili, gruppi, privacy, moderazione e protezione minori |
+| CASHUP AI ASSISTANT | Pianificato | Ricerca offerte/prodotti, supporto e azioni con conferma esplicita |
+| CASHUP VIP — membership premium | Pianificato | Benefici reali, prezzi trasparenti, cancellazione e policy store |
+| Integrazione con CASHUP Core | Pianificato | Riutilizzare account, preferenze, notifiche, catalogo e analytics senza mescolare ledger |
+
+## 14. Aggiornamento verifica Android — 22 novembre 2026
+
+| Controllo | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| Compilazione APK Android release | Verificato nel run 45031496465 | Gradle ha completato con successo e generato l'APK |
+| Test avvio su emulatore GitHub Actions | Bloccato da ambiente CI | L'emulatore non è comparso su ADB e il runner è andato in timeout; non è un errore di bundle dell'app |
+| Conservazione APK quando l'emulatore non parte | In sviluppo | Workflow aggiornato per caricare l'artefatto subito dopo la compilazione e rendere non bloccante il test dipendente dall'emulatore |
+| Verifica sul dispositivo Android fisico | Pianificato | Installare il nuovo APK verificato e controllare avvio, login, Health Connect e notifiche |
+| Errore storico "Unable to load script" sul telefono | Non ancora verificato | Non attribuirlo al run CI; confrontare il pacchetto installato con il nuovo package com.cashup.mobile e raccogliere l'eventuale messaggio esatto |
+
