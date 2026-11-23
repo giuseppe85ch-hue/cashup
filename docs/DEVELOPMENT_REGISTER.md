@@ -1,6 +1,6 @@
 # CASHUP — Registro di sviluppo
 
-**Aggiornamento:** 20 novembre 2026  
+**Aggiornamento:** 23 novembre 2026  
 **Repository:** https://github.com/giuseppe85ch-hue/cashup  
 **Sito pubblico:** https://cashup-859.pages.dev/
 
@@ -59,8 +59,8 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Manifest e service worker PWA | Verificato | PWABuilder aveva segnalato manifest pronto per packaging |
 | Esperienza PWA standalone | In sviluppo | Verificare installazione e apertura autonoma su browser/device |
 | Wrapper Expo WebView | In sviluppo | App.js presente; non equivale a release stabile |
-| APK Android release | In sviluppo | In passato APK ha mostrato errore di caricamento bundle; non distribuire |
-| Workflow CI Android | In sviluppo | Workflow configura build release e avvio su emulatore; controllare un run riuscito e log prima di dichiarare superato |
+| APK Android release | Verificato | Build release CI riuscita; bundle incorporato verificato; artifact `cashup-android-release` disponibile fino al 21 febbraio 2027. Test fisico sullo Xiaomi ancora necessario |
+| Workflow CI Android | Verificato | Run GitHub Actions 45089072157 superato: build release, verifica bundle, salvataggio artifact e installazione/avvio su emulatore. Il test emulatore non sostituisce quello su dispositivo fisico |
 | Test Android su dispositivo fisico | Pianificato | Health Connect, notifiche, avvio, login, stabilità e consumi |
 | Build e test iOS | Pianificato | Richiede ambiente Apple idoneo, build nativa e test HealthKit |
 | Pubblicazione store | Pianificato | Firma, asset, privacy, dichiarazioni e approvazioni store |
@@ -77,7 +77,7 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 
 ## 7. Prossime priorità operative
 
-1. **Stabilizzare la build nativa Android**: controllare CI, bundle, avvio su emulatore e successivamente dispositivo fisico. Nessun nuovo APK da installare finché il controllo automatico non è superato.
+1. **Completare la verifica Android su dispositivo fisico**: CI, bundle e avvio su emulatore sono superati (run 45089072157); resta da provare l'APK su Xiaomi, inclusi avvio, login, stabilità, Health Connect e notifiche.
 2. **Eseguire test end-to-end della piattaforma web**: registrazione, accesso, profilo, sessione, errori e sicurezza.
 3. **Verificare backend e RLS**: punti, missioni, progressi e protezione da richieste duplicate o manipolate.
 4. **Attivare CASHUP STEPS realmente**: Health Connect e HealthKit su dispositivi supportati, permessi, limiti e antifrode.
