@@ -59,7 +59,7 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Manifest e service worker PWA | Verificato | PWABuilder aveva segnalato manifest pronto per packaging |
 | Esperienza PWA standalone | In sviluppo | Verificare installazione e apertura autonoma su browser/device |
 | Wrapper Expo WebView | In sviluppo | App.js presente; non equivale a release stabile |
-| APK Android release | Verificato | Build release CI riuscita; bundle incorporato verificato; artifact `cashup-android-release` disponibile fino al 21 febbraio 2027. Test fisico sullo Xiaomi ancora necessario |
+| APK Android release | Verificato | Run 45089072157: build release, bundle incorporato, artifact `cashup-android-release` (27.439.145 byte; scadenza 21 febbraio 2027) e installazione/avvio su emulatore superati. Test fisico sullo Xiaomi ancora necessario |
 | Workflow CI Android | Verificato | Run GitHub Actions 45089072157 superato: build release, verifica bundle, salvataggio artifact e installazione/avvio su emulatore. Il test emulatore non sostituisce quello su dispositivo fisico |
 | Test Android su dispositivo fisico | Pianificato | Health Connect, notifiche, avvio, login, stabilità e consumi |
 | Build e test iOS | Pianificato | Richiede ambiente Apple idoneo, build nativa e test HealthKit |
@@ -83,7 +83,7 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 4. **Attivare CASHUP STEPS realmente**: Health Connect e HealthKit su dispositivi supportati, permessi, limiti e antifrode.
 5. **Definire il primo perimetro commerciale operativo**: partner, pubblicità, offerte e redemption con condizioni confermate.
 6. **Piano cataloghi di lancio**: quantità e copertura per categoria, fonti dati lecite, contenuti realmente disponibili e aggiornamento.
-7. **Piano economico 300.000 €**: modello per fatturato, margine e utile netto; ipotesi e scenari espliciti, senza promesse.
+7. **Piano economico e commerciale**: usare docs/INTERNATIONAL_LAUNCH_PLAYBOOK.md per canali, budget approval gates, piano social e criteri di lancio; completare ipotesi e scenari espliciti, senza promesse.
 8. **Preparazione internazionale**: lingue, valute, pagamenti, privacy, termini, assistenza e requisiti locali.
 
 ## 8. Regole di controllo
