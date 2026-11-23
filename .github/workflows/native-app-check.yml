@@ -117,7 +117,4 @@ jobs:
             adb shell monkey -p com.cashup.mobile 1
             sleep 30
             adb logcat -d -t 5000 > android-emulator-log.txt
-            if grep -E -i "Unable to load script|Unable to load JS bundle|FATAL EXCEPTION|ReactNativeJS.*(Error|error)" android-emulator-log.txt; then
-              echo "Android emulator reported an app startup error."
-              exit 1
-            fi
+            ! grep -E -i "Unable to load script|Unable to load JS bundle|FATAL EXCEPTION|ReactNativeJS.*(Error|error)" android-emulator-log.txt
