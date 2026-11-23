@@ -264,3 +264,21 @@ Gli stati sono rigorosi: **Pianificato**, **In sviluppo**, **Verificato**, **Ope
 | Controllo Expo/Android sul commit `9cb29ec` | In corso all'ultimo controllo | Expo check superato; compilazione APK ed emulatore ancora in esecuzione; run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45039792770 |
 | iOS sul commit `9cb29ec` | In corso all'ultimo controllo | Installazione dipendenze in corso; run https://github.com/giuseppe85ch-hue/cashup/actions/runs/45039792804 |
 
+
+
+## 19. Programma commerciale globale — specifiche aggiunte (23 novembre 2026)
+
+| Area | Stato | Evidenza / lavoro residuo |
+|---|---|---|
+| Strategia internazionale affiliate + advertising | Verificato come documento | marketing/GLOBAL_AFFILIATE_ADVERTISING_STRATEGY.md: modello outbound/inbound, commissioni, campagne, sponsor, scambi gratuiti, cashback controllato e margini |
+| Registro mondiale reti, directory e prospect | Verificato come documento | marketing/GLOBAL_PARTNER_PROSPECT_REGISTER.md: longlist da verificare, settori, CRM, messaggi IT/EN e criteri di qualificazione; non equivale a contatti inviati o partner attivi |
+| Specifica tecnica motore commerciale | Verificato come documento | docs/COMMERCIAL_ENGINE_TECHNICAL_SPEC.md: catalogo, click routing, postback, ledger, cashback, inventario ads e report; nessuna funzione implementata da questa specifica |
+| Programma affiliate CASHUP | Pianificato | Candidature alle reti solo dopo approvazione titolare, profilo publisher accurato e verifica dei requisiti per app/cashback |
+| Offerte e merchant catalog | Pianificato | Servono feed/API autorizzati, termini aggiornati, prezzi e disponibilità verificabili |
+| Spazi pubblicitari vendibili | Pianificato | Servono inventario implementato, audience reale, misurazione, media kit e disclosure |
+| Scambi pubblicitari internazionali | Pianificato | Ricerca e accordi reciproci; verificare pertinenza, deliverable, regole e risultati |
+| Cashback affiliate | Pianificato | Ammesso solo dove merchant/network lo autorizzano; conversioni approvate, riserve e riconciliazione |
+| Richieste inbound partner | Pianificato | Preparare pagina "Collabora con CASHUP", contatto ufficiale, media kit e processo di revisione |
+| Candidature e contatti commerciali | Da approvare | Richiedono contatto/email aziendale, accettazione termini, dati fiscali eventualmente richiesti e autorizzazione del titolare |
+
+**Nuova priorità:** prima inventario tecnico e pagina partner; poi candidature e outreach controllati; quindi primi test di vendita e cashback solo quando tracciamento, condizioni e copertura finanziaria sono verificati.
